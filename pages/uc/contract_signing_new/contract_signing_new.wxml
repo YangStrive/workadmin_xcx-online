@@ -1,0 +1,25 @@
+<rich-text nodes="{{contractTxt}}"></rich-text>
+<view class="bottom-btn-panel">
+  <button class="bottom-btn" bindtap="next">{{contract_list.length>0?'下一步':'确认签字'}}</button>
+</view>
+<view class='send_code' hidden='{{!isShowSendCodeView}}'>
+  <view class='send_code_content'>
+    <view class='send_code_top'>
+      <view class='send_code_top_text_content'>
+        <text class='send_code_top_text'>输入验证码</text>
+      </view>
+      <image class='cancel_image' bindtap="cancel" src="http://cdn.doumistatic.com/131,010d6bd77601b96b.png"></image>
+    </view>
+    <view class='send_code_middle'>
+      <input class='input-text' maxlength="6" type="number" bindinput="bindCodeInput" placeholder="请输入" value="{{msmcode}}"></input>
+      <view class="getcodebase {{(getcodestatus && agingetcode) || 'getcodesuc'}}" bindtap="getcode">
+        <text class="send_code_middle_button ">{{getcodetext}}</text>
+      </view>
+    </view>
+    <view class="send_code_content_bottom-btn-panel">
+      <button class="send_code_content_bottom-btn {{(msmcode.length === 6) || 'send_code_content_bottom-btn-panel-btndis'}}" bindtap="confirm_next" data-itemdata='{{cont_protocol_order_id}}'>
+        确定
+      </button>
+    </view>
+  </view>
+</view>

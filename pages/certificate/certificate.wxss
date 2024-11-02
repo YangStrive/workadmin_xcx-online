@@ -1,0 +1,190 @@
+
+.auth .user-info {
+  width: 100%;
+  height: 308rpx;
+  background: url("https://cdn.doumistatic.com/226,01ef325803974513.png") no-repeat center bottom;
+  background-size: 100% auto;
+  display: flex;
+}
+.auth .user-info .avatar {
+  margin: 40rpx 0 0 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  border: 4rpx solid #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.auth .user-info .info {
+  margin: 60rpx 0 0 28rpx;
+}
+.auth .user-info .info .name {
+  font-family: PingFangSC-Medium;
+  font-size: 44rpx;
+  line-height: 36rpx;
+  color: #fff;
+}
+.auth .user-info .info .mobile {
+  margin-top: 22rpx;
+  opacity: 0.8;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  line-height: 36rpx;
+  color: #fff;
+}
+.auth .input-info {
+  min-height: 856rpx;
+  width: 638rpx;
+  position: absolute;
+  top: 204rpx;
+  left: 24rpx;
+  background: #fff;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0,0,0,0.2);
+  border-radius: 20rpx;
+  padding: 42rpx 32rpx 74rpx 32rpx;
+}
+.auth .input-info .title {
+  font-family: PingFangSC-Semibold;
+  font-size: 32rpx;
+  color: #404040;
+  position: relative;
+}
+.auth .input-info .title::after {
+  content: ' ';
+  width: 32rpx;
+  height: 6rpx;
+  background: #fa0;
+  border-radius: 2rpx;
+  position: absolute;
+  bottom: -24rpx;
+  left: 0;
+}
+.auth .input-info .id-card {
+  margin-top: 48rpx;
+  margin-bottom: 64rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.auth .input-info .id-card .frontCardImg {
+  width: 308rpx;
+  height: 176rpx;
+}
+.auth .input-info .id-card .front {
+  width: 308rpx;
+  height: 176rpx;
+  background: url("https://cdn.doumistatic.com/217,01d81d35c88087ca.png") no-repeat center bottom;
+  background-size: 100% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.auth .input-info .id-card .front image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.auth .input-info .id-card .front .id-card-text {
+  margin-top: 16rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #fff;
+}
+.auth .input-info .id-card .backCardImg {
+  width: 308rpx;
+  height: 176rpx;
+}
+.auth .input-info .id-card .back {
+  width: 308rpx;
+  height: 176rpx;
+  background: url("https://cdn.doumistatic.com/228,01d81d38cc83cd1f.png") no-repeat center bottom;
+  background-size: 100% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.auth .input-info .id-card .back image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.auth .input-info .id-card .back .id-card-text {
+  margin-top: 16rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #fff;
+}
+.auth .input-info .name,
+.auth .input-info .card-number {
+  margin-top: 38rpx;
+  height: 92rpx;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+}
+.auth .input-info .name .head,
+.auth .input-info .card-number .head {
+  width: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #404040;
+  text-align: justify;
+  text-align-last: justify;
+  display: inline-block;
+}
+.auth .input-info .name .tig,
+.auth .input-info .card-number .tig {
+  margin-left: 6rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #f60;
+  letter-spacing: 0;
+  line-height: 28rpx;
+}
+.auth .input-info .name .input,
+.auth .input-info .card-number .input {
+  margin-left: 50rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #404040;
+}
+.auth .input-info .name .placeholder,
+.auth .input-info .card-number .placeholder {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999;
+}
+.auth .input-info .card-number {
+  margin-top: 0rpx;
+}
+.auth .input-info .agreement {
+  margin-top: 98rpx;
+  display: flex;
+  align-items: center;
+}
+.auth .input-info .agreement image {
+  width: 28rpx;
+  height: 28rpx;
+}
+.auth .input-info .agreement .text {
+  margin-left: 12rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #808080;
+}
+.auth .input-info .agreement .clause {
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #008eff;
+}
+.auth .input-info .sure-btn {
+  margin-top: 34rpx;
+  height: 88rpx;
+  background:#FFAA00;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: PingFangSC-Semibold;
+  font-size: 32rpx;
+  color: #fff;
+}

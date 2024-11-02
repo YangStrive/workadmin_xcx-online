@@ -1,0 +1,293 @@
+page{
+  background-color:#F2F2F2;
+  font-family: PingFangSC-Regular;
+}
+.exhibition_area{
+  position: absolute;
+  top:60rpx;
+  right:24rpx;
+  bottom:26rpx;
+  left:24rpx;
+  background-color: #ffffff;
+  border: 0 solid #E7E7E7;
+  border-radius: 0 0 2px 2px;
+}
+.exhibition_area .content{
+  display:flex;
+  flex-direction: column;
+  background-image: linear-gradient(180deg, #FFFFFF 0%, #F3F4F5 100%);
+  align-items: center;
+}
+.avatar_container{
+  position: relative;
+  top:-36rpx;
+  width:150rpx;
+  height:150rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+.avatar{
+  width:120rpx;
+  height:120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.info{
+  margin-top:-36rpx;
+  display:flex;
+  font-size: 24rpx;
+  color: #333333;
+}
+.info .name{
+  margin-right:20rpx;
+}
+
+.detailed{
+  padding:16rpx 40rpx;
+  font-size: 24rpx;
+  color: #808080;
+  letter-spacing: 0.2px;
+  line-height: 40rpx;
+}
+
+.options{
+  padding:16rpx 40rpx 0 40rpx;
+}
+
+.item{
+  position: relative;
+  display:flex;
+  align-items:center;
+  height:96rpx;
+  border-bottom:1rpx solid #e5e5e5;
+  font-size: 28rpx;
+  color: #666666;
+}
+.space-between{
+  justify-content: space-between;
+}
+.option{
+  display: flex;
+  justify-content: space-between;
+}
+.option .time{
+  margin-right:20rpx;
+}
+.option::after {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #c8c8cd;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 40rpx;
+  right: 0px;
+}
+.radio{
+  margin-left:50rpx;
+}
+radio .wx-radio-input{ 
+  /* 自定义样式.... */
+    height: 32rpx; 
+    width: 32rpx;
+    margin-top: -4rpx;
+    border-radius: 50%;
+    border: 2rpx solid #999;
+    background: transparent;
+    box-sizing: border-box;
+ }
+ 
+ 
+ 
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked{
+   border: none;
+   background: #7099f8;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 32rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 32rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 32rpx;
+   text-align: center;
+   font-size:20rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: #7099f8;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+.btns{
+  position: absolute;
+  bottom:40rpx;
+  width:100%;
+  display:flex;
+  justify-content: space-around;
+}
+
+.button{
+  width:264rpx;
+  height:88rpx;
+  background: #FFAA00;
+  border-radius: 4rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
+/* 验证码弹窗 */
+.send_code {
+  position: fixed;
+  top:0rpx;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+}
+
+.send_code_content {
+  background: white;
+  margin: 0;
+  padding: 0; 
+  width: 600rpx;
+  height: 434rpx;
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16rpx;
+  /* z-index: 98; */
+}
+
+.send_code_top {
+  
+}
+
+.send_code_top_text_content {
+  margin-left: 210rpx;
+  margin-top: 44rpx;
+  width: 190rpx;
+  line-height: 40rpx;
+  font-size: 36rpx;
+  display: inline-block;
+  color: #333;
+}
+
+.cancel_image {
+  float: right;
+  width: 28rpx;
+  height: 28rpx;
+  margin-top: 48rpx;
+  margin-right: 48rpx;
+}
+
+/* 验证码中间输入视图 */
+.send_code_middle {
+  /* background: green; */
+  width: 520rpx;
+  height: 96rpx;
+  margin-top: 54rpx;
+  margin-left: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom:1rpx solid #e5e5e5;
+  /* border:1rpx solid #e5e5e5; */
+
+}
+
+.input-text {
+  height: 100%;
+  width: 300rpx;
+  flex-grow: 1;
+}
+
+.send_code_middle_button_content {
+  /* background: yellow; */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  width: 164rpx;
+}
+
+.send_code_middle_button {
+  font-size: 32rpx;
+  text-align: right;
+  width: 100%;
+  height: 44rpx;
+}
+
+.getcodebase {
+  color: #FFAA00;
+}
+
+.getcodesuc{
+  color: #BBBBBB;
+}
+
+.send_code_content_bottom-btn-panel {
+  margin-top: 64rpx;
+  height: 88rpx;
+  width: 520rpx;
+  text-align: center;
+  background: #fff;
+  bottom: 0rpx;
+}
+
+.send_code_content_bottom-btn {
+  background-image:linear-gradient(-47deg, #0072ff 0%, #00d5ff 100%);
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  font-size: 32rpx;
+  border-radius: 6rpx;
+  margin: 0rpx 40rpx 0rpx 40rpx;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send_code_content_bottom-btn-panel-btndis {
+  background: rgba(88,162,241,0.40);
+
+}
+.protocol-content text{
+  font-size: 28rpx;
+  display: block;
+  padding: 0 20rpx;
+}
+.text-centent{
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  display: block;
+}
+.text-p{
+  text-indent:40rpx
+}
+.text-left{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.bold{
+  font-weight: bold;
+  text-decoration: underline;
+}
+.mb{margin-bottom: 20rpx;}

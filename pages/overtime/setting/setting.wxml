@@ -1,0 +1,70 @@
+<!--pages/overtime/setting/setting.wxml-->
+
+<view class='view-label box-flex-row-center'>
+  <view class='text-label'>基本工资（按天计算）</view>
+  <view style='flex:1'></view>
+  <input bindinput='inputBaseWage' type='number' class='edit-base-wage' placeholder='0.00' value='{{baseWage}}'></input>
+  <view class='text-label right-unit'>元/天</view>
+</view>
+
+
+
+<view class='tip-box box-flex-row-center'>
+  <text class='tip-text'>时薪</text>
+  <view style='flex:1'></view>
+  <text class='tip-text'>数据不对时可以修改哦</text>
+</view>
+<view class='view-label box-flex-row-center' >
+  <view class='text-label' style=' font-weight: bolder;'>平时加班</view>
+</view>
+<view class='view-label box-flex-row-center' style='margin-top:0rpx;border-top: 1rpx solid #e5e5e5;'>
+  <view class='text-label'>倍数</view>
+  <view style='flex:1'></view>
+  <input class='edit-base-wage' bindinput='inputNormalMultiple' value='{{normalMultiple}}' placeholder='0.00'></input>
+  <view class='text-label right-unit' >倍</view>
+</view>
+
+<view class='view-label box-flex-row-center' style='margin-top:0rpx;border-top: 1rpx solid #e5e5e5;'>
+  <view class='text-label'>小时工资</view>
+  <view style='flex:1'></view>
+  <input class='edit-base-wage' bindinput='inputNormalWage' placeholder='0.00' value='{{normalWage}}'></input>
+  <view class='text-label right-unit'>元/时</view>
+</view>
+
+<view class='view-label box-flex-row-center'>
+  <view class='text-label' style=' font-weight: bolder'>周末加班</view>
+</view>
+<view class='view-label box-flex-row-center' style='margin-top:0rpx;border-top: 1rpx solid #e5e5e5;'>
+  <view class='text-label'>倍数</view>
+  <view style='flex:1'></view>
+  <input class='edit-base-wage' bindinput='inputWeekendMultiple' value='{{weekendMultiple}}' placeholder='0.00'></input>
+  <view class='text-label right-unit' >倍</view>
+</view>
+
+<view class='view-label box-flex-row-center' style='margin-top:0rpx;border-top: 1rpx solid #e5e5e5;'>
+  <view class='text-label'>小时工资</view>
+  <view style='flex:1'></view>
+  <input class='edit-base-wage' bindinput='inputWeekendWage' placeholder='0.00' value='{{weekendWage}}'></input>
+  <view class='text-label right-unit'>元/时</view>
+</view>
+
+<view class='view-label box-flex-row-center'>
+  <view class='text-label' style=' font-weight: bolder'>节假日加班</view>
+</view>
+<view class='view-label box-flex-row-center' style='margin-top:0rpx;border-top: 1rpx solid #e5e5e5;'>
+  <view class='text-label'>倍数</view>
+  <view style='flex:1'></view>
+  <input class='edit-base-wage' bindinput='inputHolidayMultiple' value='{{holidayMultiple}}' placeholder='0.00'></input>
+  <view class='text-label right-unit' >倍</view>
+</view>
+
+<view class='view-label box-flex-row-center' style='margin-top:0rpx;border-top: 1rpx solid #e5e5e5;'>
+  <view class='text-label'>小时工资</view>
+  <view style='flex:1'></view>
+  <input class='edit-base-wage' bindinput='inputHolidayWage' value='{{holidayWage}}' placeholder='0.00'></input>
+  <view class='text-label right-unit'>元/时</view>
+</view>
+
+<view class="bottom-btn-panel">
+  <button class="bottom-btn" bindtap="saveWageSetting">保存</button>
+</view>

@@ -1,0 +1,490 @@
+<view class='page'>
+  <view class='bg'></view>
+  <view class='layer-wrap'>
+    <view class='wrap'>
+      <view class='layer' wx:if="{{pagehidden}}">
+        <view class='semi-circle'></view>
+        <image class='avatar' src="{{inviteData.logo.thumb_url}}" wx:if="{{inviteData.logo.thumb_url != ''}}"></image>
+        <image class='avatar' src="http://sta.doumistatic.com/src/image/saas/avatar.png" wx:else></image>
+        <!-- 标题 -->
+        <view class='top {{inviteData.project_name == inviteData.group_name ? "top_noteam" : ""}}'>
+          <view style='height:52px;'></view>
+          <text class='tip'>邀请你加入项目</text>
+          <view class='text'>
+            <text class='project_name'>{{inviteData.project_name}}</text>
+            <text class='team' wx:if="{{inviteData.project_name != inviteData.group_name}}">
+              {{inviteData.group_name}}
+            </text>
+          </view>
+        </view>
+        <!-- 标题 -->
+        <!-- 内容 -->
+        <view class='content'>
+          <view class='content-tips-view' hidden='{{needNameAuth == 0}}'>
+            <image class='icon_tip' src='../../image/icon_tip.png'></image>
+            <text class='content-tips-text'>项目开启实名认证，请填写您的真实信息</text>
+          </view>
+          <form style='margin-top:16px'>
+            <view class="page__bd">
+              <!-- 姓名 -->
+              <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                  <view class="weui-cell__hd">
+                    <view class="weui-label">姓名</view>
+                  </view>
+                  <view class="weui-cell__bd">
+                    <input class="weui-input" class="{{hasReal_name? 'isdisabled' : ''}}" placeholder="请输入" value="{{user_name}}" model="{{user_name}}" bindinput="usernameInput" disabled='{{hasReal_name}}' />
+                  </view>
+                </view>
+              </view>
+              <!-- 手机号 -->
+              <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                  <view class="weui-cell__hd">
+                    <view class="weui-label">手机号</view>
+                  </view>
+                  <view class="weui-cell__bd">
+                    <input class="weui-input" class="{{hasPhone? 'isdisabled' : ''}}" placeholder="请输入" value="{{phone}}" model="{{phone}}" bindinput="phoneInput" disabled='{{hasPhone}}' />
+                  </view>
+                </view>
+              </view>
+              <!-- 验证码 -->
+              <view class="weui-cell weui-cell_input weui-cell_vcode" wx:if="{{showVcode}}">
+                <view class="weui-cell__hd">
+                  <view class="weui-label">验证码</view>
+                </view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input" placeholder="请输入" bindinput="vcodeInput" value="{{vcode}}" model="{{vcode}}" />
+                </view>
+                <view class="weui-cell__ft">
+                  <view class="weui-vcode-btn" wx:if="{{!isCounting}}" bindtap="getVCode">
+                    {{countingTxt}}
+                  </view>
+                  <view class="weui-vcode-btn" wx:else bindtap="getVCode">{{countingTxt2}}</view>
+                </view>
+              </view>
+              <block wx:for="{{items}}" wx:for-item="item" wx:key="id">
+                <!-- 性别 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 1}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">性别</view>
+                    </view>
+                    <view class="weui-cell__bd" wx:if="{{hasReal_name && sexData != ''}}">
+                      <text class="picker_text" class="{{(hasReal_name && sexData)? 'isdisabled' : ''}}">
+                        {{sexData}}
+                      </text>
+                    </view>
+                    <picker bindchange='bindPickerSex' value='{{index}}' range='{{sexArray}}' wx:else>
+                      <view class="weui-cell__bd">
+                        <text class="picker_text picker_text-placeholder" wx:if="{{'' == sexData}}">
+                          请选择
+                        </text>
+                        <text class="picker_text" wx:if="{{'' != sexData}}">{{sexData}}</text>
+                      </view>
+                    </picker>
+                    <view class="weui-cell__ft" wx:if="{{!(hasReal_name && sexData)}}"></view>
+                  </view>
+                </view>
+                <!-- 身高 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 2}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">身高(cm)</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入" value="{{user_height}}" model="{{user_height}}" bindinput="userheightInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 体重 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 3}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">体重(kg)</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入" value="{{user_weight}}" model="{{user_weight}}" bindinput="userweightInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 出生年月 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 5}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">出生年月</view>
+                    </view>
+                    <view class="weui-cell__bd" wx:if="{{hasReal_name && '' != birthData}}">
+                      <text class="picker_text" class="{{(hasReal_name && '' != birthData)? 'isdisabled' : ''}}" wx:if="{{'' != birthData}}">
+                        {{birthData}}
+                      </text>
+                    </view>
+                    <picker mode="date" value="{{date}}" start="1940-09-01" end="2019-09-01" bindchange="bindBirthDateChange" wx:else>
+                      <view class="weui-cell__bd">
+                        <text class="picker_text picker_text-placeholder" wx:if="{{'' == birthData}}">
+                          请选择
+                        </text>
+                        <text class="picker_text" wx:if="{{'' != birthData}}">{{birthData}}</text>
+                      </view>
+                    </picker>
+                    <view class="weui-cell__ft" wx:if="{{!(hasReal_name && sexData)}}"></view>
+                  </view>
+                </view>
+                <!-- 身份证号 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 6}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">身份证号</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" class="{{hasReal_name? 'isdisabled' : ''}}" placeholder="请输入" value="{{user_identity}}" model="{{user_identity}}" bindinput="useridentityInput" disabled='{{hasReal_name}}' />
+                    </view>
+                  </view>
+                </view>
+                <!-- 居住地点 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 7}}">
+                  <view class="weui-cell weui-cell_input" bindtap='gotoPostion'>
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">居住地点</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <text class="picker_text" wx:if="{{'' != province_name && province_name == city_name}}">
+                        {{province_name}} {{district_name}}
+                      </text>
+                      <text class="picker_text" wx:elif="{{'' != province_name && province_name != city_name}}">
+                        {{province_name}} {{city_name}} {{district_name}}
+                      </text>
+                      <text class="picker_text picker_text-placeholder" wx:else>请选择</text>
+                    </view>
+                    <view class="weui-cell__ft"></view>
+                  </view>
+                </view>
+                <!-- 人员编号 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 8}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">人员编号</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入" value="{{personnel_number}}" model="{{personnel_number}}" bindinput="personelnumberInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 详细地址 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 999099}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">详细地址</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入" value="{{datail_address}}" model="{{datail_address}}" bindinput="detailaddressInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 详细地址 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 9}}">
+                  <view class="weui-cell weui-cell_input" bindtap='handleTapGetAddrDetail'>
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">详细地址</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <text class="picker_text" wx:if="{{datail_address != ''}}">
+                        {{datail_address}}
+                      </text>
+                      <text class="picker_text picker_text-placeholder" wx:else>请选择</text>
+                    </view>
+                    <view class="weui-cell__ft"></view>
+                  </view>
+                </view>
+                <!-- 学历 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 12}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">学历</view>
+                    </view>
+                    <picker bindchange='bindPickerChang' value='{{degreeId}}' range='{{schoolArray}}' range-key="">
+                      <view class="weui-cell__bd">
+                        <text class="picker_text" wx:if="{{degree != ''}}">
+                          {{schoolArray[degreeId]}}
+                        </text>
+                        <text class="picker_text picker_text-placeholder" wx:else>请选择</text>
+                      </view>
+                    </picker>
+                    <view class="weui-cell__ft"></view>
+                  </view>
+                </view>
+                <!-- 学校 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 4}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">学校</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入" value="{{user_school}}" model="{{user_school}}" bindinput="userschoolInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 专业 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 13}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">专业</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入" value="{{specialty}}" model="{{specialty}}" bindinput="specialtyInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 毕业时间 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 10}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">毕业时间</view>
+                    </view>
+                    <picker mode="date" value="{{date}}" start="1960-09-01" end="2025-12-31" bindchange="bindGraduateDateChange">
+                      <view class="weui-cell__bd">
+                        <text class="picker_text" wx:if='{{"" != graduate_date}}'>
+                          {{graduate_date}}
+                        </text>
+                        <text class="picker_text picker_text-placeholder" wx:else>请选择</text>
+                      </view>
+                    </picker>
+                    <view class="weui-cell__ft"></view>
+                  </view>
+                </view>
+                <!-- 开户人 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 14}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">开户人</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入" value="{{bank}}" model="{{bank}}" bindinput="bankInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 开户行 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 15}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">开户行</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入" disabled="{{isIdentifyBank}}" value="{{bank_info}}" model="{{bank_info}}" bindinput="bankinfoInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 开户行省份 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 20}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">开户行省份</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <picker bindchange="bindPickerChange" value="{{province_index}}" range="{{province_array}}" range-key="short_name">
+                        <view class="picker" wx:if="{{province_index>-1}}">
+                          {{province_array[province_index].short_name||'请选择开户行省份'}}
+                        </view>
+                        <text class="picker_text picker_text-placeholder" wx:else>请选择</text>
+                      </picker>
+                    </view>
+                    <view class="weui-cell__ft"></view>
+                  </view>
+                </view>
+                <!-- 银行卡号 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 16}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">银行卡号</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" type="digit" placeholder="请输入" value="{{bank_card_number}}" model="{{bank_card_number}}" bindinput="bankcardInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 入职日期 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 11}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">入职日期</view>
+                    </view>
+                    <picker mode="date" value="{{date}}" start="2020-09-01" end="2025-09-01" bindchange="bindEntryDateChange">
+                      <view class="weui-cell__bd">
+                        <text class="picker_text" wx:if='{{"" != entry_date}}'>{{entry_date}}</text>
+                        <text class="picker_text picker_text-placeholder" wx:else>请选择</text>
+                      </view>
+                    </picker>
+                    <view class="weui-cell__ft"></view>
+                  </view>
+                </view>
+                <!-- 紧急联系人 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 18}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">紧急联系人姓名</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="紧急联系人姓名" value="{{emergency_contact_person}}" model="{{emergency_contact_person}}" bindinput="emergencyPerInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 紧急联系人电话 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 19}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">紧急联系人手机号</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="紧急联系人手机号" value="{{emergency_contact_person_mobile}}" model="{{emergency_contact_person_mobile}}" bindinput="emergencyMobInput" />
+                    </view>
+                  </view>
+                </view>
+                <!-- 与紧急联系人关系 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id ==37}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">与紧急联系人关系</view>
+                    </view>
+                    <!-- <view class="weui-cell__bd" wx:if="{{carNum != ''}}">
+                      <text class="picker_text" class="{{(carNum)? 'isdisabled' : ''}}">{{carNum}}</text>
+                    </view> -->
+                    <picker bindchange='bindPickercontactRelationship' value='{{index}}' range='{{contactRelationshipList}}'>
+                      <view class="weui-cell__bd">
+                        <text class="picker_text picker_text-placeholder" wx:if="{{'' == contactRelationship}}">
+                          请选择
+                        </text>
+                        <text class="picker_text" wx:if="{{'' != contactRelationship}}">{{contactRelationship}}</text>
+                      </view>
+                    </picker>
+                    <view class="weui-cell__ft" wx:if="{{!(contactRelationship)}}"></view>
+                  </view>
+                </view>
+                <!-- 是否自带车 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 21}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">是否自带车</view>
+                    </view>
+                    <!-- <view class="weui-cell__bd" wx:if="{{carNum != ''}}">
+                      <text class="picker_text" class="{{(carNum)? 'isdisabled' : ''}}">{{carNum}}</text>
+                    </view> -->
+                    <picker bindchange='bindPickerCarNum' value='{{index}}' range='{{carNums}}'>
+                      <view class="weui-cell__bd">
+                        <text class="picker_text picker_text-placeholder" wx:if="{{'' == carNum}}">
+                          请选择
+                        </text>
+                        <text class="picker_text" wx:if="{{'' != carNum}}">{{carNum}}</text>
+                      </view>
+                    </picker>
+                    <view class="weui-cell__ft" wx:if="{{!(carNum)}}"></view>
+                  </view>
+                </view>
+                <!-- 健康证 -->
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 36}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">是否有健康证</view>
+                    </view>
+                    <!-- <view class="weui-cell__bd" wx:if="{{carNum != ''}}">
+                      <text class="picker_text" class="{{(carNum)? 'isdisabled' : ''}}">{{carNum}}</text>
+                    </view> -->
+                    <picker bindchange='bindPickerheath' value='{{index}}' range='{{["有","无"]}}'>
+                      <view class="weui-cell__bd">
+                        <text class="picker_text picker_text-placeholder" wx:if="{{'' == is_health_cert}}">
+                          请选择
+                        </text>
+                        <text class="picker_text" wx:if="{{'' != is_health_cert}}">{{is_health_cert}}</text>
+                      </view>
+                    </picker>
+                    <view class="weui-cell__ft" wx:if="{{!(is_health_cert)}}"></view>
+                  </view>
+                </view>
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 34}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">身份证正面</view>
+                    </view>
+
+                    <view class="weui-cell__bd">
+                      <view class="upload-wrapper" data-idcard="frontCardImg" catchtap="uploadIDcard">
+                        <view class="dm-uploader_input-box" wx:if="{{!frontCardImg}}">
+                          <view class="dm-uploader__input"></view>
+                        </view>
+                        <view class="front-id-card-img" wx:else>
+                          <image class="front-card-img" src="{{frontCardImg}}"></image>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view class="weui-cells weui-cells_after-title" wx:if="{{item.id == 35}}">
+                  <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">身份证反面</view>
+                    </view>
+
+                    <view class="weui-cell__bd">
+                      <view class="upload-wrapper" data-idcard="backCardImg" catchtap="uploadIDcard">
+                        <view class="dm-uploader_input-box" wx:if="{{!backCardImg}}">
+                          <view class="dm-uploader__input"></view>
+                        </view>
+                        <view class="front-id-card-img" wx:else>
+                          <image class="front-card-img" src="{{backCardImg}}"></image>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+              </block>
+              <!-- <view class="custom-field-title">自定义信息</view> -->
+              <block wx:for="{{customFields}}" wx:key="id">
+                <block wx:if="{{item.type == 'SingleText'}}">
+                  <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                      <view class="weui-cell__hd">
+                        <view class="weui-label">{{item.info.title}}</view>
+                      </view>
+                      <view class="weui-cell__bd">
+                        <singleinvite placeholder="请输入" data-index='{{index}}' data-item="{{item}}" title="{{item.info.title}}" tip="{{item.info.tip}}" required="{{item.info.required}}" custom-event="singlechange" bindsinglechange="onSingleChange" type="text" confirm-type="confirmType"></singleinvite>
+                      </view>
+                    </view>
+                  </view>
+                </block>
+                <block wx:if="{{item.type == 'Imageview'}}">
+                  <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                      <view class="weui-cell__hd">
+                        <view class="weui-label">{{item.info.title}}</view>
+                      </view>
+                      <view class="weui-cell__bd">
+                        <formimgwithsampleinvite source-type="{{item.info.can_choose_picture==1 ?'':'camera'}}" img-min="{{item.info.check_guide.min}}" title="{{item.info.title}}" required="{{item.info.required}}" data-index="{{index}}" data-item="{{item}}" sampleImg="{{item.info.example_img.thumb_url.length == 0 ? []:item.info.example_img.thumb_url}}" custom-event="uploadimg" binduploadimg="onUploadimg" tip="{{item.info.tip}}"></formimgwithsampleinvite>
+                      </view>
+                    </view>
+                  </view>
+                </block>
+              </block>
+              <!-- 占位 -->
+              <view class='weui-cell last-cell'></view>
+            </view>
+            <view class='btn-join' bindtap='checkVcode'>加入项目</view>
+            <!-- <view class='change_tel' bindtap='changeTel'>如何修改手机号</view> -->
+          </form>
+        </view>
+        <!-- 内容 -->
+      </view>
+      <!-- 二维码的显示 -->
+      <!-- <view class="layer qrcode-wrap">
+        <view class="top">
+          <view class='text'><text>长按识别二维码加入项目</text></view>
+        </view>
+        <view class="content">
+          <view class='box'>
+            <image src='../../image/qrcode.jpg' class='qrcode'></image>
+          </view>
+        </view>
+      </view> -->
+    </view>
+  </view>
+</view>
+<getphonemask showMask="{{showMask}}" bindcustomevent="initAjax" caller="{{caller}}" code="{{code}}"></getphonemask>

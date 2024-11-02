@@ -1,0 +1,34 @@
+.user-info{
+  width: 100%;
+  height: 308rpx;
+  background: url(https://cdn.doumistatic.com/226,01ef325803974513.png) no-repeat;
+  background-size: cover;
+  display: flex;
+  box-sizing: border-box;
+}
+.user-info .avatar{
+  margin: 40rpx 0 0 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  border: 4rpx solid #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.user-info .info {
+  margin: 60rpx 0 0 28rpx;
+}
+.user-info .info .name {
+  font-family: PingFangSC-Medium;
+  font-size: 44rpx;
+  line-height: 36rpx;
+  color: #fff;
+}
+.user-info .info .mobile {
+  margin-top: 22rpx;
+  opacity: 0.8;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  line-height: 36rpx;
+  color: #fff;
+}

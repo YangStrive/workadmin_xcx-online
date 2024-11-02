@@ -1,0 +1,42 @@
+<view class="dmcmp-form">
+  <view class="dmcmp-form-rows dmcmp-form-text">
+    <text class="dmcmp-form-title">{{title}}</text>
+    <text class="dmcmp-form-required"  wx:if="{{required  == 1 && imgMin !=0}}"> (请至少上传{{imgMin}}张图片)</text>
+    <text class="dmcmp-form-tip">{{tip}}</text>
+
+  </view>
+  <view class='sample-img'>
+    <text class="item-top-text-state" hidden="{{sampleImg.length == 0}}"> 示例</text>
+    <view class='images'>
+      <image wx:for='{{sampleImg}}' wx:key='this' hidden="{{sampleImg.length == 0}}" class='sample-img-item' src='{{sampleImg[index]}}' bindtap="imgYu" data-list="{{sampleImg}}" data-src="{{sampleImg[index]}}"></image>
+    </view>
+    <view class="image_update-text" hidden="{{sampleImg.length == 0}}">上传</view>
+  </view>
+  <view>
+    <view class="form-img">
+      <view class='image_update' style=' padding-top: {{sampleImg.length == 0?22.5:2.5}}rpx;'>
+
+        <view class="weui-cell__bd" style='margin-top:0rpx;'>
+          <view class="weui-uploader">
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <view class="weui-uploader__file" wx:for="{{files}}" wx:key="*this" style='width:137.5rpx;height: 137.5rpx;margin-right:4rpx;' bindtap="previewImage" id="{{item}}">
+                  <image class="weui-uploader__img" style='width:120rpx;height: 120rpx;margin-left:0rpx; position: absolute;bottom: 0;right: 0; padding-left:0rpx;' src="{{item}}" mode="aspectFill" bindtap="omPreviewImage" data-imgvalue="{{item}}" />
+                  <view class="img-delete" bindtap="onDeleteImg" data-imgindex="{{index}}"></view>
+                </view>
+              </view>
+              <view class="weui-uploader__input-box" style='width:120rpx;height: 120rpx;margin-top:17.5rpx;margin-left:20rpx;'>
+                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+              </view>
+            </view>
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title"></view>
+              <view class="weui-uploader__info length-text">{{files.length}}/20</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

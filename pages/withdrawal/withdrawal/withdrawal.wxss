@@ -1,0 +1,180 @@
+/* pages/withdrawal/withdrawal/withdrawal.wxss */
+.withdrawal{
+  width: 100%;
+  height: 100vh;
+  background: #F7F7F7;
+  padding-top: 0px;
+}
+.withdrawal:before{
+  display: block;
+  content: '';
+  width: 100%;
+  height: 1px;
+}
+.withdrawal .withdrawal_banner{
+  width: 686rpx;
+  height: 180rpx;
+  background: url('http://cdn.doumistatic.com/90,b70885fdc23fd0.png') no-repeat;
+  background-size: 100%;
+  margin:0 auto 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 31rpx;
+}
+.withdrawal .withdrawal_banner view{
+  padding-left: 168rpx;
+}
+.withdrawal .withdrawal_banner text{
+  color: #fff;
+  display: block;
+}
+.withdrawal .withdrawal_banner .withdrawal_way{
+  font-size: 36rpx;
+}
+.withdrawal .withdrawal_banner .withdrawal_phone{
+  font-size: 28rpx;
+}
+.withdrawal_input{
+  display: flex;
+  justify-content: space-between;
+  height: 120rpx;
+  background: #fff;
+  align-items: center;
+  padding: 0 32rpx;
+  white-space:nowrap;
+}
+.withdrawal_input .input_label{
+  color: #333;
+  font-size: 32rpx;
+}
+.withdrawal_input input{
+  margin: 0 20rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.withdrawal_input .get_code{
+  width: 164rpx;
+  height: 60rpx;
+  display: block;
+  border-radius:6rpx;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 60rpx;
+}
+.withdrawal_input .get_codeS{
+  color: #FFAA00;
+  border: 1px solid #FFAA00;
+}
+.withdrawal_input .get_codeE{
+  color: #ccc;
+  border: 1px solid #ccc;
+}
+.note{
+  height: 88rpx;
+  color: #bbb;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  margin-left: 32rpx;
+}
+.withdrawal_btn{
+  width: 670rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  display: block;
+  background: #FFAA00;
+  border-radius: 10rpx;
+  margin:84rpx auto;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center
+}
+.unbind{
+  width: 116rpx;
+  height: 60rpx;
+  border: 1px solid #FFFFFF;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  text-align: center;
+  margin-right: 40rpx;
+}
+.maskcode{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+.maskcode:after{
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  z-index: 98;
+}
+.maskcode .codemain{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 600rpx;
+  height: 444rpx;
+  border-radius: 24rpx;
+  background: #fff;
+  z-index: 99;
+}
+.codemain view{
+  display: flex;
+  width: 480rpx;
+  height: 96rpx;
+  border: 1px solid #bbb;
+  border-radius: 4rpx;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  overflow: hidden;
+}
+.masktitle{
+  display: block;
+  font-size: 36rpx;
+  text-align: center;
+  margin: 44rpx 0 64rpx 0;
+  color: #333;
+}
+.codeinput{
+  display: block;
+  width: 100rpx;
+  font-size: 32rpx;
+  color: #333;
+  padding-left:24rpx; 
+}
+.codeimg{
+  display: block;
+  width: 180rpx;
+  height: 96rpx;
+}
+.codesubmit{
+  display: block;
+  background: #FFAA00;
+  border-radius: 2px;
+  width: 520rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 34rpx auto;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+
+}
+.disablebtn{
+  background:rgba(255, 170, 0, 0.4);
+}

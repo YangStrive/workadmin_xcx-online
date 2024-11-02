@@ -1,0 +1,10 @@
+<!--components/promptdialog/promptdialog.wxml-->
+<view class='getphone-mask' wx:if="{{showDialog}}">
+  <view class='mask-bg'></view>
+  <view class='mask-main'>
+      <text class='title'>提 示</text>
+      <text class='content'>签到成功!</text>
+      <view class='line'></view>
+      <text class='btn-text' bindtap='onClickBtn'>确 定</text>
+  </view>
+</view>

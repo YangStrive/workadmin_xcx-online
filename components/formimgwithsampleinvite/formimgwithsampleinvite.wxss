@@ -1,0 +1,77 @@
+/* components/formlocation/formlocation.wxss */
+@import "../../style/base/base.wxss";
+@import '../../style/weui.wxss';
+
+.form-img .weui-cells {
+  margin-top: 0;
+}
+
+.weui-uploader__hd {
+  padding-bottom: 0;
+}
+
+.weui-cell__bd {
+  margin-top: 20px;
+}
+
+.weui-uploader__file {
+  position: relative;
+}
+
+.img-delete {
+  content: '';
+  display: block;
+  width: 35rpx;
+  height: 35rpx;
+  position: relative;
+  margin-left: 120rpx;
+  background: url('http://cdn.doumistatic.com/64,8e5d5cdcef81e4.png') no-repeat;
+  background-size: 35rpx;
+  border-radius: 50%;
+}
+
+.item-top-text-state {
+  color: #999;
+  font-size: 28rpx;
+  margin-top: 28rpx;
+  margin-bottom: 20rpx;
+  margin-left: 32rpx;
+}
+
+.sample-img-item {
+  height: 120rpx;
+  width: 120rpx;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.sample-img {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.image_update-text {
+  color: #bbb;
+  font-size: 28rpx;
+  margin-left: 24rpx;
+}
+
+.image_update {
+  background: #fff;
+  border-top: 1rpx solid #fff;
+}
+
+.length-text{
+  margin-right: 24rpx;
+  font-size: 14px;
+  margin-bottom: 12rpx;
+  color: #999;
+  text-align: right;
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "项目邀请",
+  "usingComponents": {
+    "getphonemask": "../../components/getphonemask/getphonemask",
+    "singleinvite": "../../components/formsingleinvite/formsingleinvite",
+    "formimgwithsampleinvite": "../../components/formimgwithsampleinvite/formimgwithsampleinvite",
+    "formimgwithsample": "../../components/formimgwithsample/formimgwithsample"
+  }
+}

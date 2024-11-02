@@ -1,0 +1,36 @@
+<view class="bindcard">
+  <view class="bind-main">
+    <view class="form-main">
+      <view class="form-item">
+        <view class="item-main">
+          <text>持卡人</text>
+          <input class="" placeholder-class="phcolor" value="{{name}}" disabled="{{!!name}}" placeholder="请输入持卡人姓名" bindinput="nameChage"/>
+        </view>
+        <view class="line"></view>
+      </view>
+      <view class="form-item">
+        <view class="item-main">
+          <text>银行卡号</text>
+          <input class="" placeholder-class="phcolor" type="number" placeholder="请输入银行卡号"  value="{{number}}" bindinput="numberChange"/>
+        </view>
+        <view class="line"></view>
+      </view>
+      <view class="form-item">
+        <view class="item-main">
+          <text>开户银行</text>
+          <input class="" placeholder-class="phcolor"  placeholder="请输入开户行" bindinput="bankChange"/>
+        </view>
+      </view>
+    </view>
+    <view class="getcode">
+      <text class="label">验证码</text>
+      <input class="code-input" placeholder-class="phcolor" type="tel" placeholder="请输入验证码" maxlength="6"  bindinput="codeChange"></input>
+    <text wx:if="{{codeSw}}" class="btn get_codeS" bindtap='getCode'>获取验证码</text>
+    <text wx:else class="btn get_codeE">{{getcodetext}}</text>
+    </view>
+    <text class="code-send">验证码已发送至{{sendPhNum}}，请注意查收</text>
+  </view>
+  <view class="bind-btn" bindtap="bindBankCard">
+   <text>绑 定</text>
+  </view>
+</view>

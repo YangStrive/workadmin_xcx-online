@@ -1,0 +1,44 @@
+<view class='calendar'>
+  <view class='calendar-year'>
+    <view class='year'>
+      <view class='year-prev'>《</view>
+      <view class='year-num'>2018</view>
+      <view class='year-next'>》</view>
+    </view>
+    <view class='month'>
+      <view class='month-prev'>《</view>
+      <view class='month-num'>2</view>
+      <view class='month-next'>》</view>
+    </view>
+  </view>
+  <view class='calendar-week'>
+    <view class=''>日</view>
+    <view class=''>日</view>
+    <view class=''>日</view>
+    <view class=''>日</view>
+    <view class=''>日</view>
+    <view class=''>日</view>
+    <view class=''>日</view>
+  </view>
+  <view class='calendar-day'>
+    <view class='calendar-day-box'>
+    </view>
+    <view class='calendar-day-box'>
+    </view>
+    <view class='calendar-day-box'>
+      <view class='day-digital'>1</view>
+    </view>
+    <view class='calendar-day-box'>
+      <view class='day-digital'>1</view>
+    </view>
+    <view class='calendar-day-box'>
+      <view class='day-digital'>1</view>
+    </view>
+    <view class='calendar-day-box'>
+      <view class='day-digital'>1</view>
+    </view>
+    <view class='calendar-day-box'>
+      <view class='day-digital'>1</view>
+    </view>
+  </view>
+</view>

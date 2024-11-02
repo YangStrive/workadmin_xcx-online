@@ -1,0 +1,246 @@
+/* .modal{
+  position: relative;
+} */
+.modal-container {
+  background: #ffffff;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10001;
+}
+
+.modal-container .header {
+  position: relative;
+  display: flex;
+  height: 96rpx;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-container .header .header-title {
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.modal-container .header image {
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  right: 24rpx;
+  top: 30rpx;
+}
+
+.modal-container .content {
+  padding: 40rpx;
+}
+
+.modal-container .content .title {
+  display: flex;
+  align-items: center;
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  color: #333333;
+}
+
+.modal-container .content .title .leaveInfo {
+  display: flex;
+  align-items: center;
+}
+
+.modal-container .content .title .leaveInfo .name {
+  margin-left: 10rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #F38355;
+}
+
+.modal-container .content .title .leaveInfo .line {
+  margin: 0 6rpx;
+  width: 2rpx;
+  height: 16rpx;
+  background:#999999;
+}
+
+.modal-container .content .title .leaveInfo .date {
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #F38355;
+}
+
+.select-bar {
+  margin-top: 20rpx;
+  margin-bottom: 40rpx;
+  width: 100%;
+  height: 60rpx;
+  border: 1px solid #E5E5E5;
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.select-bar .date {
+  margin-left: 20rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #666666;
+}
+
+.select-bar .date-img {
+  margin-right: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+
+.tip-list {
+  margin: 20rpx 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.tip-list:after {
+  content: ' ';
+  width: 200rpx;
+  height: 0;
+  display: block;
+}
+
+.tip-list .tip-item {
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 204rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  color: #666666;
+  line-height: 60rpx;
+  border: 1px solid #E5E5E5;
+  box-sizing: border-box;
+  border-radius: 2rpx;
+}
+
+.detail-tip-list {
+  margin: 20rpx 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.detail-tip-list .detail-tip-item {
+  margin-bottom: 20rpx;
+  margin-right: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  color: #666666;
+  line-height: 60rpx;
+  border: 1px solid #E5E5E5;
+  box-sizing: border-box;
+  border-radius: 2rpx;
+}
+
+.activited-tip {
+  color: #F5974E !important;
+  border: 1px solid #F5974E !important;
+  font-family: PingFangSC-Regular;
+  background: rgba(245, 151, 78, 0.05);
+  border-radius: 2rpx;
+}
+
+.textarea-pr {
+  margin: 20rpx 0 40rpx 0;
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.textarea-main {
+  height: 144rpx;
+  background: #ffffff;
+  font-size: 28rpx;
+  border-radius: 2rpx;
+  border: 1rpx solid #e5e5e5;
+  padding: 12rpx 12rpx;
+  display: inline-block;
+  flex-grow: 1;
+}
+
+.text-length {
+  position: absolute;
+  bottom: 0;
+  right: 10rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #BBBBBB;
+}
+
+.bottom-btns {
+  /* margin-top:40rpx; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-btns .btn {
+  width: 316rpx;
+  height: 88rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-btns .cancel {
+  border: 1px solid #FFAA00;
+  border-radius: 1px;
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #FFAA00;
+}
+
+.bottom-btns .confirm {
+  background: #FFAA00;
+  border-radius: 1px;
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #FFFFFF;
+}
+
+
+
+@keyframes slideContentUp {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slideContentDown {
+  from {
+    transform: translateY(0%);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.bottom-modal-open {
+  animation: slideContentUp 0.5s ease both
+}
+
+.bottom-modal-close {
+  animation: slideContentDown 0.5s ease both
+}

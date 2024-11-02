@@ -1,0 +1,59 @@
+
+
+.findwork{
+  width:100%;
+  height:100vh;
+  background: url('https://cdn.doumistatic.com/230,020c661601ae98e1.png') no-repeat center top;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position:relative;
+}
+.icon{
+  margin-top:330rpx;
+  width:90rpx;
+  height:90rpx;
+}
+.title{
+  margin-top:12rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 50rpx;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+.tips{
+  margin-top:24rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 44rpx;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+
+.footer{
+  position:absolute;
+  bottom:30rpx;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer .btn{
+  width:404rpx;
+  height:82rpx;
+  background-image: linear-gradient(180deg, #FFDF00 0%, #FFCE00 100%);
+  border-radius: 41rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: PingFangSC-Regular;
+  font-size: 44rpx;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+.footer .btn-tips{
+  margin-top:20rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #333333;
+}

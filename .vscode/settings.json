@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.styl": "stylus",
+    "*.wxml": "html",
+    "*.wxss": "css"
+  }
+}

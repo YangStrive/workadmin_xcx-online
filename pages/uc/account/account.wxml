@@ -1,0 +1,183 @@
+<view class='page'>
+  <view class="user-head" bindtap="userdata">
+    <text class="user-text">{{real_name == '' ? mobile:real_name}}</text>
+    <image class='certification' src='../../../image/certification.png' wx:if="{{real_name_auth}}"></image>
+    <image class="user-img" src="{{logo_thumb_url}}" wx:if="{{logo_thumb_url}}" />
+    <image class="user-img" src="http://sta.doumistatic.com/src/image/saas/avatar.png" wx:else />
+    <text class="jump"></text>
+  </view>
+  <!-- <button  open-type="getUserInfo" class="user-text" bindgetuserinfo="wxgetUserInfo" style='background: #FFAA00;font-size: 32rpx;color:#fff;display:block;line-height:88rpx;'> 点击获取微信姓名头像</button> -->
+  <view class="list">
+    <view class='item-box' bindtap="mywallet">
+      <view class='view-left'>
+        <image class='view-left-img' src="http://cdn.doumistatic.com/109,dc9021c171c2d4.png" />
+      </view>
+      <view class='view-right'>
+        <text class='text_introduce'>我的钱包</text>
+        <view style='flex:1'></view>
+        <text class="jump" style="padding:3px 18px 0px 0px;">{{balance}} 元</text>
+        <text class="jump"></text>
+      </view>
+    </view>
+    <view class='item-box' bindtap="bindBrankCard">
+      <view class='view-left'>
+        <image class='view-left-img' src="https://cdn.doumistatic.com/217,01efed90616a9238.png" />
+      </view>
+      <view class='view-right'>
+        <text class='text_introduce'>我的银行卡</text>
+        <view style='flex:1'></view>
+        <span class="jump" style="padding:3px 18px 0px 0px;" wx:if="{{is_bind_bank_card == 1}}">
+          已绑定
+        </span>
+        <text class="jump"></text>
+      </view>
+    </view>
+    <view class='item-box' bindtap="myAuth" wx:if="{{is_show_auth === 1}}">
+      <view class='view-left'>
+        <image class='view-left-img' src="https://cdn.doumistatic.com/224,01eee25f11aeeec6.png" />
+      </view>
+      <view class='view-right'>
+        <text class='text_introduce'>我的认证</text>
+        <view style='flex:1'></view>
+        <text class="jump"></text>
+      </view>
+    </view>
+    <view class='item-box' bindtap="livingCertification" wx:if="{{isShowLivingCertification === 1}}">
+      <view class='view-left'>
+        <image class='view-left-img' src="https://cdn.doumistatic.com/224,01eee25f11aeeec6.png" />
+      </view>
+      <view class='view-right'>
+        <text class='text_introduce'>我的活体认证</text>
+        <view style='flex:1'></view>
+        <text class="jump"></text>
+      </view>
+    </view>
+    <view class='item-box' bindtap="drivingLicense" wx:if="{{is_show_driver_license_info}}">
+      <view class='view-left'>
+        <image class='view-left-img' src="https://cdn.doumistatic.com/253,022e82bb792d4f30.png" />
+      </view>
+      <view class='view-right'>
+        <text class='text_introduce'>我的驾照</text>
+        <view style='flex:1'></view>
+        <text class="jump"></text>
+      </view>
+    </view>
+    <view class='item-box' bindtap="changephone">
+      <view class='view-left'>
+        <image class='view-left-img' src="http://cdn.doumistatic.com/63,8bd1c91f9f072c.png" />
+      </view>
+      <view class='view-right'>
+        <text class='text_introduce'>更换手机号</text>
+        <view style='flex:1'></view>
+        <text class="jump" style="padding:3px 18px 0px 0px;">{{mobile}}</text>
+        <text class="jump"></text>
+      </view>
+    </view>
+
+    <block wx:if="{{login_laixinshui_sign_token}}">
+    <view class='item-box' bindtap="changephone2">
+      <view class='view-left'>
+        <image class='view-left-img' src="http://cdn.doumistatic.com/63,8bd1c91f9f072c.png" />
+      </view>
+      <view class='view-right'>
+        <text class='text_introduce'>去来薪水签约</text>
+        <view style='flex:1'></view>
+        <text class="jump"></text>
+      </view>
+    </view>
+    <view class='item-box' bindtap="changephone3">
+      <view class='view-left'>
+        <image class='view-left-img' src="http://cdn.doumistatic.com/63,8bd1c91f9f072c.png" />
+      </view>
+      <view class='view-right'>
+        <text class='text_introduce'>去来薪水改卡</text>
+        <view style='flex:1'></view>
+        <text class="jump"></text>
+      </view>
+    </view>
+    </block>
+ 
+    <view class='item-box' bindtap="contentservice">
+      <view class='view-left'>
+        <image class='view-left-img' src="http://cdn.doumistatic.com/67,8bd1d1bed24ecb.png" />
+      </view>
+      <view class='view-right'>
+        <text class='text_introduce'>联系客服</text>
+        <view style='flex:1'></view>
+        <text class="jump" style="padding:3px 18px 0px 0px;">010-57977077</text>
+        <text class="jump"></text>
+      </view>
+    </view>
+    <view class='item-box'>
+      <view class='view-left'>
+        <image class='view-left-img' src="http://cdn.doumistatic.com/109,dc9016990ddd0e.png" />
+      </view>
+      <view class='view-right' style='border:none'>
+        <view style='flex:1;border-top:1rpx solid #DFDFDF;border-bottom:1rpx solid #DFDFDF;'>
+          <button open-type="contact" class='contentservice'>
+            <view class='item-box'>
+              <view class='view-right' style='border:none'>
+                <text class='text_introduce'>反馈问题</text>
+                <text class="jump"></text>
+              </view>
+            </view>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="list" hidden="{{!showVisit}}">
+    <!-- <view class='item-box' bindtap="goMyWork">
+      <view class='view-left'>
+        <image class='view-left-img' src="http://cdn.doumistatic.com/218,01c23011a586db07.png" />
+      </view>
+      <view class='view-right' style="{{!is_show_protocol?'border:none':''}}">
+        <text class='text_introduce'>我的工作</text>
+        <view style='flex:1'></view>
+        <text class="jump"></text>
+      </view>
+    </view> -->
+    <!-- <view class='item-box' bindtap="perfect_information" hidden="{{!is_show_protocol}}">
+      <view class='view-left'>
+        <image class='view-left-img' src="http://cdn.doumistatic.com/127,01059f38ee3b9a9e.png" />
+      </view>
+      <view class='view-right' style='border:none'>
+        <text class='text_introduce'>我的合同</text>
+        <view style='flex:1'></view>
+        <text class="jump"></text>
+      </view>
+    </view> -->
+    <view class='item-box' bindtap="goReturnvisit" hidden="{{!showVisit}}">
+      <view class='view-left'>
+        <image class='view-left-img' src="https://cdn.doumistatic.com/225,01dc97caee160749.png" />
+      </view>
+      <view class='view-right' style='border-top: #e5e5e5 solid 1rpx;border-bottom:none;'>
+        <text class='text_introduce'>我的回访任务</text>
+        <view style='flex:1'></view>
+        <!-- <text class="jump" style="padding:3px 18px 0px 0px;">{{mobile}}</text> -->
+        <view class="badge" wx:if="{{undone_number>0}}">{{undone_number}}</view>
+        <text class="jump"></text>
+      </view>
+    </view>
+    <!-- <view class='item-box' bindtap="gooutSalary">
+      <view class='view-left'>
+        <image class='view-left-img' src="https://cdn.doumistatic.com/215,01f9a1e48c4ec550.png" />
+      </view>
+      <view class='view-right' style='border-top: #e5e5e5 solid 1rpx;border-bottom:none;'>
+        <text class='text_introduce'>我的工资条</text>
+        <view style='flex:1'></view>
+        <text class="jump"></text>
+      </view>
+    </view> -->
+  </view>
+  <!-- <button class='exit' bindcontact='bindContact' open-type="contact" session-from="weapp" >
+   客服回话
+</button> -->
+  <view class='exit' bindtap="exitlogin">
+    <text>退出并解绑</text>
+  </view>
+  <!-- <view class='placeholder'></view> -->
+</view>
+<getuserinfo id='getuserinfo' showMask="{{false}}" bindcustomevent="initAjax" custom-event="customeven" btnText='获取微信头像' title='获取微信头像'></getuserinfo>
+<!-- <getuserinfo id='getuserinfo' bindcustomevent="initAjax"
+showMask="{{true}}" custom-event="customeven" btnText='获取微信头像' title='获取微信头像'></getuserinfo> -->

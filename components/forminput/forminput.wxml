@@ -1,0 +1,9 @@
+<view class="dmcmp-form">
+  <view class="dmcmp-form-rows dmcmp-form-text">
+    <text class="dmcmp-form-title">{{title}}</text>
+  </view>
+  <view class='input-main'>
+    <input wx:if="{{inputValue}}"  class="singleinput"  value='{{inputValue}}' disabled='true'/>
+    <input wx:else  class="singleinput no-data"  value='未填写' disabled='true'/>
+  </view>
+</view>

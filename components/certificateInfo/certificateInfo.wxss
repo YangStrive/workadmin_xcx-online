@@ -1,0 +1,62 @@
+.certificate-info{
+  margin-bottom: 64rpx;
+}
+.certificate-info .title {
+  font-family: PingFangSC-Semibold;
+  font-size: 32rpx;
+  color: #404040;
+  position: relative;
+}
+.certificate-info .title::after {
+  content: " ";
+  width: 32rpx;
+  height: 6rpx;
+  background: #fa0;
+  border-radius: 2rpx;
+  position: absolute;
+  bottom: -24rpx;
+  left: 0;
+}
+.certificate-info .name,
+.certificate-info .card-number {
+  margin-top: 38rpx;
+  height: 92rpx;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+}
+.certificate-info .name .head,
+.certificate-info .card-number .head {
+  width: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #404040;
+  text-align: justify;
+  text-align-last: justify;
+  display: inline-block;
+}
+.certificate-info .name .tig,
+.certificate-info .card-number .tig {
+  margin-left: 6rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #f60;
+  letter-spacing: 0;
+  line-height: 28rpx;
+}
+.certificate-info .name .input,
+.certificate-info .card-number .input {
+  margin-left: 50rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #404040;
+}
+.certificate-info .name .placeholder,
+.certificate-info .card-number .placeholder {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999;
+}
+.certificate-info .card-number {
+  margin-top: 0rpx;
+}

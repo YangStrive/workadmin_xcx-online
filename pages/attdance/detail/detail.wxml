@@ -1,0 +1,120 @@
+<view class="top-handle">
+  <view class="prev" bindtap="handleCalendar" data-handle="prev">
+    <image class="prev-handle box box-align-center box-pack-center" src='http://cdn.doumistatic.com/65,8bd0adc4a700e7.png' style='width: 18rpx;height: 28rpx;margin-top: 30rpx;'></image>
+  </view>
+  <view class="date-area">{{cur_year || "--"}} - {{cur_month || "--"}}</view>
+  <view class="next" bindtap="handleCalendar" data-handle="next">
+    <image class="prev-handle box box-align-center box-pack-center" src='http://cdn.doumistatic.com/65,8bd0cf888610fc.png' style='width: 18rpx;height: 28rpx;margin-top: 30rpx;'></image>
+  </view>
+</view>
+<view scroll-y="true" style='z-index:3;'>
+  <view class="weeks">
+    <!--星期几-->
+    <view class="week" wx:for="{{weeks_ch}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
+  </view>
+  <view class="days">
+
+    <!--day-->
+    <view wx:if="{{hasEmptyGrid}}" class="inner" wx:for="{{empytGrids}}" wx:key="{{index}}" data-idx="{{index}}">
+      {{item}}
+    </view>
+    <view class="inner" wx:for="{{days}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="getTodayMsg">
+      <view class="day {{index > 5 && index < 15 ? 'mark' : ''}} {{index == cur_date-1 ? 'on' : ''}}">{{item}}</view>
+    </view>
+    <view class="inner" wx:for="{{endEmpty}}" wx:key="{{index}}" data-idx="{{index}}"> {{item}}
+    </view>
+  </view>
+  <view class="incidentMsg  {{incidentList.length==0 ? 'noMsg' : ''}}" hidden='{{incidentList.length!=0}}'>
+    <view class="noMsgBg">
+      <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+      <view class="noMsgText">
+        暂无记录</view>
+    </view>
+
+  </view>
+  <view style='background:#f2f2f2;min-height:600rpx;padding-top:50rpx;'>
+    <view wx:for="{{incidentList}}" wx:key="{{index}}">
+
+      <view wx:if="{{item==0}}" data-index="{{index}}">
+        <view class='attdance_box'>
+          <view class='left_line_circle'>
+          </view>
+          <view style='flex: 1;'>
+            <view class="attdance_time_box">
+              <view class='attdance_work_time'>上班 9:00
+              </view>
+              <text class="attdance_state_success">正常</text>
+              <view style='flex:1; background: #aa0;'></view>
+              <view class='attdance_time'>10：00</view>
+            </view>
+            <view class='attdance_detail_box detail_operation line_top'>
+              <text class='attdance_operition_text' style=' margin-left: 32rpx;'>2016/9/16 10:30  XXX将早退改为正常</text>
+
+            </view>
+          </view>
+        </view>
+
+      </view>
+      <view class="infoCon" wx:if="{{item==1}}" data-index="{{index}}">
+        <view class='attdance_box'>
+          <view class='left_line_circle'>
+          </view>
+          <view style='flex: 1;'>
+            <view class="attdance_time_box">
+              <view class='attdance_work_time'>下班 9:00
+              </view>
+              <text class="attdance_state_success">正常</text>
+              <view style='flex:1; background: #aa0;'></view>
+              <view class='attdance_time'>10：00</view>
+            </view>
+            <view class='attdance_detail_box detail_address_box' style="background:#fff">
+              <view class='detail_address'>
+                <image src='http://cdn.doumistatic.com/62,8bcf93effc8ef3.png'>
+                </image>
+                <text>北京市海淀区上dddddddddd地软件园八维研园</text>
+              </view>
+
+              <view class='detail_images'>
+                <image bindtap="imgYu" data-list="{{pictures}}" data-src="{{dImg}}" wx:for="{{pictures}}" wx:for-item="dImg" src="{{dImg}}"></image>
+              </view>
+             
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="infoCon" wx:if="{{item==2}}" data-index="{{index}}">
+        <view class='attdance_box'>
+          <view class='left_line_circle'>
+          </view>
+          <view style='flex: 1;'>
+            <view class="attdance_time_box">
+              <view class='attdance_work_time'>下班 9:00
+              </view>
+              <text class="attdance_state_success">正常</text>
+              <view style='flex:1; background: #aa0;'></view>
+              <view class='attdance_time'>10：00</view>
+            </view>
+            <view class='attdance_detail_box detail_address_box'>
+              <view class='detail_address' style="background:#fff">
+                <image src='http://cdn.doumistatic.com/62,8bcf93effc8ef3.png'>
+                </image>
+                <text>北京市海淀区上地软件园八X</text>
+              </view>
+
+              <view class='detail_images' style="background:#fff">
+                <image bindtap="imgYu" data-list="{{pictures}}" data-src="{{dImg}}" wx:for="{{pictures}}" wx:for-item="dImg" src="{{dImg}}"></image>
+              </view>
+              <view class='detail_note line_top line_bottom' style='display: flex;'>
+                <text class='detail_note_label'>备注</text><text class='detail_note_content'>软件园八维学院路况拥堵原因导致打卡迟到。</text>
+              </view>
+              <view class='detail_operation line_top' style='display: flex;margin-left: 32rpx;'>
+              <text class='attdance_operition_text'>2016/9/16 10:30  XXX将早退改为正常</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "领取保险",
+  "enablePullDownRefresh": false,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "getphonemask": "../../components/getphonemask/getphonemask"
+  }
+  }

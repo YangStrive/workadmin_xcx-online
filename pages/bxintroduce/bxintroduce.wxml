@@ -1,0 +1,2 @@
+<!--pages/bxintroduce/bxintroduce.wxml-->
+<web-view src="{{path}}"></web-view>

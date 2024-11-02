@@ -1,0 +1,398 @@
+{
+    "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+    "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": true,
+        "coverView": true,
+        "nodeModules": true,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "lazyloadPlaceholderEnable": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "enableEngineNative": false,
+        "useIsolateContext": false,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "disableUseStrict": false,
+        "showES6CompileOption": false,
+        "useCompilerPlugins": false,
+        "minifyWXML": true,
+        "ignoreUploadUnusedFiles": true,
+        "useStaticServer": true,
+        "condition": false
+    },
+    "compileType": "miniprogram",
+    "libVersion": "2.18.1",
+    "appid": "wxad6f1aea84ff5623",
+    "projectname": "%E6%96%97%E7%B1%B3%E5%B7%A5%E4%BD%9C%E5%8A%A9%E6%89%8B",
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "id": -1,
+                    "name": "考勤详情",
+                    "pathName": "pages/attdance/detail/detail",
+                    "query": ""
+                },
+                {
+                    "id": 1,
+                    "name": "登录",
+                    "pathName": "pages/uc/login/login",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "手机登录",
+                    "pathName": "pages/uc/phonelogin/phonelogin",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "表单数据",
+                    "pathName": "pages/dataform/dataform",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "我的工作页面",
+                    "pathName": "pages/minework/minework",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "表单收集",
+                    "pathName": "pages/theform/editreportinfo/editreportinfo",
+                    "query": ""
+                },
+                {
+                    "id": 6,
+                    "name": "项目邀请",
+                    "pathName": "pages/invite/invite",
+                    "query": "code=Tm5GRng0YmpqcmxNUWVJZUcvRzV4V2FMVWZsTnRSWkc3dHF2RjBaYnRTcTFwblFHbWZXZTJ4UkR2RXVjd0tlMjZPd0pLcGtQSUZpU05jT1ZqQlAvaDcrSlg2Tm1RU0VpQ0svT3kwRHl1T3lNOG15aGhmaw==",
+                    "scene": "1011"
+                },
+                {
+                    "id": -1,
+                    "name": "首页",
+                    "pathName": "pages/minework/minework",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "公告",
+                    "pathName": "pages/announcement/announcement",
+                    "query": "",
+                    "scene": "1024"
+                },
+                {
+                    "id": 9,
+                    "name": "表单详情",
+                    "pathName": "pages/theform/formdetail/formdetail",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "表单列表",
+                    "pathName": "pages/theform/formrecordlist/formrecordlist",
+                    "query": ""
+                },
+                {
+                    "id": 11,
+                    "name": "保险邀请",
+                    "pathName": "pages/bxinvite/bxinvite",
+                    "query": "",
+                    "scene": "1011"
+                },
+                {
+                    "id": -1,
+                    "name": "签到详情",
+                    "pathName": "pages/position/reportdetail/reportdetail",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "省列表",
+                    "pathName": "pages/provincelist/provincelist",
+                    "query": "",
+                    "scene": "1001"
+                },
+                {
+                    "id": -1,
+                    "name": "公告详情",
+                    "pathName": "pages/announcement/ggdetails/ggdetails",
+                    "query": "",
+                    "scene": "1011"
+                },
+                {
+                    "id": 14,
+                    "name": "测试二维码",
+                    "pathName": "pages/minework/minework",
+                    "query": "scene={pid:1,tid:2}",
+                    "scene": "1011"
+                },
+                {
+                    "id": -1,
+                    "name": "个人中心",
+                    "pathName": "pages/uc/account/account",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "保险邀请",
+                    "pathName": "pages/attdance/address/address",
+                    "query": "",
+                    "scene": "1011"
+                },
+                {
+                    "id": -1,
+                    "name": "考勤排行榜",
+                    "pathName": "pages/flexwork/rewardlist/rewardlist",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "考勤奖励规则",
+                    "pathName": "pages/flexwork/rewarddetail/rewarddetail",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "测试模板消息",
+                    "pathName": "pages/minework/minework",
+                    "query": "project_id=1",
+                    "scene": "1014"
+                },
+                {
+                    "id": -1,
+                    "name": "设置姓名",
+                    "pathName": "pages/uc/changeName/changeName",
+                    "query": ""
+                },
+                {
+                    "id": 22,
+                    "name": "个人信息",
+                    "pathName": "pages/uc/ucinfo/ucinfo",
+                    "query": ""
+                },
+                {
+                    "id": 23,
+                    "name": "伯乐项目",
+                    "pathName": "pages/bole/bole",
+                    "query": "pid=4839506",
+                    "scene": "1011"
+                },
+                {
+                    "id": 24,
+                    "name": "提现结果",
+                    "pathName": "pages/withdrawal/withdrawalstatus/withdrawalstatus",
+                    "query": "status=1&errmsg=成功"
+                },
+                {
+                    "id": -1,
+                    "name": "提现失败",
+                    "pathName": "pages/withdrawal/failnote/failnote",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "我的钱包",
+                    "pathName": "pages/withdrawal/mywallet/mywallet",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "完善信息",
+                    "pathName": "pages/uc/perfect_information/perfect_information",
+                    "query": ""
+                },
+                {
+                    "id": 28,
+                    "name": "劳动合同",
+                    "pathName": "pages/uc/contract_signing/contract_signing",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "我的合同",
+                    "pathName": "pages/uc/my_protocol/my_protocol",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "推荐有奖",
+                    "pathName": "pages/recommend/recommend",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "my_work",
+                    "pathName": "pages/uc/my_work/my_work",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "apply_quit",
+                    "pathName": "pages/uc/apply_quit/apply_quit",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "feedback_page",
+                    "pathName": "pages/uc/feedback_page/feedback_page",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/uc/contract_signing/contract_signing",
+                    "pathName": "pages/uc/contract_signing/contract_signing",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": 35,
+                    "name": "pages/uc/notification_book/notification_book",
+                    "pathName": "pages/uc/notification_book/notification_book",
+                    "query": "project_id=3293&team_id=26&protocol_order_id=DMWB-GZS-5E81B87A6137451&agreement_num=1&protocol_type=10",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "回访任务",
+                    "pathName": "pages/uc/returnvisit/returnvisit",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "回访小记",
+                    "pathName": "pages/uc/returnvisitrecord/returnvisitrecord",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "盒马合同",
+                    "pathName": "pages/uc/contract_signing_hema/contract_signing_hema",
+                    "query": "status=1&errmsg=成功",
+                    "scene": null
+                },
+                {
+                    "id": 39,
+                    "name": "pages/certificate/certificate",
+                    "pathName": "pages/certificate/certificate",
+                    "query": "isAuth=0",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/uc/contract_signing_hema_dis/contract_signing_hema_dis",
+                    "pathName": "pages/uc/contract_signing_hema_dis/contract_signing_hema_dis",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/secret_text/secret_text",
+                    "pathName": "pages/secret_text/secret_text",
+                    "query": "isAuth=0",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "我的银行卡",
+                    "pathName": "pages/bankcardlist/bankcardlist",
+                    "query": "status=1&errmsg=成功",
+                    "scene": null
+                },
+                {
+                    "id": 43,
+                    "name": "绑定银行卡",
+                    "pathName": "pages/bindbankcard/bindbankcard",
+                    "query": "mobile=15501044432",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/uc/template/template",
+                    "pathName": "pages/uc/template/template",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/uc/contract_signing_new/contract_signing_new",
+                    "pathName": "pages/uc/contract_signing_new/contract_signing_new",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/we2000/we2000",
+                    "pathName": "pages/we2000/we2000",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/gofindwork/gofindwork",
+                    "pathName": "pages/gofindwork/gofindwork",
+                    "scene": null
+                },
+                {
+                    "id": -1151,
+                    "name": "pages/uc/diaodianApply/ddApply",
+                    "pathName": "pages/uc/diaodianApply/ddApply",
+                    "query": "",
+                    "scene": null
+                }
+            ]
+        }
+    },
+    "packOptions": {
+        "ignore": [],
+        "include": []
+    },
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 4
+    }
+}

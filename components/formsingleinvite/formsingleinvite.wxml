@@ -1,0 +1,5 @@
+
+<view class="dmcmp-form" style="background-color:#ffffff;padding:0;">
+  <input  class="singleinput" placeholder="{{placeholder}}" bindinput="inputChange"  type="{{type}}" confirm-type="confirmType" placeholder-style="color:#bbb" value="{{inputValue}}"/>
+  <view  wx:if="{{isscan == 'true'}}" class="scanqrCode" bindtap="onScanCode"></view>
+</view>

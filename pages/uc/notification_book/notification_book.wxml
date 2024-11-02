@@ -1,0 +1,115 @@
+<view class='content'>
+  <view class='protocol-content'>
+    <view class='full-time'>
+      <view class='top'>
+        <text class='top-text'>灵活用工协议签约告知书</text>
+      </view>
+      <view>
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>
+        <text>为维护您的合法权益，在您签署本告知书之前，请认真阅读本告知书、充分理解各条款内容，尤其是以下特别提示条款。除非您已阅读并接受本告知书所有条款，否则您无权提供相关服务。</text>
+        <view class='protocol-title'>
+          <text>【特别提示条款】</text>
+        </view>
+        <text>
+    <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1、当您阅读、同意并签署本告知书后，即表示您已充分阅读、理解并接受本告知书的全部内容，此后您不得以未阅读/不理解本告知书内容或类似言辞做任何形式的抗辩。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2、您与我司通过《灵活用工协议》建立灵活用工关系，为我司或我司客户提供兼职服务，公司不承担您任何社保福利待遇，公司有权视情况为您购买商业保险，您应予以配合。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3、您必须遵守《灵活用工协议》、《兼职人员行为规范》等相关规定，并在服务过程中遵从服务需求方的各项管理制度。您出现违反情形时，相关管理方可对您采取终止兼职合作、不予支付兼职服务费、罚款等措施，并有权向您追偿因此导致的经济、名誉损失。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>一、服务具体内容</text>
+        </view>
+
+
+        <text>
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1、兼职服务内容及要求：另行告知
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2、兼职期限：另行告知
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3、薪酬标准及支付：另行告知
+        </text>
+        <view class='protocol-title'>
+          <text>二、您的权利和义务</text>
+        </view>
+
+        <text>
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1、您必须确保提供的个人情况真实、准确，且您必须具备提供兼职外包服务所需要的条件。您不可撤销地授权我司和我司客户有权获取您的个人信息（包括但不限于身份信息、实名登记手机号码、银行账户相关信息等），如有需要，将您的相关信息提交第三方机构进行身份验证。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2、您应根据我司的安排为我司客户服务，服务期间您应遵守我司或我司客户有关服务内容、服务质量等方面的要求。我司客户可根据自身的运营要求制定具体服务安排，您应予遵守。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3、兼职服务费支付以您提供的收款帐户为准，若具体账户信息是您在指定的网络平台在线提供的，则以您在线提供的信息为准。因您提供的收款帐户信息有误造成的一切损失由您自行承担。如您帐号变更或发生不可用等情况时，应及时书面通知我司或在指定的网络平台进行变更操作，否则由此造成的一切损失由您自行负责。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4、 您终止提供服务后，您有义务对兼职期间中知悉的我司、我司客户的相关信息予以保密，未经书面许可，您不得以任何方式向其它方披露、给予或转让该等保密信息。否则，因此导致我司及/或我司客户或其关联公司的损失，由您负责赔偿。
+        </text>
+
+        <view class='protocol-title'>
+          <text>三、保险</text>
+        </view>
+        <text>
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>我司或我司客户有权视情况自费为您购买商业保险（非义务）。如需要购买，您应配合完成，包括按时间要求提供完整的资料等。如因您原因不能购买商业保险而造成的损失，包括但不限于我司、我司客户及/或任何第三方的损失，在商业保险赔偿范围内的金额，由您自行承担。
+        </text>
+        <text>
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>《兼职人员行为规范》为《灵活用工协议签约告知书》附件，请仔细阅读并同意遵守后一并在后方签署。
+        </text>
+        <view class='protocol-title attachment'>
+          <text>附件：《兼职人员行为规范》</text>
+        </view>
+        <text style="display:block">说明：</text>
+        <text>
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1、您在提供兼职工作过程中必须严格遵守《灵活用工协议》、《灵活用工协议签约告知书》、本《兼职人员行为规范》及服务需求方的各项管理制度；
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2、您应同时遵守《兼职人员行为规范》及服务需求方的各项管理制度，如本《兼职人员行为规范》与服务需求方管理制度不一致，适用服务需求方管理制度。
+        </text>
+
+        <view class='protocol-title'>
+          <text>一、行为规范具体内容</text>
+        </view>
+        <text>
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1、工作中不得饮酒、嬉戏打闹、打瞌睡；不得有玩忽职守等行为；不得无故缺勤、迟到、早退或私自外出，会客；
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2、每次迟到不能超过【 15 】分钟，兼职期限内或四周内（以较短时间为准）迟到【 1 】次算作一天旷工；在未得到事先许可的情况下，早退视同旷工；
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3、如需请假必须填写请假单，经批准后方可休假。若因病不能正常工作，须附上区县级以上医院证明；员工未获批准擅自缺勤，事后无合理理由补假或是谎报、伪造证明获取假期的行为均视为旷工。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4、上下班必须经由考勤系统记录其考勤，考勤不得由他人代替，不得弄虚作假，不得骗取延长劳动时间的加班工资，一经发现双方都以旷工处理。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5、发生旷工当日无工资，且旷工一天扣款50元，同时影响各项绩效奖金（如有）。如您无故旷工连续【 3 】天及以上，经通知仍未到岗工作的，视为您自动终止《灵活用工协议》。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>6、严格遵守甲方及合作方安全生产和防火规定，未经许可不得随意动火，严禁在工作区内非吸烟处吸烟。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>7、不得在服务需求方场所内赌博、吸毒、贩毒、行骗或传播不健康物品等一切违法行为；不得无理取闹、打架或挑唆他人打架闹事、散布流言蜚语、威胁恐吓上级主管或其他员工。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>8、不得唆使劝诱他人违反各项管理、挑拨离间、煽动消极怠工、罢工、对生产造成影响、弄虚作假作伪证、陷害他人。
+        </text>
+        <view class='protocol-title'>
+          <text>二、违规处理</text>
+        </view>
+        <text>
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1、您如违反上述条款，相关管理方有权要求限时改正，并有权处以警告、扣工资、罚款等处罚；情节严重的，我司或我司客户有权随时终止《灵活用工协议》并不承担任何补偿责任，如造成损失的，您应予以赔偿。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2、您单方提出终止《灵活用工协议》，应提前【 30 】日通知丙方，经同意后方可终止。如因您擅自终止《灵活用工协议》造成不良影响的，须赔偿相应损失。
+          <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3、本守则条款内容如与国家有关规章制度有相悖的，以国家有关规章制度为准。
+        </text>
+
+        <text class="btn-text">本人（兼职人员）已了解并知晓了本告知书及附件的告知事项</text>
+        <text  class="btn-text">本人（兼职人员）同意接受本告知书及附件的告知事项</text>
+        <view>
+          <text class="btn-text">签字：</text>
+          <text class="btn-text">日期：</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-btn-panel">
+    <button class="bottom-btn" bindtap="next">确认签字</button>
+  </view>
+</view>
+<view class='send_code' hidden='{{!isShowSendCodeView}}'>
+  <view class='send_code_content'>
+    <view class='send_code_top'>
+      <view class='send_code_top_text_content'>
+        <text class='send_code_top_text'>输入验证码</text>
+      </view>
+      <image class='cancel_image' bindtap="cancel" src="http://cdn.doumistatic.com/131,010d6bd77601b96b.png"></image>
+    </view>
+
+    <view class='send_code_middle'>
+      <input class='input-text' maxlength="6" type="number" bindinput="bindCodeInput" placeholder="请输入" value="{{msmcode}}"></input>
+
+      <view class="getcodebase {{(getcodestatus && agingetcode) || 'getcodesuc'}}" bindtap="getcode">
+        <text class="send_code_middle_button ">{{getcodetext}}</text>
+      </view>
+    </view>
+
+    <view class="send_code_content_bottom-btn-panel">
+      <button class="send_code_content_bottom-btn {{(msmcode.length === 6) || 'send_code_content_bottom-btn-panel-btndis'}}" bindtap="confirm_next" data-itemdata='{{notifi_protocol_order_id}}'>确定</button>
+    </view>
+  </view>
+</view>

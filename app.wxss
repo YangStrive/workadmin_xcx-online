@@ -1,0 +1,41 @@
+/**app.wxss**/
+@import "style/weui.wxss";
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.sigin_line_text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+button::after {
+  border: none;
+}
+
+/*toast end*/
+.box-flex-row-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.box-flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-flex-column {
+  display: flex;
+  flex-direction: column;
+}

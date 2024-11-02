@@ -1,0 +1,65 @@
+/* pages/overtime/setting/setting.wxss */
+Page{
+  background: #f2f2f2;
+}
+.view-label {
+  background: #fff;
+  height: 80rpx;
+  margin-top: 20rpx;
+ 
+}
+
+.text-label {
+  margin-left: 32rpx;
+  color: #333;
+  font-size: 32rpx;
+}
+
+.right-unit{
+  width: 100rpx;
+}
+
+.edit-base-wage{
+  width: 240rpx;
+  color: #444;
+  text-align: right;
+}
+
+.tip-box{
+  background: #b2b2b2;
+  height: 60rpx;
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+.tip-text{
+  font-size: 24rpx;
+  color: #333;
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}
+
+.bottom-btn-panel {
+  position: fixed;
+  height: 120rpx;
+  width: 100%;
+  text-align: left;
+  background: #ffffff;
+  border-top: 1px solid #ccc;
+  bottom: 0rpx;
+  z-index: 999;
+  _position: absolute;
+}
+
+.bottom-btn {
+  background: #fa0;
+  color: #fff;
+  height: 80rpx;
+  font-size: 32rpx;
+  border-radius: 6rpx;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

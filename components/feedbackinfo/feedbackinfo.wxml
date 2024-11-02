@@ -1,0 +1,6 @@
+<view class="feedback-info-container">
+  <image class="icon" src="{{iconSrc}}"></image>
+  <view class="title">{{title}}</view>
+  <slot name="reason"></slot>
+  <slot name="btn"></slot>
+</view>

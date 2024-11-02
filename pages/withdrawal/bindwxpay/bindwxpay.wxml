@@ -1,0 +1,21 @@
+<!--pages/withdrawal/bindwxpay/bing'd'w'x'pay.wxml-->
+<view class='bindwxpay'>
+
+  <view class='bindwxpay_input'>
+    <view class='bindwxpay_content'>
+      <text class='labletext'>微信账号</text>
+      <text class='nickname'>{{wxnickname}}</text>
+      <view class='guideico'></view>
+    </view>
+  </view>
+
+  <view class='bind_true_name'>
+    <text class='true_name_labletext'>真实姓名</text>
+    <text class='true_name_nickname'>{{true_name}}</text>
+    <view class='guideico'></view>
+    <image src='http://cdn.doumistatic.com/113,ec4ff021c37408.png' bindtap='imagetap'></image>
+  </view>
+  <text class='bingdsubmit_btn' bindtap='bindwx'>保 存</text>
+</view>
+
+<getuserinfo id='getuserinfo' showMask="{{showMask}}"  bindcustomevent="initAjax" custom-event="customeven" btnText='获取用户资料' title='获取用户资料'></getuserinfo>

@@ -1,0 +1,36 @@
+<view class="work_container">
+  <view class="no_data" wx:if="{{!hasData}}">
+    <image src="http://cdn.doumistatic.com/223,01c2704bdbc5bb7d.png" alt="" srcset=""></image>
+    <text class="no_txt">暂无工作经历</text>
+  </view>
+  <view class="has_data" wx:else>
+    <view class="work_list">
+      <view class="work_item" wx:for="{{workList}}" wx:key="*this">
+        <view class="content">
+          <view class="title">{{item.project_name}}</view>
+          <view class="time">{{item.inservice_time}}</view>
+        </view>
+        <!-- <view class="guidance" wx:if="{{item.status=='0'&&item.super=='1'}}" bind:tap="goDetail" data-projectid='{{item.project_id}}' data-status='{{item.status}}'>{{mywork.statusFilter(item.status)}}</view> -->
+        <view class="guidance" wx:if="{{item.status!=-1&&item.is_enter_detail!=0}}" bind:tap="goDetail" data-projectid='{{item.project_id}}' data-status='{{item.status}}'>
+          {{mywork.statusFilter(item.status)}}
+        </view>
+        <view class="guidance_quit" wx:if="{{item.status==-1}}">已离职</view>
+      </view>
+    </view>
+  </view>
+</view>
+<wxs module="mywork">
+  function statusFilter(status){
+    var statusArr = {
+      '-1':'已离职',//已离职，不可点击
+      '0':'申请离职', // 在职状态，可点击申请离职
+      '1':'申请待确认',
+      '2':'申请已批准',
+      '3':'申请已拒绝'
+    }
+    return statusArr[status+'']
+  }
+  module.exports = {
+    statusFilter:statusFilter
+  }
+</wxs>

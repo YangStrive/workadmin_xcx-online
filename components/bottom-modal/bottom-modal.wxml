@@ -1,0 +1,45 @@
+<view class="modal" catchtouchmove='ture'>
+  <mask id="mask"></mask>
+  <view class="modal-container {{showModal?'bottom-modal-open':'bottom-modal-close'}}">
+    <view class="header">
+      <view class="header-title">标记离职</view>
+      <image bindtap="hideModal" src="https://cdn.doumistatic.com/214,01dcf0813f13c798.png"></image>
+    </view>
+    <view class="content">
+      <view class="title">
+        离职日期
+        <view class="leaveInfo" wx:if="{{info.leave_apply_date}}">
+          <view class="name">{{info.user_name}}</view>
+          <view class="line"></view>
+          <view class="date">申请离职日期{{info.leave_apply_date}}</view>
+        </view>
+      </view>
+      <picker mode="date" value="leaveDate" bindchange="bindDateChange">
+        <view class="select-bar">
+          <view class="date">{{leaveDate || '请选择离职日期'}}</view>
+          <image class="date-img" src="https://cdn.doumistatic.com/205,01dd635b0bcd3b0a.png"></image>
+        </view>
+      </picker>
+      <view class="title">离职原因</view>
+      <view class="tip-list">
+        <view wx:for="{{leaveTipList}}" wx:for-item="tip" wx:for-index="index" wx:key="index" class="tip-item {{leaveCurrentTip==index?'activited-tip':''}}" bindtap="chooseLeaveTip" data-index="{{index}}">
+          {{tip}}
+        </view>
+      </view>
+      <view class="title" wx:if="{{showTextarea || showDetailTips}}">详细原因</view>
+      <view class="detail-tip-list" wx:if="{{showDetailTips}}">
+        <view wx:for="{{detailTipList}}" wx:for-item="tip" wx:for-index="index" wx:key="index" class="detail-tip-item {{detailCurrentTip==index?'activited-tip':''}}" bindtap="chooseDetailTip" data-index="{{index}}" data-reasonid="{{tip.reason_id}}" data-reason="{{tip.reason}}">
+          {{tip.reason}}
+        </view>
+      </view>
+      <view class='textarea-pr' wx:if="{{showTextarea}}">
+        <textarea class="textarea-main" bindinput="textareaChange" placeholder="备注他的离职原因" placeholder-style="color:#bbb;font-size:28rpx;" maxlength="500" />
+        <view class='text-length'>{{detail_len}}/500</view>
+      </view>
+      <view class="bottom-btns">
+        <view class="btn cancel" bindtap="hideModal">取消</view>
+        <view class="btn confirm" bindtap="confirm">确定</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,88 @@
+/* components/login/login.wxss */
+
+.getphone-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999;
+}
+
+.mask-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+  opacity: 0.5;
+  background: #000;
+}
+
+.mask-text {
+  text-align: center;
+  display: block;
+  margin: 40rpx 0;
+}
+
+.mask-main {
+  position: absolute;
+  top: 368rpx;
+  left: 94rpx;
+  bottom: 0;
+  z-index: 99;
+  width: 560rpx;
+  height: 422rpx;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.close {
+  position: absolute;
+  top: -10rpx;
+  right: 30rpx;
+  display: block;
+  font-size: 30px;
+  color: #bbb;
+}
+
+.btn {
+  background: #1AAD19;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #fff;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  height: 96rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-phone {
+  background: #fff;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  height: 96rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: rgba(5, 5, 5, 0.1) 1rpx solid;
+  color: #1AAD19;
+  margin-top: 40rpx;
+}
+.btn image{
+  width: 56rpx;
+  height: 44rpx;
+  margin-right: 24rpx;
+}
+

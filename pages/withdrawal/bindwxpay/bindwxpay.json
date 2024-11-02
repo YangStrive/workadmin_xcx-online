@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "绑定微信账号",
+  "usingComponents": {
+    "getuserinfo": "../../../components/getuserinfo/getuserinfo"
+  }
+}

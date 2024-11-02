@@ -1,0 +1,40 @@
+.dm-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9;
+  overflow: hidden;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1
+  }
+
+  to {
+    opacity: 0
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.entry {
+  animation: fadeIn .35s ease-out
+}
+
+.leave {
+  animation: fadeOut .25s ease-in
+}

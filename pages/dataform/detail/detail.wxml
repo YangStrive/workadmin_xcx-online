@@ -1,0 +1,30 @@
+<!--detail.wxml-->
+<view class='box'>
+
+  <view  wx:for="{{form_data}}" wx:key="{{index}}">
+    <view class='line_26'></view>
+    <view class='item'>
+      <view class='title'>
+        {{item.title}}
+      </view>
+  
+      <view class='value' hidden="{{item.value==''}}" wx:if="{{item.type != 'Location' && item.type != 'Imageview'}}">
+        {{item.value}}
+      </view>
+      <view class='value' hidden="{{!(item.value=='' || item.value.url.length == 0 || item.value.lat=='')}}">未填写</view>
+      <view class='value' hidden="{{item.value.lat==''}}" wx:if="{{item.type == 'Location'}}">
+        {{item.value.addr_name}}({{item.value.addr}})
+      </view>
+      <view hidden='{{item.value.url.length == 0 }}' wx:if="{{item.type == 'Imageview'}}">
+        <view class='detail_images'>
+          <image bindtap="imgYu" wx:key="{{idx}}" data-list="{{item.value.url}}" data-src="{{dImg}}" wx:for="{{item.value.url}}" wx:for-item="dImg" src="{{dImg}}"></image>
+
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='height:140rpx;'></view>
+  <view hidden='{{!needChange}}'  class="bottom-btn-panel">
+    <view class="bottom-btn" bindtap="resetAttdance">重新打卡</view>
+  </view>
+</view>

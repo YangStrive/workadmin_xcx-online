@@ -1,0 +1,13 @@
+<!--pages/theform/formrecordlist/formrecordlist.wxml-->
+<view class='formlist' wx:if="{{countinfopersonal.length > 0}}">
+  <view class="formlist-main"  wx:for="{{countinfopersonal}}" wx:key="{{index}}" data-countid="{{item.id}}" bindtap="gotoPersonal">
+    <view class='formlist-icon'>
+    
+    </view>
+    <view class='formlist-content'>
+      <text class='formlist-h2'>{{item.title}}</text>
+      <text class='formlist-time'>{{item.submit_time}}</text>
+    </view>
+  </view>
+</view>
+<view wx:else class="empty"><image mode="widthFix" src='http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png'></image><text class='empty-test'>暂无我提交的表单</text></view>

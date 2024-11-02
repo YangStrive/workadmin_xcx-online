@@ -1,0 +1,19 @@
+<!--pages/login/login.wxml-->
+
+<view class="login">
+    <view class="header">
+        <image src="http://cdn.doumistatic.com/71,9620655ff94530.png" />
+    </view>
+    <view class="inputphone">
+      <input  maxlength="11" type="number" bindinput="bindPhoneInput"  confirm-type="done"  placeholder="请输入手机号码" />
+    </view>
+    <view class="inputcode">
+      <input  maxlength="11" type="number" bindinput="bindTxCode"  confirm-type="done"  placeholder="请输入图形码" />
+      <image class="txcode" src="{{txCodeUrl}}" bindtap="getTxcode"></image>
+    </view>
+    <view class="inputcode">
+      <input  maxlength="6" type="number" bindinput="bindCodeInput"  confirm-type="done"  placeholder="验证码(6位)." />
+      <text class="getcode {{(getcodestatus && checkTxcodestatus && agingetcode) || 'getcodesuc'}}" bindtap="getcode">{{getcodetext}}</text>
+    </view>
+     <view class="login-btn {{(phone.length === 11 && msmcode.length === 6) || 'login-btndis'}}"  bindtap="confirmlogin">{{loginbtnStr}}</view>
+</view>

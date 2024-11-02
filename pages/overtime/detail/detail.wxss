@@ -1,0 +1,281 @@
+Page {
+  background: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+}
+
+.date-box {
+  width: 100%; 
+  background: #fff;
+  
+}
+
+.check-box {
+  border: solid #fa0 1rpx;
+  display: flex;
+  flex-direction: row;
+  margin-right: 32rpx;
+  border-radius: 8rpx;
+}
+
+.top_box_time {
+  width: 240rpx;
+  margin-left: 16rpx;
+  margin-right: 4rpx;
+  font-weight: bold;
+  font-size: 28rpx;
+  text-align: center;
+  color: #333;
+}
+
+.text-left {
+  border-radius: 8rpx 0rpx 0rpx 8rpx;
+  width: 120rpx;
+  text-align: center;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rpx;
+}
+
+.text-right {
+  padding-top: 2rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0rpx 8rpx 8rpx 0rpx;
+  width: 120rpx;
+  height: 60rpx;
+  text-align: center;
+}
+
+.top_box_icon_calendar {
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 24rpx;
+}
+
+.top_box {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  height: 96rpx;
+  flex-direction: row;
+}
+
+.top_box_icon_triangle {
+  width: 24rpx;
+  height: 12rpx;
+}
+
+.top_box_count {
+  margin-right: 24rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.date-box text {
+  font-size: 32rpx;
+  color: #666;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 80rpx;
+  background: #fff;
+  font-size: 28rpx;
+}
+
+.time-box-time {
+  font-size: 50rpx;
+  display: flex;
+  color: #fa0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-box-time-label {
+  font-size: 32rpx;
+  display: block;
+  color: #666;
+  margin-left: 24rpx;
+}
+
+.edit-base-wage {
+  width: 444rpx;
+  color: #444;
+  height: 82rpx;
+  border-radius: 8rpx;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.right-unit {
+  width: 122rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.line-time-top{
+  height: 6rpx;
+  background: url('http://cdn.doumistatic.com/79,9fdcc2e876dab3.png') repeat;
+  background-size:contain;
+}
+
+.line-time-bottom{
+  height: 6rpx;
+  background: url('http://cdn.doumistatic.com/68,9fdcddee388d75.png') repeat;
+  background-size:contain;
+}
+
+.view-time-box {
+  background: #fff;
+  height: 340rpx;
+}
+
+.line-box{
+  background: #fff;
+  height: 1rpx;
+  width: 100%;
+}
+
+.h-line{
+  height: 24rpx;
+  background: #f2f2f2;
+  border-top: solid #e5e5e5 1rpx;
+  border-bottom: solid #e5e5e5 1rpx;
+}
+
+.line {
+  background: #e5e5e5;
+  height: 1rpx;
+  margin-left: 24rpx;
+}
+
+.time-list-box {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.time-list-item-view {
+  width: 110rpx;
+  height: 118rpx;
+  padding-top: 4rpx;
+  padding-bottom: 4rpx;
+}
+
+.time-list-item {
+  margin: 4rpx;
+  color: #333;
+  background: #fff;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.text-label {
+  color: #1F2D3D;
+  font-size: 28rpx;
+  width: 184rpx;
+}
+
+.view-detail {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.view-label {
+  background: #fff;
+  height: 112rpx;
+  margin-left: 24rpx;
+}
+
+.line-top {
+  border-top: 1rpx solid #e5e5e5;
+}
+
+.line-bottom {
+  border-bottom: 1rpx solid #e5e5e5;
+}
+.textarea-pr{
+  display: flex;
+  width: 100%;
+}
+.textarea-main {
+  height: 100rpx;
+  background: #fff;
+  font-size: 32rpx;
+  padding: 32rpx 24rpx;
+  display: inline-block;
+  flex-grow: 1;
+}
+
+.bottom-btn-panel {
+  position: fixed;
+  height: 120rpx;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  border-top: 1px solid #ccc;
+  bottom: 0rpx;
+  z-index: 999;
+  _position: absolute;
+}
+
+.bottom-btn {
+  background: #fa0;
+  color: #fff;
+  height: 80rpx;
+  font-size: 32rpx;
+  border-radius: 6rpx;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.class-all-money {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.money{
+  font-size: 40rpx;
+  color: #666;
+  font-weight: bolder;
+}
+
+.money-unit{
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 28rpx;
+  color: #999;
+  margin-right: 42rpx;
+  margin-left: 8rpx;
+}
+
+.icon_right {
+  width: 16rpx;
+  height: 24rpx;
+  margin-right: 32rpx;
+}

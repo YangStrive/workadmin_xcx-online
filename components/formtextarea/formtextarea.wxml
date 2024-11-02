@@ -1,0 +1,10 @@
+<view class="dmcmp-form">
+  <view class="dmcmp-form-rows dmcmp-form-text">
+    <text class="dmcmp-form-title">{{title}}</text><text class="dmcmp-form-required" wx:if="{{required  == 1}}"> (必填)</text>
+    <text class="dmcmp-form-tip">{{tip}}</text>
+  </view>
+  <view class="textarea-main">
+    <textarea class="formtextarea" type="text" value="{{len}}" placeholder="{{placeholder}}" bindinput="textareaChange" placeholder-style="color:#bbb" maxlength="{{maxlength}}"></textarea>
+    <text class="textarea-length" wx:if="{{showTextareaLength}}">{{textareaLength}}/{{maxlength}}</text>
+  </view>
+</view>

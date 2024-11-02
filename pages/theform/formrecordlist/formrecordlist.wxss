@@ -1,0 +1,65 @@
+/* pages/theform/formrecordlist/formrecordlist.wxss */
+page{
+  min-height:100%; 
+  width: 100%;
+  background-color: #F2F2F2;
+}
+.formlist{
+  padding: 1px 0 40rpx;
+}
+.formlist-main{
+  width: 702rpx;
+  height: 160rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  margin:24rpx auto 0;
+  border: 0 solid #E5E5E5;
+  border-radius: 4px;
+
+}
+.formlist-icon{
+  width: 64rpx;
+  height: 66rpx;
+  margin-left: 42rpx;
+  background: url('http://cdn.doumistatic.com/64,8bcfc89b5e2fcf.png') no-repeat;
+  background-size: 100% 100%;
+}
+.formlist-content{
+  margin-left: 42rpx;
+  width:554rpx;
+}
+.formlist-h2{
+  display: block;
+  font-size: 16px;
+  color: #333;
+  white-space:nowrap; 
+  text-overflow:ellipsis; 
+  overflow:hidden;
+}
+.formlist-time{
+  display: block;
+  font-size: 14px;
+  color: #999;
+  margin-top: 4px;
+  white-space:nowrap; 
+  text-overflow:ellipsis; 
+  overflow:hidden;
+}
+.empty{
+  width: 100%;
+  padding-top:500rpx;
+  text-align: center;
+  font-size: 16px;
+  color: #ccc;
+  display: block;
+}
+.empty-test{
+  vertical-align: middle;
+  line-height: 100%;
+}
+.empty image{
+  display: block;
+  width: 142rpx;
+  margin:0  auto 20rpx;
+}

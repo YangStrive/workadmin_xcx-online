@@ -1,0 +1,25 @@
+<view class="dmcmp-form" style="background-color:#ffffff;padding:0;">
+  <view class="form-img">
+      <view class='image_update' style=' padding-top: {{sampleImg.length == 0?22.5:2.5}}rpx;'>
+        <view class="weui-cell__bd" style='margin-top:0rpx;'>
+          <view class="weui-uploader">
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <view class="weui-uploader__file" wx:for="{{files}}" wx:key="*this" style='width:137.5rpx;height: 137.5rpx;margin-right:4rpx;' bindtap="previewImage" id="{{item}}">
+                  <image class="weui-uploader__img" style='width:120rpx;height: 120rpx;margin-left:0rpx; position: absolute;bottom: 0;right: 0; padding-left:0rpx;' src="{{item}}" mode="aspectFill" bindtap="omPreviewImage" data-imgvalue="{{item}}" />
+                  <view class="img-delete" bindtap="onDeleteImg" data-imgindex="{{index}}"></view>
+                </view>
+              </view>
+              <view class="weui-uploader__input-box" style='width:120rpx;height: 120rpx;margin-top:17.5rpx;margin-left:20rpx;' wx:if="{{files.length<5}}">
+                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+              </view>
+            </view>
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title"></view>
+              <view class="weui-uploader__info length-text">{{files.length}}/5</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>

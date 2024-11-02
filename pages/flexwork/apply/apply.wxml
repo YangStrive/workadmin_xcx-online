@@ -1,0 +1,69 @@
+<!--pages/flexwork/flexwork.wxml-->
+<view class='tip-box'>
+  <image src='http://cdn.doumistatic.com/71,9ad2f23f594632.png'></image>
+  <text>点击日期即可报名，支持多选</text>
+</view>
+<view class="top-handle">
+
+  <image bindtap="handleCalendar" data-handle="prev" class="prev-handle box box-align-center box-pack-center" src='http://cdn.doumistatic.com/77,9ad309b2df1396.png' style='width: 68rpx;height: 68rpx;'></image>
+
+  <view class="date-area">{{cur_year || "--"}} 年 {{cur_month || "--"}}月</view>
+
+  <image bindtap="handleCalendar" data-handle="next" class="prev-handle box box-align-center box-pack-center" src='http://cdn.doumistatic.com/78,9ad3106c12787d.png' style='width: 68rpx;height: 68rpx;'></image>
+
+</view>
+<view style='height:30rpx;background:#ffffff;'></view>
+<view class="weeks" style='background:#ffffff;'>
+  <!--星期几-->
+  <view class="week" wx:for="{{weeks_ch}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
+</view>
+<view class="days">
+
+  <!--day-->
+
+  <view wx:if="{{hasEmptyGrid}}" class="inner" wx:for="{{empytGrids}}" wx:key="{{index}}" data-idx="{{index}}">
+    <view style='margin-top:8rpx'>
+      {{item}}
+    </view>
+  </view>
+  <view class="inner" wx:for="{{days}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectWork">
+    <view class='day-box'>
+      <view class="day  {{selectIndexShow[index] ? 'on' : applyIndex[index] == 1 ?'need':''}} ">
+        <text class="{{selectIndexShow[index] ? 'on' :needCount[index] == 0 ?'day-text-full':needCount[index] == -1 ? 'day-text-off':'day-text-on'}}"> {{item}}</text>
+        <text class="{{applyIndex[index] == 1 ? 'state-apply':needCount[index]== 0? 'state-full':selectIndexShow[index] ? 'state-need-on' : 'state-need-off'}}" hidden='{{needCount[index] == -1}}'>{{needCount[index] == undefined ? '':applyIndex[index] == 1 ? '已报名' : needCount[index] == 0 ? '已满':'缺'+needCount[index]+'人'}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="inner" wx:for="{{endEmpty}}" wx:key="{{index}}" data-idx="{{index}}">
+  <view style='margin-top:8rpx'>
+      {{item}}
+    </view>
+  </view>
+</view>
+
+<view class='view-line3'></view>
+
+<view class="bottom-btn-panel">
+  <button class="{{selectIndex.length == 0 ?'bottom-btn':'bottom-btn-full'}}" bindtap="apply">立即报名</button>
+</view>
+
+<view class='apply-success-panel' hidden='{{!isShowApplySuccess}}' >
+  <view class='apply-success-box'>
+    <view bindtap='hideApplySuccessView' class='apply-success-close'>
+      <image src='http://cdn.doumistatic.com/73,91d995418543bf.png'></image>
+    </view>
+
+    <image class='icon-success' src='http://cdn.doumistatic.com/74,9ad31c788baeae.png'></image>
+
+    <text class='text-success'>报名成功!</text>
+
+    <text class='text-tip'>您可以通过“工作”中的考勤排班</text>
+    <text class='text-tip'>进行查看</text>
+    <view class='view-line1'></view>
+    <view class='view-bottom'>
+      <view class='view-btn' bindtap='hideApplySuccessView'>继续报名</view>
+      <view class='view-line2'></view>
+      <view class='view-btn' bindtap='checkWork'>查看工作</view>
+    </view>
+  </view>
+</view>

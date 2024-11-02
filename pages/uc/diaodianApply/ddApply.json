@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "DatetimePicker": "../../../components/datetime-picker/datetime-picker"
+  },
+  "navigationBarTitleText": "外出申请"
+}

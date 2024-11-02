@@ -1,0 +1,23 @@
+<!--components/getphonemask/getphonemask.wxml-->
+<view class='getphone-mask' wx:if="{{showFeedback}}">
+  <view class='mask-bg'></view>
+  <view class='mask-main'>
+    <view class='title'>
+      <text>我要反馈</text>
+      <view style='flex:1'></view>
+      <image bindtap='closeThis' src='http://cdn.doumistatic.com/73,91d995418543bf.png'></image>
+    </view>
+    <view class='label-1'>感谢您反馈问题，问题是：</view>
+    <view class='check-group'>
+      <text bindtap='selectType' data-type='1' style="{{selectType==1 ?'height: 60rpx;width: 318rpx;border: #f5974e solid 1rpx;background: rgba(245, 151, 78, 0.05);border-radius: 2rpx;font-size: 28rpx;color: #f5974e;display: flex;align-items: center;justify-content: center;':'height: 60rpx;width: 318rpx;background: #FFFFFF;border: 1rpx solid #E5E5E5;border-radius: 2rpx;font-size: 28rpx;color: #666;display: flex;align-items: center;justify-content: center;'}}">获取位置失败</text>
+      <text bindtap='selectType' data-type='2'   style="{{selectType==2?'height: 60rpx;width: 318rpx;border: #f5974e solid 1rpx;background: rgba(245, 151, 78, 0.05);border-radius: 2rpx;font-size: 28rpx;color: #f5974e;display: flex;align-items: center;justify-content: center;':'height: 60rpx;width: 318rpx;background: #FFFFFF;border: 1rpx solid #E5E5E5;border-radius: 2rpx;font-size: 28rpx;color: #666;display: flex;align-items: center;justify-content: center;'}}">定位不准确</text>
+    </view>
+      <view class='textarea-pr'>
+    <textarea class="textarea-main" placeholder="我要输入其他反馈（非必填）" bindinput="textareaChange" placeholder-style="color:#bbb;font-size:28rpx;" maxlength="200" />
+
+    <view class='text-length'>{{detail_len}}/200</view>
+  </view>
+    <button bindtap='commitFeedBack' style="background:{{detail_len==0 && selectType == 0?'rgba(255, 170, 78, 0.4)':'#fa0'}}" class='commit-feedback'>提 交</button>
+  </view>
+  
+</view>

@@ -1,0 +1,12 @@
+<view class="page-warp">
+  <view class="title">{{uploadText}}</view>
+  <view class="section">
+    <view class="img-default" wx:if="{{uploadRecentImage}}">
+      <image class="img-default-img" src="{{uploadRecentImage}}"></image>
+    </view>
+    <view class="img-default" wx:else>暂无照片</view>
+    <view class="upload-btn" wx:if="{{!uploadRecentImage}}" bind:tap="goFace">
+      <image class="upload-btn-img" src="https://cdn.doumistatic.com/239,02182fe2c73662d7.png"></image>
+    </view>
+  </view>
+</view>

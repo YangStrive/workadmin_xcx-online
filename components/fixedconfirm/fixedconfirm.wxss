@@ -1,0 +1,26 @@
+/* components/fixedconfirm/fixedconfirm.wxss */
+.fixed-confirm{
+  position:fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #E5E5E5;
+  z-index:99999;
+
+}
+.confirm-main{
+  height: 88rpx;
+  margin: 20rpx;
+  line-height: 76rpx;
+  background: #FFAA00;
+  border-radius: 2px;
+  text-align: center;
+}
+.confirm-text{
+  font-size: 28rpx;
+  color: #fff;
+}
+.disabled{
+  background: rgba(255,170,0,0.40);
+}

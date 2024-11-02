@@ -1,0 +1,12 @@
+<view class='page'>
+
+  <view class='edit-base-wage'>
+    <input bindinput='inputName' focus="{{focus}}" placeholder="请输入" value="{{name}}"></input>
+    <image bindtap = "cleanName" class='cancel-image' src="http://cdn.doumistatic.com/93,bb5426ef6a2a96.png"/>
+  </view>
+
+  <view class="bottom-btn-panel">
+    <button class="bottom-btn" bindtap="saveAction">保存</button>
+  </view>
+  
+</view>

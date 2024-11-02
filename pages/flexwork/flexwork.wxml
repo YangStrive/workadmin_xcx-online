@@ -1,0 +1,30 @@
+  <view class="noMsgBg" hidden='{{workList.length != 0}}'>
+    <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+    <text>暂无排班任务
+</text>
+
+  </view>
+
+<view class='item-box' wx:for='{{workList}}' wx:index='{{idx}}' wx:key='item' data-idx='{{index}}' bindtap='clickItem'>
+  <view style='height:24rpx;'></view>
+  <view class='item-content'>
+    <view style='width:16rpx'></view>
+    <image class='icon-mark' src='http://cdn.doumistatic.com/79,9ad2d6c4abd775.png'></image>
+    <view style='width:12rpx'></view>
+    <view class='view-detail-box'>
+      <view style='height:32rpx'></view>
+      <view class='view-detail-info'>
+        <text class='text-name sigin_line_text'>{{item.project_name}}</text>
+        <view style='flex:1'></view>
+        <text class='text-time'>{{item.start_time}}-{{item.cross==1?'次日':''}}{{item.end_time}}</text>
+      </view>
+      <view style='height:16rpx'></view>
+      <view class='view-detail-info'>
+      <image class='icon-address' src='http://cdn.doumistatic.com/74,9ae511706201e9.png'></image>
+      <text class='text-address sigin_line_text' style='margin-top:4rpx;'>{{item.position}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view style='height:24rpx;'></view>

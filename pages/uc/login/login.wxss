@@ -1,0 +1,120 @@
+/* pages/login/login.wxss */
+
+page {
+    background: #F3F9FE;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.login {
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.header {
+    width: 100%;
+    /*background: greenyellow;*/
+}
+
+.header image {
+    height: 100px;
+    width: 100px;
+    display: block;
+    margin: auto;
+    padding-top: 45px;
+}
+
+.title {
+    line-height: 65px;
+	font-size: 23px;
+	color: #64b5f6;
+}
+
+.info {
+    padding: 0 60rpx;
+    font-size: 13px;
+	color: rgba(0, 0, 0, 0.27);
+}
+
+.button {
+    margin: 100rpx auto 30rpx auto; 
+    width: 654rpx;
+    border-radius: 4px;
+    height: 88rpx;
+    background-color:#FFAA00;
+    border:none;
+    
+}
+
+.btn {
+    background-color: #1976d2;
+    color: #ffffff;
+}
+
+.btn-hover {
+    background-color: #1976d2;
+    opacity: 0.7;
+}
+.doumi_name{
+    display: block;
+    font-size: 36rpx;
+    color: #333333;
+    text-align: center;
+    margin-top: 44rpx;
+}
+.sdd::after{
+  display: none
+}
+.sdd{
+  border-radius: 4px;
+}
+.phone-login{
+  font-size: 14px;
+  color: #76A0D7;
+  display: block;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+}
+.info-new{
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  display: block;
+}
+.info-new1{
+  margin-top: 10px;
+}
+.protocol{
+  font-size: 23rpx;
+  color: #333;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  padding: 0 48rpx;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+.agreement,.privacy{
+  color: #FFAA00;
+}
+
+.checkbox{
+  width: 40rpx;
+  height: 40rpx;
+  border: 1rpx solid #dddddd;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+.selected{
+  background-color: #FFAA00;
+}

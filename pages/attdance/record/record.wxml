@@ -1,0 +1,169 @@
+<view class="top-handle">
+  <view class="prev" bindtap="handleCalendar" data-handle="prev">
+    <image class="prev-handle box box-align-center box-pack-center" src='http://cdn.doumistatic.com/65,8bd0adc4a700e7.png' style='width: 18rpx;height: 28rpx;margin-top: 30rpx;'></image>
+  </view>
+  <view class="date-area">{{cur_year || "--"}} - {{cur_month || "--"}}</view>
+  <view class="next" bindtap="handleCalendar" data-handle="next">
+    <image class="prev-handle box box-align-center box-pack-center" src='http://cdn.doumistatic.com/65,8bd0cf888610fc.png' style='width: 18rpx;height: 28rpx;margin-top: 30rpx;'></image>
+  </view>
+</view>
+
+<view scroll-y="true">
+  <view class="weeks" style='background:#ffffff;'>
+    <!--星期几-->
+    <view class="week" wx:for="{{weeks_ch}}" wx:key="index" data-idx="{{index}}">{{item}}</view>
+  </view>
+  <view class="days">
+
+    <!--day-->
+    <view wx:if="{{hasEmptyGrid}}" class="inner" wx:for="{{empytGrids}}" wx:key="index" data-idx="{{index}}">
+      {{item}}
+    </view>
+    <view class="inner" wx:for="{{days}}" wx:key="index" data-idx="{{index}}" bindtap="getDayAttdance">
+      <view class="day  {{!isShowTag ? '': index == cur_date-1 ? '': (monthAttendanceStatu.status[index].status == 0 && monthAttendanceStatu.status[index].has_schedule == 1) ? 'mark3':monthAttendanceStatu.status[index].status == 0 ? '' : monthAttendanceStatu.status[index].status == 1 ? 'mark2': 'mark'}} {{index == cur_date-1 ? 'on' : ''}}">{{item}}</view>
+    </view>
+    <view class="inner" wx:for="{{endEmpty}}" wx:key="index" data-idx="{{index}}"> {{item}}
+    </view>
+  </view>
+  <view class="incidentMsg  {{attendanceList.length==0 ? 'noMsg' : ''}}" hidden='{{attendanceList.length!=0}}'>
+    <view class="noMsgBg">
+      <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+
+      <text >暂无记录</text>
+    </view>
+
+  </view>
+  <view style='padding-top:50rpx;' >
+    <view wx:for="{{attendanceList}}" wx:key="index" class="{{attendanceList.length - 1 != index ? 'attendanceList-main' : ''}}">
+      <view wx:if="{{!item.hasAction && item.form_data.length == 0}}" data-index="{{index}}">
+        <view class='attdance_box'>
+          <view class='left_line_circle' style='margin-left: 2rpx;'>
+          </view>
+          <view style='flex: 1;margin-bottom: 40rpx;'>
+            <view class="attdance_time_box {{item.hasReason ? 'corners_all' : 'corners_top'}}" data-item='{{item}}' bindtap='clickDetail'>
+              <view class='attdance_work_time'>{{item.title}} {{item.require_time}}
+              </view>
+              <view wx:for="{{item.status}}" wx:key="{{index}}" class="{{1 == item.value ? 'attdance_state_success' : 'attdance_state_error'}}">{{item.name}}
+              </view>
+              <view style='flex:1; background: #aa0;'></view>
+               <view  hidden='{{!item.isShowNextDay}}' class='next_day'>次日</view>
+              <view class='attdance_time'>{{item.attend_time}}</view>
+            </view>
+            <view class='detail_note line_top line_bottom attdance_time_box' style='display:{{hideview ? none : flex}};border-radius: 0rpx 0rpx 8rpx 8rpx;' wx:if='{{item.hasReason}}'>
+              <view class='detail_note_label'>异常原因</view>
+              <view class='detail_note_content sigin_line_text'>{{item.abnormal_reason}}</view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+      <view wx:if="{{item.hasAction && item.form_data.length == 0}}" data-index="{{index}}"data-item='{{item}}' bindtap='clickDetail'>
+
+        <view class='attdance_box'>
+        <view style='height:100%;background: #d7d8dc;width:2rpx;'></view>
+          <view class='left_line_circle'>
+          </view>
+          <view style='flex: 1;'>
+            <view class="attdance_time_box corners_top">
+            
+              <view class='attdance_work_time'>{{item.title}} {{item.require_time}}
+              </view>
+              <view wx:for="{{item.status}}" wx:key="key" class="{{1 == item.value ? 'attdance_state_success' : 'attdance_state_error'}}">{{item.name}}
+              </view>
+              <view style='flex:1; background: #aa0;'></view>
+               <view  hidden='{{!item.isShowNextDay}}' class='next_day'>次日</view>
+              <view class='attdance_time'>{{item.attend_time}}</view>
+            </view>
+            <view wx:if='{{item.hasReason}}' class='detail_note line_top attdance_time_box line_bottom' style='display:{{hideview ? none : flex}}'>
+              <view class='detail_note_label'>异常原因</view>
+              <view class='detail_note_content sigin_line_text'>{{item.abnormal_reason}}</view>
+            </view>
+            <view class='attdance_detail_box detail_operation line_top'>
+              <text class='attdance_operition_text sigin_line_text' style=' margin-left: 32rpx;'>{{item.actionText}}</text>
+
+            </view>
+          </view>
+        </view>
+
+      </view>
+      <view class="infoCon" wx:if="{{!item.hasAction && item.form_data.length != 0}}" data-index="{{index}}">
+        <view class='attdance_box'>
+        <view style='height:100%;background: #d7d8dc;width:2rpx;'></view>
+          <view class='left_line_circle'>
+          </view>
+          <view style='flex: 1;'>
+            <view class="attdance_time_box corners_all" bindtap='clickDetail' data-item='{{item}}'>
+              <view class='attdance_work_time'>{{item.title}} {{item.require_time}}
+              </view>
+              <view wx:for="{{item.status}}" wx:key="key" class="{{1 == item.value ? 'attdance_state_success' : 'attdance_state_error'}}">{{item.name}}
+              </view>
+              <view style='flex:1; background: #aa0;'></view>
+
+              <view  hidden='{{!item.isShowNextDay}}' class='next_day'>次日</view>
+
+              <view class='attdance_time'>
+              {{item.attend_time}}</view>
+
+            </view>
+            <view class='attdance_detail_box detail_address_box' style="background:#fff">
+              <view class='detail_address' style='padding-bottom: {{item.images== undefined||item.images.length==0 ? 34:24}}rpx;' hidden='{{!item.hasLocation}}'  bindtap='clickLocation' data-idx='{{index}}' data-location='{{item.locationData}}'>
+                <image src='http://cdn.doumistatic.com/62,8bcf93effc8ef3.png'>
+                </image>
+                <text class='sigin_line_text'>{{item.locationData.addr_name}}({{item.locationData.addr}})</text>
+              </view>
+
+              <view class='detail_images' hidden='{{item.images== undefined||item.images.length==0}}'>
+                <image bindtap="imgYu" data-list="{{item.images}}" data-src="{{dImg}}" wx:for="{{item.images}}" wx:key="{{index}}" wx:for-item="dImg" src="{{dImg}}"></image>
+              </view>
+              <view class='detail_note line_top line_bottom ' style='display:{{hideview ? none : flex}}' wx:if='{{item.hasReason}}'>
+                <text class='detail_note_label'>异常原因</text>
+                <text class='detail_note_content sigin_line_text'>{{item.abnormal_reason}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="infoCon" wx:if="{{item.hasAction &&  item.form_data.length != 0}}" data-index="{{index}}">
+      
+        <view class='attdance_box'>
+        <view style='height:100%;background: #d7d8dc;width:2rpx;'></view>
+          <view class='left_line_circle'>
+          </view>
+          <view style='flex: 1;'>
+            <view class="attdance_time_box corners_all" bindtap='clickDetail' data-item='{{item}}'>
+              <view class='attdance_work_time'>{{item.title}} {{item.require_time}}
+              </view>
+              <view wx:for="{{item.status}}" wx:key="{{index}}" class="{{1 == item.value ? 'attdance_state_success' : 'attdance_state_error'}}">{{item.name}}
+              </view>
+              <view style='flex:1; background: #aa0;'></view>
+               <view  hidden='{{!item.isShowNextDay}}' class='next_day'>次日</view>
+              <view class='attdance_time'>{{item.attend_time}}</view>
+            </view>
+            <view class='attdance_detail_box detail_address_box'>
+              <view class='detail_address' style='padding-bottom: {{item.images== undefined||item.images.length==0 ? 34:24}}rpx;' hidden='{{!item.hasLocation}}' bindtap='clickLocation' data-location='{{item.locationData}}' style="background:#fff">
+                <image src='http://cdn.doumistatic.com/62,8bcf93effc8ef3.png'>
+                </image>
+                <text class='sigin_line_text'>{{item.locationData.addr_name}}({{item.locationData.addr}}) </text>
+              </view>
+
+              <view class='detail_images' hidden='{{item.images== undefined||item.images.length==0}}' style="background:#fff">
+                <image bindtap="imgYu" data-list="{{item.images}}" data-src="{{dImg}}" wx:for="{{item.images}}" wx:key="key" wx:for-item="dImg" src="{{dImg}}"></image>
+              </view>
+              <view class='detail_note line_top line_bottom' style='display:{{hideview ? none : flex}}' wx:if='{{item.hasReason}}'>
+                <text class='detail_note_label'>异常原因</text>
+                <text class='detail_note_content sigin_line_text'>{{item.abnormal_reason}}</text>
+              </view>
+              <view class='detail_operation line_top' style='display: flex;margin-left: 32rpx;'>
+                <text class='attdance_operition_text sigin_line_text'>{{item.actionText}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="replacement-card-btn" wx:if="{{replacementCardInfo.isReplacementCard&&replacementCardInfo.is_allow_punch==1&&!replacementCardInfo.isCurDay}}">
+      <!-- <view class="replacement-card-btn"> -->
+        <view class="btn" bindtap="goReplacementCard">申请补卡</view>
+      </view>
+  </view>
+</view>

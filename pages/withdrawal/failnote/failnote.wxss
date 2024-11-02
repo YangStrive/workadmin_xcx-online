@@ -1,0 +1,11 @@
+/* pages/withdrawal/failnote/failnote.wxss */
+page{
+  width: 100%;
+}
+.image_note {
+  width: 100%;
+}
+.image_note image{
+  display: block;
+  width: 100%;
+}

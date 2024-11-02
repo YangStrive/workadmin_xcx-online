@@ -1,0 +1,11 @@
+
+<view class="dmcmp-form">
+  <view class="dmcmp-form-rows dmcmp-form-text">
+    <text class="dmcmp-form-title">{{title}}</text><text class="dmcmp-form-required" wx:if="{{required  == 1}}"> (必填)</text>
+    <text class="dmcmp-form-tip">{{tip}}</text>
+  </view>
+  <view class="single-main">
+    <input  class="singleinput" placeholder="{{placeholder}}" bindinput="inputChange"  type="{{type}}" confirm-type="confirmType" placeholder-style="color:#bbb" value="{{inputValue}}"/>
+    <view  wx:if="{{isscan == 'true'}}" class="scanqrCode" bindtap="onScanCode"></view>
+  </view>
+</view>

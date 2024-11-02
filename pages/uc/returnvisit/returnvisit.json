@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "returnVisitCard": "../../../components/returnvisitcard/returnvisitcard",
+    "bottom-modal": "../../../components/bottom-modal/bottom-modal"
+  },
+  "navigationBarTitleText": "我的回访任务"
+}

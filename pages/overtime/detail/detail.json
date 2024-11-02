@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "记工资",
+  "usingComponents": {
+    "formtextarea": "../../../components/formtextarea/formtextarea"
+  }
+}

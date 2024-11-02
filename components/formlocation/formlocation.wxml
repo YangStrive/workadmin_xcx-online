@@ -1,0 +1,32 @@
+<view class="dmcmp-form">
+  <view class='top-box'>
+    <view class="dmcmp-form-rows dmcmp-form-text">
+      <text class="dmcmp-form-title">{{title}}</text>
+      <text class="dmcmp-form-required" wx:if="{{required  == 1}}"> (必填)</text>
+      <text class="dmcmp-form-tip">{{tip}}</text>
+
+
+    </view>
+    <view style='flex:1'></view>
+    <image class='feedback-img' src='http://cdn.doumistatic.com/97,c543336d0eb4ac.png'></image>
+    <text class='feedback-text' bindtap='onClickFeedBack'>我要反馈</text>
+  </view>
+  <view class='detail-box'>
+    <view class="form-location">
+      <text class="placeholder" wx:if="{{showPlaceholder}}">{{placeholder}}</text>
+      <view class='addr-box'>
+        <text class="location-addr" wx:if="{{!showPlaceholder && !locationActive}}">{{addr_name}}</text>
+        <text class="location-addr-detail sigin_line_text" wx:if="{{!showPlaceholder && !locationActive}}">{{addr}}</text>
+      </view>
+      <text class="location-addr" wx:if="{{locationActive}}">{{locationActiveTxt}}</text>
+
+    </view>
+
+    <view class='change-address-box'>
+      <text class="error" wx:if="{{showError}}">地点异常</text>
+      <view style='flex:1'></view>
+      <text class="change-address" wx:if="{{againOrAdjust}}" bindtap="againLocation">重新定位</text>
+      <text class="change-address" wx:if="{{!againOrAdjust}}" bindtap="adjustLocation">地点微调</text>
+    </view>
+  </view>
+</view>

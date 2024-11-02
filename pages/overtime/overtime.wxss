@@ -1,0 +1,238 @@
+/* pages/overtime/overtime.wxss */
+Page{
+  background: #f2f2f2;
+}
+
+.top-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url('http://cdn.doumistatic.com/79,9c2a9fe9e77494.png') no-repeat;
+  background-size:100% auto;
+  width: 100%;
+  height: 30vh;
+}
+
+scroll-view{
+  height: 70vh;
+}
+
+.top-date{
+  height: 56rpx;
+  margin-top: 60rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #333333;
+  font-size: 32rpx;
+}
+
+.top-detail{
+  margin-top: 58rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.detail-data{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  color: #fff;
+}
+
+.noMsgBg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150rpx;
+}
+
+.noMsgBg image {
+  width: 142rpx;
+  height: 142rpx;
+}
+
+.noMsgBg text {
+  margin-left: 100rpx;
+  margin-top: 48rpx;
+  margin-right: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.view-edit{
+  width: 100%;
+  height: 152rpx;
+  margin-bottom: 20rpx;
+  position: absolute;
+  bottom: 0rpx;
+  display: flex;
+  right: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.text-edit {
+  background: url('http://cdn.doumistatic.com/75,a3693706032a66.png');
+  background-size: 400rpx 112rpx;
+  height: 112rpx;
+  width: 400rpx;
+  font-size: 36rpx;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.view-item{
+  width: 100%;  
+  display: flex;
+  flex-direction: row;
+}
+
+.view-item-left{
+  width: 15vh;
+  height: 120rpx;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.view-line-box{
+  position: absolute;
+  height: 140rpx;
+  display: flex;
+  width: 15vh;
+  flex-direction: row;
+  align-items: center;
+  z-index: -1;
+}
+
+.view-line{
+  background: #fff;
+  height: 140rpx;
+  width: 2rpx;
+  margin-left: 20rpx;
+}
+
+.view-item-left-line{
+  height: 120rpx;
+  background: #e5e5e5;
+}
+
+.view-item-left-day{
+  width: 60rpx;
+  height: 60rpx;
+  background: #fa0;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.view-item-right{
+  width: 100%;
+  height: 154rpx;
+  margin-right: 24rpx;
+  margin-left: 24rpx;
+  border-radius: 8rpx;
+  background: #ffffff;
+  margin-top: 24rpx;
+}
+
+.item-detail-day{
+  font-size: 36rpx;
+  color: #333333;
+  margin-left: 32rpx;
+}
+
+.item-detail-week{
+  font-size: 28rpx;
+  color: #333333;
+  margin-left: 8rpx;
+}
+
+.item-detail-time{
+  font-size: 28rpx;
+  color: #999;
+  margin-top: 8rpx;
+  margin-left: 32rpx;
+}
+
+.item-detail-money{
+  font-size: 44rpx;
+  color: #fa0;
+}
+
+.item-detail-money-unit{
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 4rpx;
+}
+
+.icon_right{
+  width: 16rpx;
+  height: 24rpx;
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}
+
+.dot{
+  width: 8rpx;
+  margin-left: 32rpx;
+  height: 8rpx;
+  border-radius: 8rpx;
+}
+
+.view-edit-wage{
+  position: absolute;
+  left: 32rpx;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 60rpx;
+  height: 80rpx;
+  width: 80rpx;
+  top: 40rpx;
+  color: #f62;
+  font-size: 60rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-btn-panel {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  text-align: left;
+  bottom: 0rpx;
+  _position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 19999;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.tip-view{
+  height: 1110rpx;
+  width: 700rpx;
+  background: url('http://cdn.doumistatic.com/73,9fc63c3fa3248b.png') no-repeat;
+  background-size:contain;
+  margin-left: 24rpx;
+  margin-right: 24rpx;
+  margin-top: 32vh;
+}

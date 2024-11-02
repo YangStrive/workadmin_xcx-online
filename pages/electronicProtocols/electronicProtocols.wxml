@@ -1,0 +1,55 @@
+<!-- <view class="section">
+  <view class="agreement-title">用户使用服务需知</view>
+  <view class="agreement-remark">用户清楚知悉，我方无预先支付/垫付服务费的义务。现用户由于自身需要预支部分服务费，特向我方申请，我方同意提供预支服务，但用户需知悉并遵守以下内容。一旦用户通过本页面点击或勾选“同意”等任何方式同意的，即意味着用户已阅读本服务需知的条款和内容，并对本服务需知的条款含义及相应法律后果全部知晓并充分理解，同意接受。</view>
+  <view class="content">
+    <view class="list-item">
+      <text class="label">第一条</text>
+      <text class="text">用户清楚知悉，用户向我方预支服务费的性质为借款，我方有权向用户收取利息。利息为年利率10%，借款期间从用户收到预支款当日起算，至服务费发放当日。</text>
+    </view>
+    <view class="list-item">
+      <text class="label">第二条</text>
+      <text class="text">用户清楚知悉，在发服务费当日，我方有权从用户应发服务费中直接扣除用户预支的金额及利息，不构成克扣服务费或未足额支付服务费。若用户预支的服务费大于用户应付服务费的，用户应当在收到我方通知后配合我方退回多支付的部分。否则，每逾期一日，用户应当按照应退回金额的2%支付逾期利息。</text>
+    </view>
+    <view class="list-item">
+      <text class="label">第三条</text>
+      <text class="text">用户清楚知悉，可能由于平台操作失误造成重复发服务费的情形，若出现前述情形的，用户应当在收到我方通知后配合我方退回多支付的部分。</text>
+    </view>
+    <view class="list-item">
+      <text class="label">第四条</text>
+      <text class="text">用户清楚知悉，为了评估用户的信用，用户同意并不可撤销地授权我方通过以下途径获取用户信息：（1）用户自行在平台上提交的个人信息，包括但不限于用户的姓名、手机号、身份证号、领取服务费记录、在斗米平台的操作记录等信息；（2）通过行政部门、依法设立的征信机构/信用服务机构、数据服务机构、其他依法设立的第三方服务机构查询、保存与用户申请、使用本服务所需的信息；（3）收集用户留存在为用户申请、使用平台产品/服务提供支付结算服务的商业银行或第三方支付机构的身份识别信息及交易流水信息。<text style="font-weight: bold;">同时，我方有权根据用户的实际信用情况决定是否提供预支服务。</text></text>
+    </view>
+    <view class="list-item">
+      <text class="label">第五条</text>
+      <text class="text">用户清楚知悉并自愿遵循本服务需知项下的内容，否则给我方造成的一切经济损失（包括但不限于律师费、保全费、保函费、差旅费、公证费）我方有权依法向用户追偿。</text>
+    </view>
+    <view class="list-item">
+      <text class="label">第六条</text>
+      <text class="text">双方因执行本服务内容产生争议的，应当协商解决。协商不成，任何一方有权向北京市海淀区人民法院提起诉讼。</text>
+    </view>
+  </view>
+</view> -->
+<rich-text nodes="{{contractTxt}}"></rich-text>
+<!-- <view class="bottom-btn-panel">
+  <button class="bottom-btn" bindtap="next">{{contract_list.length>0?'下一步':'确认签字'}}</button>
+</view>
+<view class='send_code' hidden='{{!isShowSendCodeView}}'>
+  <view class='send_code_content'>
+    <view class='send_code_top'>
+      <view class='send_code_top_text_content'>
+        <text class='send_code_top_text'>输入验证码</text>
+      </view>
+      <image class='cancel_image' bindtap="cancel" src="http://cdn.doumistatic.com/131,010d6bd77601b96b.png"></image>
+    </view>
+    <view class='send_code_middle'>
+      <input class='input-text' maxlength="6" type="number" bindinput="bindCodeInput" placeholder="请输入" value="{{msmcode}}"></input>
+      <view class="getcodebase {{(getcodestatus && agingetcode) || 'getcodesuc'}}" bindtap="getcode">
+        <text class="send_code_middle_button ">{{getcodetext}}</text>
+      </view>
+    </view>
+    <view class="send_code_content_bottom-btn-panel">
+      <button class="send_code_content_bottom-btn {{(msmcode.length === 6) || 'send_code_content_bottom-btn-panel-btndis'}}" bindtap="confirm_next" data-itemdata='{{cont_protocol_order_id}}'>
+        确定
+      </button>
+    </view>
+  </view>
+</view> -->

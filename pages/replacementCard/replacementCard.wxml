@@ -1,0 +1,68 @@
+<view class="content">
+  <formtime
+    placeholder="请选择开始时间"
+    title="开始时间"
+    start="{{ replacementCardInfo.work_time_range[0].start.time }}"
+    end="{{ replacementCardInfo.work_time_range[0].end.time }}"
+    disabled="{{ replacementCardInfo.startDisabled }}"
+    requireTime="{{ replacementCardInfo.start_require_time }}"
+    required="1"
+    custom-event="startDatechange"
+    bindstartDatechange="onStartDateChange"
+  >
+  </formtime>
+  <formtime
+    placeholder="请选择开始时间"
+    title="结束时间"
+    start="{{ replacementCardInfo.work_time_range[0].start.time }}"
+    end="{{ replacementCardInfo.work_time_range[0].end.time }}"
+    disabled="{{ replacementCardInfo.endDisabled }}"
+    requireTime="{{ replacementCardInfo.end_require_time }}"
+    required="1"
+    custom-event="endDatechange"
+    bindendDatechange="onEndDateChange"
+  >
+  </formtime>
+  <formtextarea
+    placeholder="请输入50字以内"
+    title="补卡原因"
+    required="1"
+    custom-event="textareachange"
+    bindtextareachange="onTextareaChange"
+    maxlength="50"
+  ></formtextarea>
+  <view class="replacement-card-btn">
+    <view class="btn" bindtap="setReplacementCard">申请补卡</view>
+  </view>
+  <view class="result-panel" wx:if="{{ isShowDialog }}">
+    <view class="covered-panel"></view>
+    <view class="result-box">
+      <view
+        class="result-top"
+        style="background: url('{{resultImages[result_statu]}}') no-repeat;background-size: 100% 100%;"
+      >
+        <!-- <view style='flex:1'></view> -->
+        <text
+          style="margin-top:{{result_statu == 0 ? '268rpx' : '240rpx'}};position:relative"
+          >{{ resultText }}</text
+        >
+        <text style="font-size: 28rpx; color: #666">{{
+          null == resultInfo ? "" : resultInfo
+        }}</text>
+        <!-- <text hidden='{{!positionInfo}}'>{{positionInfo}}</text> -->
+      </view>
+      <view
+        class="weui-cell__bd result-edit style='margin-top:66rpx'"
+        hidden="{{ result_statu == 0 }}"
+      >
+        <textarea
+          bindinput="textErrorReason"
+          class="weui-textarea"
+          placeholder="请输入异常原因(非必填)"
+          style="height: 142rpx"
+        />
+      </view>
+      <view bindtap="confirmAtten" class="result-confirm">确定</view>
+    </view>
+  </view>
+</view>

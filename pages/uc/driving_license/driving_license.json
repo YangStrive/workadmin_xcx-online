@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的驾照",
+  "usingComponents": {
+    "personInfo": "../../../components/personInfo/personInfo",
+    "ocr": "../../../components/ocr/ocr",
+    "ocrIDcard": "../../../components/ocrIDcard/ocrIDcard",
+    "ocrDrivingLicense": "../../../components/ocrDrivingLicense/ocrDrivingLicense",
+    "ocrVehicleLicense": "../../../components/ocrVehicleLicense/ocrVehicleLicense",
+    "ocrCarNumber": "../../../components/ocrCarNumber/ocrCarNumber"
+  }
+}

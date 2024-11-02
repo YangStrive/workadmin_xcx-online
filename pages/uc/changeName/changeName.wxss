@@ -1,0 +1,48 @@
+.page {
+  font-family: "Helvetica Neue", "Microsoft Yahei", sans-serif;	
+	font-size: 14px;
+	background: #f2f2f2;
+	color: #333;
+  height: 100%;
+  overflow: hidden;
+	min-height: 100%;
+	box-sizing: border-box;  
+  position:absolute;
+  width:100%;
+}
+
+.edit-base-wage {
+  color: #444;
+  height: 50px;
+  background:#fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+	font-size: 16px;
+  margin-top: 13px;
+}
+
+.cancel-image {
+  margin-right: 12px;
+  width:18px;
+  height: 18px;
+}
+
+input{
+  flex: 1;
+  margin-left: 24rpx;
+  margin-right: 24rpx;
+}
+
+.bottom-btn {
+  background: #fa0;
+  color: #fff;
+  height: 88rpx;
+  font-size: 32rpx;
+  border-radius: 8rpx;
+  margin: 61rpx 48rpx 48rpx 48rpx;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

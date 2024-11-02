@@ -1,0 +1,3 @@
+<view class="page-warp">
+  <web-view src="{{faceID_token}}" bindmessage="setMessage"></web-view>
+</view>

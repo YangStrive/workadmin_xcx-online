@@ -1,0 +1,36 @@
+<!--reportlist.wxml-->
+<view class='top_box'>
+  <image class='top_box_icon_calendar' src='http://cdn.doumistatic.com/67,8bced81e885c49.png'>
+  </image>
+  <picker mode="date" value="{{date}}" start="2015-09-01" end="2030-09-01" bindchange="bindDateChange">
+    <view class='top_box_time'>{{selectTime}}
+    </view>
+  </picker>
+  <image class='top_box_icon_triangle' src='http://cdn.doumistatic.com/67,8bcf1d2f35c0b5.png'></image>
+  <view style='flex:1'></view>
+  <view class='top_box_count'>已上报{{count}}次</view>
+</view>
+  <view class="incidentMsg  {{sign_data.length==0 ? 'noMsg' : ''}}" hidden='{{sign_data.length!=0}}'>
+<view class="noMsgBg">
+      <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+      <text >暂无记录</text>
+    </view>
+ </view>
+<view wx:for="{{sign_data}}" class="item {{sign_data.length-1!=index ? 'item-last' : ''}}" wx:key="{{index}}" bindtap='clickItem' data-detail='{{item}}'>
+  <view class='left_line_circle'></view>
+  <view class='item_content'>
+    <image class='item_content_image' src='{{item.image}}' hidden='{{!item.hasImage}}'></image>
+    <view class='item_content_detail'>
+      <view class='item_content_detail_time' >
+        <view class='item_content_detail_addr sigin_line_text'>{{item.lvalue.addr_name}}</view>
+        <view style='flex:1'></view>
+        <view class='item_content_detail_right_time'>{{item.sign_time}}</view>
+      </view>
+
+      <view class='item_content_detail_address'>
+      <image class='icon_address' src='http://cdn.doumistatic.com/62,8bcf5d10662105.png'></image>
+        <view class='item_content_detail_addr_name sigin_line_text'>{{item.lvalue.addr}} </view>
+      </view>
+    </view>
+  </view>
+</view>

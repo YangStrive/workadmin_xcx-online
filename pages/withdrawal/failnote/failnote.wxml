@@ -1,0 +1,4 @@
+<!--pages/withdrawal/failnote/failnote.wxml-->
+<view class='image_note'>
+  <image  src='http://cdn.doumistatic.com/121,f54339c11e3cd9.jpg' mode="widthFix"></image>
+</view>

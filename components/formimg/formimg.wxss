@@ -1,0 +1,27 @@
+/* components/formlocation/formlocation.wxss */
+@import "../../style/base/base.wxss";
+@import '../../style/weui.wxss';
+.form-img .weui-cells{
+	margin-top: 0;
+}
+.weui-uploader__hd{
+  padding-bottom: 0;
+}
+.weui-cell__bd{
+  margin-top:20px;
+}
+.weui-uploader__file{
+  position: relative;
+}
+.img-delete{
+  content: '';
+  display: block;
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top: 0;
+  right:0;
+  background:url('http://cdn.doumistatic.com/64,8e5d5cdcef81e4.png') no-repeat;
+  background-size: 35rpx;
+  border-radius: 50%;
+}

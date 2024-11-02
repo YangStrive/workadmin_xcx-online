@@ -1,0 +1,30 @@
+<view class="return-visit-card">
+  <view class="return-visit-card-container">
+    <view class="top">
+      <view class="avatar">
+        <!-- <image src="https://cdn.doumistatic.com/225,01dca4a01413f4e2.jpg"></image> -->
+        <image src="{{info.user_logo || 'https://cdn.doumistatic.com/225,01dca4a01413f4e2.jpg'}}"></image>
+      </view>
+      <view class="content">
+        <view class="left">
+          <view class="title">
+            <text class="title-main">{{info.user_name}}</text>
+            <text class="title-tip">{{info.visit_type}}</text>
+          </view>
+          <view class="sub-title">ID:{{info.project}}  {{info.project_name}}</view>
+        </view>
+        <view class="right">
+          <image bindtap="makePhoneCall" src="https://cdn.doumistatic.com/216,01dca4b5deaacc84.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="bottom">
+      <view class="entry-time">入职时间: {{info.entry_time}}</view>
+      <view class="last-time">上次回访时间: {{info.last_visit_time}}</view>
+    </view>
+  </view>
+  <view class="btns" wx:if="{{hasBtns}}">
+    <view class="btn left-btn" bindtap="leave">离职</view>
+    <view class="btn right-btn" bindtap="goRecord">回访小记</view>
+  </view>
+</view>

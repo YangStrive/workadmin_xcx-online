@@ -1,0 +1,151 @@
+<!-- pages/withdrawal/mywallet/mywallet.wxml -->
+<template name="wechat">
+  <block wx:if="{{wechatList.length>0}}">
+    <view class="list-item" wx:for="{{wechatList}}" wx:key="id">
+      <view class="base-info">
+        <view class="base-info-title overflow">{{item.title}}</view>
+        <view class="base-info-type">账单类型：{{item.record_type}}</view>
+        <view class="base-info-remark overflow">备注：{{item.remark}}</view>
+      </view>
+      <view class="balance">+{{item.amount}}</view>
+      <view class="status-time">
+        <view class="time">{{item.create_at}}</view>
+        <view class="status" data-listingStatus='{{item.listing_status}}' catch:tap="goFailPage">
+          <text class="{{item.listing_status=='提现失败'?'fail-status':''}}">{{item.listing_status}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="no-data">暂无更多数据。。。</view>
+  </block>
+</template>
+<template name="bank">
+  <block wx:if="{{bankList.length>0}}">
+    <view class="list-item" wx:for="{{bankList}}" wx:key="id">
+      <view class="base-info">
+        <view class="base-info-title overflow">{{item.title}}</view>
+        <view class="base-info-remark overflow">{{item.create_at}}</view>
+      </view>
+      <view class="balance-wrapper">
+        <view class="balance">+{{item.amount}}<text wx:if="{{item.salary_type==9}}">(借款)</text></view>
+        <view class="balance balance1" wx:if="{{item.style==1}}">-{{item.repayment_amount}}(还款)</view>
+      </view>
+      <view class="back-status">
+        <view class="status" data-item="{{item}}" catch:tap="withdrawalBank" wx:if="{{item.listing_status!=''}}">
+          <text class="{{item.listing_status=='提现失败'?'fail-status':''}} {{item.listing_status=='待提现'?'sucess-status':''}}">{{item.listing_status=='待提现'?'提现':item.listing_status}}</text>
+          <text class="status-icon" wx:if="{{item.listing_status!=='提现失败'&&item.listing_status!=='待提现'}}"></text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="no-data">暂无更多数据。。。</view>
+  </block>
+</template>
+<view class='mywallet {{withdrawalAmountFail||showBindBankModal||withdrawalAmount||withdrawalAmountType?"not-scroll":""}}'>
+  <view class="mywallet-header" id="mywallet-header">
+    <view class="header-title">我的钱包</view>
+    <view class="header-tips" catch:tap="closeWithdrawalTypeModal">
+      <text class="header-tips-text">提现方式</text>
+      <text class="header-tips-icon"></text>
+    </view>
+  </view>
+  <view class="total-balance" id="total-balance">
+    <view class="balance-title">余额</view>
+    <view class="balance-count">
+      <text class="balance-count-nums">{{totalBalance.total}}</text>
+      <text class="balance-count-unit">元</text>
+    </view>
+  </view>
+  <view class="mywallet-tabs" id="mywallet-tabs">
+    <block wx:for="{{tabList}}" wx:key="id">
+      <view class="tabs {{tabIndex==item.id?'tabs-active':''}}" data-item="{{item}}" catch:tap="switchTabs">
+        <view class="tabs-title-icon">
+          <text class="tabs-icon {{item.id==0?'wechat-bg':'bank-bg'}} {{tabIndex==item.id&&item.id==0?'wechat-bg-active':tabIndex==item.id&&item.id==1?'bank-bg-active':''}}"></text>
+          <text class="tabs-title">{{item.title}}</text>
+        </view>
+        <view class="tabs-nums-unit">
+          <text class="tabs-nums">{{item.id==0?totalBalance.balance:totalBalance.bank_balance}}</text>
+          <text class="tabs-unit">元</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="bank-tabs" wx:if="{{tabIndex==1}}">
+    <block wx:for="{{bankTabList}}" wx:key="id">
+      <view class="bank-tabs-item {{index==bankTabIndex?'bank-tabs-item-active':''}}" data-bankTabIndex='{{index}}' data-bankTabId='{{item.id}}' bind:tap="switchBankTab">
+        {{item.title}}
+      </view>
+    </block>
+  </view>
+  <view class="content {{tabIndex==1?'bank-content':''}}" style="height: {{contentHeight+'px'}}">
+    <scroll-view scroll-y='true' class='content-scroll' bindscrolltolower="lower">
+      <block wx:if="{{tabIndex==0}}">
+        <template is="wechat" data="{{wechatList}}" />
+      </block>
+      <block wx:else>
+        <template is="bank" data="{{bankList}}" />
+      </block>
+    </scroll-view>
+  </view>
+  <view class="footer-r" wx:if="{{contentHeight>0&&tabIndex==0}}"></view>
+  <view class="footer" wx:if="{{contentHeight>0&&tabIndex==0}}">
+    <view class="footer-btn" catch:tap="withdrawalWechat">全部提现</view>
+  </view>
+  <!-- 绑定银行卡及提现中 -->
+  <view class="modal" wx:if="{{showBindBankModal}}" catch:tap="closeBindBankModal">
+    <view class="warp">
+      <view class="body text-align-center">{{statusTips}}</view>
+      <view class="modal-footer text-color" catch:tap="goBindBank">{{statusBtnTips}}</view>
+    </view>
+  </view>
+  <!-- 确认提现 -->
+  <view class="modal" wx:if="{{withdrawalAmount}}" catch:tap="closeWithdrawalAmountModal">
+    <view class="warp">
+      <view class="title text-align-center">确认提现金额及银行卡号</view>
+      <view class="body">
+        <view class="amount">
+          <text class="label">提现金额</text>
+          <text class="text">{{amount}}元</text>
+        </view>
+        <view class="bank-nums">
+          <text class="label">银行卡号</text>
+          <text class="text">{{card_no}}</text>
+        </view>
+      </view>
+      <view class="modal-footer text-color">
+        <view class="btn text-align-center" catch:tap="closeWithdrawalAmountModal">取消</view>
+        <view class="btn text-align-center border-right-none" catch:tap="submitWithdrawalAmount">
+          提现
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 提现失败 -->
+  <view class="modal" wx:if="{{withdrawalAmountFail}}" catch:tap="closeWithdrawalAmountFailModal">
+    <view class="warp">
+      <view class="body">
+        <view class="fail-text">提现失败原因：{{withdrawalFailReason}}</view>
+        <view class="fail-text">若出现（账户余额不足）情况，请您与项目经理联系。其他原因建议您解绑银行卡并重新绑定银联储蓄卡后再次提现</view>
+      </view>
+      <view class="modal-footer text-color">
+        <view class="btn text-align-center" catch:tap="closeWithdrawalAmountFailModal">知道了</view>
+        <view class="btn text-align-center border-right-none" catch:tap="withdrawalBankAgain">
+          再次提现
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 提现方式 -->
+  <view class="modal" wx:if="{{withdrawalAmountType}}" catch:tap="closeWithdrawalTypeModal">
+    <view class="warp">
+      <view class="body" style="max-height: 500rpx;overflow: auto;">
+        <view class="withdrawal-type-text">1.根据工作发薪方式不同，发放的工资会进入【可微信提现金额】或【可银行卡提现金额】，请点击对应金额进入提现页面操作提现</view>
+        <view class="withdrawal-type-text">2.微信提现操作：请点击页面下方的【全部提现】按钮，金额将提现到您绑定的微信钱包</view>
+        <view class="withdrawal-type-text">3.银行卡提现操作：请点击对应工资右侧的【提现】按钮，金额将提现到您绑定的银行卡</view>
+      </view>
+      <view class="modal-footer text-color" catch:tap="closeWithdrawalTypeModal">知道了</view>
+    </view>
+  </view>
+</view>

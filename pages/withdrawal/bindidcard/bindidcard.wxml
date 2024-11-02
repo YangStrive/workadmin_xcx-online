@@ -1,0 +1,16 @@
+<!--pages/withdrawal/bindidcard/bindidcard.wxml-->
+<view class='bindidcard'>
+  <text class='note'>为了您的资金安全，提现需要绑定身份证号码</text>
+  <view class='bindinput'>
+    <view class='nameinput'>
+      <text>真实姓名</text>
+      <input placeholder='请输入真实姓名'   bindinput='namechange' placeholder-style="color:#ccc"></input>
+    </view>
+    <view class='idinput'>
+      <text>身份证号</text>
+      <input placeholder='请输入身份证号码' maxlength='18' bindinput='idchange'  placeholder-style="color:#ccc"></input>
+    </view>
+  </view>
+  <text class='bingdsubmit_btn' bindtap='tapBtn' wx:if="{{checked}}" >保 存</text>
+  <text class='bingdsubmit_btn disablebtn' wx:else>保 存</text>
+</view>

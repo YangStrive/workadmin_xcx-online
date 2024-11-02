@@ -1,0 +1,4 @@
+<import src="../../template.wxml"/>
+<view class="ocr-pannel">
+  <template is="ocr" data="{{ocrData}}"></template>
+</view>

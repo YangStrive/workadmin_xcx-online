@@ -1,0 +1,498 @@
+<!-- minework.wxml -->
+<view class='view_root'>
+  <!-- <text>是否显示过{{isShowAdCardFlagTest}}</text> -->
+  <view class="noMsgBg" wx:if='{{projectData.length == 0}}'>
+    <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+    <text>暂无项目，请管理员通过https://vip.doumi.com进行项目项目配置，管理员权限开通请联系微信：hhy4136</text>
+  </view>
+  <view class="noMsgBg" hidden='{{!isShowNetWorkError}}'>
+    <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+    <text>网络异常请下拉刷新页面</text>
+  </view>
+  <view class="title-content" hidden='{{projectData.length == 0}}'>
+    <image src='{{projectData[index].logo}}' style="margin-left:24rpx;margin-top:4rpx;width:60rpx;height:60rpx;"></image>
+    <view class="project-name sigin_line_text" bindtap="powerDrawer" data-statu="open">
+      {{projectNameArray[index]}}
+    </view>
+    <image src='http://cdn.doumistatic.com/80,a7d6a7b5a0628d.png' bindtap="powerDrawer" data-statu="open" style="margin-top:22rpx;width:32rpx;height:24rpx;" hidden='{{projectNameArray.length < 1}}'></image>
+  </view>
+  <!-- <form bindsubmit="onClickUpLoadLocation" report-submit='true' data-statu="{{attendance.sdata}}">
+        <button class="item-commit-location-text" form-type='submit'>上报</button>
+      </form> -->
+  <form bindsubmit="onClickReward" report-submit='true' data-statu="{{attendance.sdata}}">
+    <button class="reward-content" hidden='{{minejob.ranking==undifine || 0 == minejob.ranking.show}}' form-type='submit'>
+      <view class='reward-title'>考勤排行榜</view>
+      <view style='flex:1'></view>
+      <view class='view-count'>
+        您排在第
+        <text class='text-count'>{{rankingNum}}</text>
+        名
+      </view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0;margin-right:24rpx;"></view>
+    </button>
+  </form>
+  <!-- <view class='reward-content' hidden='{{minejob.ranking==undifine || 0 == minejob.ranking.show}}' bindtap='onClickReward'>
+    <view class='reward-title'>考勤排行榜</view>
+
+    <view style='flex:1'></view>
+
+    <view class='view-count'>
+      您排在第
+      <text class='text-count'>{{minejob.ranking.num}}</text>名
+    </view>
+    <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0;margin-right:24rpx;"></view>
+  </view> -->
+  <view class="noMsgBg" hidden='{{!isShowNoWork}}'>
+    <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+    <text>今日暂无工作</text>
+  </view>
+  <!-- <view>{{mac_address_view}}</view>
+  <view>{{mac_address_BSSID}}</view> -->
+  <view class="item-content" hidden="{{!isShowAtten}}">
+    <view class="item-top weui-cell_access" style='height: 100rpx;'>
+      <view class="weui-cell__bd item-type-text-title">工作考勤</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+        <view style="display: inline-block;vertical-align:middle; font-size: 28rpx;color: #999999;" bindtap="onClickAttendanceList">
+          查看考勤排班
+        </view>
+      </view>
+    </view>
+    <view class="item_no_attendance" hidden="{{0 != attendances.length}}">暂无排班</view>
+    <view wx:for="{{attendances}}" wx:for-item="attendance" wx:key="*this">
+      <template is="item-attendances" data="{{attendance}}"></template>
+    </view>
+  </view>
+  <view class="item-content" hidden="{{1 != minejob.sign.show}}">
+    <view class="item-top weui-cell_access" bindtap="onClickLocationReport" style='height: 100rpx;'>
+      <view class="weui-cell__bd item-type-text-title ">位置上报</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+        <view style="display: inline-block;vertical-align:middle; font-size: 28rpx;color: #999999;">
+          查看上报记录
+        </view>
+      </view>
+    </view>
+    <view class="item-commit-location-content" hidden="true" hidden="{{0 != minejob.sign.list.length}}">
+      <image class="item-commit-location-ic" src="http://cdn.doumistatic.com/65,8b91fab12a9f09.png"></image>
+      <view class="item-commit-location-data-time">
+        <text>暂无数据</text>
+        <text style='margin-left:16rpx;'>{{cLocationTime}}</text>
+      </view>
+      <view class="item-commit-location-data-address sigin_line_text">还没有上报位置</view>
+      <!-- <view class="item-commit-location" bindtap="onClickUpLoadLocation" report-submit='true' data-statu="{{attendance.sdata}}">
+        <view class="item-commit-location-text">上报位置</view>
+      </view> -->
+      <form bindsubmit="onClickUpLoadLocation" report-submit='true' data-statu="{{attendance.sdata}}">
+        <button class="item-commit-location-text" form-type='submit'>上报</button>
+      </form>
+    </view>
+    <view class="item-commit-location-content" hidden="{{0 == minejob.sign.list.length}}">
+      <image class="item-commit-location-ic" src="http://cdn.doumistatic.com/65,8b91fab12a9f09.png"></image>
+      <view class="item-commit-location-data-time">
+        <text>最近上报</text>
+        <text style='margin-left:16rpx;'>{{cLocationTime}}</text>
+      </view>
+      <view class="item-commit-location-data-address sigin_line_text">
+        {{minejob.sign.list[0].position_name}}
+      </view>
+      <form bindsubmit="onClickUpLoadLocation" report-submit='true'>
+        <button class="item-commit-location-text" style='backgrgound:#0af' form-type='submit'>
+          上报
+        </button>
+      </form>
+    </view>
+  </view>
+  <view class="item-content" hidden="{{1 != minejob.form.show}}">
+    <view class="item-top" bindtap='onClickCommitDataList' style='height: 100rpx;'>
+      <view class="weui-cell__bd item-type-text-title ">数据上报</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+        <view style="display: inline-block;vertical-align:middle; font-size: 28rpx;color: #999999;">
+          查看上报记录
+        </view>
+      </view>
+    </view>
+    <view class="item_no_attendance" hidden="true" hidden="{{0 != minejob.form.list.length}}">
+      暂无表单需要提交
+    </view>
+    <view wx:for="{{minejob.form.list}}" bindtap='onClickCommitData' wx:key="item" data-index="{{index}}">
+      <view class="item-commit-data">
+        <image class="item-commit-data-ic" mode="aspectFit" src="http://cdn.doumistatic.com/64,8b91f1643b93f0.png"></image>
+        <view>
+          <view class="weui-cell__bd item-type-text" style="font-size:32rpx">{{item.title}}</view>
+          <view class="weui-cell__bd item-type-text" style="font-size:24rpx;color:#999999" hidden="{{0 == item.today_submit_count}}">
+            今日已上报{{item.today_submit_count}}次
+          </view>
+        </view>
+        <view style='flex:1'></view>
+        <image src="../../image/ic_mine_job_right.png" style="width:15rpx;height:28rpx;"></image>
+      </view>
+    </view>
+  </view>
+  <view class="item-content" hidden="{{!has_change_store}}">
+    <view class="item-top" bindtap='onClickDdApplyBtn' style='height: 100rpx;'>
+      <view class="weui-cell__bd item-type-text-title ">外出申请</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+        <view style="display: inline-block;vertical-align:middle; font-size: 28rpx;color: #999999;">
+          
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view style="background:#f2f2f2;height:30rpx;"></view>
+  <view style='z-index:3;'>
+    <!-- mask -->
+    <view class="drawer_screen" catchtouchstart='powerDrawer' bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+    <!-- content -->
+    <!-- 使用animation属性指定需要执行的动画 -->
+    <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+      <!-- drawer content -->
+      <view class='drawer_content'>
+        <view class="drawer_title line_2">
+          <view class='change-project-title' catchtouchstart='preventD'>切换项目</view>
+          <view style='flex:1'></view>
+          <view class='remove_box' bindtap="powerDrawer" data-statu="close">
+            <image src='http://cdn.doumistatic.com/73,91d995418543bf.png' class='icon-change-project-hide'></image>
+          </view>
+        </view>
+        <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class='drawer_content_scroll'>
+          <view id='{{project.viewid}}' style="background:{{index == idx?'#f8f8fa':'#fff'}}" class='drawer_project-item' wx:for="{{projectData}}" wx:key="item" wx:for-item="project" wx:for-index="idx">
+            <view class="drawer_project_title">
+              <view class='item-select-project-dot' style="background:{{index == idx?'#fa0':'#fff'}}"></view>
+              <image src='{{project.logo}}' data-index='{{idx}}' bindtap='changeProject' style="width:80rpx;height:80rpx;margin-right: 16rpx;"></image>
+              <view data-index='{{idx}}' class='sigin_line_text' bindtap='changeProject' style='flex:1;font-size:32rpx;font-weight: bolder;'>
+                {{project.name}}
+              </view>
+              <view wx:if="{{project.identity!= '1'}}" class='btn-project-exit' bindtap='clickExitProject' data-project_id='{{project.project_id}}' data-team_id='{{project.team_id}}'>
+                离职申请
+              </view>
+            </view>
+            <view class='drawer_project_line'></view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <view class='view_note' bindtap='clickAnnouncement' hidden='{{!isShowNote}}'>
+    <view class='text_note'>
+      <text>{{minejob.notice}}个未读公告</text>
+    </view>
+  </view>
+  <view class='drainage' wx:if='{{isShowDrainage}}'>
+    <image class='drainage_image' src='http://cdn.doumistatic.com/150,013b12e7ac8cc66a.png' bindtap='clickDrainage'></image>
+    <!-- <image class='drainage_image' src='http://cdn.doumistatic.com/137,011dcc0e07cf80f8.png' bindtap='clickDrainage'></image> -->
+    <button class='drainage_button' bindtap='drainage_cancel'></button>
+  </view>
+</view>
+<view class="bottom-btn-panel" bindtap='hideTip' wx:if='{{isShowTip==1}}'>
+  <view class='view-top'></view>
+  <view class='view-center'>
+    <image src='http://cdn.doumistatic.com/75,9ad2c5e850070f.png'></image>
+  </view>
+  <view class='view-last'>
+    <image src='http://cdn.doumistatic.com/77,9ad2ae4b337999.png'></image>
+    <text>知道了</text>
+  </view>
+</view>
+<template name="item-attendances">
+  <view class='item-attendance-new'>
+    <view class='item-attendance-left-panel'>
+      <view class='item-attendance-dot-top' hidden="{{0 != attendance.sStatus.length}}"></view>
+      <view class='image-state-box-top' hidden="{{0 == attendance.sStatus.length}}">
+        <view style='height:64rpx;'></view>
+        <image class="item-attendance-image-state-top" src="{{attendance.sStatusImg}}"></image>
+      </view>
+      <view class='item-attendance-dot-line'></view>
+      <view class='item-attendance-dot-bottom' hidden="{{0 != attendance.eStatus.length}}"></view>
+      <view class='image-state-box-bottom' hidden="{{0 == attendance.eStatus.length}}">
+        <image class="item-attendance-image-state-bottom" src="{{attendance.eStatusImg}}"></image>
+        <view style='height:70rpx;'></view>
+      </view>
+    </view>
+    <view class='item-attendance-detail-panel'>
+      <view class='item-attendance-detail-work' bindtap="onClickSAttendanceItem" data-statu="{{attendance.sdata}}" data-item='{{attendance.sdata.form_data}}'>
+        <view class='item-attendance-detail-worktime'>
+          <view class='item-attendance-time-text'>
+            <text>上班</text>
+            <text style='margin-left:10rpx' hidden='{{!(attendance.scross == 0 && attendance.scross_attend == 1)}}'>
+              昨日
+            </text>
+            <text style="margin-left: 10rpx">{{attendance.startTime}}</text>
+          </view>
+          <text class='text-early-clock' hidden='{{!attendance.isShowEarlyClock}}'>提前5小时可开始打卡</text>
+          <view class='item-attendance-detail-workstatu' hidden='{{attendance.isShowEarlyClock}}'>
+            <view class="{{attendance.sStatus[0].class}}" hidden="{{1 > attendance.sStatus.length}}">
+              {{attendance.sStatus[0].name}}
+            </view>
+            <view class="{{attendance.sStatus[1].class}}" hidden="{{2 > attendance.sStatus.length}}">
+              {{attendance.sStatus[1].name}}
+            </view>
+          </view>
+        </view>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowSAttendTime}}">
+          {{attendance.sAttendTime}}
+        </text>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowSAttendTime}}" style='margin-left:10rpx'>
+          打卡
+        </text>
+        <image src="../../image/ic_mine_job_right.png" class='item-attendance-detail-workimg' hidden="{{!attendance.isShowSAttendTime}}"></image>
+        <form bindsubmit="onClickSAttendanceBtn" report-submit='true' data-statu="{{attendance.sdata}}">
+          <button class="item-attendance-btn" form-type='submit' hidden="{{1 != attendance.sAttendanceBtn}}">
+            打卡
+          </button>
+        </form>
+      </view>
+      <view class='item-attendance-detail-work-line'></view>
+      <view class='item-attendance-detail-work' bindtap="onClickSAttendanceItem" data-statu="{{attendance.edata}}" data-item='{{attendance.edata.form_data}}'>
+        <view class='item-attendance-detail-worktime'>
+          <view class='.item-attendance-time-text'>
+            <text>下班</text>
+            <text style='margin-left:10rpx' hidden='{{!(attendance.ecross == 1 && attendance.ecross_attend == 0)}}'>
+              次日
+            </text>
+            <text style="margin-left: 10rpx">{{attendance.endTime}}</text>
+          </view>
+          <view class='item-attendance-detail-workstatu'>
+            <view class="{{attendance.eStatus[0].class}}" hidden="{{1 > attendance.eStatus.length}}">
+              {{attendance.eStatus[0].name}}
+            </view>
+            <view class="{{attendance.eStatus[1].class}}" hidden="{{2 > attendance.eStatus.length}}">
+              {{attendance.eStatus[1].name}}
+            </view>
+          </view>
+        </view>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowEAttendTime}}">
+          {{attendance.eAttendTime}}
+        </text>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowEAttendTime}}" style='margin-left:10rpx'>
+          打卡
+        </text>
+        <image src="../../image/ic_mine_job_right.png" class='item-attendance-detail-workimg' hidden="{{!attendance.isShowEAttendTime}}"></image>
+        <form bindsubmit='onClickSAttendanceBtn' data-statu="{{attendance.edata}}" report-submit='true'>
+          <button form-type='submit' class="item-attendance-btn" hidden="{{1 != attendance.eAttendanceBtn}}">
+            打卡
+          </button>
+        </form>
+      </view>
+    </view>
+  </view>
+</template>
+<view class='ad_card' hidden='{{!isShowAdCard}}'>
+  <view>
+    <view class='ad_card_content'>
+      <image class='ad_cancel' src='http://cdn.doumistatic.com/116,f79ec601b87e4d.png' bindtap='close_ad_card'></image>
+      <image class='ad_card_image' src='{{ad_card_url}}'></image>
+      <view class='ad_card_save_content'>
+        <image class='ad_card_save' src='http://cdn.doumistatic.com/120,f84b7ce871b422.png' bindtap='save_ad_card_image'></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='protocol' wx:if="{{showSignDocumentNums}}" bind:tap="hidePro">
+  <view>
+    <view class='protocol-content'>
+      <image class='protocol-content-image' src='http://cdn.doumistatic.com/124,01051002fd8dd46b.png'></image>
+      <view class='protocol-content-text-top'>
+        <text>你有{{protocol_order_ids.length}}份待签订的文件</text>
+      </view>
+      <view class='protocol-content-text-bottom'>
+        <text>完成签订后才能进行工作</text>
+      </view>
+      <button class="protoco-btn" catchtap="onClickSignProtocol">去签订</button>
+    </view>
+  </view>
+</view>
+<view class='protocol' hidden='{{!showWe2000Flag || !inCheckAndShowWe ||!webank_tips}}'>
+  <view class="we-container">
+    <view class="we-btn" bindtap="goWe">免费领取</view>
+  </view>
+  <view class="we-close-btn" bindtap="closeWe"></view>
+</view>
+<view class='protocol' wx:if="{{showNoticeOfSigning}}">
+  <view class="notice-sign">
+    <view class="sign-header">
+      <image src="https://cdn.doumistatic.com/227,01f3a38126acb340.png"></image>
+    </view>
+    <scroll-view scroll-y="true" class="sign-content">
+      <view class="sign-txt">为维护您的合法权益，在您签署{{noticeOfSigningText.protocolName}}之前，请务必确认以下信息：</view>
+      <view class="sign-txt">
+        <view>1.</view>
+        <view>
+          此{{noticeOfSigningText.protocolName}}的公司方为
+          <text class="ffaa00">{{noticeOfSigningText.companySide}}</text>
+        </view>
+      </view>
+      <view class="sign-txt">
+        <view>2.</view>
+        <view>
+          协议期内，您提供服务的所得报酬，将由{{noticeOfSigningText.companySide}}
+          <text class="ffaa00">代为申报个税。</text>
+          但如果您同时在其他单位从事工作/提供服务，则
+          <text class="ffaa00">涉及合并报税，在次年汇算清缴中个税可能会增加，税金增加部分，也需由您自行承担。</text>
+        </view>
+      </view>
+      <view class="sign-txt">
+        <view>3.</view>
+        <view>
+          公司办理个税申报，
+          <text class="ffaa00">{{noticeOfSigningText.cityOfApplication}}</text>
+          如您因个人需在某地办理例如落户等政策时，对纳税地有要求的，请您签约前注意评估。公司不对因此对您造成的任何影响承担任何责任。
+        </view>
+      </view>
+    </scroll-view>
+    <view class="gradients"></view>
+    <view class="sign-sign-content" bindtap="onClickSignProtocol">
+      <view class="sign-btn {{canGoSign?'bgActive':''}}">{{getcodetext}}</view>
+    </view>
+    <view class="sign-close">
+      <image bindtap="closeProtocolDialog" src="https://cdn.doumistatic.com/228,01f3a6f092e88c4b.png"></image>
+    </view>
+  </view>
+</view>
+<!-- <view class='protocol' hidden='{{!isShowNewProtocolFlag}}'>
+  <view class="notice-sign">
+    <view class="sign-header">
+      <image src="https://cdn.doumistatic.com/227,01f3a38126acb340.png"></image>
+    </view>
+    <scroll-view scroll-y="true" class="sign-content">
+      <view class="sign-txt">为维护您的合法权益，在您签署《灵活用工协议》之前，请务必确认以下信息：</view>
+      <view class="sign-txt">
+        <view>1.</view>
+        <view>
+          此《灵活用工协议》的公司方为
+          <text class="ffaa00">宁波爱保穗信息科技有限公司。</text>
+        </view>
+      </view>
+      <view class="sign-txt">
+        <view>2.</view>
+        <view>
+          协议期内，您提供服务的所得报酬，将由宁波爱保穗信息科技有限公司
+          <text class="ffaa00">代为申报个税，且无需您承担税金。</text>
+          但如果您同时在其他单位从事工作/提供服务，则
+          <text class="ffaa00">涉及合并报税的税金部分，需由您自行承担。</text>
+        </view>
+      </view>
+      <view class="sign-txt">
+        <view>3.</view>
+        <view>
+          公司办理个税申报，
+          <text class="ffaa00">申报城市为“宁波”。</text>
+          个别城市在办理落户等行政业务时，对纳税地有相关要求，请您签约前注意评估。公司不对因此给您造成的任何影响承担任何责任。
+        </view>
+      </view>
+    </scroll-view>
+    <view class="gradients"></view>
+    <view class="sign-sign-content" bindtap="onClickSignProtocol">
+      <view class="sign-btn {{canGoSign?'bgActive':''}}">{{getcodetext}}</view>
+    </view>
+    <view class="sign-close">
+      <image bindtap="closeProtocolDialog" src="https://cdn.doumistatic.com/228,01f3a6f092e88c4b.png"></image>
+    </view>
+  </view>
+</view>
+<view class='protocol' hidden='{{!isShowNewProtocolFlag1}}'>
+  <view class="notice-sign">
+    <view class="sign-header">
+      <image src="https://cdn.doumistatic.com/227,01f3a38126acb340.png"></image>
+    </view>
+    <scroll-view scroll-y="true" class="sign-content">
+      <view class="sign-txt">为维护您的合法权益，在您签署《灵活用工协议》之前，请务必确认以下信息：</view>
+      <view class="sign-txt">
+        <view>1.</view>
+        <view>
+          此《灵活用工协议》的公司方为
+          <text class="ffaa00">龙游弘博科技有限公司。</text>
+        </view>
+      </view>
+      <view class="sign-txt">
+        <view>2.</view>
+        <view>
+          协议期内，您提供服务的所得报酬，将由龙游弘博科技有限公司
+          <text class="ffaa00">代为申报个税，且无需您承担税金。</text>
+          但如果您同时在其他单位从事工作/提供服务，则
+          <text class="ffaa00">涉及合并报税的税金部分，需由您自行承担。</text>
+        </view>
+      </view>
+      <view class="sign-txt">
+        <view>3.</view>
+        <view>
+          公司办理个税申报，
+          <text class="ffaa00">申报城市为“衢州市”。</text>
+          个别城市在办理落户等行政业务时，对纳税地有相关要求，请您签约前注意评估。公司不对因此给您造成的任何影响承担任何责任。
+        </view>
+      </view>
+    </scroll-view>
+    <view class="gradients"></view>
+    <view class="sign-sign-content" bindtap="onClickSignProtocol">
+      <view class="sign-btn {{canGoSign?'bgActive':''}}">{{getcodetext}}</view>
+    </view>
+    <view class="sign-close">
+      <image bindtap="closeProtocolDialog1" src="https://cdn.doumistatic.com/228,01f3a6f092e88c4b.png"></image>
+    </view>
+  </view>
+</view>
+<view class='protocol' hidden='{{!isShowNewProtocolFlag2}}'>
+  <view class="notice-sign">
+    <view class="sign-header">
+      <image src="https://cdn.doumistatic.com/227,01f3a38126acb340.png"></image>
+    </view>
+    <scroll-view scroll-y="true" class="sign-content">
+      <view class="sign-txt">为维护您的合法权益，在您签署《协议》之前，请务必确认以下信息：</view>
+      <view class="sign-txt">
+        <view>1.</view>
+        <view>
+          此《协议》的公司方为
+          <text class="ffaa00">新诚优聘（安庆）科技有限公司</text>
+        </view>
+      </view>
+      <view class="sign-txt">
+        <view>2.</view>
+        <view>
+          协议期内，您提供服务的所得报酬，将由新诚优聘（安庆）科技有限公司
+          <text class="ffaa00">代为申报个税，且无需您承担税金。</text>
+          但如果您同时在其他单位从事工作/提供服务，则
+          <text class="ffaa00">涉及合并报税的税金部分，需由您自行承担。</text>
+        </view>
+      </view>
+      <view class="sign-txt">
+        <view>3.</view>
+        <view>
+          公司办理个税申报，
+          <text class="ffaa00">申报城市为“安庆”。</text>
+          个别城市在办理落户等行政业务时，对纳税地有相关要求，请您签约前注意评估。公司不对因此给您造成的任何影响承担任何责任。
+        </view>
+      </view>
+    </scroll-view>
+    <view class="gradients"></view>
+    <view class="sign-sign-content" bindtap="onClickSignProtocol">
+      <view class="sign-btn {{canGoSign?'bgActive':''}}">{{getcodetext}}</view>
+    </view>
+    <view class="sign-close">
+      <image bindtap="closeProtocolDialog2" src="https://cdn.doumistatic.com/228,01f3a6f092e88c4b.png"></image>
+    </view>
+  </view>
+</view> -->
+<view class='certification' hidden='{{!isShowAuthentication}}'>
+  <view>
+    <view class='certification-content'>
+      <view class="cer-info">
+        <text>请您实名认证，认证以后您可以：</text>
+        <text>1、签订劳动合同，享受劳动保障；</text>
+        <text>2、免费用工保险，保障生命财产；</text>
+        <text>3、提现工资，方便快捷；</text>
+      </view>
+      <view class="cer-input">
+        <view>
+          <text>姓名</text>
+          <input type="text" confirm-type="done" bindinput="nameInput"></input>
+        </view>
+        <view>
+          <text>身份证号</text>
+          <input type="idcard" confirm-type="done" bindinput="idCardInput"></input>
+        </view>
+      </view>
+      <text class="error" hidden="{{!showError}}">{{errorContent}}</text>
+      <button class="certification-btn" bindtap="onClickCer">实名认证</button>
+    </view>
+  </view>
+</view>
+<!-- <button class="" bindtap='pushInWifi'>打卡</button> -->

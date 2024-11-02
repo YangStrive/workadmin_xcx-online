@@ -1,0 +1,34 @@
+<view class="we">
+  <view class="gift">
+    <image src="//cdn.doumistatic.com/233,020c5a607bc09fc0.png"></image>
+  </view>
+  <view class="info top">
+    <view class="left">
+      <view class="avatar">
+        <image src="//cdn.doumistatic.com/232,020c59684605e11c.png"></image>
+      </view>
+    </view>
+    <view class="right">
+      <view class="title">2000元备用金</view>
+      <view class="content">成功开通We2000可获得最多2000元的信用支付备用金</view>
+    </view>
+  </view>
+  <view class="info">
+    <view class="left">
+      <view class="avatar">
+        <image src="//cdn.doumistatic.com/232,020c59684605e11c.png"></image>
+      </view>
+    </view>
+    <view class="right">
+      <view class="title">海量代金券</view>
+      <view class="content">享We2000用户福利，领取最多2000元优惠券</view>
+    </view>
+  </view>
+  <view class="btn-container">
+    <view class="btn" bindtap="goWe">免费领取</view>
+  </view>
+  <view class="tips">
+    <view class="line">开通We2000服务需要本人身份证正反面照片</view>
+    <view class="line">本人任意银行卡号，请提前准备</view>
+  </view>
+</view>

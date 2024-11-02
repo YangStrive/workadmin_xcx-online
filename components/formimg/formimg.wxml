@@ -1,0 +1,36 @@
+<view class="dmcmp-form">
+  <view class="dmcmp-form-rows dmcmp-form-text">
+    <text class="dmcmp-form-title">{{title}}</text><text class="dmcmp-form-required" wx:if="{{required  == 1}}"> (请至少上传{{imgMin}}张图片)</text>
+    <text class="dmcmp-form-tip">{{tip}}</text>
+  </view>
+  <view>
+    <view class="form-img">
+        <view class="weui-cells">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                <view class="weui-uploader__bd">
+                  <view class="weui-uploader__files" id="uploaderFiles">
+                    <block wx:for="{{files}}" wx:key="*this">
+                      <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" bindtap="omPreviewImage" data-imgvalue="{{item}}" />
+                        <view class="img-delete" bindtap="onDeleteImg" data-imgindex="{{index}}"></view>
+                      </view>
+                    </block>
+
+                  </view>
+                  <view class="weui-uploader__input-box" wx:if="{{files.length < 20}}">
+                    <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                  </view>
+                </view>
+                <view class="weui-uploader__hd">
+                  <view class="weui-uploader__title"></view>
+                  <view class="weui-uploader__info">{{files.length}}/20</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+    </view>
+  </view>
+</view>

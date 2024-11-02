@@ -1,0 +1,152 @@
+/* pages/bole/bo'le.wxss */
+
+Page {
+  background: #f2f2f2;
+}
+
+/* .root{
+  width: 100%;
+  height: 100vh;
+  margin: 24rpx;
+} */
+
+.box {
+  display: flex;
+  flex-direction: column;
+  height: 96vh;
+  margin-top: 2vh;
+  background: #fff;
+  border-radius: 4rpx;
+  width: 94%;
+  margin-left: 3%;
+}
+
+.view-top {
+  background: #fbfcfc;
+  border-radius: 4rpx 4rpx 0 0;
+  height: 208rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-top: 48rpx;
+  font-size: 40rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.p-name {
+  max-width: 550rpx;
+  color: #666;
+  font-size: 32rpx;
+  margin-top: 4rpx;
+}
+
+.view-label {
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  height: 108rpx;
+  border-bottom: #e5e5e5 solid 1rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.left-title {
+  width: 156rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.edit {
+  color: #333;
+  font-size: 32rpx;
+}
+
+.edit-p {
+  color: #bbb;
+  font-size: 32rpx;
+}
+
+.edit-code-p {
+  flex: 1;
+  color: #bbb;
+  font-size: 32rpx;
+}
+
+.edit-code {
+  flex: 1;
+  color: #333;
+  font-size: 32rpx;
+}
+
+.getcode {
+  font-size: 14px;
+  color: #fa0;
+  line-height: 30px;
+  height: 30px;
+  width: 188rpx;
+  text-align: center;
+  border-left: 1px solid rgba(221, 221, 221, 0.40);
+}
+
+.getcodesuc {
+  color: #bbb;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fa0;
+  height: 88rpx;
+  margin-left: 36rpx;
+  margin-right: 36rpx;
+  margin-bottom: 38rpx;
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.line-box {
+  margin-top: 72rpx;
+  height: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dot-line {
+  flex: 1;
+  border-top: 4rpx dashed #ccc;
+}
+
+.left-dot {
+  height: 20rpx;
+  border-radius: 0 100rpx 100rpx 0;
+  width: 10rpx;
+  background: #f2f2f2;
+}
+
+.right-dot {
+  height: 20rpx;
+  border-radius: 100rpx 0rpx 0rpx 100rpx;
+  width: 10rpx;
+  background: #f2f2f2;
+}
+
+.singined-image {
+  width: 82rpx;
+  height: 82rpx;
+  margin: 0 auto;
+  margin-top: 168rpx;
+  margin-bottom: 24rpx;
+}
+
+.sigined-text {
+  color: #ccc;
+  font-size: 32rpx;
+  margin: 0 auto;
+}

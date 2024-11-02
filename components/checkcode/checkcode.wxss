@@ -1,0 +1,124 @@
+/* components/checkcode/checkcode.wxss */
+.getphone-mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999;
+}
+.mask-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+  opacity: 0.5;
+  background: #000000;
+}
+
+.mask-main{
+  position: absolute;
+  top: 274rpx;
+  left: 60rpx;
+  bottom: 0;
+  z-index: 99;
+  width: 630rpx;
+  height: 562rpx;
+  background: #fff;
+  border-radius: 4px;
+
+}
+.close{
+  font-size: 30px;
+  color: #bbb;
+  position: absolute;
+  right: 36rpx;
+  top: 5rpx;
+}
+
+.view-label{
+  height: 108rpx;
+  margin-left: 48rpx;
+  margin-right: 48rpx;
+  border-bottom: #e5e5e5 solid 1rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.edit{
+  font-size: 32rpx;
+  color: #333;
+  flex: 1;
+}
+
+.edit-p{
+  flex: 1;
+  font-size: 32rpx;
+  color: #bbb;
+}
+
+.title-box{
+  height: 116rpx;
+  border-radius: 4rpx 4rpx 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: #e5e5e5 solid 1rpx;
+  justify-content: center;
+}
+
+.mask-text{
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.btn{
+  margin-top: 60rpx;
+  border-radius: 8rpx;
+  height: 88rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #fa0;
+  margin-left: 48rpx;
+  margin-right: 48rpx;
+  font-size: 32rpx;
+}
+
+.left-label{
+  width: 116rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.getcode{
+  font-size: 14px;
+  color: #FFAA00;
+  line-height: 30px;
+  height: 30px;
+  width: 188rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  border: 1px solid #fa0; 
+}
+
+ .getcode-wait{
+  font-size: 14px;
+  color: #dddddd;
+  line-height: 30px;
+  height: 30px;
+  width: 188rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  border: 1px solid #dddddd; 
+} 

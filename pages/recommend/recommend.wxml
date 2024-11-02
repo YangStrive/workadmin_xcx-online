@@ -1,0 +1,17 @@
+<view class="main main-join" wx-if="{{showActivePage && showpage}}">
+  <view class="main-img">
+    <image src="https://cdn.doumistatic.com/223,01c43d3588f4427e.jpg" mode="widthFix"></image>
+  </view>
+  <view class="main-img">
+    <image src="https://cdn.doumistatic.com/220,01c43b009a0a3ca5.jpg" mode="widthFix"></image>
+  </view>
+  <view class="main-img button-m" >
+    <image src="https://cdn.doumistatic.com/218,01c43b029d416560.jpg" mode="widthFix"></image>
+    <view class="button-b js_join" bindtap="clRecommend"></view>
+  </view>
+</view>
+<view class="empty"  wx-if="{{!showActivePage && showpage}}">
+  <view class="empty-main">
+    <text>暂无相关活动，敬请期待！</text>
+  </view>
+</view>

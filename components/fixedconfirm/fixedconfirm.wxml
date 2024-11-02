@@ -1,0 +1,9 @@
+<!--components/fixedconfirm/fixedconfirm.wxml-->
+<view class='fixed-confirm'>
+  <view class='confirm-main' bindtap='bindConfirm' wx:if="{{!disabled}}">
+    <text class='confirm-text'>{{confirmText}}</text>
+  </view>
+  <view class='confirm-main disabled' bindtap='bindConfirm' wx:if="{{disabled}}">
+    <text class='confirm-text'>{{confirmText}}</text>
+  </view>
+</view>

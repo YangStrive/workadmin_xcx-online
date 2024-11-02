@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "single": "../../components/formsingle/formsingle",
+    "formdate": "../../components/formdate/formdate",
+    "formtextarea": "../../components/formtextarea/formtextarea",
+    "formselect": "../../components/formselect/formselect",
+    "formlocation": "../../components/formlocation/formlocation",
+    "formimgwithsample": "../../components/formimgwithsample/formimgwithsample",
+    "feedback": "../../components/feedback/feedback"
+  }
+}

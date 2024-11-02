@@ -1,0 +1,187 @@
+/* 顶部信息 */
+
+.title-content-top {
+  margin-left: 48rpx;
+  margin-top: 64rpx;
+}
+
+.title-content-bottom {
+  margin-left: 48rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  color: #333;
+  font-weight: bolder;
+}
+
+/* 中间内容 */
+
+.cells {
+  /* background: yellow; *//* top:64rpx;
+  left: 48rpx;
+  right: 48rpx; *//* margin: 64rpx 48rpx 0rpx 48rpx; */
+  margin-top: 64rpx;
+  padding-bottom:188rpx;
+}
+.cell{
+  padding:18px 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0rpx 48rpx 0rpx 48rpx;
+  border-bottom: #e5e5e5 solid 1rpx;
+}
+.cell-top {
+  /* height: 112rpx; */
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left-text {
+  font-size: 28rpx;
+  color: #666;
+  flex-shrink:0;
+}
+.right-container{
+  /* width:100%; */
+}
+.input-text {
+  font-size: 32rpx;
+  color: #333;
+  text-align:right;
+}
+
+.weui-label {
+  width: 156rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.weui-input {
+  font-size: 16px;
+  color: #333;
+}
+/* 身份证上传 */
+.upload-wrapper{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.dm-uploader_input-box{
+  width: 77px;
+  height: 77px;
+  border: 1px solid #d9d9d9;
+  position: relative;
+}
+.dm-uploader_input-box::after,.dm-uploader_input-box::before{
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  background-color: #d9d9d9;
+}
+.dm-uploader_input-box::before{
+  width: 2px;
+  height: 39.5px;
+}
+.dm-uploader_input-box::after{
+  width: 39.5px;
+  height: 2px;
+}
+
+.dm-uploader__input{
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+/* 身份证正面 */
+.front-id-card-img{
+  width: 220rpx;
+  height: 120rpx;
+  background: transparent;
+  border-radius: 5rpx;
+}
+.front-card-img{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 底部按钮 */
+
+.bottom-btn-panel {
+  position: fixed;
+  height: 128rpx;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  bottom: 0rpx;
+  z-index: 999;
+  _position: absolute;
+}
+
+.bottom-btn {
+  /* background: #fa0; */
+  background: #fa0;
+  color: #fff;
+  height: 88rpx;
+  font-size: 32rpx;
+  border-radius: 6rpx;
+  margin: 0rpx 40rpx 40rpx 40rpx;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-btn-panel_enable {
+  
+  /* background: red; */
+  background: rgba(255,170,0,0.40);
+}
+.placeholder{
+  color: #BBBBBB;
+  text-align: right;
+}
+.default-placeholder{
+  text-align: right;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #BBBBBB;
+}
+.next-line-text{
+  margin-top:6px;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #333333;
+  letter-spacing: 0;
+  width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.in-line-text{
+  width:240px;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #333333;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+}
+.picker{
+  text-align:right;
+  font-size: 32rpx;
+  color: #333;
+}

@@ -1,0 +1,66 @@
+<view class='top-box'>
+  <view hidden='{{true}}' class=' view-edit-wage' bindtap='settingWage'>
+    S
+  </view>
+  <view class='top-date'>
+    <image class="prev" bindtap="handleCalendar" data-handle="prev" class="prev-handle box box-align-center box-pack-center" src='http://cdn.doumistatic.com/68,9c2b61ddc738e9.png' style='width: 56rpx;height: 56rpx;margin-right: 24rpx;'></image>
+    <view style='width: 240rpx;display: flex;flex-direction: column;align-items: center;justify-content: center;color:#fff;font-size:36rpx;'>
+      {{cur_year}}年{{cur_month}}月
+    </view>
+    <image bindtap="handleCalendar" data-handle="next" class="prev-handle box box-align-center box-pack-center" src='http://cdn.doumistatic.com/70,9c2b70954b0903.png' style='width: 56rpx;height: 56rpx;margin-left: 24rpx;'></image>
+  </view>
+  <view class='top-detail'>
+    <view class='detail-data'>
+      <text style='font-size:48rpx;'>{{overtimePayTotal}}</text>
+      <text style='font-size:24rpx;'>工作收入 (元)</text>
+    </view>
+    <view class='detail-data'>
+      <text style='font-size:48rpx;'>{{overtimeTotal}}</text>
+      <text style='font-size:24rpx;'>工作天数 (天)</text>
+    </view>
+  </view>
+</view>
+
+<view class="noMsgBg" hidden='{{0 != overtimeList.length}}'>
+  <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+  <text style='margin-top:34rpx;'>点我记工资，可以帮你快速记录
+工作、加班时间</text>
+   <form bindsubmit="bindTypeChange" report-submit='true'>
+    <button class='text-edit' form-type='submit' style='margin-top:60rpx;padding-top:8rpx' class='text-edit'>点我记工资
+    </button>
+  </form>
+</view>
+<view class='view-edit'>
+  <form bindsubmit="bindTypeChange" report-submit='true'>
+    <button class='text-edit' form-type='submit' style='margin-top:60rpx;padding-top:8rpx' class='text-edit' hidden='{{0 == overtimeList.length}}'>点我记工资
+    </button>
+  </form>
+</view>
+<view class="bottom-btn-panel" bindtap='hideTip' hidden='{{!isNeedShowOvertimeTip}}'>
+  <view class='tip-view'></view>
+</view>
+<scroll-view scroll-y="true" hidden='{{0 == overtimeList.length}}'>
+  <view wx:for="{{overtimeList}}" bindtap='clickItem' bindtouchstart="overtimetouchstart" bindtouchend="overtimetouchend" data-idx='{{index}}' wx:key='this' class='view-item'>
+    <view class='view-item-left' hidden='true'>
+      <view class='view-item-left-day' style="background: {{ index%2 == 0?'#fa0':'#fa0'}};">{{index + 1}}</view>
+
+    </view>
+    <view class='view-item-right box-flex-row-center'>
+
+      <view class='box-flex-column'>
+        <view class='box-flex-row-center'>
+          <text class='item-detail-day'>{{item.date}}</text>
+          <text class='item-detail-week'>{{item.week}}</text>
+        </view>
+        <text class='item-detail-time'>工作时长：{{item.overtime}}{{item.type==1?'小时':'天'}}</text>
+      </view>
+
+      <view style='flex:1;'></view>
+      <view class='box-flex-row-center' style='margin-right:32rpx'>
+        <view class='item-detail-money'>{{item.overtimePay}}</view>
+        <view class='item-detail-money-unit'>元</view>
+      </view>
+    </view>
+  </view>
+  <view style='height:160rpx'></view>
+</scroll-view>

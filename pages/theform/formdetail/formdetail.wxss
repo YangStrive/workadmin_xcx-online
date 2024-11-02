@@ -1,0 +1,92 @@
+/* pages/theform/formdetail/formdetail.wxss */
+.forminput{
+  display: block;
+  min-height:100%;
+  width: 100%;
+  padding-bottom:70px;
+}
+page{
+  min-height:100%; 
+  background-color: #F2F2F2;
+}
+.formdesc{
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  width: 590rpx;
+  margin: 10px auto;
+  display: block;
+}
+.showimg{
+  width: 116rpx;
+  height:116rpx;
+  background: #fff;
+  margin:0 29rpx 20rpx 0;
+}
+.imgmian{
+  width: 100%;
+  height: 100%;
+}
+.detele-form{
+  background: #FFAA00 ;
+  border-radius: 2px;
+  width: 616rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 40px auto;
+  color: #fff;
+  font-size: 14px;
+}
+
+.dmcmp-form{
+  background-color: #F2F2F2;
+  padding-top:16px;
+
+}
+.dmcmp-form-rows{
+  padding:0 0 6px 12px;
+}
+
+.dmcmp-form-title{
+  font-size: 16px;
+  color: #333;
+  display:inline-block;
+}
+.dmcmp-form-required{
+  font-size: 14px;
+  color: #999;
+  margin-left: 6px;
+  display:inline-block;
+}
+.dmcmp-form-tip{
+  font-size: 14px;
+  color: #666;
+  display: block;
+}
+.img-content{
+  padding: 15px 0 15px 12px;
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+}
+.singleinput{
+  display: block;
+  height: 48px;
+  background-color: #fff;
+  line-height: 48px;
+  padding-left: 12px;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
+
+}
+.input-main{
+  width: 100%;
+  background: #fff;
+  display: block;
+  
+}
+.no-data{
+  color: #bbb;
+}

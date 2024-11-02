@@ -1,0 +1,9 @@
+<view class="findwork">
+  <image class="icon" src="//cdn.doumistatic.com/233,020c664f29024e96.png"></image>
+  <view class="title">斗米热招</view>
+  <view class="tips">斗米一下·马上入职</view>
+  <view class="footer">
+    <view class="btn" bindtap="goFindWork">立即前往</view>
+    <view class="btn-tips">工作好·选择多·上手快</view>
+  </view>
+</view>

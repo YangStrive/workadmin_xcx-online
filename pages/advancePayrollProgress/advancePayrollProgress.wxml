@@ -1,0 +1,29 @@
+<view class="seciton">
+  <view class="header-wrapper">
+    <view class="hader-img">
+      <image class="img" src="../../image/apply-success.png"></image>
+    </view>
+    <view class="success-text">申请预支工资成功</view>
+    <!-- <view class="success-tips">申请通过后，钱会进入我的钱包，请留意我的钱包</view> -->
+    <view class="remarks-wrapper">
+      <view class="remarks">您申请的￥{{result.total_amount}}元</view>
+      <view class="remarks">已到“我的钱包”，请查看并提现</view>
+    </view>
+  </view>
+  <view class="content-wrapper">
+    <view class="content-title">信息列表</view>
+    <view class="list-item list-item-first">
+      <view class="label">申请预支工资金额</view>
+      <view class="text">￥{{result.total_amount}}</view>
+    </view>
+    <view class="list-item">
+      <view class="label">平台服务费</view>
+      <view class="text">￥{{result.interest}}</view>
+    </view>
+    <view class="list-item">
+      <view class="label">还款总金额</view>
+      <view class="text">￥{{result.actual_amount}}</view>
+    </view>
+  </view>
+  <view class="footer-btn" bindtap="backPrePage">打开我的钱包</view>
+</view>

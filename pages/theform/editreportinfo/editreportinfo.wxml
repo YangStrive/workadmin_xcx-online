@@ -1,0 +1,99 @@
+<view class="editreporetinfo">
+  <text wx:if="{{desc}}" class='formdesc'>{{desc}}</text>
+  <view wx:for="{{items}}" wx:key="{{index}}" >
+    <view wx:if="{{item.type === 'Date'}}">
+      <formdate 
+        title="{{item.info.title}}"
+        tip="{{item.info.tip}}" 
+        required="{{item.info.required}}" 
+        custom-event="datechange" 
+        binddatechange="onDateChange" 
+        data-index="{{index}}"
+        start="" 
+        end="" > 
+      </formdate>
+    </view>
+    <view wx:if="{{item.type === 'SingleText'}}">
+      <single 
+        title="{{item.info.title}}" 
+        tip="{{item.info.tip}}" 
+        required="{{item.info.required}}" 
+        custom-event="{{singlechange}}" 
+        bindsinglechange="onSingleChange" 
+        data-index="{{index}}"
+        type="text" 
+        isscan="{{item.info.scanQRCode}}"
+        confirm-type="confirmType">
+      </single>
+    </view>
+    <view wx:if="{{item.type === 'TextArea'}}">
+      <formtextarea 
+        title="{{item.info.title}}" 
+        tip="{{item.info.tip}}" 
+        required="{{item.info.required}}"
+        data-index="{{index}}" 
+        custom-event="textareachange" 
+        bindtextareachange="onTextareaChange">
+      </formtextarea>
+    </view>
+    <view wx:if="{{item.type === 'Number'}}">
+      <single 
+        title="{{item.info.title}}" 
+        tip="{{item.info.tip}}" 
+        required="{{item.info.required}}" 
+        data-index="{{index}}"
+        custom-event="singlechange" 
+        bindsinglechange="onSingleChange" 
+        type="number" 
+        confirm-type="confirmType"> 
+      </single>
+    </view>
+    <view wx:if="{{item.type === 'Select'}}">
+      <formselect 
+        title="{{item.info.title}}" 
+        tip="{{item.info.tip}}" 
+        required="{{item.info.required}}" 
+        data-index="{{index}}"
+        custom-event="selectchange" 
+        bindselectchange="onSelectChange" 
+        select-data="{{item.info.options}}">
+      </formselect>
+    
+    </view>
+    <view wx:if="{{item.type === 'Location'}}">
+      <formlocation  
+       clickFeedback="ClickFeedback"
+        bindClickFeedback='showFeedback'
+        title="{{item.info.title}}" 
+        tip="{{item.info.tip}}" 
+        required="{{item.info.required}}" 
+        custom-event="location" 
+        data-index="{{index}}"
+        bindlocation="onLocation"
+        again-or-adjust="{{true}}" 
+        show-error="{{showError}}"
+        auto-location="{{true}}">
+      </formlocation>
+    </view>
+    <view wx:if="{{item.type ===  'Imageview'}}">
+      <formimg 
+        placeholder="{{placeholder}}" 
+        title="{{item.info.title}}" 
+        img-min="{{item.info.check_guide.min}}"
+        required="{{item.info.required}}"
+        data-index="{{index}}"
+        custom-event="uploadimg" 
+        binduploadimg="onUploadimg"
+        source-type="{{item.info.isSelectImg == 1 ? '' : 'camera' }}"
+        tip="{{item.info.tip}}" >
+      </formimg>
+    </view>
+  </view>
+</view>
+  <fixedconfirm 
+    confirm-text="提交"
+    custom-event="dateconfrim" 
+    binddateconfrim="onDateConfrim" >
+  </fixedconfirm>
+
+  <feedback showFeedback="{{showFeedback}}"></feedback>

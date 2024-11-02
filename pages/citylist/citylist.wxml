@@ -1,0 +1,15 @@
+<!--pages/citylist/citylist.wxml-->
+<view class='page'>
+  <view class="list" wx:if="{{cityArr && cityArr.length != 0}}">
+        <view class="item" wx:for="{{cityArr}}" wx:for-item="item" bindtap='gotoDistrictList' data-item='{{item}}'>
+            <text class='text_introduce'>{{item.short_name}}</text>              
+            <text class="jump"></text>
+        </view>
+  </view> 
+  <view class="list" wx:else>
+        <view class="item" wx:for="{{districtArr}}" wx:for-item="item" bindtap='getCurrAddress' data-itemdata='{{item}}'>
+            <text class='text_introduce'>{{item.short_name}}</text>              
+            <text class="jump"></text>
+        </view>
+  </view>  
+</view>

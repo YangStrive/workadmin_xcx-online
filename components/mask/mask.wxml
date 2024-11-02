@@ -1,0 +1,1 @@
+<view wx:if="{{isShow}}" class="dm-mask" catchtouchmove='ture'></view>

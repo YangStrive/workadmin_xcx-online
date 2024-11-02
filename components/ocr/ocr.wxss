@@ -1,0 +1,205 @@
+.ocr-pannel{
+  /* margin-bottom: 64rpx; */
+}
+.ocr-auth {
+  margin-top: 64rpx;
+}
+.ocr-auth:first-of-type{
+  margin-top: 0;
+}
+.ocr-auth .title {
+  font-family: PingFangSC-Semibold;
+  font-size: 32rpx;
+  color: #404040;
+  position: relative;
+}
+.ocr-auth .title::after {
+  content: " ";
+  width: 32rpx;
+  height: 6rpx;
+  background: #fa0;
+  border-radius: 2rpx;
+  position: absolute;
+  bottom: -24rpx;
+  left: 0;
+}
+.ocr-auth .id-card {
+  margin-top: 48rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.ocr-auth .id-card .frontCardImg {
+  width: 308rpx;
+  height: 176rpx;
+}
+.ocr-auth .id-card .front {
+  width: 308rpx;
+  height: 176rpx;
+  background: url("https://cdn.doumistatic.com/217,01d81d35c88087ca.png")
+    no-repeat center bottom;
+  background-size: 100% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ocr-auth .id-card .front image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.ocr-auth .id-card .front .id-card-text {
+  margin-top: 16rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #fff;
+}
+.ocr-auth .id-card .backCardImg {
+  width: 308rpx;
+  height: 176rpx;
+}
+.ocr-auth .id-card .back {
+  width: 308rpx;
+  height: 176rpx;
+  background: url("https://cdn.doumistatic.com/228,01d81d38cc83cd1f.png")
+    no-repeat center bottom;
+  background-size: 100% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ocr-auth .id-card .back image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.ocr-auth .id-card .back .id-card-text {
+  margin-top: 16rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.certificate-info{
+  margin-top: 64rpx;
+}
+.certificate-info .title {
+  font-family: PingFangSC-Semibold;
+  font-size: 32rpx;
+  color: #404040;
+  position: relative;
+}
+.certificate-info .title::after {
+  content: " ";
+  width: 32rpx;
+  height: 6rpx;
+  background: #fa0;
+  border-radius: 2rpx;
+  position: absolute;
+  bottom: -24rpx;
+  left: 0;
+}
+.certificate-info .name,
+.certificate-info .card-number {
+  margin-top: 38rpx;
+  height: 92rpx;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+}
+.certificate-info .name .head,
+.certificate-info .card-number .head {
+  width: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #404040;
+  text-align: justify;
+  text-align-last: justify;
+  display: inline-block;
+}
+.certificate-info .name .tig,
+.certificate-info .card-number .tig {
+  margin-left: 6rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #f60;
+  letter-spacing: 0;
+  line-height: 28rpx;
+}
+.certificate-info .name .input,
+.certificate-info .card-number .input {
+  margin-left: 50rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #404040;
+}
+.certificate-info .name .placeholder,
+.certificate-info .card-number .placeholder {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999;
+}
+.certificate-info .card-number {
+  margin-top: 0rpx;
+}
+/* 驾照、行驶证相关信息样式 */
+.car-certificate-info{
+  margin-top: 29rpx;
+}
+.car-certificate-info .name,
+.car-certificate-info .card-number {
+  height: 42rpx;
+  display: flex;
+  align-items: center;
+}
+.car-certificate-info .name .head,
+.car-certificate-info .card-number .head {
+  width: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #999999;
+  /* text-align: justify;
+  text-align-last: justify;
+  display: inline-block; */
+}
+.car-certificate-info .name .input,
+.car-certificate-info .card-number .input {
+  /* margin-left: 5rpx; */
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #404040;
+}
+.car-certificate-info .name .placeholder,
+.car-certificate-info .card-number .placeholder {
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #999;
+}
+.car-number{
+  height: 92rpx;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  margin-top: 48rpx;
+  margin-bottom: -20rpx;
+}
+.car-number .head{
+  width: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #404040;
+  text-align: justify;
+  text-align-last: justify;
+  display: inline-block;
+}
+.car-number .input{
+  margin-left: 50rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #404040;
+}
+.car-number .placeholder{
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999
+}
+

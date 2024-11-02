@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "feedbackinfo": "../../../components/feedbackinfo/feedbackinfo"
+  }
+}

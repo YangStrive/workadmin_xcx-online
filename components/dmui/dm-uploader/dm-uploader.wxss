@@ -1,0 +1,33 @@
+.dm-uploader_input-box{
+  width: 77px;
+  height: 77px;
+  border: 1px solid #d9d9d9;
+  position: relative;
+}
+.dm-uploader_input-box::after,.dm-uploader_input-box::before{
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  background-color: #d9d9d9;
+}
+.dm-uploader_input-box::before{
+  width: 2px;
+  height: 39.5px;
+}
+.dm-uploader_input-box::after{
+  width: 39.5px;
+  height: 2px;
+}
+
+.dm-uploader__input{
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}

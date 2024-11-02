@@ -1,0 +1,104 @@
+page{
+  width: 100%;
+  height: 100%;
+}
+.content {
+  width: 100%;
+  min-height: 100%;
+  background: #f2f2f2;
+}
+.replacement-card-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn{
+  width: 262rpx;
+  height: 85rpx;
+  border-radius: 10rpx;
+  background: #fa0;
+  line-height: 85rpx;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 60rpx;
+}
+.result-panel{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  text-align: left;
+  z-index: 999;
+  bottom: 0rpx;
+  _position: absolute;
+}
+
+.covered-panel{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  text-align: left;
+  z-index: -1;
+  bottom: 0rpx;
+  _position: absolute;
+  background: #000;
+  opacity: 0.8;
+}
+
+
+.result-box{
+  background: #ffffff;
+  border-radius: 24rpx;
+  margin-left: 106rpx;
+  margin-right: 106rpx;
+  margin-top: 160rpx;
+}
+
+.result-top{
+  width: 540rpx;
+  height: 314rpx;
+  margin: auto;
+  margin-top: 202rpx; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.result-top text{
+  color: #333;
+  font-size: 32rpx;
+}
+
+.result-confirm{
+  color: #fa0;
+  width: 100%;
+  height: 90rpx;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  padding-top: 10rpx;
+  margin-top: 40rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-edit{
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+  margin-top: 36rpx;
+  border: 1px solid #e5e5e5;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  background: #ffffff;
+}
+
+.img-delete{
+  content: '';
+  display: block;
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top: 0;
+  right:0;
+  background:url('http://cdn.doumistatic.com/64,8e5d5cdcef81e4.png') no-repeat;
+  background-size: 35rpx;
+  border-radius: 50%;
+}

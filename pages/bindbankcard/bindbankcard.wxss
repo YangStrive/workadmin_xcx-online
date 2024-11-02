@@ -1,0 +1,105 @@
+/* pages/bindbrankcard/bindbrankcard.wxss */
+.bindcard{
+  width: 100%;
+  height: 100vh;
+  background-color: #F2F2F2;
+  padding-top: 24rpx;
+  overflow: hidden;
+}
+.bind-main{
+  width: 100%;
+}
+.form-main{
+  width: 100%;
+  background: #fff;
+}
+.form-item{
+  width: 100%;
+}
+.item-main{
+  height: 96rpx;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-left: 24rpx;
+}
+.item-main text{
+  width: 168rpx;
+  font-size: 32rpx;
+  color: #999;
+  white-space:nowrap;
+}
+.phcolor{
+  font-size: 28rpx;
+  color: #BBB;
+}
+.line{
+  display: block;
+  margin-left: 24rpx;
+  height: 1px;
+  background: #E5E5E5;
+}
+.bind-btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: 20rpx 0;
+  background:  #FFF;
+}
+.bind-btn text{
+  display: block;
+  background: #FFAA00;
+  border-radius: 2px;
+  width: 700rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #FFFFFF;
+  margin: 0 auto;
+}
+.getcode{
+  padding: 0 24rpx;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 96rpx;
+  background: #fff;
+  margin-top: 24rpx;
+}
+.label{
+  width: 168rpx;
+  font-size: 32rpx;
+  color: #999;
+  white-space: nowrap;
+  flex-grow: 0;
+}
+.btn{
+  background: #FFAA00;
+  border: 1px solid #FFAA00;
+  border-radius: 2px;
+  display: block;
+  width: 180rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 60rpx;
+  text-align: center;
+  flex-grow: 0;
+}
+.bind-main input{
+  color: #333;
+  font-size: 28rpx;
+  flex-grow: 1;
+
+}
+.code-input{
+  flex-grow: 1;
+}
+.code-send{
+  padding-left: 24rpx;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #BBBBBB;
+}

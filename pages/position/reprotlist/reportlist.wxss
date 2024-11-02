@@ -1,0 +1,155 @@
+/* reportlist.wxss */
+Page{
+  background: #f2f2f2;
+}
+
+.top_box{
+  background: #fff;
+  display: flex;
+  align-items: center;
+  height: 96rpx;
+  flex-direction: row;
+}
+
+.noMsgBg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 300rpx;
+}
+
+.noMsgBg image {
+  width: 142rpx;
+  height: 142rpx;
+}
+
+.noMsgBg text {
+  margin-top: 48rpx;
+  font-size: 28rpx;
+  color: #999999;
+}
+
+
+
+
+
+.top_box_time{
+  width: 240rpx;
+  margin-left: 16rpx;
+  margin-right: 4rpx;
+  font-weight: bold;
+  font-size: 28rpx;
+  text-align: center;
+  color: #333333;
+}
+
+.top_box_icon_calendar{
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 24rpx;
+}
+
+.top_box_icon_triangle{
+  width: 24rpx;
+  height: 12rpx;
+}
+
+.top_box_count{
+  margin-right: 24rpx;
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.item{
+  display: flex;
+    align-items: center;
+}
+
+.item_content{
+  flex: 1;
+  background: #ffffff;
+  border-radius: 8rpx;
+  height: 184rpx;
+  margin-left: 24rpx;
+  margin-right: 32rpx;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item_content_image{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  margin-left: 32rpx;
+}
+
+.item_content_detail{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item_content_detail_time{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  margin-left: 22rpx;
+   
+}
+.item_content_detail_addr{
+  font-size: 32rpx;
+  max-width: 350rpx;
+  color: #333;
+}
+.item_content_detail_addr_name{
+  font-size: 28rpx;
+  color: #999;
+  max-width: 400rpx;
+}
+
+.item_content_detail_right_time{
+  font-size: 32rpx;
+  color: #fa0;
+  font-weight: bold;
+  margin-right: 32rpx;
+}
+
+.item_content_detail_address{
+  display: flex;
+  align-items: center;
+  margin-left: 22rpx;
+  margin-top: 24rpx;
+  background: #fff;
+}
+.icon_address{
+  width: 20rpx;height: 24rpx;
+  margin-right: 8rpx;
+}
+.left_line_circle {
+  width: 14rpx;
+  height: 14rpx;
+  margin-left: 36rpx;
+  background: #BDC0C7;
+  border-radius: 14rpx;
+  margin-top: 45rpx;
+}
+
+.item-last{
+  position: relative;
+}
+
+.item-last::after{
+  position: absolute;
+  left: 42rpx;
+  top: 130rpx;
+  z-index: -1;
+  content: '';
+  display: block;
+  height: 100%;
+  width: 1px;
+  background: #D7D8DC;
+}

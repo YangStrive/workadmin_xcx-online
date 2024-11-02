@@ -1,0 +1,39 @@
+/* components/formsingle/formsingle.wxss */
+
+@import "../../style/base/base.wxss";
+.singleinput{
+  flex-grow:1;
+  display: block;
+  height: 96rpx;
+  background-color: #fff;
+  line-height: 96rpx;
+  padding:0 10rpx 0 12px;
+  font-size: 16px;
+}
+.scanqrCode{
+  position: relative;
+  width: 100rpx;
+  height: 36rpx;
+  background: url('http://cdn.doumistatic.com/66,8e5d764e1d52a3.png') no-repeat;
+  background-size: 36rpx 100%;
+  background-position-x: 30rpx;
+}
+.single-main{
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.scanqrCode:after{
+  content: '';   
+  position: absolute;   
+  top: 0;  
+  left: 0;  
+  border-left: 1px solid #ccc;   
+  width: 200%;   
+  height: 200%;
+  transform-origin: 0 0;   
+  transform: scale(0.5,0.5);   
+  box-sizing: border-box; 
+}

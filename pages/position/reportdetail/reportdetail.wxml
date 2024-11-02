@@ -1,0 +1,28 @@
+
+
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14"  markers="{{markers}}" bindmarkertap="markertap"  show-location ></map>
+
+  <view  class="bottom-panel">
+    <view class='address'>
+      <image src='http://cdn.doumistatic.com/65,8e03aa297e183d.png'></image>
+      <text class='sigin_line_text'>{{address}}</text>
+    </view>
+
+    <view class='line'></view>
+
+    <view class='detail' bindtap='clickDetail' data-form_data='{{detailData.form_data}}'>
+      <view class='time'>{{detailData.sign_time}}</view>
+
+      <view class='detail_content'>
+        <view class='name'>{{nick_name}}</view>
+        <view class='form_data sigin_line_text'>{{detailText}}</view>
+      </view>
+
+      <image class='detail_image' src='{{imageUrl}}'></image>
+
+      <image class='icon_right' src='http://cdn.doumistatic.com/67,8bce7d83d85f17.png'></image>
+    </view>
+  </view>
+
+
+

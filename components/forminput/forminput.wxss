@@ -1,0 +1,23 @@
+/* components/formsingle/formsingle.wxss */
+
+@import "../../style/base/base.wxss";
+.singleinput{
+  display: block;
+  height: 96rpx;
+  background-color: #fff;
+  line-height: 96rpx;
+  padding-left: 12px;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
+
+}
+.input-main{
+  width: 100%;
+  background: #fff;
+  display: block;
+  
+}
+.no-data{
+  color: #bbb;
+}

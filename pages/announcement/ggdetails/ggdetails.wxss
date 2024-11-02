@@ -1,0 +1,39 @@
+/* pages/announcement/ggdetails/ggdetails.wxss */
+.ggdetails{
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 150rpx;
+}
+page{
+  min-height: 100%;
+}
+.detail-main{
+  width: 95%;
+  margin: auto;
+}
+.header{
+  padding: 40rpx 0 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+.h2{
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+.time{
+  color:#999;
+  font-size: 14px;
+}
+.author{
+  color: rgb(74, 144, 226);
+  margin-left:24rpx;
+  font-size: 14px;
+}
+.centent{
+  padding-top: 20rpx;
+}
+.detailImg{
+  width: 600rpx;
+  display: block;
+  margin:20rpx auto;
+}

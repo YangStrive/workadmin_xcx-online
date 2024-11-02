@@ -1,0 +1,106 @@
+<!--dataform.wxml-->
+<view scroll-y='false'>
+  <view wx:for="{{extraInfo.require_field == undefined ? extraInfo.require_field_yesterday : extraInfo.require_field}}" wx:for-item="field" wx:key="{{index}} ">
+    <view wx:if="{{field.type == 'Location'}}">
+      <formlocation title="{{field.info.title}}" tip="{{field.info.tip}}" required="{{field.info.required}}" custom-event="location" bindlocation="onLocation" clickFeedback="ClickFeedback" bindClickFeedback='showFeedback' placeholder="请输入" again-or-adjust="{{field.info.tune_distance==0}}" distance="{{field.info.tune_distance}}"
+        data-index='{{index}}' auto-location="{{true}}" show-error="{{isShowError}}"></formlocation>
+    </view>
+
+    <view wx:if="{{field.type == 'SingleText'}}">
+
+      <single placeholder="请输入" data-index='{{index}}' title="{{field.info.title}}" tip="{{field.info.tip}}" required="{{field.info.required}}" custom-event="singlechange" bindsinglechange="onSingleChange" type="text" confirm-type="confirmType"> </single>
+    </view>
+    <view wx:if="{{field.type == 'TextArea'}}" hidden='{{!(!isShowInsureSuccess && !isShowInsure&&!isShowResult)}}'>
+      <formtextarea placeholder="请输入" data-index='{{index}}' title="{{field.info.title}}" tip="{{field.info.tip}}" required="{{field.info.required}}" custom-event="textareachange" bindtextareachange="onTextareaChange"></formtextarea>
+    </view>
+    <view wx:if="{{field.type == 'Number'}}">
+      <single placeholder="请输入数字" data-index='{{index}}' title="{{field.info.title}}" tip="{{field.info.tip}}" custom-event="singlechange" required="{{field.info.required}}" bindsinglechange="onSingleChange" type="number" confirm-type="confirmType"> </single>
+    </view>
+    <view wx:if="{{field.type == 'Select'}}">
+
+      <formselect placeholder="请选择" data-index='{{index}}' title="{{field.info.title}}" tip="{{field.info.tip}}" required="{{field.info.required}}" custom-event="selectchange" bindselectchange="onSelectChange" select-data="{{field.info.options}}"></formselect>
+    </view>
+    <view wx:if="{{field.type == 'Date'}}">
+      <formdate placeholder="请输入" data-index='{{index}}' title="{{field.info.title}}" tip="{{field.info.tip}}" required="{{field.info.required}}" custom-event="datechange" binddatechange="onDateChange" start="{{startTime}}" end="{{endTime}}"> </formdate>
+    </view>
+    <view wx:if="{{field.type == 'Imageview'}}">
+      <formimgwithsample placeholder="{{placeholder}}"
+      source-type="{{field.info.can_choose_picture==1 ?'':'camera'}}"
+      img-min="{{field.info.check_guide.min}}"
+       title="{{field.info.title}}" required="{{field.info.required}}" data-index="{{index}}" sampleImg="{{field.info.example_img.thumb_url.length == 0 ? []:field.info.example_img.thumb_url}}" custom-event="uploadimg"
+        binduploadimg="onUploadimg" tip="{{field.info.tip}}">
+      </formimgwithsample>
+    </view>
+  </view>
+</view>
+<view class="bottom-btn-panel">
+  <button class="bottom-btn" bindtap="submit">提 交</button>
+</view>
+
+<view class='insurance-panel' hidden='{{!isShowInsure}}' bindtap='onTouchStart'>
+  <view class='covered-panel'></view>
+  <view class='insurance-box'>
+    <view class='insure-top'></view>
+    <view class='insure-tip'>斗米兼职为您免费办理保险，请输入真实姓名、身份证领取保险
+    </view>
+
+    <view class="weui-cell_input input-box item-input">
+      <view class="weui-cell__bd ">
+        <input style='font-size:28rpx;margin-left:24rpx;' value='{{defaultName}}' bindinput='bindName' placeholder="真实姓名" />
+      </view>
+    </view>
+
+    <view class="weui-cell_input input-box item-input">
+      <view class="weui-cell__bd ">
+        <input  class="weui-input" style='font-size:28rpx;margin-left:24rpx;' bindinput='bindIdCard' placeholder="身份证号码" />
+      </view>
+    </view>
+
+    <view class='btn-insure-get' bindtap='getInsure'>
+      <text style='margin: auto; margin-top:20rpx;'>领取保险</text>
+    </view>
+  </view>
+</view>
+
+<view class='insurance-success-panel' hidden='{{!isShowInsureSuccess}}'>
+  <view class='covered-panel'></view>
+  <image src='http://cdn.doumistatic.com/64,8ea36e0f1d1bb5.png'></image>
+  <text>领取成功!</text>
+</view>
+
+<view class='navigation-panel' hidden='true'>
+  <image class='navigation-panel-image1' src='http://cdn.doumistatic.com/63,8ea376ee3f27e0.png'></image>
+  <image class='navigation-panel-image3' src='http://cdn.doumistatic.com/71,8f07f4543dee19.png'></image>
+  <image class='navigation-panel-image4' bindtap='hideNavigation' src='http://cdn.doumistatic.com/68,8f0805ce7042df.png'></image>
+</view>
+
+<view class='result-panel' hidden='{{!isShowResult}}'>
+  <view class='covered-panel'></view>
+  <view class='result-box'>
+    <view class='result-top' style="background: url('{{resultImages[result_statu]}}') no-repeat;background-size: 100% 100%;">
+      <!-- <view style='flex:1'></view> -->
+      <text style="margin-top:{{result_statu == 0 ? '268rpx':'240rpx'}};position:relative">{{resultText}}</text>
+      <text style='font-size:28rpx;color: #666;'>{{null == resultInfo?'':resultInfo}}</text>
+      <!-- <text hidden='{{!positionInfo}}'>{{positionInfo}}</text> -->
+    </view>
+
+    <view class="weui-cell__bd result-edit style='margin-top:66rpx'" hidden='{{result_statu == 0}}'>
+      <textarea bindinput='textErrorReason' class="weui-textarea " placeholder="请输入异常原因(非必填)" style="height: 142rpx" />
+    </view>
+
+    <view bindtap='confirmAtten' class='result-confirm'>确定</view>
+
+  </view>
+</view>
+<view style="background:#f2f2f2;height:200rpx;"></view>
+<feedback showFeedback="{{showFeedback}}"></feedback>
+
+<template name="item-top">
+  <view class="item-top-content">
+    <text class="item-top-text-title">{{field.info.title}}</text>
+    <text class="item-top-text-state" wx:if="{{1==field.info.required}}">(必填)</text>
+  </view>
+  <view class="item-top-prompt" wx:if="{{field.info.tip.length != 0}}">{{field.info.tip}}</view>
+
+
+</template>

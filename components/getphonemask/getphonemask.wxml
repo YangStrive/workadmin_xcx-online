@@ -1,0 +1,12 @@
+<!--components/getphonemask/getphonemask.wxml-->
+<view class='getphone-mask' wx:if="{{showMask}}">
+  <view class='mask-bg'></view>
+    <view class='mask-main'>
+      <!-- <view class='close' wx:if="{{true}}" bindtap='closeMask'>×</view> -->
+      <image  class='close'  wx:if="{{false}}" bindtap='closeMask' src="{{closeImageSrc}}"></image>
+      <text class='mask-text'>{{title}}</text>
+      <button open-type="getPhoneNumber" class="sdd" bindgetphonenumber="getPhoneNumber"> {{btnText}} </button>
+      <!-- add by ltl 2018.07.19 -->
+      <button  class="useOtherPhone" bindtap='useOtherPhone'> {{useOtherPhoneText}} </button>
+    </view>
+</view>

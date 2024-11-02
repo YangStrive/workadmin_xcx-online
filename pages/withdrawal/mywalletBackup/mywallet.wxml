@@ -1,0 +1,38 @@
+<!--pages/withdrawal/mywallet/mywallet.wxml-->
+<view class='mywallet'>
+  <view class='wallet_banner'>
+    <view>
+      <text class='balance_num'>{{balance}}</text>
+      <text class='balance_text'>余额(元)</text>
+      <view class='note_content' bindtap='failbtn'>
+        <image src='http://cdn.doumistatic.com/116,f4cefa5406dd5c.png'></image>
+        <text class='note'>提现失败</text>
+      </view>
+    </view>
+  </view>
+  <view class='withdrawal_list' wx-if="{{listSH}}">
+    <scroll-view scroll-y='true' class='list_main' bindscrolltolower="lower">
+      <view class='list' wx:for='{{recordlist}}' wx:key="id" wx:for-item='itemname'>
+        <view class='item_title_record_type'>
+          <text class='title'>{{itemname.title || ' '}}</text>
+          <text class='time'>{{itemname.create_at}}</text>
+        </view>
+        <view class='item_title_record_type'>
+          <text class='type'>账单类型：{{itemname.record_type  || ' '}}</text>
+          <text class='money'>{{itemname.direction == -1 ? '-' : '+'}}{{itemname.amount}}</text>
+        </view>
+        <view class='note_status'>
+          <text class='note'>备注：{{itemname.remark  || ' '}}</text>
+          <text class='status'>({{itemname.listing_status || ' '}})</text>
+        </view>
+      </view>
+      <text class='nodata' wx:if="{{gettotal == total}}">- - - 到 底 了 - - -</text>
+    </scroll-view>
+  </view>
+  <view class='withdrawal_empty' wx-if="{{!listSH}}">
+    <text class='empty_text'>当前无项目</text>
+  </view>
+  <view class='withdrawal_btn'>
+    <text bindtap='tapbtn'>全部提现</text>
+  </view>
+</view>

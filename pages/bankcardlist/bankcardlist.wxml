@@ -1,0 +1,20 @@
+<!--pages/bankcardlist/bankcardlist.wxml-->
+<view class="cardlist">
+  <view class="card-main" wx-if="bankName != ''">
+    <view class="card-item">
+      <view class="item-bg"></view>
+      <view class="item-main">
+        <view class="content">
+          <image class="icon" src="https://cdn.doumistatic.com/215,01efeda1f1b11b68.png"></image>
+          <view class="band-info">
+            <text class="bank-title">{{bankName}}</text>
+            <text class="bank-number">{{cardNumber}}</text>
+          </view>
+          <view class="unlock" bindtap="unlockBankCard">
+            <text >解绑</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

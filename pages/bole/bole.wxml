@@ -1,0 +1,64 @@
+<!--pages/bole/bo'le.wxml-->
+<view class='box'>
+  <view class='view-top'>
+    <text class='title'>{{title}}</text>
+    <text class='p-name sigin_line_text'>{{projectName}}</text>
+  </view>
+
+  <view class='view-label' style='margin-top:20rpx'>
+    <view class='left-title'>手机号</view>
+    <input style='flex:1' bindinput='inputPhone' type='number' maxlength='11' hidden='{{true}}' placeholder='请输入' placeholder-class='edit-p' class='edit'></input>
+    <view class='edit-p'>{{phone}}</view>
+  </view>
+  <!-- <view class='view-label' style='margin-top:20rpx'>
+    <view class='left-title'>验证码</view>
+    <input class='edit-code' placeholder-class='edit-code-p' placeholder='请输入'></input>
+     <text class="getcode {{(getcodestatus && agingetcode) || 'getcodesuc'}}" bindtap="getcode">{{getcodetext}}</text>
+  </view> -->
+  <view class='view-label'>
+    <view class='left-title'>姓名</view>
+    <input style='flex:1' maxlength='10' bindinput='inputName' placeholder='请输入汉字' hidden='{{isOld}}' placeholder-class='edit-p' class='edit'></input>
+    <view class='edit-p' hidden='{{!isOld}}'>{{uname}}</view>
+  </view>
+  <view class='view-label' hidden='{{!isOld}}'>
+    <view class='left-title'>签到时间</view>
+
+    <view class='edit-p' hidden='{{!isOld}}'>{{projectInterviewTime}}</view>
+  </view>
+  <picker range='{{genderData}}' range-key='name' bindchange='genderChange'>
+    <view class='view-label' hidden='{{isOld}}'>
+      <view class='left-title'>性别</view>
+      <view style='flex:1;' class='edit-p'>{{genderValue== -1?'请选择':genderValue== 1? '男':'女'}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0"></view>
+    </view>
+  </picker>
+  <view class='view-label' hidden='{{isOld}}'>
+    <view class='left-title'>年龄</view>
+    <input style='flex:1' maxlength='3' bindinput='inputAge' placeholder='请输入年龄（18-60岁之间）' type='number' placeholder-class='edit-p' class='edit'></input>
+  </view>
+  <view class='view-label' hidden='{{isOld}}'>
+    <view class='left-title'>介绍人</view>
+    <input style='flex:1' maxlength='11' bindinput='inputReferences' placeholder='介绍人手机号码（选填）' type='number' placeholder-class='edit-p' class='edit'></input>
+  </view>
+
+  <view class='line-box' hidden='{{!isSigin}}'>
+    <view class='left-dot'></view>
+    <view class='dot-line'></view>
+    <view class='right-dot'></view>
+  </view>
+
+  <image class='singined-image' hidden='{{!isSigin}}' src='http://cdn.doumistatic.com/94,c00f46816d18a4.png'></image>
+
+  <text class='sigined-text' hidden='{{!isSigin}}'>您已签到成功</text>
+  <!--hidden='{{true}}'  -->
+  <view hidden='{{isSigin}}' style='flex:1' ></view>
+
+  <button class='btn' hidden='{{isSigin}}'  bindtap='onClickSiginIn'>签 到</button>
+</view>
+
+<login showLogin='{{showLogin}}' clickPhoneLogin='clickPhoneLogin' bindclickPhoneLogin='phoneLogin' wxLoginEvent='wxLoginEvent' bindwxLoginEvent='loginResult'></login>
+<checkcode showCheck='{{showCheck}}' onClickClose='onClickClose' bindonClickClose='closePhoneLogin' onLoginResult='onLoginResult' bindonLoginResult='loginResult'></checkcode>
+
+<promptdialog showDialog='{{showDialog}}' clickBtn='clickBtn' bindclickBtn='closePrompt'></promptdialog>
+
+<official-account> </official-account>

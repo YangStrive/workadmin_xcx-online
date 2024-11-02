@@ -1,0 +1,65 @@
+<!--pages/bxinvite/bxinvite.wxml-->
+<view class='page'>
+  <view class='top-section'>
+    <image src='../../image/banner_insurance.png' class="banner" bindtap="gotointroduce"></image>
+    <view class='tip'>
+      <view class='p1'>您将在“{{bxinviteData.project_name}}”项目中工作</view>
+      <view class='p2'>保险时间：{{bxinviteData.start_date}}至{{bxinviteData.end_date}}(共计{{bxinviteData.range}}天)</view>
+    </view>
+  </view>
+  <view class='realname_tip'>
+    <text class='text_tip'>务必输入真实姓名和身份证，否则保险无法生效</text>
+  </view>
+  
+  <view class='form-wrap'>
+      <view class='item'>
+        <input placeholder="真实姓名" value="{{userName}}" model="{{userName}}" name="userName" bindinput="usernameInput" disabled='{{isRealname}}'  class="{{isRealname? 'isdisabled' : ''}}" />
+      </view>
+      <view class='item'>
+        <input placeholder="身份证号码" value="{{userIdnumber}}" model="{{userIdnumber}}" name="userIdnumber" bindinput="useridnumberInput" disabled='{{isRealname}}'  class="{{isRealname? 'isdisabled' : ''}}" />
+      </view>
+      <view class='item'>
+        <input placeholder="手机号码" value="{{myphone}}" model="{{myphone}}" name="myphone" bindinput="myphoneInput" disabled='{{hasPhone}}'  class="{{hasPhone? 'isdisabled' : ''}}" />
+      </view>
+      <view class='item' wx:if="{{vCodeshow}}">
+        <input placeholder="验证码" value="{{vCode}}" model="{{vCode}}" name="vCode" bindinput="vcodeInput"/>
+        <view class='get-code' wx:if="{{!isCounting}}" bindtap="getVCode">{{countingTxt}}</view>
+        <view class='get-code' wx:else bindtap="getVCode">{{countingTxt2}}</view>
+      </view>
+    <view class='button' bindtap='getInsurance' data-statusid='{{statusId}}'>领取保险</view>
+  </view>
+</view>
+<!-- 保险过期领取失败  -->
+  <!-- <view class='popup_fail'>
+  <image class='icon_tip' src='../../image/icon_tip.png'></image>
+  <view class="tip_1">领取失败!</view>
+  <view class="tip_2">保险已过期，如有问题请联系管理员!</view>
+</view>   -->
+<!-- 已激活用户领取成功  -->
+<view wx:if="{{oldsuccessShow}}"> 
+  <view class='mask'></view>
+  <view class="popup-insurance">
+    <view class="top">
+      <image src='../../image/bg_insurance.png'></image>
+      <view class="link">保险生效说明</view>
+    </view>
+    <view class="content">
+      <view class='tip_1'>领取成功!</view>
+      <view class='tip_2'>您的工作保险已生效!</view>
+      <view class='button' bindtap='successBack'><text>好的</text></view>
+    </view>
+  </view>
+</view>
+<!-- 未激活用户领取成功  -->
+ <view wx:if="{{newsuccessShow}}"> 
+  <view class='mask z_index'></view>
+  <view class="popup_success">
+    <image src='../../image/bg_insurance_3.png' class='bg_insurance'></image>
+    <view class='tip'>长按识别二维码开始工作</view>
+    <view class="qrcode">
+      <image src='../../image/qrcode_3.png'></image>
+    </view> 
+  </view>
+</view>
+
+<getphonemask showMask="{{showMask}}"  bindcustomevent="initAjax" custom-event="customeven" caller="{{caller}}" code="{{code}}"></getphonemask>

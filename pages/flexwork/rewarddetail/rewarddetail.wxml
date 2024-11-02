@@ -1,0 +1,18 @@
+<!--pages/flexwork/rewarddetail/rewarddetail.wxml-->
+<view class='title'>
+  管理员已设置考勤奖励
+</view>
+<view class='content'>
+  {{textLabel}}
+</view>
+<view class='title'>
+  考勤奖金说明
+</view>
+
+<view wx:for='{{detailList}}' style="{{index==0?'':'margin-top: 2rpx;'}}" wx:key='this' class='content'>
+  <text class='count'>{{index+1}}.</text><text>{{detailList[index]}}</text>
+</view>
+
+<view class='title' style='margin-left: 16rpx;'>【 注 】</view>
+
+<view class='content'>奖金与考勤有关，以实际发放为准。如有疑问请联系管理员</view>

@@ -1,0 +1,29 @@
+<!--pages/announcement/ggdetails/ggdetails.wxml-->
+<view class='ggdetails'>
+  <view class='detail-main'>
+    <view class='header'>
+      <view class='h2'>{{details.title}}</view>
+      <text class='time'>{{details.create_at}}</text>
+      <text class='author' hidden='{{true}}'>{{details.creator_name}}</text>
+    </view>
+    <view class='centent' >{{details.desc}}</view>
+    <image class="detailImg" wx:if="details.img_url.length > 0" wx:for="{{details.img_url}}" src="{{item}}" wx:key="{{index}}" bindtap="onShowImg" data-imgvalue="{{item}}"></image>
+  </view>
+</view>
+<block wx:if="{{details.is_receipt == 1}}">
+  <block  wx:if="{{details.report_status == 1 && istrue == false}}">
+  <fixedconfirm 
+    confirm-text="确认收到"
+    custom-event="confrim" 
+    bindconfrim="onConfrim" >
+  </fixedconfirm>
+  </block>
+  <block  wx:else>
+  <fixedconfirm 
+    disabled="{{true}}"
+    confirm-text="已确认"
+    custom-event="dateconfrim" 
+    binddateconfrim="onDateConfrim" >
+  </fixedconfirm>
+  </block>
+</block>

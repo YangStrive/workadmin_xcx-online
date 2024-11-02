@@ -1,0 +1,5 @@
+<view class="dm-uploader-content">
+  <view class="dm-uploader_input-box" catchtap="uploadImg">
+    <view class="dm-uploader__input"></view>
+  </view>
+</view>

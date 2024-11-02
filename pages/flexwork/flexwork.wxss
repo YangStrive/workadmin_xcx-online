@@ -1,0 +1,83 @@
+Page{
+  background: #f2f2f2;
+}
+
+.item-box{
+  height: 196rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.noMsgBg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 300rpx;
+}
+
+.noMsgBg image {
+  width: 142rpx;
+  height: 142rpx;
+}
+
+.noMsgBg text {
+  margin-left: 100rpx;
+  margin-top: 48rpx;
+  margin-right: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+}
+
+
+.item-content{
+  border-radius: 8rpx;
+  height: 172rpx;
+  background: #fff;
+  margin-left: 24rpx;
+  margin-right: 24rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-mark{
+  height: 38rpx;
+  width: 24rpx;
+}
+
+.view-detail-box{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-detail-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text-name{
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bolder;
+  max-width: 450rpx;
+}
+
+.text-time{
+  color: #666;
+  font-size: 28rpx;
+  margin-right: 24rpx;
+}
+
+.icon-address{
+  width: 24rpx;
+  height: 28rpx;
+}
+
+.text-address{
+  color: #666;
+  font-size: 26rpx;
+  margin-left: 8rpx;
+  max-width: 600rpx;
+}

@@ -1,0 +1,22 @@
+<view class='content'>
+  <view class='top-image'>
+    <image class='protocol-content-image' src='http://cdn.doumistatic.com/123,01059f64b34e781c.png'></image>
+  </view>
+
+  <view class='cells' >
+    <view class='cell' wx:for="{{list_array}}" wx:key="item" bindtap="protocol_detail" data-itemdata='{{item}}'>
+      <view class='cell-title-content'>
+        <text style="display:inline-block;width:80vw;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{item.project_name}}</text>
+      </view>
+      <view class='cell-time-father-content'>
+        <view>
+          <text>签订时间 |</text>
+        </view>
+        <view class='cell-time-content'>
+          <text>{{item.create_time}}</text>
+        </view>
+      </view>
+      <view class="tags" wx:if="{{item.is_end=='1'}}">已终止</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<view class="section" wx:if="{{errorInfos.errno==0}}">
+    <view class="header">合同续签</view>
+    <view class="main-img">
+        <image class="img" src="https://cdn.doumistatic.com/251,0229b3b2d8a67e74.png"></image>
+    </view>
+    <view class="main-content">
+        <view class="pro-name">
+            <view class="pro-label">续签项目：</view>
+            <view class="pro-text">{{errorInfos.data.project_name}}</view>
+        </view>
+        <view class="pro-tips">确认操作后当前合同作废并重新签署合同请确认是否重新签署</view>
+    </view>
+    <view class="footer">
+        <view class="btn cancel" catch:tap="goIndex">取消</view>
+        <view class="btn submit" catch:tap="confirmRenewTheContract">确认续签</view>
+    </view>
+</view>
+<view class="not-project" wx:else>
+    <view class="not-project-img">
+        <image wx:if="{{errorInfos.errno==29039}}" mode="widthFix" class="project-img" src="https://cdn.doumistatic.com/248,0229b3ac7a338799.png"></image>
+        <image wx:elif="{{errorInfos.errno==29040}}" mode="widthFix" class="project-img" src="https://cdn.doumistatic.com/248,0229b3b0703f67cd.png"></image>
+    </view>
+    <view class="not-project-content">
+        <view class="error-title">{{errorInfos.errno==29039?'不可重新签署':'请勿重复签署协议'}}</view>
+        <view class="error-tips">{{errorInfos.errmsg}}</view>
+    </view>
+    <view class="not-project-footer">
+        <view class="not-project-btn" catch:tap="goIndex">确定</view>
+    </view>
+</view>

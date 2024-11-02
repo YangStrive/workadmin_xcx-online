@@ -1,0 +1,45 @@
+/* pages/recommend/recommend.wxss */
+  page{
+    width:100%;
+    background: #FD5656
+  }
+  .main,.main-img{
+    width: 100%;
+  } 
+  .main-img image{
+    width: 100%;
+    display: block;
+  } 
+  .button-m{
+    position: relative;
+  }
+  .button-m>image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1
+  }
+  .button-b{
+    position: absolute;
+    top: 228rpx;
+    left: 25%;
+    z-index: 2;
+    width: 50%;
+    margin: auto;
+    height: 120rpx;
+    background: #fff;
+    opacity: 0;
+  }
+  .empty .empty-main{
+    text-align: center;
+    padding-top: 160px;
+
+  }
+  .empty .empty-main text{
+    font-size: 14px;
+    color: #ccc;
+  }
+  .empty{
+    height: 100vh;
+    background-color: #fff;
+  }

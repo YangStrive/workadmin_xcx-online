@@ -1,0 +1,59 @@
+<!-- 身份证信息模板 -->
+<template name="idCard">
+  <view class="certificate-info">
+    <view class="title">{{ocrData.inputInfoConfig.title}}</view>
+    <view class="name">
+      <view class="head">{{ocrData.inputInfoConfig.nameText}}</view>
+      <view class="tig">*</view>
+      <input class="input" type="text" disabled='{{true}}' value="{{ocrData.inputInfoValue.name}}" placeholder="上传证件获取姓名" placeholder-class="placeholder" />
+    </view>
+    <view class="card-number">
+      <view class="head">{{ocrData.inputInfoConfig.idCardText}}</view>
+      <view class="tig">*</view>
+      <input class="input" type="idcard" disabled='{{true}}' value="{{ocrData.inputInfoValue.idCard}}" placeholder="上传证件获取身份证号码" placeholder-class="placeholder" />
+    </view>
+  </view>
+</template>
+<!-- 驾驶证、行驶证、其他证件信息模板 -->
+<template name="certificate">
+  <view class="car-certificate-info">
+    <view class="name">
+      <view class="head">{{ocrData.inputInfoConfig.nameText}}</view>
+      <input class="input" type="text" disabled='{{true}}' value="{{ocrData.inputInfoValue.name}}" placeholder="上传证件获取姓名" placeholder-class="placeholder" />
+    </view>
+    <view class="card-number">
+      <view class="head">{{ocrData.inputInfoConfig.idCardText}}</view>
+      <input class="input" type="idcard" disabled='{{true}}' value="{{ocrData.inputInfoValue.idCard}}" placeholder="上传证件获取号码" placeholder-class="placeholder" />
+    </view>
+  </view>
+</template>
+<!-- 上传图片模板 -->
+<template name="ocr">
+  <view class="ocr-auth">
+    <view class="title">{{ocrData.config.title}}</view>
+    <!-- 是否显示车牌号 -->
+    <block wx:if="{{ocrData.isShowCarNumber}}">
+      <view class="car-number">
+        <view class="head">车牌号码</view>
+        <input class="input" type="text" value="{{ocrData.carNumber}}" disabled="{{ocrData.carNumber}}" placeholder="请输入车牌号" placeholder-class="placeholder" data-ocrData="{{ocrData}}" bindinput="getCardNumber" />
+      </view>
+    </block>
+    <view class="id-card">
+      <!-- 如果不传默认的背景图，则认为不显示当前识别 -->
+      <block wx:if="{{ocrData.config.detaultFrontCardImg}}">
+        <view class="front" style='{{ocrData.config.style.font}}' wx:if="{{!ocrData.value.frontCardImg}}" bindtap="uploadImg" data-img="frontCardImg" data-ocrData="{{ocrData}}">
+          <image src="{{ocrData.config.detaultFrontCardImg}}"></image>
+          <view class="id-card-text">{{ocrData.config.frontCardText}}</view>
+        </view>
+        <image wx:else class="frontCardImg" bindtap="uploadImg" data-img="frontCardImg" src="{{ocrData.value.frontCardImg}}" data-ocrData="{{ocrData}}"></image>
+      </block>
+      <block wx:if="{{ocrData.config.detaultBackCardImg}}">
+        <view wx:if="{{!ocrData.value.backCardImg}}" class="back" style='{{ocrData.config.style.back}}' bindtap="uploadImg" data-img="backCardImg" data-ocrData="{{ocrData}}">
+          <image src="{{ocrData.config.detaultBackCardImg}}"></image>
+          <view class="id-card-text">{{ocrData.config.backCardText}}</view>
+        </view>
+        <image wx:else bindtap="uploadImg" data-img="backCardImg" class="backCardImg" src="{{ocrData.value.backCardImg}}" data-ocrData="{{ocrData}}"></image>
+      </block>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,62 @@
+<page-meta page-style="overflow: {{ !isGuide ? 'hidden' : 'visible' }}" />
+<view class="index-container">
+  <view class="swiper">
+    <swiper circular="true" bindchange="changeBanner">
+      <block wx:for="{{ banner_list }}" wx:key="index">
+        <swiper-item>
+          <view class="imgItem" data-url="{{ item.img_link }}" bindtap="goPage">
+            <image src="{{ item.img_url }}"></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="grids">
+    <view class="grid-container">
+      <view id="{{ 'fun' + item.id }}" class="grid-item mt48" wx:for="{{ fun_list }}" wx:key="index" data-url="{{ item.img_link }}" bindtap="goPage">
+        <image class="icon-img" src="{{ item.img_url }}"></image>
+        <text>{{ item.img_title }}</text>
+        <text wx:if="{{ item.id == 8 && count > 0 }}" class="notice-count">
+          {{count > 99 ? "99+" : count}}
+        </text>
+      </view>
+    </view>
+  </view>
+  <view class="ads">
+    <image src="{{ ad_list[0].img_url }}" data-url="{{ ad_list[0].img_link }}" data-linktype="{{ ad_list[0].img_link_type }}" data-appid="{{ ad_list[0].app_id }}" bindtap="goPage"></image>
+  </view>
+  <!--
+  <view class="title">常用应用</view>
+  -->
+  <view class="grids">
+    <view class="grid-container">
+      <view class="grid-item mt32" wx:for="{{ weal_list }}" wx:key="index" data-url="{{ item.img_link }}" bindtap="goPage">
+        <!-- <image class="icon-img2" src="{{ item.img_url }}"></image> -->
+        <image class="icon-img" src="{{ item.img_url }}"></image>
+        <text>{{ item.img_title }}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="certification" wx:if="{{ is_bind_card && isMoreOneDay }}">
+  <view class="certification-content">
+    <view class="cer-info">
+      <view class="cer-info-tips">提示：</view>
+      <text class="cer-info-text">您还未绑定银行卡，为了不影响工资发放，请您及时前往【我的】-【我的银行卡】进行绑定。</text>
+    </view>
+    <view class="btn-wrap">
+      <button class="wait-btn" bindtap="closeDialog">稍后绑定</button>
+      <button class="certification-btn" bindtap="gotoBind">马上绑定</button>
+    </view>
+  </view>
+</view>
+<!-- <mask id="mask"></mask> -->
+<!-- <view class="wage-area" style="width:{{wageArea.width}}px;height:{{wageArea.height}}px;position: fixed;top:{{wageArea.top}}px;left:{{wageArea.left}}px">
+  <image bindtap="hideModal" src="../../image/guilde.png"></image>
+</view> -->
+<view class="mask" wx:if="{{ !isGuide }}">
+  <image bindtap="goGuide" src="../../image/guilde.png" style="position: fixed;top:{{ wageArea.top - 20 }}px;right:6px"></image>
+</view>
+<!-- <view class="wage-area">
+  <image bindtap="hideModal" src="../../image/guilde.png"></image>
+</view> -->

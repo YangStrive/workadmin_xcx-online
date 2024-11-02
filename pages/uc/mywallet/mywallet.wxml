@@ -1,0 +1,3 @@
+<!--mywallet.wxml-->
+
+<web-view src="{{path}}"></web-view>

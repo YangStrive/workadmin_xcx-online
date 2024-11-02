@@ -1,0 +1,20 @@
+<!--pages/overtime/wagelist/wagelist.wxml-->
+<view class='tip-box box-flex-row-center'>
+  <text class='tip-text'>长按可删除记录</text>
+</view>
+
+<view class='item box-flex-row-center' bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd" bindlongtap='deleteWageSetting' bindtap='editWageSetting' wx:for="{{wageList}}">
+  <view class='box-flex-column'>
+    <text class='item-detail-week'>周五</text>
+    <text class='item-detail-time'>1.5倍</text>
+  </view>
+
+  <view style='flex:1;'></view>
+  <view class='item-detail-money'>2000元/小时</view>
+
+  <image class='icon_right' src='http://cdn.doumistatic.com/67,8bce7d83d85f17.png'></image>
+</view>
+
+<view class="bottom-btn-panel">
+  <button class="bottom-btn" bindtap="addNewWageSetting">新建</button>
+</view>

@@ -1,0 +1,57 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title" wx:if="{{item == '未读'}}">{{item}}{{count}}</view>
+            <view class="weui-navbar__title" wx:if="{{item == '已读'}}">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style=" transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <!-- 未读 -->
+      <view class="notice-list" wx:if="{{activeIndex == 0}}">
+        <view class="com-border-bottom" wx:for="{{noreadList}}" wx:key="item">
+          <view class='abox' bindtap="onClickAddetails" data-itemdata="{{item.id}}" data-isread="0" data-projectid="{{item.project_id}}" data-teamid="{{item.team_id}}">
+            <!-- 是否需要确认 -->
+            <view class="abox-title">{{item.project_name}}</view>
+            <view wx:if="{{item.is_receipt == '1'}}" class='h2'>
+              <view class='state state-1 com-border-outside' wx:if="{{item.report == 0}}">待确认</view>
+              <view class='state state-2 com-border-outside' wx:if="{{item.report == 1}}">已确认</view>
+              {{item.title}}
+            </view>
+            <view wx:else class='h2'>{{item.title}}</view>
+            <view class='desc'>{{item.desc}}</view>
+            <view class='time'>{{item.create_at}}</view>
+          </view>
+        </view>
+      </view>
+      <!-- 已读 -->
+      <view class="notice-list" wx:if="{{activeIndex == 1}}">
+        <view class="com-border-bottom" wx:for="{{readList}}" wx:key="item">
+          <view class='abox' bindtap="onClickAddetails" data-itemdata="{{item.id}}" data-isread="1" data-projectid="{{item.project_id}}" data-teamid="{{item.team_id}}">
+            <!-- 是否需要确认 -->
+            <view class="abox-title">{{item.project_name}}</view>
+            <view wx:if="{{item.is_receipt == '1'}}" class='h2'>
+              <view class='state state-1' wx:if="{{item.report == 0}}">待确认</view>
+              <view class='state state-2' wx:if="{{item.report == 1}}">已确认</view>
+              {{item.title}}
+            </view>
+            <view wx:else class='h2'>{{item.title}}</view>
+            <view class='desc'>{{item.desc}}</view>
+            <view class='time'>{{item.create_at}}</view>
+          </view>
+        </view>
+      </view>
+      <!-- 空态页面 -->
+      <view class="weui-tab__content" hidden="{{(activeIndex == 0 && noreadList.length != 0) || (activeIndex == 1 && readList.length != 0)}}">
+        <view class="mod-empty">
+          <image src='../../image/icon_1.png' class='icon'></image>
+          <text class='tip' hidden="{{activeIndex != 0}}">暂无未读公告</text>
+          <text class='tip' hidden="{{activeIndex != 1}}">暂无已读公告</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

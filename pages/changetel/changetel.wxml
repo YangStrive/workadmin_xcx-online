@@ -1,0 +1,2 @@
+<!--pages/changetel/changetel.wxml-->
+<web-view src="{{path}}"></web-view>

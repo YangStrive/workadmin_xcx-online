@@ -1,0 +1,29 @@
+<!--pages/login/login.wxml-->
+
+
+<view class="login">
+    <view class="header">
+        <image src="http://cdn.doumistatic.com/71,9620655ff94530.png" />
+    </view>
+    <text class="doumi_name">灵云</text>
+    <text class="info-new info-new1">灵云小程序为内部员工服务平台</text>
+    <text  class="info-new">仅限内部员工操作使用！</text>
+    <view class="button">
+    <button wx:if="{{isSelected}}" open-type="getPhoneNumber" class="sdd" bindgetphonenumber="getPhoneNumber" style='background: #FFAA00;font-size: 32rpx;color:#fff;display:block;line-height:88rpx;'> 手机号快捷登录 </button>
+    <button wx:else style='background: #FFAA00;font-size: 32rpx;color:#fff;display:block;line-height:88rpx;' bind:tap="loginCheckbox"> 手机号快捷登录 </button>
+    </view>
+    <view class="protocol">
+        <text class="checkbox {{isSelected?'selected':''}}" bind:tap="selectedAgreement"></text>
+        <text>我已阅读并接受</text>
+        <text class="agreement" bind:tap="goAgreement">《用户服务协议》</text>
+        <text class="privacy" bind:tap="goPrivacy">《隐私政策》</text>
+    </view>
+    <!-- <view class="protocol">
+        <text class="checkbox {{isSelected?'selected':''}}" bind:tap="selectedAgreement"></text>
+        <text>阅读并同意</text>
+        <text class="privacy" bind:tap="goPrivacy">《隐私政策》</text>
+    </view> -->
+    <text class="phone-login" bindtap="otherlogin">使用其它手机号登录</text>
+     
+</view>
+

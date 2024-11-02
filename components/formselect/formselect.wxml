@@ -1,0 +1,13 @@
+<view class="dmcmp-form">
+  <view class="dmcmp-form-rows dmcmp-form-text">
+    <text class="dmcmp-form-title">{{title}}</text><text class="dmcmp-form-required" wx:if="{{required  == 1}}"> (必填)</text>
+    <text class="dmcmp-form-tip">{{tip}}</text>
+  </view>
+  <view>
+    <picker class='formselect-picker' mode="selector" range="{{selectData}}" value="{{date}}" bindchange="bindSelectChange" fields="{{dateFields}}" disabled="{{disabled}}">
+      <view class="picker-placeholder" wx:if="{{showPlaceholder}}">{{placeholder}}</view>
+      <view class="picker-value" wx:if="{{!showPlaceholder}}">{{date}}</view>
+      <view class='select-icon'></view>
+    </picker>
+  </view>
+</view>

@@ -1,0 +1,83 @@
+<!--pages/flexwork/rewardlist/rewardlist.wxml-->
+
+<view class='top-box'>
+  <view class='date-view'>
+
+    <image hidden="{{startTime==''&& endTime==''}}" src='http://cdn.doumistatic.com/80,a7d66fe346385b.png'></image>
+    <text hidden="{{startTime==''&& endTime==''}}">{{startTime}}-{{endTime}}</text>
+
+    <view class='date-view-content' bindtap='onClickReword' hidden='{{!isShowRewardBtn}}'>
+      <image src='http://cdn.doumistatic.com/81,a75e7b59c80654.png' class='icon-reward'></image>
+      <view class='text-reward'>奖励规则</view>
+    </view>
+  </view>
+
+
+  <view class='icon-view'>
+    <image src="{{logo==''?'http://cdn.doumistatic.com/82,a7dcd2c0073d84.png':logo}}"></image>
+  </view>
+
+  <view class='view-detail'>
+    <text class='detail-name sigin_line_text'>{{name}}</text>
+
+    <view class='detail-content'>
+      <view class='detail-content-item'>
+        <view style='height:26rpx;'></view>
+        <text class='detail-content-item-count'>{{ranking}}</text>
+        <view style='height:2rpx;'></view>
+        <view class='detail-content-item-label-rang'>
+          <text class='detail-content-item-label'>当前排名</text>
+
+          <image src='http://cdn.doumistatic.com/82,a75e51e7bdc8eb.png'></image>
+        </view>
+
+      </view>
+      <view class='detail-content-line'></view>
+      <view class='detail-content-item'>
+        <view style='height:26rpx;'></view>
+        <text class='detail-content-item-count'>{{attend_daycount}}</text>
+        <view style='height:2rpx;'></view>
+        <text class='detail-content-item-label'>工作天数</text>
+      </view>
+      <view class='detail-content-line'></view>
+      <view class='detail-content-item'>
+        <view style='height:26rpx;'></view>
+        <text class='detail-content-item-count'>{{praise}}</text>
+        <view style='height:2rpx;'></view>
+        <text class='detail-content-item-label'>获赞次数</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='h-line'></view>
+</view>
+<view class='scroll-view'>
+  <view class='list-item' wx:for='{{rewardlist}}' wx:key='this'>
+    <view style='width:32rpx'></view>
+    <view class='list-item-content'>
+      <!-- <image></image> -->
+      <view class='ranking-box'>
+        <image src="{{0 == index ? 'http://cdn.doumistatic.com/80,a75e85fce301b3.png': 1== index ? 'http://cdn.doumistatic.com/81,a75e8a8759f8a3.png': 2 == index ? 'http://cdn.doumistatic.com/82,a75f0bd319377e.png':''}}" hidden='{{index>2}}'></image>
+        <text hidden='{{index<3}}'>{{index + 1}}</text>
+      </view>
+
+      <image src="{{item.logo.thumb_url== undefined || item.logo.thumb_url == '' ? 'http://cdn.doumistatic.com/80,a7dcb6f526d43d.png' : item.logo.thumb_url}}" class='content-image'></image>
+
+      <view class='name-money-box'>
+        <text class='name-money-name sigin_line_text'>{{item.name}}</text>
+
+        <view class='name-money' hidden='{{!isShowRewardBtn}}'>预计奖金：
+          <text class='name-money-text'>{{item.reward_sum}}</text>元
+        </view>
+      </view>
+
+      <view style='flex:1'></view>
+      <text class='text-count'>{{item.attend_daycount}}</text>
+
+      <view class='like' bindtap='onClickPraise' data-statu='{{item.is_praise}}' data-uid='{{item.user_id}}'>
+        <text>{{item.praise}}</text>
+        <image src="{{item.is_praise != 0 ? 'http://cdn.doumistatic.com/83,a75e70d76403dc.png' : 'http://cdn.doumistatic.com/80,a75e66b35ceafd.png'}}"> </image>
+      </view>
+    </view>
+  </view>
+</view>

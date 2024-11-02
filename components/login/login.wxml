@@ -1,0 +1,11 @@
+<!--components/login/login.wxml-->
+<view class='getphone-mask' wx:if="{{showLogin}}">
+  <view class='mask-bg'></view>
+  <view class='mask-main'>
+    <view class='close' hidden='{{true}}' bindtap='closeMask'>×</view>
+    <text class='mask-text'>{{title}}</text>
+    <!-- <button  class="btn" open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber" ><image src='http://cdn.doumistatic.com/87,ba4b7585b646ec.png'></image> 一键登录 </button> -->
+    <button  class="btn" open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber" > 手机号一键登录 </button>
+    <button bindtap='clickPhoneLogin' class='btn-phone'>手机号登录</button>
+  </view>
+</view>

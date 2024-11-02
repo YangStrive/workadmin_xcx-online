@@ -1,0 +1,95 @@
+/* pages/withdrawal/bindwxpay/bing'd'w'x'pay.wxss */
+.bindwxpay{
+  padding-top: 24rpx;
+  width: 100%;
+  height: 100vh;
+  background: #F7F7F7;
+}
+.bindwxpay_input {
+  background: #fff;
+  /* padding:0 24rpx;
+  height: 96rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+.bindwxpay_content{
+  background: #fff;
+  /* background: yellow; */
+  /* padding-top: 24rpx; */
+  height: 96rpx;
+  margin-left: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #f3f3f3;
+}
+
+.bingdsubmit_btn{
+  width: 670rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  display: block;
+  background: #FFAA00;
+  border-radius: 10rpx;
+  margin:60rpx auto;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center
+}
+.bindwxpay_input text{
+  white-space: nowrap;
+}
+.bindwxpay_input .labletext{
+  font-size: 32rpx;
+  color: #333;
+}
+.bindwxpay_input .nickname{
+  color: #bbb;
+  font-size: 32rpx;
+  flex-grow: 1;
+  margin: 0 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bindwxpay_input .bindwxid{
+  font-size: 28rpx;
+  color: #bbb;
+}
+
+
+/* 真实姓名 */
+.bind_true_name true_name_text{
+  white-space: nowrap;
+}
+.bind_true_name .true_name_labletext{
+  font-size: 32rpx;
+  color: #333;
+}
+.bind_true_name .true_name_nickname{
+  color: #bbb;
+  font-size: 32rpx;
+  flex-grow: 1;
+  margin: 0 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bind_true_name .true_name_bindwxid{
+  font-size: 28rpx;
+  color: #bbb;
+}
+
+.bind_true_name {
+  background: #fff;
+  padding:0 24rpx;
+  height: 96rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #f3f3f3;
+}
+
+image {
+  width: 40rpx;
+  height: 40rpx;
+}

@@ -1,0 +1,104 @@
+/* components/formlocation/formlocation.wxss */
+@import "../../style/base/base.wxss";
+
+.form-location {
+  display: flex;
+  background-color: #fff;
+  padding-left: 12px;
+}
+
+.detail-box {
+  background: #fff;
+  height: 216rpx;
+}
+
+.placeholder {
+  font-size: 16px;
+  color: #bbb;
+  flex-grow: 1;
+}
+
+.location-addr {
+  font-size: 32rpx;
+  color: #333;
+  margin-top: 32rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.location-addr-detail {
+  color: #999;
+  font-size: 28rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-top: 4rpx;
+  max-width: 700rpx;
+}
+
+.location-text {
+  float: right;
+  color: #49f;
+  font-size: 14px;
+  margin: 0rpx 24rpx 0 0;
+  white-space: nowrap;
+}
+
+.change-address-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 18rpx;
+}
+
+.change-address {
+  color: #49f;
+  font-size: 28rpx;
+  margin-right: 24rpx;
+}
+
+.error {
+  position: relative;
+  padding-left: 18rpx;
+  font-size: 28rpx;
+  color: #f38355;
+  margin-left: 12px;
+}
+
+.error:after {
+  position: absolute;
+  left: 0;
+  top: 17rpx;
+  width: 10rpx;
+  height: 10rpx;
+  display: block;
+  content: '';
+  background: #f79f8b;
+  border-radius: 10rpx;
+  background-size: 100% 100%;
+}
+
+.addr-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.feedback-img {
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 18rpx;
+  margin-right: 8rpx;
+}
+
+.feedback-text {
+  margin-top: 10rpx;
+  color: #4990e2;
+  margin-right: 24rpx;
+  font-size: 28rpx;
+}

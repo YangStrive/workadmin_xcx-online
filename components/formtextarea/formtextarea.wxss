@@ -1,0 +1,22 @@
+/* components/formtextarea/formtextarea.wxss */
+@import "../../style/base/base.wxss";
+.formtextarea{
+  height: 150rpx;
+  background-color:#fff;
+  padding-left:12px;
+  display: block;
+  font-size: 16px;
+  padding-top: 11px;
+  width: auto;
+}
+.textarea-main{
+  position: relative;
+}
+.textarea-length{
+  display: block;
+  background: #fff;
+  font-size: 14px;
+  color: #999;
+  text-align: right;
+  padding:0 36rpx 6rpx 0;
+}

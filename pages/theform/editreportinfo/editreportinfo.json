@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "single": "../../../components/formsingle/formsingle",
+    "formdate": "../../../components/formdate/formdate",
+    "formtextarea": "../../../components/formtextarea/formtextarea",
+    "formselect": "../../../components/formselect/formselect",
+    "formlocation": "../../../components/formlocation/formlocation",
+    "formimg": "../../../components/formimg/formimg",
+    "fixedconfirm": "../../../components/fixedconfirm/fixedconfirm",
+    "feedback": "../../../components/feedback/feedback"
+  }
+}

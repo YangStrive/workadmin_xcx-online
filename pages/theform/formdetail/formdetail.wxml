@@ -1,0 +1,34 @@
+<!--pages/theform/formdetail/formdetail.wxml-->
+<view class='forminput' wx:if="{{lists.info}}">
+  <view wx:for="{{lists.info}}" wx:key="{{index}}">
+    <view wx:if="{{item.type!=='Imageview' && item.type!=='Location'}}">
+      <forminput
+        title="{{item.info.title}}"
+        input-value="{{item.info.value}}"
+      >
+      </forminput>
+    </view>
+    <view wx:if="{{item.type =='Location'}}">
+      <forminput
+        title="{{item.info.title}}"
+        input-value="{{item.info.value.addr_name + '(' + item.info.value.addr + ')'}}"
+      >
+      </forminput>
+    </view>
+    <view wx:if="{{item.type =='Imageview'}}">
+      <view class="dmcmp-form">
+        <view class="dmcmp-form-rows dmcmp-form-text">
+          <text class="dmcmp-form-title">{{item.info.title}}</text>
+        </view>
+        <view class="img-content">
+          <view class="showimg" wx:if="{{item.info.thumb_image_value.length > 0}}" wx:for="{{item.info.thumb_image_value}}" wx:for-item="itemimg" bindtap="omPreviewImage" data-imgvalue="{{itemimg}}" wx:key="{{index}}" data-imgfiles="{{item.info.thumb_image_value}}">
+            <image class="imgmian" src="{{itemimg}}"></image>
+          </view>
+          <input wx:if="{{item.info.thumb_image_value.length == 0}}"  class="singleinput no-data"  value='未填写' disabled='true'/>
+        </view>
+      </view>
+    </view>
+  </view>
+  <text  class='formdesc'>提交时间:{{lists.submit_time}}</text>
+  <view bindtap='onDeleteform' class='detele-form'>删除</view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "完善信息",
+  "usingComponents": {
+    "dm-uploader":"../../../components/dmui/dm-uploader/dm-uploader",
+    "singleinvite": "../../../components/formsingleinvite/formsingleinvite",
+    "formimgwithsampleinvite": "../../../components/formimgwithsampleinvite/formimgwithsampleinvite"
+  }
+}

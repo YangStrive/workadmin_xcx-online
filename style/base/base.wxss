@@ -1,0 +1,26 @@
+
+.dmcmp-form{
+  background-color: #F2F2F2;
+  padding-top:16px;
+
+}
+.dmcmp-form-rows{
+  padding:0 0 6px 12px;
+}
+
+.dmcmp-form-title{
+  font-size: 16px;
+  color: #333;
+  display:inline-block;
+}
+.dmcmp-form-required{
+  font-size: 14px;
+  color: #999;
+  margin-left: 6px;
+  display:inline-block;
+}
+.dmcmp-form-tip{
+  font-size: 14px;
+  color: #666;
+  display: block;
+}

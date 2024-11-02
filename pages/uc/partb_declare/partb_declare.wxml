@@ -1,0 +1,52 @@
+<view class='content'>
+  <view class='protocol-content'>
+    <!-- 兼职合同 -->
+    <view class='part_time_job'>
+      <view class='top'>
+        <text class='top-text'>乙方员工声明函</text>
+      </view>
+      <view style="padding-bottom:160rpx;">
+        <text>
+            本人（我）作为{{com_name}}本函内简称“公司”）所招聘的人员，知晓并同意由公司招聘本人后委派本人，为盒马公司提供□物流配送☑商品分拣服务。本人在此承诺，我将遵照公司管理要求，严格按照公司安排、各项管理制度规定及盒马公司的各项行为规范准则，认真、勤勉地完成□订单配送服务☑商品分拣服务。
+            
+            本人知晓公司与盒马之间的项目服务合作关系，知晓我与盒马之间并不存在劳动或劳务派遣等关系。
+
+            特此声明。
+            
+            本人（亲笔签字）：                  
+            
+            本人人员身份证号：
+
+            _______（盖章）
+
+        </text>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-btn-panel">
+    <button class="bottom-btn" bindtap="next">
+      {{agreement_num == 3 ? '确认签字' : '确认签字并查看下一份'}}
+    </button>
+  </view>
+</view>
+<view class='send_code' hidden='{{!isShowSendCodeView}}'>
+  <view class='send_code_content'>
+    <view class='send_code_top'>
+      <view class='send_code_top_text_content'>
+        <text class='send_code_top_text'>输入验证码</text>
+      </view>
+      <image class='cancel_image' bindtap="cancel" src="http://cdn.doumistatic.com/131,010d6bd77601b96b.png"></image>
+    </view>
+    <view class='send_code_middle'>
+      <input class='input-text' maxlength="6" type="number" bindinput="bindCodeInput" placeholder="请输入" value="{{msmcode}}"></input>
+      <view class="getcodebase {{(getcodestatus && agingetcode) || 'getcodesuc'}}" bindtap="getcode">
+        <text class="send_code_middle_button ">{{getcodetext}}</text>
+      </view>
+    </view>
+    <view class="send_code_content_bottom-btn-panel">
+      <button class="send_code_content_bottom-btn {{(msmcode.length === 6) || 'send_code_content_bottom-btn-panel-btndis'}}" bindtap="confirm_next" data-itemdata='{{cont_protocol_order_id}}'>
+        确定
+      </button>
+    </view>
+  </view>
+</view>

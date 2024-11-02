@@ -1,0 +1,37 @@
+<view class="feedback-container">
+  <feedbackinfo title="{{title}}" icon="{{status!='3'?'success':'fail'}}">
+    <view class="reason" slot="reason">
+      <view class="mult-line" wx:if="{{status!='3'}}">
+        <block wx:if="{{status=='1'}}">
+          <view class="inline">
+            <view class="caption">当前状态</view>：
+            <view class="content">待确认</view>
+          </view>
+          <view class="inline">
+            <view class="caption">计划离职日期</view>：
+            <view class="content">{{plan_leave_date}}</view>
+          </view>
+          <view class="inline">
+            <view class="caption">离职原因</view>：
+            <view class="content">{{leave_reason}}</view>
+          </view>
+        </block>
+        <block wx:if="{{status=='2'}}">
+          <view class="inline">
+            <view class="caption">离职日期</view>：
+            <view class="content">{{leave_date}}</view>
+          </view>
+          <view class="inline">
+            <view class="caption">薪资计算截止日期</view>：
+            <view class="content">{{salary_end_date}}</view>
+          </view>
+        </block>
+        
+      </view>
+      <view wx:if="{{status=='3'}}" class="single-line">{{audit_refuse_reason}}</view>
+    </view>
+    <view class="btn" slot="btn" wx:if="{{status=='3'}}" bind:tap="restartSubmit">
+      重新提交
+    </view>
+  </feedbackinfo>
+</view>

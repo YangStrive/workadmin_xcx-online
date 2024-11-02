@@ -1,0 +1,466 @@
+<view class='content'>
+  <view class='protocol-content'>
+    <view class='full-time' hidden='{{!is_full_time_work_flag}}'>
+      <view class='top'>
+        <text class='top-text'>劳 动 合 同</text>
+      </view>
+
+      <view class='protocol-number'>
+        <text>合同编号：{{singData.protocol_info.protocol_order_id}}</text>
+      </view>
+
+      <view>
+        <text>甲方（用人单位）：{{singData.company_info.name}}
+      法定代表人：{{singData.company_info.legal_person}}
+      住所地：{{singData.company_info.address}}
+      乙方（员工）：{{singData.member_info.real_name}}
+      身份证号码：{{singData.member_info.idnumber}}
+      现住址：{{singData.member_info.detail_address}}
+      联系电话：{{singData.member_info.mobile}}
+
+      (乙方户籍、身份证及实际住址以及联系电话发生变更的须3日内书面通知甲方，否则责任自负)
+
+      </text>
+
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>
+        <text>甲、乙双方根据《中华人民共和国劳动法》、《中华人民共和国劳动合同法》，在合法、公平、平等自愿、诚实信用和协商一致的基础上签订本合同。
+
+    </text>
+
+        <view class='protocol-title'>
+          <text>第一条：工作地点、内容</text>
+        </view>
+
+        <text>
+    <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.乙方工作地点为 {{singData.protocol_info.city_name}} ，从事 {{singData.protocol_info.station_name}} 岗位工作。乙方的具体工作岗位和工作地点以甲方书面通知为准，工作要求以甲方的岗位职责描述为准。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.由于乙方岗位的特殊性，甲方有权根据业务实际开展情况变更乙方的实际工作岗位和地点，乙方在此已完全理解并予以接受，届时甲方通知乙方后即予以执行。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.乙方完全了解并同意在本合同履行期间，甲方有权根据自身生产经营和业务发展需要，将乙方工作地点调整到与甲方建立外包合作关系的单位（以下简称“合作方”）。乙方有权向甲方反映其本人的意见，但乙方已实际到岗的，则视为同意该工作岗位的调整。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第二条：劳动合同期限</text>
+        </view>
+
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.本合同期限自 {{start_date}} 起至 {{end_data}} 止，其中试用期为 {{singData.protocol_info.probation}} 个月，试用期内，经甲方考核合格者，方予以转正。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.合同届满前一个月，乙方如有续订合同意向，应当向甲方书面提出续订合同意向书，甲方可根据乙方的续订意向、工作表现及甲方业务的实际开展情况决定是否与乙方续订合同。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第三条：工作时间与休息休假</text>
+        </view>
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.甲方实行国家规定的工时制度，具体工作时间以乙方入职时甲方的通知为准。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.甲方可以根据工作需要及乙方的能力、表现安排、调整乙方的工作。乙方进一步同意，在合同期限内服从甲方对其工作岗位的安排、管理或/和调整，在规定的工作时间内，按质按量完成甲方指派的工作、项目或任务等。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.乙方有权享有各类法定假期，具体按国家有关规定和甲方要求执行。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第四条：劳动保护、劳动条件和职业危害防护</text>
+        </view>
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.甲方协同合作方共同为乙方提供必要的劳动条件和劳动工具，建立健全生产工艺流程，制定操作规程、工作规范和劳动安全卫生制度及其标准；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.甲方协同合作方共同依照国家和地方政府有关规定结合岗位工作性质向员工提供劳动保护，对于有职业危害的岗位，甲方及合作方依照国家相关法律提供职业危害防护；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.甲方负责对乙方进行思想政治、职业道德、业务技术、劳动安全卫生及有关规章制度的教育培训。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第五条：劳动报酬</text>
+        </view>
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>        1.乙方的月度薪酬由月度基本工资、月度绩效（如有）、其他（如有）构成，其中，基本工资为：税前{{singData.protocol_info.basic_wage}}元/月，绩效为：税前 {{singData.protocol_info.performance_wage}}元/月，其他：{{singData.protocol_info.other_wage}} 。试用期薪酬不低于上述约定标准的80%，为税前{{singData.protocol_info.probation_wage}}元/月。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>每月具体薪酬按照乙方的实际出勤日以及实际绩效考核，据实结算
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.甲方可根据实际生产经营状况、经济效益和合作方的情况与乙方协商调整乙方的工资标准，调整后按新标准执行，不再另行签订劳动合同。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.甲方每月按考核的依据结算乙方的工资，并按约定于次月{{singData.protocol_info.wage_day}}日前发放其上月工资，遇节假日则相应顺延。自发薪日起15日内，如乙方无异议，视为当月工资已足额发放。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.乙方工资报酬的个人所得税由甲方按国家规定代扣代缴。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第六条：社会保险和福利待遇</text>
+        </view>
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.甲方按国家社会保险的有关规定,按时缴纳各项社会保险费,其中依法应由乙方缴纳的部分,由甲方从乙方工资报酬中代扣代缴。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.乙方在合同期内，休息休假、患病或负伤、患职业病或因工负伤、生育、死亡等相关待遇，以及医疗期、孕期、产期、哺乳期的期限及待遇按相关法律、法规的规定执行。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第七条：劳动纪律与规章制度</text>
+        </view>
+
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1. 甲方有权依照法律规定制定、修改规章制度和劳动纪律。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2. 乙方确认已知悉并详细阅读甲方及合作方的规章制度及劳动纪律，乙方承诺严格遵守甲方及合作方的规章制度及劳动纪律。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.乙方应遵守甲方及合作方的劳动纪律包括但不限于下列条款：
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.1严格遵守考勤制度，未经请假擅自离开岗位的，按违纪处理；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.2严格遵守相应的管理制度，并服从合作方的工作安排认真完成工作任务；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.3不得利用工作时间从事非甲方或合作方安排的工作，不得从事与甲方或合作方形成利益冲突的事务；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.4不得泄露甲方及合作方的商业秘密；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.5不得侵犯甲方及合作方的知识产权；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.6不得有弄虚作假和欺诈的行为，包括但不限于伪造个人信息、各类单据、未按规定提供票据报销，提供虚假证明文件及相关信息、虚报销量等；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.7不得有打架、斗殴、暴力、寻衅滋事、盗窃、欺诈、弄虚作假、恐吓、侮辱、诽谤、扰乱工作秩序、酗酒、吸毒、赌博、故意损害或侵占甲方或甲方客户所有的财物及其他违法和违反社会道德规范和公序良俗的行为；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.8结束在甲方或在合作方的工作时，应当做好交接工作，交清甲方及合作方的各类文件及财物；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.9 甲方或合作方规定的其他相关管理制度等。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第八条：劳动合同的变更、解除及终止</text>
+        </view>
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.甲乙双方协商一致或由于客观情况发生重大变化，致使合同本合同无法履行的，可协商变更本合同约定的内容。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.经甲乙双方协商一致，可以解除本合同。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.乙方有下列情形之一的，甲方可以随时解除本合同：
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.1在试用期被证明不符合录用条件的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.2严重违反甲方的规章制度或劳动纪律的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.3严重失职，营私舞弊，给甲方或合作方造成重大损害的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.4 同时与其他用人单位建立劳动或劳务关系，对完成甲方的工作任务造成严重影响，或者经甲方提出，拒不改正的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.5以欺诈、胁迫的手段或者乘人之危，使甲方在违背真实意思的情况下订立或者变更劳动合同的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.6泄露甲方或合作方的商业秘密的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.7被依法追究刑事责任的。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.乙方有下列情形之一，甲方可以解除劳动合同，但应提前三十日以书面形式通知乙方，或支付一个月工资作为代通知金：
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.1乙方患病或非因工负伤，在规定的医疗期满后不能从事原工作，也不能从事甲方另行安排的其他工作；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.2乙方不能胜任工作，经培训或调岗后仍不能胜任的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.3本合同订立时所依据的客观情况发生重大变化，甲乙双方不能就变更合同事宜达成协议的。鉴于乙方岗位的特殊性，双方确认，甲方与合作方终止或调整合作关系，属于“客观情况发生重大变化”，甲方可依本条约定解除合同。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5.甲方有下列情形之一的，乙方可以解除劳动合同：
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5.1未按照劳动合同约定提供劳动保护或者劳动条件的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5.2未及时足额支付劳动报酬的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5.3未依法为劳动者缴纳社会保险费的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5.4用人单位的规章制度违反法律、法规的规定，损害劳动者权益的；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5.5法律、行政法规规定劳动者可以解除劳动合同的其他情形。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>6.本合同期满、乙方达到法定退休年龄或法定终止劳动合同的条件出现，劳动合同即终止。
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>7.本合同解除或终止时，乙方应按照甲方有关规定办理离职交接手续。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第九条：违约责任与劳动争议</text>
+        </view>
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.任何一方违反本合同应根据后果和责任赔偿对方损失；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.乙方因故意或重大过失损坏甲方或合作方的财物，应按规定赔偿；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.乙方违反甲方及合作方的规章制度，甲方可按相关规定予以处罚；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.甲、乙任何一方或双方发生劳动争议，应协商处理；协商不成的，争议一方或双方应当自劳动争议发生之日起六十日内向仲裁部门提请仲裁。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第十条：经济补偿与赔偿</text>
+        </view>
+
+        <text>
+<text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.甲方如单方或因其他法定事由解除本合同，应按法律相关规定向乙方支付经济补偿金。涉及经济补偿与赔偿的数额及标准的，均按《中华人民共和国劳动合同法》有关规定执行。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第十一条：保密约定</text>
+        </view>
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.乙方不得泄露甲方及合作方的商业秘密或保密信息，不得利用该等商业秘密或保密信息获利。乙方违反前述约定给甲方或合作方造成损害的，乙方应承担赔偿责任；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.上述第1款所述之甲方及合作方的商业秘密及保密信息包括但不限于甲方及合作方的如下信息：
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.1科技成果；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.2甲方或合作方所特有的各方面的诀窍、知识，经验等；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.3在实施、开发、论证、分析、设计等行为过程中随时产生的阶段性技术秘密；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.4业务、计划、规划、方案、意向、产品价格等经营活动中需要保密的部分；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.乙方在甲方或合作方工作期间因职务工作所取得的一切知识产权，其所有权均属于甲方或合作方；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.乙方在甲方工作期间因职务工作所产生的任何成果均需保密且必须保存在甲方或甲方同意的存储设备中。未经甲方同意，乙方不得以任何方式转移、复制或实施有使该种信息泄露的行为；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5.乙方同意在公司任职期间不向其他企业或者个人提供任何影响公司发展的有偿或无偿服务；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>6.如甲乙双方劳动合同终止或解除，乙方保证无条件向甲方移交与业务有关的由乙方掌握或被乙方控制的所有载体（如设备、光盘、磁盘、磁带、笔记本、文件、备忘录、报告、案卷、样品、帐薄、信件、清单或其它书面及图示记录等）；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>7.如乙方违反以上约定，甲方有权要求乙方赔偿甲方的所有损失；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>8.工资查询及保密约定：
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>8.1乙方知晓，每月工资发放后，乙方可以通过甲方指定的方式查询本人当月工资单；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>8.2乙方保证，不向任何第三人以任何形式或可能被第三人知道的方式有意或无意透露自己的工资结构、工资内容等信息；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>8.3如乙方违反工资保密约定按甲方相关规定处理。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第十二条：乙方的保证</text>
+        </view>
+
+        <text>
+<text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.乙方保证其本人未受法律或其他义务限制与甲方建立劳动合同关系，否则应对由此产生的后果承担全部责任；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.乙方保证及时向甲方递交办理社会保险和住房公积金（如有）的有效凭证，如因乙方迟延递交或其他第三方原因致使甲方无法为其缴纳社会保险和住房公积金的，其后果与甲方无关，由乙方应自行承担；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.乙方保证向甲方提供的本人所有信息、证明、资料等文件均属真实、有效、及时，包括但不限于学历证明、身份证信息、户口信息、医院出具的诊断证明、社保信息等，如因上述信息不实给甲方造成损失的，乙方应承担赔偿责任，同时甲方有权随时解除本合同；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.乙方保证如果由于本人的过失或故意行为，给任何第三方（包括但不限于甲方之客户、卖场、展厅、仓库等）造成损失的，乙方应承担赔偿责任和法律责任。乙方保证上述过失或故意行为给任何第三方造成损害导致任何第三方向甲方索赔的，乙方承担该项赔偿责任和法律责任。
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>第十三条：其他条款</text>
+        </view>
+
+
+        <text>
+<text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.甲方依法制订的规章制度、劳动纪律作为本合同的附件；乙方应同时遵守合作方员工手册等制度要求，如有冲突，以合作方员工手册等制度内容为准；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.本合同签订生效后，乙方与甲方即依法建立劳动合同关系；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.本合同未尽事宜由甲、乙双方协商解决；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.本合同条款如与国家法律、法规相悖的，以法律、法规和政策为准；若有条款被依法认定为无效的，不影响其他条款的履行；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5.本合同一式贰份，经双方签字盖章后生效，甲、乙双方各执壹份。 甲方（盖章）： 乙方（签名）： 日期： 年 月 日 日期： 年 月 日
+
+        </text>
+
+        <view class='top'>
+          <text class='top-text'>员 工 守 则</text>
+        </view>
+
+        <text>
+</text>
+
+        <view class='protocol-title-left'>
+          <text>一 、员工守则</text>
+        </view>
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.热爱本职工作，遵守职业道德，尽职尽责；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2．互相尊重，懂文明，讲礼貌，维护集体荣誉，增强主人翁意识；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3．维护社会公德，爱护公物，注意整洁卫生；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4．遵纪守法，严禁有碍社会公德及伤害他人名誉行为的发生；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5．为人诚实，不隐瞒、谎造自身经历，不掩饰工作上的过失和错误；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>6．服从领导，听从指挥，严守纪律；如因需要调动岗位的，要服从单位安排。
+
+        </text>
+
+        <view class='protocol-title-left'>
+          <text>二 、员工应自觉遵守下列各项工作纪律</text>
+        </view>
+
+        <text><text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.员工工作时一律按甲方及合作方规定穿着工作服，必须严格遵守甲方及合作方的工艺流程、工作规范和各项操作规程；上班时不得饮酒、嬉戏打闹、打瞌睡；工作中不得有玩忽职守等行为；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.不得无故缺勤、迟到、早退或私自外出，会客；员工需按时上班，每次迟到不能超过10分钟，当月迟到满三次算作一天旷工；员工需按时下班，在未办理任何请假手续的前提下，早退视同旷工，同时将影响员工当月及年终奖金；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3．员工如需请假必须填写请假单，若因病不能正常工作，须附上区县级以上医院证明；员工未获批准擅自缺勤，事后无合理理由补假或是谎报、伪造证明获取假期的行为均视为旷工；病假工资按甲方所在地有关规定计算；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4．严格遵守甲方及合作方安全生产和防火规定，未经许可不得随意动火，严禁在工作区内非吸烟处吸烟；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5．不得在公司内赌博、吸毒、贩毒、行骗或传播不健康物品等一切违法行为；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>6．爱护公司财产，不得将公司财产挪为私人之用，更不得占有公司、同事或顾客的财物；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>7．不得无理取闹、打架或挑唆他人打架闹事、散布流言蜚语、威胁恐吓上级主管或其他员工；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>8．不得唆使劝诱其他员工违反公司规定、挑拨离间、煽动消极怠工、罢工、对生产造成影响、弄虚作假作伪证、陷害他人；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>9．爱护本职岗位工具、设备设施，按甲方及合作方的规定做好清洁保养工作，不得故意毁坏公司财物、破坏公司设备、制造工作障碍；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>10．员工上下班必须经由考勤系统记录其考勤，考勤不得由他人代替，不得弄虚作假，不得骗取延长劳动时间的加班工资，一经发现双方都以旷工处理；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>11．如员工本人无故旷工连续两天及以上，经甲方或合作方通知仍未到岗工作的，视为员工本人自动离职。一年内累计旷工3天，视为员工本人自动离职，以解除劳动合同处理；以上两种情形，甲方无需支付任何经济补偿或经济赔偿。
+
+        </text>
+        <view class='protocol-title-left'>
+          <text>三 、违规处理</text>
+        </view>
+        <text>
+<text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>1.员工应严格遵守《员工守则》及《劳动合同》中关于工作纪律的相关规定，员工如违反上述条款，甲方可对员工处以警告、罚款等其他处罚，有权要求员工限时改正，情节严重的，甲方有权单方解除劳动合同，并且不承担任何经济补偿或经济赔偿；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>2.员工离职，试用期内须提前三日通知甲方，试用期满后须提前一个月到甲方人事部填写离职申请书，经甲方批准后方可离职。如因员工擅自离职给甲方的生产经营造成不良影响的，须赔偿甲方相应损失；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>3.员工应严格执行劳动合同中的保密约定，如因员工故意或过失造成甲方或合作方的信息泄露的，应承担相应的赔偿责任，情节严重的，甲方有权单方解除劳动合同，并且不承担任何经济补偿或经济赔偿；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>4.员工如有意或无意向其他员工泄露自己的工资信息、相互讨论工资及福利待遇，影响其他员工工作稳定性和积极性的，甲方有权根据影响大小，给予相关人员警告、罚款等处罚，情节严重的，甲方有权单方解除劳动合同，并且不承担任何经济补偿或经济赔偿；
+        <text decode="{{true}}" space="{{true}}">&emsp;&emsp;</text>5.本守则条款内容如与国家有关规章制度有相悖的，以国家有关规章制度为准。 声明：本人已仔细阅读并将严格遵守以上条款内容，如有违反愿接受相应处分。
+
+
+
+        </text>
+
+        <view class='protocol-title'>
+          <text>本 人 声 明</text>
+        </view>
+
+
+        <text>
+本人保证上述所填写之资讯信息均属实，签名笔迹真实，均无任何虚假或隐瞒事项。在签订本劳动合同时已与其他公司没有任何劳动、雇佣关系。本人在签订本合同前已充分被告知、阅读或学习了《劳动合同》和《员工守则》等在内的规章制度的内容和权利义务等，本人无异议并且同意遵照执行。特此声明！
+
+
+
+
+乙方（签名）： 
+
+
+日期：   年   月    日
+
+
+
+</text>
+      </view>
+    </view>
+
+    <!-- 兼职合同 -->
+    <view class='part_time_job' hidden='{{!is_part_time_work_flag}}'>
+        <view class='top'>
+            <text class='top-text'>灵活用工协议</text>
+        </view>
+
+        <view class='protocol-number'>
+            <text>合同编号：{{singData.protocol_info.protocol_order_id}}</text>
+        </view>
+        <view class='protocol-number'>
+            <text>项目编号：{{singData.project_info.id}}</text>
+        </view>
+
+        <view hidden='{{isNewcontract}}'>
+            <text>                                     
+            甲方（姓名）：{{singData.member_info.real_name}} 
+            身份证号：{{singData.member_info.idnumber}} 
+            联系电话：{{singData.member_info.mobile}} 
+            居住地址：{{singData.member_info.detail_address}} 
+
+            乙方：{{singData.company_info.name}}
+            地址：{{singData.company_info.address}}
+
+            丙方：{{singData.doumi_company_info.name}}
+            地址：{{singData.doumi_company_info.address}} 
+
+            三方根据《中华人民共和国合同法》及相关民事法律、法规的规定，本着诚实信用、平等自愿的原则，就甲方通过丙方平台“斗米”获取兼职服务信息后，为乙方提供兼职服务（包括经乙方安排为乙方客户提供兼职服务）事宜，经协商一致，签订本协议。
+
+            一、服务内容
+                1.1 乙鉴于甲方在丙方平台“斗米”获取的乙方服务需求信息，甲方作为丙方平台用户自愿报名/参加乙方以下兼职项目。
+                1.2兼职项目：{{singData.project_info.name}}。
+                1.3兼职服务内容及要求：另行约定。
+                1.4兼职期限：另行约定。
+            二、甲方权利义务
+                2.1甲方有权与乙方沟通、了解其拟报名/参加的兼职项目情况，乙方应及时告知甲方。
+                2.2甲方授权乙方及丙方使用其个人信息，并为其推荐或提供较合适的兼职机会。
+                2.3甲方保证其提供的个人信息，包括但不限于姓名、学历、工作经验、社会实践、工作成果、荣誉证书等均为真实、有效，否则由此导致的任何后果，均由甲方自行承担。
+                2.4本着诚实信用原则，甲方报名/参加兼职项目成功后，应按照乙方/乙方客户及兼职项目的工作内容及要求，按时、按质、按
+    量完成其兼职工作。
+                2.5若甲方不能按照乙方/乙方客户要求按时办理入职手续（如有）或提供兼职服务的，应提前5个工作日内告知乙方。如甲方未按照上述要求提前告知，给乙方或乙方客户造成损失的，乙方有权要求在相应损失范围内予以赔偿。
+                2.6甲方有权要求乙方支付兼职报酬。
+                2.7 如因项目需要为甲方购买商业保险，甲方应配合完成，包括按时间要求提供完整的资料等，如因甲方原因不能购买商业保险而造成的损失，包括但不限于甲方、乙方、丙方及/或任何第三方的损失，在商业保险赔偿范围内的金额，由甲方自行承担。
+            三、乙方权利义务
+                3.1根据项目需要，为甲方安排兼职任务，调整具体兼职时间。
+                3.2对甲方的服务进行监督，提出改进意见，并对服务成果进行验收。
+                3.3对甲方进行必要时的指导、培训。
+                3.4乙方有权根据甲方服务/验收情况或项目需求，提前一天通知甲方解除本合作协议。
+            四、丙方权利义务
+                4.1丙方作为平台信息提供方，有权在“斗米”平台使用甲方的个人信息及乙方的商标/商号/司标/旗标/公司名称等，向甲方、乙方提供居间服务。
+                4.2丙方有权审查甲方及乙方的资料信息，但无审查义务。因甲方资料不真实和/或乙方展示信息违法违规，导致责任后果的，甲方和/或乙方自行承担。
+            五 、服务报酬
+                5.1甲方的服务报酬由乙方负责结算并支付，并由乙方完成甲方的个人所得税清缴。
+                5.2兼职报酬及结算方式，另行约定。
+            六、违约责任
+                6.1任何一方履行协议不符合约定的，应向守约方承担违约赔偿责任。
+                6.2因一方过错，导致其他方名誉、财产损失或人身损害的，应由过错方承担赔偿责任。
+                6.3因甲方提供服务不符合约定，或不能满足乙方项目需求的，乙方有权解除协议。甲方因此给乙方或丙方造成损失的，应予以赔偿。
+            七、协议终止
+            符合下列情形之一的，本协议即为终止：
+                7.1发生不可抗力致使协议目的不能实现的。
+                7.2甲方违反项目管理要求或本协议约定，导致其他方经济损失的。
+                7.3乙方业务发生调整，导致本协议项下服务内容不存在的。
+                7.4甲方提供的服务不符合项目需求或服务未能通过乙方或乙方客户验收的。
+                7.5协议各方有权解除本协议的其他法定/约定情形的。
+            八、 保密条款
+                8.1三方应共同采取一切必要措施，对因通过本次合作而从其他方获取的商业信息采取保密措施，以防止商业秘密被泄露、使用、公开或落入未经授权的第三人处。
+                8.2在合作期间及合作终止后，甲方不得在任何场合（包括但不限于网络、论坛等）散播乙方/乙方客户或丙方（含丙方平台）的保密信息。更不得在任何场合（包括但不限于网络、论坛等）散布任何虚假、不实或对乙方/乙方客户或丙方（含丙方平台）不利的任何言论。否则，乙方或丙方有权要求甲方承担违约赔偿责任，并保留追究其刑事及民事责任的权利。
+            九、争议处理
+                9.1因本协议或与本协议有关的事项发生争议的，三方应友好协商；协商不成的，任何一方均应向北京市海淀区所在地人民法院提起诉讼。
+            十、其它
+                10.1本协议经三方签字或盖章后生效。一式三份，三方各执壹份，具有同等法律效力。
+
+            （本行以下无正文）
+
+
+            甲方（本人签字）：                  
+            签订日期：
+
+            乙方（盖章）：
+            签订日期：
+
+            丙方（盖章）：
+            签订日期：
+
+
+
+
+        </text>
+      </view>
+
+      <view hidden='{{!isNewcontract}}'>
+        <text>                                     
+            甲方（姓名）：{{singData.member_info.real_name}} 
+            身份证号：{{singData.member_info.idnumber}} 
+            联系电话：{{singData.member_info.mobile}} 
+            居住地址：{{singData.member_info.detail_address}} 
+
+            乙方：{{singData.company_info.name}}
+            地址：{{singData.company_info.address}}
+
+            双方根据《中华人民共和国合同法》及相关民事法律、法规的规定，本着诚实信用、平等自愿的原则，就甲方通过乙方平台“斗米”获取兼职服务信息后，为乙方提供兼职服务事宜，包括经乙方推介为乙方客户/项目需求方提供兼职服务事宜，经协商一致，签订本协议。
+
+            一、服务内容
+                1.1鉴于乙方根据乙方客户/项目需求方需求，在乙方平台“斗米”发布的用工招聘/服务需求信息，甲方作为平台用户自愿参加获取本协议合作机会。
+            二、甲方权利义务
+                2.1甲方有权与乙方沟通、了解其拟报名/参加的服务项目情况，乙方应及时告知甲方。
+                2.2甲方授权乙方使用其个人信息，并为其推荐或提供较合适的灵活用工工作机会。
+                2.3甲方保证其提供的个人信息，包括但不限于姓名、学历、工作经验、社会实践、工作成果、荣誉证书等均为真实、有效，否则由此导致的任何后果，均由甲方自行承担。
+                2.4本着诚实信用原则，甲方报名/参加项目成功后，应按照乙方/项目需求方及其服务项目的工作内容及要求，按时、按质、按量完成其工作。
+                2.5若甲方不能按照乙方/项目需求方要求按时办理入职手续或提供服务的，应提前5个工作日内告知乙方。如甲方未按照上述要求提前告知，乙方有权扣除乙方未发放的报酬（如有）作为违约金，如违约金不足以弥补乙方经济损失的，则甲方应继续赔偿。
+                2.6甲方有权要求乙方支付服务报酬。
+                2.7 如因项目需要为甲方购买商业保险，甲方应配合完成，包括按时间要求提供完整的资料等，如因甲方原因不能购买商业保险而造成的损失，包括但不限于甲方、乙方、乙方客户及/或任何第三方的损失，在商业保险赔偿范围内的金额，由甲方自行承担。
+                2.8甲方应保证在向乙方/项目需求方提供服务过程中，遵守国家/地方法律法规（包括但不限于道路交通法规、行政治安规定等），且甲方应遵守乙方/项目需求方涉及合作兼职项目的相关制度或要求。因甲方违反任何法律法规或违反乙方/项目需求方的相关制度或要求，导致甲方自身、乙方/项目需求方、任何第三方人身伤害或财产损失的，由甲方承担全部责任。
+            三、乙方权利义务
+                3.1根据项目需要，为甲方安排工作任务，调整具体服务时间。
+                3.2对甲方的服务进行监督，提出改进意见。并对服务成果进行验收。
+                3.3对甲方进行必要时的指导、培训。
+                3.4乙方有权根据甲方服务/验收情况或项目需求，提前一天通知甲方解除本合作协议。
+                3.5按照约定向甲方支付报酬。
+                3.6乙方/项目需求方有权根据具体兼职项目的实际需要，向甲方予以安排或不安排工作任务。甲方收到乙方任务通知后，对于安排兼职任务的，应立即反馈；对于不安排任务的，甲方不得提出异议。
+            四、服务报酬
+                4.1甲方的兼职服务报酬由乙方负责结算并支付。
+                4.2服务报酬及结算方式，双方根据具体兼职项目另行约定。
+            五、违约责任
+                5.1任何一方履行协议不符合约定的，应向守约方承担违约赔偿责任。
+                5.2因一方过错，导致另一方名誉、财产损失或人身损害的，应由过错方承担赔偿责任。
+                5.3因甲方提供服务不符合约定，或不能满足乙方项目需求的，乙方有权解除协议。甲方因此给乙方造成损失的，应予以赔偿。
+            六、协议终止
+            符合下列情形之一的，本协议即为终止：
+                6.1发生不可抗力致使协议目的不能实现的。
+                6.2甲方违反项目管理要求或本协议约定，导致乙方或第三方经济损失的。
+                6.3乙方业务发生调整或双方合作兼职项目发生需求变更的，乙方提前1天通知甲方后，本协议随即终止。
+                6.4甲方提供的服务不符合项目需求或服务未能通过乙方或乙方客户验收的。
+                6.5甲乙双方有权解除本协议的其他法定/约定情形的。
+            七、 保密条款
+                7.1甲乙双方应共同采取一切必要措施，对因通过本次合作而从对方获取的商业信息采取保密措施，以防止商业秘密被泄露、使用、公开或落入未经授权的第三人处。包括甲方从乙方客户/项目需求方处获得的保密信息。
+                7.2甲方在双方合作期间及合作终止后，不得在任何场合（包括但不限于网络、论坛等）散播乙方或乙方客户/项目需求方的保密信息。更不得在任何场合（包括但不限于网络、论坛等）散布任何虚假、不实或对乙方/乙方客户/项目需求方不利的任何言论。否则，乙方有权要求甲方承担违约赔偿责任，并保留追究其刑事及民事责任的权利。
+            八、争议处理
+                8.1因本协议或与本协议有关的事项发生争议的，甲乙双方应友好协商；协商不成的，任何一方均应向北京市海淀区所在地人民法院提起诉讼。
+            九、其它
+                9.1本协议经双方签字或盖章后生效。一式两份，双方各执壹份，具有同等法律效力。
+
+            （本行以下无正文）
+
+
+            甲方（本人签字）：                  
+            签订日期：
+
+            乙方（盖章）：
+            签订日期：
+
+        </text>
+      </view>
+
+
+    </view>
+
+  </view>
+
+  <view class="bottom-btn-panel">
+    <button class="bottom-btn" bindtap="next">{{agreement_num == 1 ? '确认签字' : '确认签字并查看下一份'}}</button>
+  </view>
+</view>
+
+<view class='send_code' hidden='{{!isShowSendCodeView}}'>
+  <view class='send_code_content'>
+    <view class='send_code_top'>
+      <view class='send_code_top_text_content'>
+        <text class='send_code_top_text'>输入验证码</text>
+      </view>
+      <image class='cancel_image' bindtap="cancel" src="http://cdn.doumistatic.com/131,010d6bd77601b96b.png"></image>
+    </view>
+
+    <view class='send_code_middle'>
+      <input class='input-text' maxlength="6" type="number" bindinput="bindCodeInput" placeholder="请输入" value="{{msmcode}}"></input>
+
+      <view class="getcodebase {{(getcodestatus && agingetcode) || 'getcodesuc'}}" bindtap="getcode">
+        <text class="send_code_middle_button ">{{getcodetext}}</text>
+      </view>
+    </view>
+
+    <view class="send_code_content_bottom-btn-panel">
+      <button class="send_code_content_bottom-btn {{(msmcode.length === 6) || 'send_code_content_bottom-btn-panel-btndis'}}" bindtap="confirm_next" data-itemdata='{{cont_protocol_order_id}}'>确定</button>
+    </view>
+  </view>
+</view>

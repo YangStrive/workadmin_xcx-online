@@ -1,0 +1,125 @@
+page {
+  background-color: #f2f2f2;
+}
+
+.tab-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 1px 0 rgba(235, 233, 233, 0.50);
+}
+
+.activitied {
+  color: #333333 !important;
+  border-bottom: 2px solid #FFAA00;
+}
+
+.activitied .num {
+  color: #FFAA00 !important;
+}
+
+.tab-item {
+  width: 50%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: PingFangSC-Medium;
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.tab-item .num {
+  color: #999999;
+}
+
+.condition-bar {
+  position: fixed;
+  top: 92rpx;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 88rpx;
+  background-color: #F2F2F2;
+}
+
+.condition-item {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.condition-item .title {
+  padding: 0 10rpx 0 24rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 24rpx;
+  color: #333333;
+}
+
+.condition-item .select-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 248rpx;
+  height: 56rpx;
+  background: #FFFFFF;
+  border: 1px solid #E6E6EA;
+  border-radius: 4rpx;
+  padding: 0 10rpx;
+
+}
+
+.short-select-bar {
+  width: 206rpx !important;
+}
+
+.right-item {
+  padding: 0 10rpx 0 14rpx !important;
+}
+
+.condition-item .select-bar .no-content {
+  font-family: PingFangSC-Medium;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.condition-item .select-bar .content {
+  font-family: PingFangSC-Medium;
+  font-size: 24rpx;
+  color: #333333;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.condition-item .select-bar .down-img {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.returnvisit-list {
+  margin-top: 180rpx;
+}
+
+.noData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noData .no-data-txt {
+  margin-top: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #808080;
+}
+
+.noData image {
+  margin-top: 25%;
+  width: 320rpx;
+  height: 320rpx;
+}

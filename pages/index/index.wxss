@@ -1,0 +1,183 @@
+.index-container {
+  padding-bottom: 48rpx;
+}
+.swiper {
+  position: relative;
+  background: url("//cdn.doumistatic.com/231,020c44d641a90884.png") no-repeat
+    center top;
+  background-size: 100% 60%;
+}
+swiper {
+  padding: 24rpx 24rpx 0 24rpx;
+}
+.imgItem image {
+  width: 100%;
+  height: 150px;
+  border-radius: 12rpx;
+}
+.grids {
+  padding: 0 24rpx;
+}
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.grid-container:after {
+  content: " ";
+  flex: auto;
+}
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #333333;
+  position: relative;
+}
+.notice-count {
+  position: absolute;
+  top: -0.8em;
+  right: 1.5em;
+  min-width: 1.6em;
+  height: 1.6em;
+  line-height: 1.6;
+  font-size: 20rpx;
+  border-radius: 0.8em;
+  background-color: #ff4444;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  /* transform: translateX(50%); */
+  /* transform-origin: -10% center; */
+  /* z-index: 10; */
+  box-shadow: 0 0 0 2rpx #fff;
+  box-sizing: border-box;
+}
+.mt32 {
+  margin-top: 32rpx;
+}
+.mt48 {
+  margin-top: 48rpx;
+}
+.icon-img {
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 16rpx;
+}
+.icon-img2 {
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 16rpx;
+  border-radius: 50%;
+  border: 4rpx solid #e4e4e4;
+}
+.ads {
+  margin: 32rpx 0;
+  padding: 0 24rpx;
+}
+.ads image {
+  width: 100%;
+  height: 100rpx;
+  border-radius: 50rpx;
+}
+.title {
+  padding-left: 24rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.certification {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* width: 100%; */
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* opacity: 0.5; */
+  z-index: 999999;
+  /* background: black; */
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.certification-content {
+  background: white;
+  margin: 0;
+  padding: 20rpx;
+  width: 560rpx;
+  height: 520rpx;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16rpx;
+}
+.cer-info {
+  margin-bottom: 100rpx;
+}
+.cer-info-tips {
+  margin: 30rpx 0;
+  font-weight: bold;
+  font-size: 38rpx;
+}
+.cer-info-text {
+  font-size: 32rpx;
+}
+.btn-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.certification .wait-btn {
+  width: 40%;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  border-radius: 6rpx;
+  background: #696969;
+  color: #fff;
+}
+.certification .certification-btn {
+  background: #fa0;
+  color: #fff;
+  width: 40%;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  border-radius: 6rpx;
+}
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9;
+  overflow: hidden;
+}
+.mask image {
+  display: block;
+  width: 480rpx;
+  height: 525rpx;
+  z-index: 2000;
+}
+/* .wage-area{
+  width: 240rpx;
+  height: 650rpx;
+  z-index: 1999;
+}
+.wage-area img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+} */

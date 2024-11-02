@@ -1,0 +1,54 @@
+/* pages/withdrawal/bindidcard/bindidcard.wxss */
+.bindidcard{
+  width: 100%;
+  height: 100vh;
+  background: #F7F7F7;
+}
+.bindidcard .note{
+  height: 88rpx;
+  color: #bbb;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  margin-left: 24rpx;
+}
+.bindinput{
+  background: #fff;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.bindinput view{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 24rpx;
+  height: 96rpx;
+}
+.bindinput .nameinput{
+  border-bottom: 1px solid #e5e5e5;
+}
+.bindinput text{
+  white-space: nowrap;
+  font-size: 28rpx;
+  color: #666;
+}
+.bindinput input{
+  font-size: 28rpx;
+  color: #333;
+  margin-left: 32rpx;
+  flex-grow: 1;
+}
+.bingdsubmit_btn{
+  width: 670rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  display: block;
+  background: #FFAA00;
+  border-radius: 10rpx;
+  margin:60rpx auto;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center
+}
+.disablebtn{
+  background:rgba(255, 170, 0, 0.4);
+}

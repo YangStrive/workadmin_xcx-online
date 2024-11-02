@@ -1,0 +1,318 @@
+/* dataform.wxss */
+
+page {
+  background: #f2f2f2;
+}
+
+.item-top-content {
+  padding-left: 24rpx;
+  padding-top: 32rpx;
+}
+
+.item-input{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item-top-prompt {
+  padding-left: 24rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.item-top-text-title {
+  color: #333;
+  font-size: 32rpx;
+}
+
+.item-top-text-state {
+  color: #999;
+  font-size: 28rpx;
+  margin-left: 32rpx;
+}
+
+.item-location-data {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background: #fff;
+  justify-content: space-between;
+}
+
+.item-location-address {
+  flex-grow: 1;
+  padding: 10rpx 0rpx 10rpx 20rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+
+.item-location-reset {
+  min-width: 160rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #49f;
+}
+
+.bottom-btn-panel {
+  position: fixed;
+  height: 120rpx;
+  width: 100%;
+  text-align: left;
+  background: #ffffff;
+  border-top: 1px solid #ccc;
+  bottom: 0rpx;
+  z-index: 999;
+  _position: absolute;
+}
+
+.insurance-panel {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  text-align: left;
+  z-index: 999;
+  bottom: 0rpx;
+  _position: absolute;
+}
+
+.insurance-success-panel {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  opacity: 0.8;
+  text-align: left;
+  bottom: 0rpx;
+  _position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 1008;
+  flex-direction: column;
+}
+
+.insurance-success-panel image{
+  width: 248rpx;
+  height: 248rpx;
+  margin-top: 350rpx;
+}
+
+.navigation-panel {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  text-align: left;
+  background-color: #000;
+  z-index: 999;
+  bottom: 0rpx;
+  opacity: 0.8;
+  _position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.navigation-panel-image1{
+  width: 262rpx;
+  height: 250rpx;
+  margin-top: 260rpx;
+}
+
+.navigation-panel-image3{
+   width: 600rpx;
+  height: 96rpx;
+  margin-top: 48rpx;
+}
+
+.navigation-panel-image4{
+   width: 280rpx;
+  height: 80rpx;
+  margin-top: 160rpx;
+}
+
+.insurance-success-panel text{
+  font-size: 32rpx;
+  color: #aaaaaa;
+  margin-top: 32rpx;
+}
+
+.insurance-box {
+  background: url("http://cdn.doumistatic.com/72,8f0621294922df.png") no-repeat;
+  background-size: 100% 100%;
+  opacity: 1;
+  width: 562rpx;
+  height: 778rpx;
+  margin: auto;
+  margin-top: 202rpx;
+}
+
+.bottom-btn {
+  background: #fa0;
+  color: #fff;
+  height: 80rpx;
+  font-size: 32rpx;
+  border-radius: 6rpx;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-input-single {
+  font-size: 32rpx;
+  background: #fff;
+  padding-left: 24rpx;
+}
+
+.item-input-area {
+  height: 160rpx;
+  font-size: 32rpx;
+  background: #fff;
+  padding-left: 24rpx;
+  width: 100%;
+}
+
+.item-input-number {
+  font-size: 32rpx;
+  background: #fff;
+  padding-left: 24rpx;
+}
+
+.item-select {
+  font-size: 32rpx;
+  background: #fff;
+  padding-left: 24rpx;
+}
+
+.item-date {
+  font-size: 32rpx;
+  background: #fff;
+  padding-left: 24rpx;
+}
+
+.input-box {
+  border: 1px solid #DCDEE3;
+  margin-left: 24rpx;
+  margin-right: 24rpx;
+  border-radius: 8rpx;
+  height: 96rpx;
+  margin-top: 28rpx;
+}
+.insure-tip{
+  color: #666666;
+  text-align: center;
+  font-size: 28rpx;
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}
+
+.insure-top{
+  height: 280rpx;
+}
+
+.btn-insure-get{
+  height: 100rpx;
+  width: 342rpx;
+  border-radius: 44rpx;
+  background: url("http://cdn.doumistatic.com/70,8f07062ed9308e.png") no-repeat;
+  background-size: 100% 100%;
+  color: #FFE9CD;
+  margin: auto;
+  margin-top: 44rpx;
+  display: flex;
+  font-size: 34rpx;
+}
+
+.result-panel{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  text-align: left;
+  z-index: 999;
+  bottom: 0rpx;
+  _position: absolute;
+}
+
+.covered-panel{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  text-align: left;
+  z-index: -1;
+  bottom: 0rpx;
+  _position: absolute;
+  background: #000;
+  opacity: 0.8;
+}
+
+
+.result-box{
+  background: #ffffff;
+  border-radius: 24rpx;
+  margin-left: 106rpx;
+  margin-right: 106rpx;
+  margin-top: 160rpx;
+}
+
+.result-top{
+  width: 540rpx;
+  height: 314rpx;
+  margin: auto;
+  margin-top: 202rpx; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.result-top text{
+  color: #333;
+  font-size: 32rpx;
+}
+
+.result-confirm{
+  color: #fa0;
+  width: 100%;
+  height: 90rpx;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  padding-top: 10rpx;
+  margin-top: 40rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-edit{
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+  margin-top: 36rpx;
+  border: 1px solid #e5e5e5;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  background: #ffffff;
+}
+
+.img-delete{
+  content: '';
+  display: block;
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top: 0;
+  right:0;
+  background:url('http://cdn.doumistatic.com/64,8e5d5cdcef81e4.png') no-repeat;
+  background-size: 35rpx;
+  border-radius: 50%;
+}
+
+.weui-uploader__file{
+  position: relative;
+}
+
+.weui-textarea {
+  position: relative;
+  left: 20rpx;
+  top: 20rpx;
+}
+

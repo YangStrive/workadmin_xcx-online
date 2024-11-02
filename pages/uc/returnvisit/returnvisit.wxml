@@ -1,0 +1,79 @@
+<view class="returnvisit">
+  <view class="tab-bar">
+    <view class="tab-item {{currentTabIndex === 0 ? 'activitied' : ''}}" bindtap="changeTab" data-index='0'>
+      待回访(
+      <text class="num">{{undone_num}}</text>
+      )
+    </view>
+    <view class="tab-item {{currentTabIndex === 1 ? 'activitied' : ''}}" bindtap="changeTab" data-index='1'>
+      已回访
+    </view>
+  </view>
+  <view class="no-visited" wx:if="{{currentTabIndex === 0 && showPageContent}}">
+    <view class="condition-bar">
+      <view class="condition-item">
+        <view class="title">项目</view>
+        <picker bindchange="bindProjectChange" value="{{noProjectIndex}}" range="{{projectArray}}" range-key="name">
+          <view class="select-bar">
+            <view class="no-content" wx:if="{{noProjectIndex === -1}}">全部项目</view>
+            <view class="content" wx:else>{{projectArray[noProjectIndex].name}}</view>
+            <image class="down-img" src="https://cdn.doumistatic.com/203,01dc9bcc5f3f67f0.png"></image>
+          </view>
+        </picker>
+      </view>
+      <view class="condition-item">
+        <view class="title right-item">回访频次</view>
+        <picker bindchange="bindFrequencyChange" value="{{noFrequencyIndex}}" range="{{frequencyArray}}" range-key="txt">
+          <view class="select-bar short-select-bar">
+            <view class="no-content" wx:if="{{noFrequencyIndex === -1}}">全部</view>
+            <view class="content" wx:else>{{frequencyArray[noFrequencyIndex].txt}}</view>
+            <image class="down-img" src="https://cdn.doumistatic.com/203,01dc9bcc5f3f67f0.png"></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="returnvisit-list">
+      <block wx:for="{{noVisitList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <returnVisitCard info="{{item}}" bind:leaveOffice="handleLeaveOffice" hasBtns="true"></returnVisitCard>
+      </block>
+      <view class="noData" wx:if="{{noVisitList.length==0}}">
+        <image src="https://cdn.doumistatic.com/226,01de20cc564843c0.png"></image>
+        <view class="no-data-txt">没有回访数据</view>
+      </view>
+    </view>
+  </view>
+  <view class="visited" wx:if="{{currentTabIndex === 1 && showPageContent}}">
+    <view class="condition-bar">
+      <view class="condition-item">
+        <view class="title">项目</view>
+        <picker bindchange="bindProjectChange" value="{{hasProjectIndex}}" range="{{projectArray}}" range-key="name">
+          <view class="select-bar">
+            <text class="no-content" wx:if="{{hasProjectIndex === -1}}">全部项目</text>
+            <text class="content" wx:else>{{projectArray[hasProjectIndex].name}}</text>
+            <image class="down-img" src="https://cdn.doumistatic.com/203,01dc9bcc5f3f67f0.png"></image>
+          </view>
+        </picker>
+      </view>
+      <view class="condition-item">
+        <view class="title right-item">回访频次</view>
+        <picker bindchange="bindFrequencyChange" value="{{hasFrequencyIndex}}" range="{{frequencyArray}}" range-key="txt">
+          <view class="select-bar short-select-bar">
+            <text class="no-content" wx:if="{{hasFrequencyIndex === -1}}">全部</text>
+            <text class="content" wx:else>{{frequencyArray[hasFrequencyIndex].txt}}</text>
+            <image class="down-img" src="https://cdn.doumistatic.com/203,01dc9bcc5f3f67f0.png"></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="returnvisit-list">
+      <block wx:for="{{hasVisitList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <returnVisitCard info="{{item}}"></returnVisitCard>
+      </block>
+      <view class="noData" wx:if="{{hasVisitList.length==0}}">
+        <image src="https://cdn.doumistatic.com/226,01de20cc564843c0.png"></image>
+        <view class="no-data-txt">没有回访数据</view>
+      </view>
+    </view>
+  </view>
+  <bottom-modal wx:if="{{showBottomModal}}" id="bottomModal" info="{{currentInfo}}" tipList="{{tipList}}" bind:removeMember="removeMember"></bottom-modal>
+</view>

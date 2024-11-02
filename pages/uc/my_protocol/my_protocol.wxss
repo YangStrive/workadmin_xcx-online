@@ -1,0 +1,76 @@
+
+.content {
+  margin-bottom: 1rpx;
+  background: #f2f2f2;
+}
+
+/* 顶部图片 */
+.top-image {
+  width: 100%;
+  height: 702rpx;
+  /* background: rebeccapurple; */
+}
+
+.protocol-content-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 合同列表 */
+.cells {
+  position: absolute;
+  top: 610rpx;
+  margin: 0;
+  /* top: 610rpx; */
+  width: 100%;
+}
+
+.cell {
+  position: relative;
+  overflow: hidden;
+  margin: 0rpx 24rpx 40rpx 24rpx;
+  height: 180rpx;
+  background: #ffcc6a;
+  padding-top: 2rpx;
+  border-radius: 8rpx;
+  background: linear-gradient(to right, #FF9558,#FFA856,#ffcc6a);
+  box-shadow: 6rpx 6rpx 24rpx 6rpx rgba(255, 160, 0, 0.45);
+  border: 1px solid #FFA470; 
+}
+
+.cell-title-content {
+  /* background: green; */
+  font-size: 40rpx;
+  color: white;
+  font-weight: 500;
+  margin-top: 36rpx;
+  margin-left: 36rpx;
+  height: 52rpx;
+}
+
+.cell-time-father-content {
+   margin-left: 36rpx;
+   margin-top: 16rpx;
+   font-size: 24rpx;
+   color: white;
+   display: flex;
+}
+
+.cell-time-content {
+  margin-left: 12rpx;
+}
+
+.tags{
+  position: absolute;
+  right:-66rpx;
+  bottom:-66rpx;
+  width:132rpx;
+  height:132rpx;
+  transform: rotate(-45deg);
+  background: #FF7070;
+  font-family: PingFangSC-Semibold;
+  font-size: 20rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 36rpx;
+}

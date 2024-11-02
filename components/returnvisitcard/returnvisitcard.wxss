@@ -1,0 +1,110 @@
+.return-visit-card {
+  margin-bottom: 20rpx;
+}
+
+.return-visit-card-container {
+  background-color: #ffffff;
+  padding: 20rpx 40rpx 0 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.return-visit-card-container .top {
+  display: flex;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.return-visit-card-container .top .content {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.return-visit-card-container .top .content .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.return-visit-card-container .top .content .left .title {
+  line-height: 32rpx
+}
+
+.return-visit-card-container .top .content .left .title .title-main {
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.return-visit-card-container .top .content .left .title .title-tip {
+  margin-left: 20rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 24rpx;
+  color: #F38355;
+}
+
+.return-visit-card-container .top .content .left .sub-title {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999999;
+}
+
+.return-visit-card-container .top .content .right {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+}
+
+.return-visit-card-container .top .content .right image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.return-visit-card-container .top .avatar image {
+  margin-right: 24rpx;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+}
+
+
+.return-visit-card-container .bottom {
+  height: 76rpx;
+  display: flex;
+  align-items: center;
+  /* border-bottom: 1px solid #E5E5E5; */
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #333333;
+}
+
+.return-visit-card-container .bottom .entry-time {
+  margin-left: 66rpx;
+}
+
+.return-visit-card-container .bottom .last-time {
+  margin-left: 62rpx;
+}
+
+.return-visit-card .btns {
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  height: 80rpx;
+}
+
+.return-visit-card .btns .btn {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: PingFangSC-Medium;
+  font-size: 28rpx;
+  color: #FFAA00;
+}
+
+.return-visit-card .btns .right-btn {
+  border-left: 1px solid #e5e5e5;
+}

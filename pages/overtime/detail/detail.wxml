@@ -1,0 +1,94 @@
+
+<view class='date-box box-flex-row-center'>
+  <view class='top_box'>
+    <image class='top_box_icon_calendar' src='http://cdn.doumistatic.com/67,8bced81e885c49.png'>
+    </image>
+    <picker mode="date" value="{{cur_date}}" start="{{startTime}}" end="{{endTime}}" bindchange="bindDateChange">
+      <view class='top_box_time'>{{selectTime}}
+      </view>
+    </picker>
+    <image class='top_box_icon_triangle' src='http://cdn.doumistatic.com/67,8bcf1d2f35c0b5.png'></image>
+  </view>
+  <view style='flex:1'></view>
+  <view class='check-box'>
+  <text bindtap='changeType' class='text-right' style="font-size: 26rpx;{{pageType != 1 ? 'background:#fa0;color:#fff':'background:#fff;color:#fa0'}}">按天</text>
+    <text bindtap='changeType' class='text-left' style="font-size: 26rpx;{{pageType == 1 ? 'background:#fa0;color:#fff':'background:#fff;color:#fa0'}}">按时</text>
+    
+  </view>
+</view>
+<view class='h-line' hidden='{{pageType != 1}}'></view>
+<view class='time-box ' hidden='{{pageType != 1}}'>
+  <text class='time-box-time-label' style='color:#999;font-size:28rpx;'>请选择工作时长：</text>
+  <text class='time-box-time' style='margin-left:4rpx;margin-right:4rpx;font-weight: bold;font-size: 36rpx;'>{{selectHourH}}</text>
+  <text class='time-box-time' style='font-size: 28rpx;margin-top:5rpx;'>小时</text>
+  <text class='time-box-time' style='margin-left:4rpx;margin-right:4rpx;font-weight: bold;font-size: 36rpx;'>{{selectHourM}}</text>
+  <text class='time-box-time' style='font-size: 28rpx;margin-top:5rpx;'>分钟</text>
+  <!-- <text class='time-box-time-label' hidden='{{true}}' style='color:#444'>考勤时间：</text>
+  <text class='time-box-time' hidden='{{true}}'>{{overTime}}</text>
+  <text class='time-box-time-label' hidden='{{true}}'>分钟</text> -->
+</view>
+<view class='line-time-top' hidden='{{pageType != 1}}'></view>
+<scroll-view hidden='{{pageType != 1}}' class='view-time-box' scroll-y='true'>
+  <view style='height:22rpx;'></view>
+  <view class='time-list-box'>
+    <view class='time-list-item-view' data-idx='{{index}}' data-value='{{timeList[index]}}' bindtap='selectOverTime' wx:for="{{timeList}}" wx:key="this">
+      <view class='time-list-item' style="{{timeList[index]==-1?'color:#fff;':'color:#444;'}};{{timeList[index]==-1?'':selectIndex == index ? 'background:#fa0;color:#fff' : 'border: 1rpx #f2f2f2 solid;background:#f9f9f9;color:#9b9b9b'}};">
+        {{timeList[index]}}
+      </view>
+    </view>
+  </view>
+  <view style='height:22rpx;'></view>
+</scroll-view>
+<view class='line-time-bottom' hidden='{{pageType != 1}}'></view>
+<view style='background:#fff;height:24rpx;' hidden='{{pageType != 1}}' ></view>
+<view class='line-box' style='background: #e5e5e5;' hidden='{{pageType != 1}}' >
+
+</view>
+<view class='view-detail'>
+  <!-- <picker class="picker" bindchange="bindChange" value="{{Index}}" range="{{Data}}" range-key="title"> -->
+  <view class='view-label box-flex-row-center' hidden='{{pageType != 1}}'>
+
+    <view class='text-label'>时薪</view>
+    <view style='flex:1;'></view>
+    <input bindinput='inputBaseWage' value="{{0 == hourMoney ? '':hourMoney}}" class='edit-base-wage' ></input>
+    <view class='right-unit'>元/时</view>
+
+  </view>
+<view class='h-line' hidden='{{pageType != 2}}'></view>
+  <view class='view-label box-flex-row-center' hidden='{{pageType != 2}}'>
+
+    <view class='text-label'>日薪</view>
+    <view style='flex:1;'></view>
+    <input bindinput='inputDayWage'  class='edit-base-wage' value="{{0==allDayMoney?'':allDayMoney}}"></input>
+    <view class='right-unit'>元/天</view>
+
+  </view>
+
+  <view class='view-label line-top box-flex-row-center'>
+
+    <view class='text-label'>其他收入</view>
+    <view style='flex:1;'></view>
+    <input bindinput='inputOtherWage' type='number' class='edit-base-wage' value="{{0==otherMoney?'':otherMoney}}"></input>
+    <view class=' right-unit' >元</view>
+
+  </view>
+
+  <view  class=' view-label line-top box-flex-row-center'>
+
+    <view class='text-label'>合计</view>
+    <view style='flex:1'></view>
+    <view class='class-all-money'> 
+      <text class='money'>{{totalMoney}}</text>
+      <text class='money-unit' >元</text>
+   </view>
+  </view>
+  <view ></view>
+  <view class='h-line'></view>
+  <view class='textarea-pr'>
+  <textarea class="textarea-main" placeholder="备注信息" bindinput="textareaChange" value='{{note}}' placeholder-style="color:#bbb;font-size:28rpx;" maxlength="200" />
+  </view>
+</view>
+<view style='height:224rpx;'></view> 
+ <form class="bottom-btn-panel" bindsubmit="saveWage" report-submit='true'>
+  <button class="bottom-btn" form-type='submit'>保存</button>
+</form> 

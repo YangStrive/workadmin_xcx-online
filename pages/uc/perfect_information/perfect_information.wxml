@@ -1,0 +1,252 @@
+<view>
+  <view>
+    <view class='title-content-top'>
+      <text class='title'>项目需要签订电子协议</text>
+    </view>
+    <view class='title-content-bottom'>
+      <text class='title'>请完善信息:</text>
+    </view>
+  </view>
+  <view class='cells'>
+    <view class='cell'>
+      <view class='cell-top'>
+        <view class='left-text'>姓名</view>
+        <view class="right-container">
+          <input style='color: #333333;' class='input-text' placeholder="请输入" value="{{real_name}}" disabled="{{!real_name_enable_flag}}" bindinput="real_name"></input>
+        </view>
+      </view>
+    </view>
+    <view class='cell'>
+      <view class='cell-top'>
+        <view class='left-text'>手机号</view>
+        <view class="right-container">
+          <input style='color: #333333;' class='input-text' placeholder="请输入" value="{{mobile}}" disabled="{{!mobile_enable_flag}}" bindinput="mobile"></input>
+        </view>
+      </view>
+    </view>
+    <view class='cell'>
+      <view class='cell-top'>
+        <view class='left-text'>身份证号</view>
+        <view class="right-container">
+          <input style='color: #333333;' class='input-text' placeholder="请输入" value="{{idnumber}}" disabled="{{!idnumber_enable_flag}}" bindinput="idnumber"></input>
+        </view>
+      </view>
+    </view>
+    <!-- <view class='cell'>
+      <text class='left-text'>居住地区</text>
+      <input class='input-text' placeholder="请输入" value="{{detail_address}}" bindinput="detail_address"></input>
+    </view> -->
+    <view class='cell'>
+      <view class='cell-top'>
+        <view class='left-text'>常住地区</view>
+        <view class="right-container" wx:if="{{detail_address_flag}}">
+          <input class='input-text' placeholder="请输入" value="{{detail_address}}" bindinput="detail_address" bindblur="blur_detail_address" placeholder-class="placeholder"></input>
+        </view>
+        <view wx:if="{{detail_address && !detail_address_flag}}" class="in-line-text" bindtap="on_detail_address_txt">
+          {{detail_address}}
+        </view>
+      </view>
+    </view>
+
+    <block wx:if="{{is_has_extend}}">
+    <view class='cell' wx:for="{{extend_info}}" wx:key="id">
+      <view class='cell-top'>
+        <view class='left-text'>{{item.name}}</view>
+        <!-- view class='left-text'>{{item.name}}-{{item.fields}}-{{extend_fields[item.fields]}}</view -->
+        <view class="right-container" wx:if="{{[item.fields]}}">
+          <input class='input-text' placeholder="请输入" value="{{ item.value }}" data-extend_fid="{{item.fields}}" 
+            bindinput="bind_extend_c" bindblur="blur_extend_fields" placeholder-class="placeholder"></input>
+        </view>
+        <!--
+        <view wx:if="{{ false && [item.fields] && !extend_fields_flag[item.fields] }}" class="in-line-text" bindtap="on_extend_fields" data-extend_fid="{{item.fields}}">
+            {{item.value}}
+        </view>
+        -->
+      </view>
+    </view>
+    </block>
+
+    <block wx:if="{{is_protocol_supplement_info==1}}">
+      <view class="cell">
+        <view class='cell-top'>
+          <view class='left-text'>原单位名称</view>
+          <view class="right-container">
+            <input wx:if="{{ detail_unit_company_flag}}" class='input-text' placeholder-class="placeholder" placeholder="请输入" value="{{detail_unit_company}}" bindinput="detail_unit_company" bindblur="blur_unit_company"></input>
+          </view>
+          <view wx:if="{{detail_unit_company && !detail_unit_company_flag}}" class="in-line-text" bindtap="on_unit_company_txt">
+            {{detail_unit_company}}
+          </view>
+        </view>
+      </view>
+      <view class='cell'>
+        <view class='cell-top'>
+          <view class='left-text'>原单位解除劳动关系时间</view>
+          <view class="right-container">
+            <picker mode="date" value="{{laborRelationsDate}}" bindchange="bindDateChange">
+              <view wx:if="{{!laborRelationsDate}}" class="default-placeholder">请选择</view>
+              <view wx:else class="input-text">{{laborRelationsDate}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="cell">
+        <view class='cell-top'>
+          <view class='left-text'>离职原因</view>
+          <view class="right-container">
+            <input wx:if="{{detail_leaving_reason_flag}}" class='input-text' placeholder-class="placeholder" placeholder="请输入" value="{{detail_leaving_reason}}" bindinput="detail_leaving_reason" bindblur="blur_leaving_reason"></input>
+          </view>
+        </view>
+        <view wx:if="{{detail_leaving_reason && !detail_leaving_reason_flag}}" class="next-line-text" bindtap="on_leaving_reason_txt">
+          {{detail_leaving_reason}}
+        </view>
+      </view>
+      <view class="cell">
+        <view class='cell-top'>
+          <view class='left-text'>无法出具原单位解除劳动关系证明原因</view>
+          <view class="right-container">
+            <input wx:if="{{detail_nocontract_reason_flag}}" class='input-text' placeholder-class="placeholder" placeholder="请输入" value="{{detail_nocontract_reason}}" bindinput="detail_nocontract_reason" bindblur="blur_nocontract_reason"></input>
+          </view>
+        </view>
+        <view wx:if="{{detail_nocontract_reason && !detail_nocontract_reason_flag}}" class="next-line-text" bindtap="on_nocontract_reason_txt">
+          {{detail_nocontract_reason}}
+        </view>
+      </view>
+    </block>
+    <view class='cell' wx:if="{{employer}}">
+      <view class='cell-top'>
+        <view class='left-text'>用人单位</view>
+        <view class="right-container">
+          <picker bindchange="pickerChange" range="{{company}}" range-key='company_name'>
+            <view class="picker">{{index>-1?company[index].company_name:'请选择用人单位'}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{is_upload_idcard_info==1}}">
+      <view class='cell'>
+        <view class='cell-top'>
+          <view class='left-text'>身份证正面</view>
+          <view class="right-container">
+            <view class="upload-wrapper" data-idcard="frontCardImg" catchtap="uploadIDcard">
+              <view class="dm-uploader_input-box" wx:if="{{!frontCardImg}}">
+                <view class="dm-uploader__input"></view>
+              </view>
+              <view class="front-id-card-img" wx:else>
+                <image class="front-card-img" src="{{frontCardImg}}"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='cell'>
+        <view class='cell-top'>
+          <view class='left-text'>身份证反面</view>
+          <view class="right-container">
+            <view class="upload-wrapper" data-idcard="backCardImg" catchtap="uploadIDcard">
+              <view class="dm-uploader_input-box" wx:if="{{!backCardImg}}">
+                <view class="dm-uploader__input"></view>
+              </view>
+              <view class="front-id-card-img" wx:else>
+                <image class="front-card-img" src="{{backCardImg}}"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='cell'>
+        <view class='cell-top'>
+          <view class='left-text'>健康证</view>
+          <view class="right-container">
+            <view class="upload-wrapper" data-ordinary="healthCard" catchtap="uploadHealthWithBankCard">
+              <view class="dm-uploader_input-box" wx:if="{{!health_images_view}}">
+                <view class="dm-uploader__input"></view>
+              </view>
+              <view class="front-id-card-img" wx:else>
+                <image class="front-card-img" src="{{health_images_view}}"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='cell'>
+        <view class='cell-top'>
+          <view class='left-text'>银行卡</view>
+          <view class="right-container">
+            <view class="upload-wrapper" data-ordinary="bankCard" catchtap="uploadHealthWithBankCard">
+              <view class="dm-uploader_input-box" wx:if="{{!bank_images_view}}">
+                <view class="dm-uploader__input"></view>
+              </view>
+              <view class="front-id-card-img" wx:else>
+                <image class="front-card-img" src="{{bank_images_view}}"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{is_social}}">
+      <view class='cell'>
+        <view class='cell-top'>
+          <view class='left-text'>民族</view>
+          <view class="right-container">
+            <picker class='formdate-picker' mode="selector" range="{{nature_list}}" range-key="name" bindchange="handleNature">
+              {{nationText||'请选择民族'}}
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class='cell'>
+        <view class='cell-top'>
+          <view class='left-text'>户口性质</view>
+          <view class="right-container">
+            <picker class='formdate-picker' mode="selector" range="{{nature_register}}" range-key="name" bindchange="handleRegister">
+              {{natureRegisterText || "请选择户口性质"}}
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class='cell'>
+        <view class='cell-top'>
+          <view class='left-text'>户口所在地</view>
+          <view class="right-container">
+            <picker class='formdate-picker' mode="region" bindchange="bindRegionChange">
+              {{registerResidenceText?registerResidenceText:'请选择户口所在地'}}
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class='cell'>
+        <view class='cell-top'>
+          <view class='left-text'>居住地址</view>
+          <view class="right-container">
+            <picker class='formdate-picker' mode="region" bindchange="bindPlaceAddressTextChange">
+              {{placeAddressText?placeAddressText:'请选择居住地'}}
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class='cell'>
+        <view class='cell-top'>
+          <!-- <view class='left-text'></view> -->
+          <view class="right-container" style="width:100%">
+            <input style='color: #333333;width:100%;text-align:left;' type="text" class='input-text' placeholder="请输入详细住址" value="{{addressText}}" bindinput="handleAddressText"></input>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="bottom-btn-panel">
+    <button wx:if="{{is_protocol_supplement_info==1&&!employer}}" class="bottom-btn {{(real_name.length  && mobile.length  && idnumber.length  && detail_address.length && detail_unit_company && laborRelationsDate && detail_leaving_reason && detail_nocontract_reason) || 'bottom-btn-panel_enable'}}" bindtap="next">
+      下一步
+    </button>
+    <button wx:elif="{{is_protocol_supplement_info==1&&employer}}" class="bottom-btn {{(index>-1&&real_name.length  && mobile.length  && idnumber.length  && detail_address.length && detail_unit_company && laborRelationsDate && detail_leaving_reason && detail_nocontract_reason) || 'bottom-btn-panel_enable'}}" bindtap="next">
+      下一步
+    </button>
+    <button wx:elif="{{is_protocol_supplement_info!=1&&employer}}" class="bottom-btn {{(index>-1&&real_name.length  && mobile.length  && idnumber.length  && detail_address.length) || 'bottom-btn-panel_enable'}}" bindtap="next">
+      下一步
+    </button>
+    <button wx:else class="bottom-btn {{(real_name.length  && mobile.length  && idnumber.length  && detail_address.length) || 'bottom-btn-panel_enable'}}" bindtap="next">
+      下一步
+    </button>
+  </view>
+</view>

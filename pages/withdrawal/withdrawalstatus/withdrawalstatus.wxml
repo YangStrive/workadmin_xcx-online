@@ -1,0 +1,21 @@
+<!--pages/withdrawal/withdrawalstatus/withdrawalstatus.wxml-->
+<view class='withdrawalstatus'>
+  <view class='head'>
+    <image src='{{ status ? successimg : failimg}}'></image>
+    <text class='withdrawal_title'> {{status == 1 ? '提现申请成功' : '提现申请失败'}}</text> 
+    <text class='withrawal_success' wx:if="{{status == 1}}"></text>
+    <text class='withrawal_fail'wx:else>{{errmsg}}</text>
+  </view>
+  <view class='withdrawaldetail'>
+    <view>
+      <text class='labletitle'>提现金额</text>
+      <text class='lableinfo'>{{amount}}</text>
+    </view>
+    <view>
+      <text class='labletitle'>提现账户</text>
+      <text class='lableinfo'>{{account}}</text>
+    </view>
+  </view>
+
+  <text class='withdrawaldetail_btn' bindtap='tapBtn'>确 定</text>
+</view>

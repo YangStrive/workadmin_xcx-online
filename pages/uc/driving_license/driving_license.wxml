@@ -1,0 +1,15 @@
+<view class="section">
+  <personInfo></personInfo>
+  <view class="pannel">
+    <!-- <ocrIDcard bindocrIDcard="onOcrIDcard"></ocrIDcard> -->
+    <ocrDrivingLicense bindocrDrivingLicense='onOcrDrivingLicense' ocrInfo='{{driverLicense}}'></ocrDrivingLicense>
+    <ocrVehicleLicense bindocrVehicleLicense='onOcrVehicleLicense' ocrInfo='{{vehicleLicense}}'></ocrVehicleLicense>
+    <ocrCarNumber bindocrCarNumber='onOcrCarNumber' bindocrCarNumberImg='onOcrCarNumberImg' ocrInfo='{{carNumber}}' carNumber="{{otherCarNumber}}"></ocrCarNumber>
+    <view class="tip">
+      <view class="required">*</view>
+      <view class="tip-text">请上传实际使用车辆的行驶本，如无，则在其他附件处上传车牌照片</view>
+    </view>
+    <view class="footer" catchtap="submit" wx:if="{{!isAllUpload}}">保存</view>
+    <canvas style="width: {{cw}}px; height: {{cw}}px;position: absolute; z-index: -1; left: -10000rpx; top: -10000rpx;" canvas-id="zipCanvas"></canvas>
+  </view>
+</view>

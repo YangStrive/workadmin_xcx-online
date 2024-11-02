@@ -1,0 +1,241 @@
+/* pages/flexwork/rewardlist/rewardlist.wxss */
+
+Page {
+  background: #f2f2f2;
+}
+
+.top-box {
+  height: 22vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-view {
+  height: 78vh;
+  background: #f2f2f2;
+}
+
+.date-view {
+  background: #353941;
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-view image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.date-view-content{
+  position: absolute;
+  right: 20rpx;
+  margin-top: 3rpx;
+  z-index: 10000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.date-view text {
+  font-size: 28rpx;
+  color: #fff;
+  margin-left: 12rpx;
+}
+
+.icon-reward{
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.text-reward{
+  font-size: 24rpx;
+  margin-left: 8rpx;
+  color: #9A9CA0;
+}
+
+.icon-view {
+  width: 124rpx;
+  height: 124rpx;
+  background: #fff;
+  border-radius: 120rpx;
+  border: #fff 4rpx solid;
+  position: absolute;
+  left: 36rpx;
+  top: 26rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-view image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+}
+
+.view-detail {
+  background: #fff;
+  height: 13vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-name {
+  margin-left: 40rpx;
+  color: #353941;
+  margin-top: 66rpx;
+  max-width: 180rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  width: 180rpx;
+}
+
+.detail-content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.detail-content-item {
+  height: 160rpx;
+  width: 160rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.detail-content-item-count{
+  height: 58rpx;
+  font-size: 48rpx;
+  color: #353941;
+}
+
+.detail-content-item-label{
+  font-size: 24rpx;
+  color: #999;
+}
+
+.detail-content-item-label-rang{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.detail-content-item-label-rang image{
+  width: 16rpx;
+  height: 22rpx;
+  margin-left: 8rpx;
+}
+
+.detail-content-line {
+  height: 60rpx;
+  width: 1rpx;
+  background: #e5e5e5;
+}
+
+.h-line {
+  height: 1vh;
+  background: #f2f2f2;
+  border-top: #e5e5e5 1rpx solid;
+  border-bottom: #e5e5e5 1rpx solid;
+}
+
+.list-item {
+  background: #fff;
+  height: 160rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.list-item-content {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex: 1;
+  border-bottom: #e5e5e5 1rpx solid;
+}
+
+.content-image {
+  width: 96rpx;
+  height: 96rpx;
+  margin-left: 16rpx;
+  border-radius: 96rpx;
+}
+
+.ranking-box {
+  width: 58rpx;
+  height: 160rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ranking-box image {
+  width: 58rpx;
+  height: 64rpx;
+}
+
+.ranking-box text {
+  font-size: 32rpx;
+  color: #666;
+  font-weight: bolder;
+  margin-left: 10rpx;
+}
+
+.name-money-box {
+  margin-left: 24rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.name-money-name {
+  max-width: 300rpx;
+  color: #333;
+  font-size: 32rpx;
+}
+
+.name-money {
+  margin-top: 8rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+
+.name-money-text {
+  font-weight: bold;
+  color: #fa0;
+  font-size: 28rpx;
+}
+
+.text-count {
+  color: #fa0;
+  font-size: 52rpx;
+  margin-right: 32rpx;
+}
+
+.like{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 24rpx;
+}
+
+.like image{
+  width: 40rpx;
+  height: 36rpx;
+}
+
+.like text{
+  color: #666;
+  font-size: 28rpx;
+  margin-bottom: 4rpx;
+}

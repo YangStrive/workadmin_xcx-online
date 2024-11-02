@@ -1,0 +1,40 @@
+<view class="record">
+  <view class="record-top">
+    <view class="head-title">回访内容</view>
+    <view class="tip-list">
+      <view class="tip-item" wx:for="{{tipList}}" wx:for-item="tip" wx:for-index="index" wx:key="index">
+        <view class="tip-title">{{tip.title}}</view>
+        <radio-group class="radio-group" bindchange="radioChange" data-tipindex="{{index}}" wx:for="{{tip.radio}}" wx:for-item="item" wx:for-index="el" wx:key="el">
+          <label class="radio-label">
+            <radio value="{{el}}" checked="{{tip.checked == el}}" />
+            <view class="radio-txt">{{item}}</view>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="head-title">回访小记</view>
+    <view class='textarea-pr'>
+      <textarea class="textarea-main" bindinput="textareaChange" placeholder="备注信息" placeholder-style="color:#bbb;font-size:28rpx;" maxlength="500" />
+      <view class='text-length'>{{detail_len}}/500</view>
+    </view>
+  </view>
+  <view class="gap-line"></view>
+  <view class="record-bottom">
+    <view class="head-title">历史回访日志</view>
+    <view class="color-line"></view>
+    <view class="record-list">
+      <view class="record-item" wx:for="{{visit_history}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <view class="title">
+          {{item.date}}
+          <view class="tag" wx:for="{{item.tags}}" wx:for-item="el" wx:for-index="idx" wx:key="idx">
+            {{el}}
+          </view>
+        </view>
+        <view class="content">{{item.describe}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="btn {{!actived?'disabled':''}}" bindtap="handleSave">保存</view>
+  </view>
+</view>

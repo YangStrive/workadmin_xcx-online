@@ -1,0 +1,52 @@
+<view class="auth">
+  <view class="user-info">
+    <view class="avatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="info">
+      <view class="name">
+        <view wx:if="{{name}}">{{name}}</view>
+        <open-data wx:else type="userNickName"></open-data>
+      </view>
+      <view class="mobile" wx:if="{{mobile}}">{{mobile}}</view>
+    </view>
+  </view>
+  <view class="input-info">
+    <view class="title">上传证件照</view>
+    <view class="id-card">
+      <view class="front" wx:if="{{!frontCardImg}}" bindtap="uploadImg" data-img="frontCardImg">
+        <image src="https://cdn.doumistatic.com/214,01d825befd9c9cba.png"></image>
+        <view class="id-card-text">上传身份证正面</view>
+      </view>
+      <image wx:else class="frontCardImg" bindtap="uploadImg" data-img="frontCardImg" src="{{frontCardImg}}"></image>
+      <view wx:if="{{!backCardImg}}" class="back" bindtap="uploadImg" data-img="backCardImg">
+        <image src="https://cdn.doumistatic.com/214,01d825befd9c9cba.png"></image>
+        <view class="id-card-text">上传身份证反面</view>
+      </view>
+      <image wx:else bindtap="uploadImg" data-img="backCardImg" class="backCardImg" src="{{backCardImg}}"></image>
+    </view>
+    <view class="title">身份信息</view>
+    <view class="name">
+      <view class="head">姓名</view>
+      <view class="tig">*</view>
+      <input class="input" type="text" disabled='{{isPersonInfo}}' value="{{name}}" placeholder="请填写姓名" placeholder-class="placeholder" bindinput="bindInputName" />
+    </view>
+    <view class="card-number">
+      <view class="head">身份证</view>
+      <view class="tig">*</view>
+      <input class="input" type="idcard" disabled='{{isPersonInfo}}' value="{{idCard}}" placeholder="请填写身份证号码" placeholder-class="placeholder" bindinput="bindInputIdCard" />
+    </view>
+    <block wx:if="{{isSubmitAuth}}">
+      <view class="agreement" bindtap="changeAgree">
+        <image src="{{agree?'https://cdn.doumistatic.com/205,01ef3276e97e81a5.png':'https://cdn.doumistatic.com/202,01d828a0398e32b5.png'}}"></image>
+        <view class="text">登录即代表你已同意</view>
+        <view class="clause" catchtap="goClause">《服务协议及隐私条款》</view>
+      </view>
+      <view class="sure-btn" bindtap="auth">确认</view>
+    </block>
+  </view>
+  <canvas 
+    style="width: {{cw}}px; height: {{cw}}px;position: absolute; z-index: -1; left: -10000rpx; top: -10000rpx;"
+      canvas-id="zipCanvas"
+    ></canvas>
+</view>

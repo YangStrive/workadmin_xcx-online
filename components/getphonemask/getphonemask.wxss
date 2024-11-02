@@ -1,0 +1,83 @@
+.getphone-mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999;
+}
+.mask-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+  opacity: 0.5;
+  background: #000000;
+}
+
+.mask-main{
+  position: absolute;
+  top: 368rpx;
+  left: 94rpx;
+  bottom: 0;
+  z-index: 99;
+  width: 560rpx;
+  height: 408rpx;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.mask-text{
+  text-align: center;
+  display: block;
+  margin-top: 48rpx;
+  color: #666666;
+  font-family: SFProText-Medium;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+
+.close{
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 36rpx;
+  right: 36rpx;
+  display: block;
+  color: #bbb;
+  border-radius: 2px;
+}
+
+.sdd {
+  background: #1AAD19;
+  border-radius: 4px;
+  font-size: 16px;
+  color:#fff;
+  border: 1px solid rgba(5,5,5,0.08);
+  width:464rpx;
+  height:88rpx;
+  display:block;
+  line-height: 88rpx;
+  font-family: PingFangSC-Regular;
+  margin-top: 48rpx;
+}
+
+.useOtherPhone {
+  background: #fff;
+  border-radius: 4px;
+  font-size: 16px;
+  color:#1AAD19;
+  border: 1px solid rgba(5,5,5,0.08);
+  width:464rpx;
+  height:88rpx;
+  display:block;
+  line-height: 88rpx;
+  font-family: PingFangSC-Regular;
+  margin-top: 32rpx;
+}

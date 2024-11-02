@@ -1,0 +1,54 @@
+page {
+  background-color: #f2f2f2;
+  height: 100%;
+  font-family: PingFangSC-Regular;
+}
+.section {
+  min-height: 100%;
+  background-color: #f2f2f2;
+  position: relative;
+}
+.pannel {
+  min-height: 856rpx;
+  width: 638rpx;
+  position: absolute;
+  top: 204rpx;
+  left: 24rpx;
+  background: #fff;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20rpx;
+  padding: 0 32rpx 74rpx 32rpx;
+  margin-bottom: 54rpx;
+}
+.tip {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: baseline; */
+  margin-top: 44.4rpx;
+}
+.required {
+  font-size: 28rpx;
+  color: #ff6600;
+  flex: 1;
+}
+.tip-text {
+  width: 614rpx;
+  box-sizing: border-box;
+  line-height: 40rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #808080;
+}
+.footer {
+  width: 100%;
+  height: 88rpx;
+  background: #ffaa00;
+  border-radius: 8rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 32rpx;
+  color: #ffffff;
+  text-align: center;
+  line-height: 88rpx;
+  margin-top: 33.6rpx;
+}

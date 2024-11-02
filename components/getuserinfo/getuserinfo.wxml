@@ -1,0 +1,9 @@
+<!--components/getphonemask/getphonemask.wxml-->
+<view class='getphone-mask' wx:if="{{showMask}}">
+  <view class='mask-bg'></view>
+  <view class='mask-main'>
+    <view class='close' wx:if="{{false}}" bindtap='closeMask'>×</view>
+    <text class='mask-text'>{{title}}</text>
+    <button open-type="getUserInfo" class="sdd" bindgetuserinfo="getUserInfo" style='background: #1AAD19;border-radius: 4px;font-size: 16px;color:#fff;border:none;width:480rpx;height:44px;display:block;'> {{btnText}} </button>
+  </view>
+</view>

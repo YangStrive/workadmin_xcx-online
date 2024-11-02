@@ -1,0 +1,110 @@
+<!-- 身份证信息模板 -->
+<template name="idCard">
+  <view class="certificate-info">
+    <view class="title">{{item.inputInfo.config.title}}</view>
+    <view class="name">
+      <view class="head">{{item.inputInfo.config.nameText}}</view>
+      <view class="tig">*</view>
+      <input class="input" type="text" disabled='{{true}}' value="{{item.inputInfo.value.name}}" placeholder="上传证件获取姓名" placeholder-class="placeholder" />
+    </view>
+    <view class="card-number">
+      <view class="head">{{item.inputInfo.config.idCardText}}</view>
+      <view class="tig">*</view>
+      <input class="input" type="idcard" disabled='{{true}}' value="{{item.inputInfo.value.idCard}}" placeholder="上传证件获取身份证号码" placeholder-class="placeholder" />
+    </view>
+  </view>
+</template>
+<!-- 驾驶证、行驶证、其他证件信息模板 -->
+<template name="inputInfo">
+  <view class="car-certificate-info">
+    <view class="name">
+      <view class="head">{{item.inputInfo.config.nameText}}</view>
+      <input class="input" type="text" disabled='{{true}}' value="{{item.inputInfo.value.name}}" placeholder="上传证件获取姓名" placeholder-class="placeholder" />
+    </view>
+    <view class="card-number">
+      <view class="head">{{item.inputInfo.config.idCardText}}</view>
+      <input class="input" type="idcard" disabled='{{true}}' value="{{item.inputInfo.value.idCard}}" placeholder="上传证件获取号码" placeholder-class="placeholder" />
+    </view>
+  </view>
+</template>
+<!-- 驾照信息模板 -->
+<!-- <template name="drivingLicense">
+  <view class="car-certificate-info">
+    <view class="name">
+      <view class="head">真实姓名：</view>
+      <input class="input" type="text" disabled='{{true}}' value="{{item.inputInfo.value.name}}" placeholder="上传证件获取姓名" placeholder-class="placeholder" />
+    </view>
+    <view class="card-number">
+      <view class="head">身份证号：</view>
+      <input class="input" type="idcard" disabled='{{true}}' value="{{item.inputInfo.value.idCard}}" placeholder="上传证件获取号码" placeholder-class="placeholder" />
+    </view>
+  </view>
+</template> -->
+<!-- 行驶证信息模板 -->
+<!-- <template name="vehicleLicense">
+  <view class="car-certificate-info">
+    <view class="name">
+      <view class="head">所属人：</view>
+      <input class="input" type="text" disabled='{{true}}' value="{{item.inputInfo.value.name}}" placeholder="上传证件获取姓名" placeholder-class="placeholder" />
+    </view>
+    <view class="card-number">
+      <view class="head">车牌号码：</view>
+      <input class="input" type="idcard" disabled='{{true}}' value="{{item.inputInfo.value.idCard}}" placeholder="上传证件获取号码" placeholder-class="placeholder" />
+    </view>
+  </view>
+</template> -->
+<!-- 其他证件信息模板 -->
+<!-- <template name="carNumber">
+  <view class="car-certificate-info">
+    <view class="name">
+      <view class="head">所属人：</view>
+      <input class="input" type="text" disabled='{{true}}' value="{{item.inputInfo.value.name}}" placeholder="上传证件获取姓名" placeholder-class="placeholder" />
+    </view>
+    <view class="card-number">
+      <view class="head">车牌号码：</view>
+      <input class="input" type="idcard" disabled='{{true}}' value="{{item.inputInfo.value.idCard}}" placeholder="上传证件获取号码" placeholder-class="placeholder" />
+    </view>
+  </view>
+</template> -->
+<!-- 上传图片模板 -->
+<template name="uploadImg">
+  <view class="ocr-auth">
+    <view class="title">{{item.config.title}}</view>
+    <block wx:if="{{item.isShowCarNumber}}">
+      <view class="car-number">
+        <view class="head">车牌号码</view>
+        <input class="input" type="text" value="{{item.carNumber}}" placeholder="请输入车牌号" placeholder-class="placeholder" data-index="{{index}}" data-item="{{item}}" bindblur="getValue" />
+      </view>
+    </block>
+    <view class="id-card">
+      <view class="front" style='{{item.config.style.font}}' wx:if="{{!item.value.frontCardImg}}" bindtap="uploadImg" data-img="frontCardImg" data-index="{{index}}" data-item="{{item}}">
+        <image src="{{item.config.detaultFrontCardImg}}"></image>
+        <view class="id-card-text">{{item.config.frontCardText}}</view>
+      </view>
+      <image wx:else class="frontCardImg" bindtap="uploadImg" data-img="frontCardImg" src="{{item.value.frontCardImg}}" data-index="{{index}}" data-item="{{item}}"></image>
+      <view wx:if="{{!item.value.backCardImg}}" class="back" style='{{item.config.style.back}}' bindtap="uploadImg" data-img="backCardImg" data-index="{{index}}" data-item="{{item}}">
+        <image src="{{item.config.detaultBackCardImg}}"></image>
+        <view class="id-card-text">{{item.config.backCardText}}</view>
+      </view>
+      <image wx:else bindtap="uploadImg" data-img="backCardImg" class="backCardImg" src="{{item.value.backCardImg}}" data-index="{{index}}" data-item="{{item}}"></image>
+    </view>
+  </view>
+  <canvas style="width: {{item.config.cw}}px; height: {{item.config.cw}}px;position: absolute; z-index: -1; left: -10000rpx; top: -10000rpx;" canvas-id="zipCanvas"></canvas>
+</template>
+<!-- ocr识别 -->
+<template name="ocr">
+  <template is="{{item.cardType}}" data="{{item,index}}"></template>
+  <block wx:if="{{item.inputInfo.isShowInputInfo}}">
+    <block wx:if="{{item.inputInfo.cardType==='idCard'}}">
+      <template is="idCard" data="{{item,index}}"></template>
+    </block>
+    <block wx:else>
+      <template is="inputInfo" data="{{item,index}}"></template>
+    </block>
+  </block>
+</template>
+<view class="ocr-pannel">
+  <block wx:for="{{ocrData}}" wx:key="index">
+    <template is="ocr" data="{{item,index}}"></template>
+  </block>
+</view>

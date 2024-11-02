@@ -1,0 +1,105 @@
+<view class="section">
+  <block wx:if="{{list.length}}">
+    <view style="padding-top: 16rpx;"></view>
+    <view class="vip" wx:if="{{memberInfo.isVip}}">
+      <view class="vip-left">
+        <block wx:if="{{memberInfo.isVip}}">
+          <image class="vip-icon" src="../../image/wage-vip.png"></image>
+          <text class="vip-text">VIP用户</text>
+        </block>
+        <block wx:else>
+          <image class="not-vip-icon" src="../../image/not-wage-vip.png"></image>
+          <text class="vip-text">还未开通平台VIP</text>
+        </block>
+      </view>
+      <view class="vip-right" wx:if="{{memberInfo.isVip}}">
+        <text class="vip-date-text vip-date-label">截止日期：</text>
+        <text class="vip-date-text">{{memberInfo.end_time}}</text>
+      </view>
+    </view>
+    <view class="content">
+      <view class="list">
+        <view class="list-item {{index==list.length-1?'list-item-last':''}}" wx:for="{{list}}" wx:key="project_id">
+          <view class="checkbox-wrapper" bindtap="checkBoxChane" data-item="{{item}}" data-index="{{index}}">
+            <block wx:if="{{!item.checked}}">
+              <image class="select-icon" src="../../image/not-select.png"></image>
+            </block>
+            <block wx:else>
+              <image class="select-icon" src="../../image/selected.png"></image>
+            </block>
+          </view>
+          <view class="content-middle">
+            <view class="pro-title">{{item.project_name}}</view>
+            <!-- <view class="pro-tips">预计工资每日支付服务费{{item.interest}}元</view> -->
+          </view>
+          <view class="content-right">
+            <view class="salary-nums">￥{{item.amount_total}}</view>
+            <view class="salary-title">平台服务费：￥{{item.interest}}</view>
+          </view>   
+        </view>
+      </view>
+      <view class="all-checkbox">
+        <view class="total-nums-w">
+          <view>可预支合计：<text class="total-nums">￥{{totalNums}}</text></view>
+          <view class="salary-title" style="text-align: right;">平台服务费：￥{{totalInterest}}</view>
+        </view>
+      </view>
+      <view class="footer">
+        <view class="sumit-btn" bindtap="submitSalaryAdvance">申请预支工资</view>
+        <view class="agreement" bindtap="platformCheckBoxChane">
+          <block wx:if="{{!isAgreement}}">
+            <block wx:if="{{!agreement}}">
+              <image class="select-icon" src="../../image/not-select.png"></image>
+            </block>
+            <block wx:else>
+              <image class="select-icon" src="../../image/selected.png"></image>
+            </block>
+          </block>
+          <block wx:else>
+            <image class="select-icon" src="../../image/disabled-select-icon.png"></image>
+          </block>
+          <text class="agreement-label">我已阅读并同意签订</text>
+          <text class="agreement-text" catchtap="goElectronicProtocols">《平台服务协议》</text>
+        </view>
+        <view class="agreement" style="margin-top: 0;" wx:if="{{!memberInfo.isVip}}">
+          <view class="select-icon"></view>
+          <text class="agreement-label">我知道并同意用报酬扣减预支的金额和平台服务费</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <blok wx:else>
+    <view class="no-data">
+      <image class='no-data-img-ad' src='../../image/wage-ad.png'></image>
+      <image class='no-data-img' src='../../image/no-salary-data.png'></image>
+      <view class="no-data-text">您可预支工资的额度还没有</view>
+      <view class="no-data-text" style="margin-top: 5rpx;">请联系项目经理上传</view>
+    </view>
+  </blok>
+  <view class="dm-mask" wx:if="{{dialogwxPay}}">
+    <view class="wrapper">
+      <image class="vip-img-bg" src="../../image/vip1-bg.png"></image>
+      <view class="header">
+        <view class="close" bindtap="wxPay">
+          <image class="close-img" src="../../image/vip-close.png"></image>
+        </view>
+      </view>
+      <!-- <view class="good-time">{{goodsInfo.good_days}}.00</view> -->
+      <view class="good-time">{{totalServiceFee}}</view>
+      <!-- <view class="body">
+        这是一段内容这是一段内容这是一段内容这是一段内容
+      </view> -->
+      <view class="wx-pay-footer">
+        <view class="wx-pay-btn" bindtap="submitWxPay">立即开通</view>
+        <view class="wx-pay-agreement">
+          <!-- 开通前阅读并同意
+          <text class="wx-pay-agreement-text" catchtap="goPlatformAgreement">《平台服务VIP协议》</text> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="dm-mask" style="color: #FFAA00;font-size: 32rpx;flex-direction: column;" wx:if="{{dialogwxPaySuccess}}">
+    <div class="loading"></div>
+    <div style="padding-top: 20rpx;">处理中....</div>
+  </view>
+</view>

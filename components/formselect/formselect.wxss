@@ -1,0 +1,29 @@
+
+@import "../../style/base/base.wxss";
+.formselect-picker{
+  position: relative;
+  display:block;
+  height:96rpx;
+  background-color:#fff;
+  line-height:96rpx;
+  padding-left:12px;
+
+}
+.picker-placeholder{
+  font-size: 16px;
+  color: #BBB;
+}
+.picker-value{
+  font-size: 16px;
+  color: #333;
+}
+.select-icon{
+  position: absolute;
+  right: 23.4rpx;
+  top: 34rpx;
+  width: 8.3px;
+  height: 13px;
+  background: url('http://cdn.doumistatic.com/67,8bce7d83d85f17.png') no-repeat;
+  background-size: 100% 100%;
+  display: block;
+}

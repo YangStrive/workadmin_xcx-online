@@ -1,0 +1,30 @@
+<!--pages/withdrawal/withdrawal/withdrawal.wxml-->
+<view class='withdrawal'>
+  <view class='withdrawal_banner'>
+    <view>
+      <text class='withdrawal_way'>微信</text>
+      <text class='withdrawal_phone'>{{wxId}}</text>
+    </view>
+    <text class='unbind' bindtap='unbindwx'>解绑</text>
+  </view>
+  <view class='withdrawal_input'>
+    <text class='input_label'>验证码</text>
+    <input placeholder='请输入' type="number" maxlength="6" placeholder-style="color:#ccc"   bindinput='codefn'></input>
+    <text wx:if="{{codeSw}}" class="get_code get_codeS" bindtap='getCode'>获取验证码</text>
+    <text wx:else class="get_code get_codeE">{{getcodetext}}</text>
+  </view>
+
+  <text  class='note'>验证码将会发至{{phone}},每日提现最多10次</text>
+  <text class='withdrawal_btn' wx:if="{{code.length == 6}}" bindtap='withdrawalbtn'>确认提现</text>
+  <text class='withdrawal_btn disablebtn' wx:else>确认提现</text>
+  <!-- <view class='maskcode' wx:if="{{showmask}}">
+    <view class='codemain'>
+      <text class='masktitle'>请输入图形验证码</text>
+      <view>
+        <input class='codeinput' placeholder='请输入'maxlength="4"  bindinput='imgcodeinput'  placeholder-style="color:#ccc" ></input>
+        <image  class='codeimg' src='{{imgcode}}'  bindtap='changeimgcode'></image>
+      </view>
+      <text class='codesubmit'>确 定</text>
+    </view>
+  </view> -->
+</view>
