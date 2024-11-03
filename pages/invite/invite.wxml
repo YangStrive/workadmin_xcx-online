@@ -115,8 +115,7 @@
                       <view class="weui-label">出生年月</view>
                     </view>
                     <view class="weui-cell__bd" wx:if="{{hasReal_name && '' != birthData}}">
-                      <text class="picker_text" class="{{(hasReal_name && '' != birthData)? 'isdisabled' : ''}}" wx:if="{{'' != birthData}}">
-                        {{birthData}}
+                      <text class="picker_text" class="{{(hasReal_name && '' != birthData)? 'isdisabled picker-text-w' : 'picker-text-w'}}" wx:if="{{'' != birthData}}">{{birthData}}
                       </text>
                     </view>
                     <picker mode="date" value="{{date}}" start="1940-09-01" end="2019-09-01" bindchange="bindBirthDateChange" wx:else>
@@ -188,10 +187,8 @@
                       <view class="weui-label">详细地址</view>
                     </view>
                     <view class="weui-cell__bd">
-                      <text class="picker_text" wx:if="{{datail_address != ''}}">
-                        {{datail_address}}
-                      </text>
-                      <text class="picker_text picker_text-placeholder" wx:else>请选择</text>
+                      <text class="picker-text-w" wx:if="{{datail_address != ''}}">{{datail_address}}</text>
+                      <text class="picker_text picker_text-placeholder picker-text-w" wx:else>请选择</text>
                     </view>
                     <view class="weui-cell__ft"></view>
                   </view>

@@ -19,6 +19,10 @@ const uploadImg = async function (target, ocrConfig = {}) {
 
       // 1.上傳到微信服務器
       const [wxErr, wxData] = await util.awaitWrap(wxChooseImage());
+      console.log("wxChooseImage", wxErr, wxData);
+      if(wxErr && 'chooseImage:fail cancel' === wxErr.errMsg){
+        return null
+      }
       if (wxErr) {
         toast({ title: "微信上传图片失败,请重试!" });
         return;

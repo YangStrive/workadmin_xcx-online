@@ -90,7 +90,7 @@ form {
     padding: 2px 0px;
 }
 .weui-label {
-    width: 78px;
+    width: 100px;
     color:#666666;
     line-height:44px;
     font-size:14px    
@@ -219,7 +219,7 @@ picker {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding: 10px;
 }
 .dm-uploader_input-box{
@@ -270,4 +270,8 @@ picker {
 }
 
 
-
+.picker-text-w{
+    display: block;
+    line-height: 48rpx;
+    height: 48rpx;
+}

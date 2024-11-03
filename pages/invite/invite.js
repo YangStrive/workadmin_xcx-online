@@ -241,7 +241,7 @@ Page({
           if (res.data.data.current_user_info.card_back) {
             that.setData({
               card_back: res.data.data.current_user_info.card_back.replace('https://work.doumi.com/show.php?p=',''),
-              backCardImg:res.data.data.current_user_info.card_front,
+              backCardImg:res.data.data.current_user_info.card_back,
             })
           }else{
             that.setData({
@@ -1363,7 +1363,10 @@ Page({
     let user_name = uploadData.newOcrData.data.user_name;
     if(!this.data.user_identity || !this.data.user_name){
       //从身份证号中截取出生年月，格式为1990年01月
-      let birth = idcard_number.substring(6, 10) + '年' + idcard_number.substring(10, 12) + '月';
+      let birth = '';
+      if(idcard_number){
+         birth = idcard_number.substring(6, 10) + '年' + idcard_number.substring(10, 12) + '月';
+      }
       this.setData({
         user_identity:idcard_number,
         user_name,

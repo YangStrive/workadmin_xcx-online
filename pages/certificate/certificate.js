@@ -35,6 +35,9 @@ Page({
     }
     // 1.上傳到微信服務器
     const [wxErr,wxData]=await util.awaitWrap(that.wxChooseImage())
+    if(wxErr && 'chooseImage:fail cancel' === wxErr.errMsg){
+      return
+    }
     if(wxErr){
       that.toast({title:'微信上传图片失败,请重试!'})
       return
