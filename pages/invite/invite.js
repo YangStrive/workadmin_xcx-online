@@ -19,7 +19,7 @@ Page({
     sexArray: ['男', '女'],//性别选择器
     carNums:['带车','不带车'],
     contactRelationship:'',
-    contactRelationshipList:['父母','配偶','子女','兄弟姐妹','朋友','同事','其他'],
+    contactRelationshipList:[],
     region: ['广东省', '广州市', '海珠区'],//地区选择器默认值
     // customItem: '全部',
     schoolArray: ['初中及以下', '高中', '大专', '本科', '硕士', '博士及以上'],//学历选择器范围
@@ -158,6 +158,21 @@ Page({
             url: '../minework/minework?project_id=' + res.data.data.project_id + '&team_id=' + res.data.data.team_id + '&group_id=' + res.data.data.group_id,
           })
         }else{
+          //contact_person_relation: {1: "父母", 2: "配偶", 3: "子女", 4: "兄弟姐妹", 5: "朋友", 6: "同事", 7: "其他"}
+          //转换为数组 [{label: "父母", value: 1}, {label: "配偶", value: 2}, {label: "子女", value: 3}, {label: "兄弟姐妹", value: 4}, {label: "朋友", value: 5}, {label: "同事", value: 6}, {label: "其他", value: 7}]
+          let contactRelationshipList = [];
+          for (let key in res.data.data.contact_person_relation){
+            let obj = {
+              label: res.data.data.contact_person_relation[key],
+              value: key
+            }
+            contactRelationshipList.push(obj)
+          }
+
+          this.setData({
+            //紧急联系人关系list
+            contactRelationshipList:contactRelationshipList
+          })
 
           that.getPosition();
           // that.initResult(res.data.data.required_form_list);
@@ -427,8 +442,12 @@ Page({
             } else if (37 == required_field_info[i].id) {
               //与紧急联系人关系
               if (required_field_info[i].value != 0 && required_field_info[i].value != '') {
+                let contactRelationship =  that.data.contactRelationshipList.filter((item)=>{
+                  return item.value == required_field_info[i].value
+                })
+
                 that.setData({
-                  contactRelationship: that.data.contactRelationshipList[required_field_info[i].value - 1]
+                  contactRelationship: contactRelationship,
                 })
               } else {
                 that.setData({
@@ -982,15 +1001,7 @@ Page({
           return
         }
       } else if (that.data.items[i].id == 9) {
-        if (that.data.datail_address != '') {
-          const regex = /^[\u4e00-\u9fa5a-zA-Z0-9\s-]{5,}$/;  
-          if (!regex.test(that.data.datail_address)) {  
-            wx.showToast({
-              title: '地址格式不正确或长度不足',
-              icon: "none"
-            })
-            return false; // 地址格式不正确或长度不足  
-          }  
+        if (that.data.datail_address != '') { 
           student.datail_address = that.data.datail_address
         } else {
           wx.showToast({
@@ -1111,8 +1122,9 @@ Page({
           })
           return
         }
+        //在that.data.contactRelationshipList中查找that.data.contactRelationship对应的value
 
-        student.contact_person_relation = that.data.contactRelationshipList.indexOf(that.data.contactRelationship) + 1
+        student.contact_person_relation = that.data.contactRelationship.value
 
       }else if(that.data.items[i].id == 20){
         if (that.data.bank_provice_id=='') {

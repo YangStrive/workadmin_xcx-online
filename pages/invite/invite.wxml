@@ -348,12 +348,12 @@
                     <!-- <view class="weui-cell__bd" wx:if="{{carNum != ''}}">
                       <text class="picker_text" class="{{(carNum)? 'isdisabled' : ''}}">{{carNum}}</text>
                     </view> -->
-                    <picker bindchange='bindPickercontactRelationship' value='{{index}}' range='{{contactRelationshipList}}'>
+                    <picker bindchange='bindPickercontactRelationship' value='{{index}}' range='{{contactRelationshipList}}' range-key="label">
                       <view class="weui-cell__bd">
                         <text class="picker_text picker_text-placeholder" wx:if="{{'' == contactRelationship}}">
                           请选择
                         </text>
-                        <text class="picker_text" wx:if="{{'' != contactRelationship}}">{{contactRelationship}}</text>
+                        <text class="picker_text" wx:if="{{'' != contactRelationship}}">{{contactRelationship.label}}</text>
                       </view>
                     </picker>
                     <view class="weui-cell__ft" wx:if="{{!(contactRelationship)}}"></view>
