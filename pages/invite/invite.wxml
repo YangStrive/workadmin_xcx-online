@@ -114,8 +114,8 @@
                     <view class="weui-cell__hd">
                       <view class="weui-label">出生年月</view>
                     </view>
-                    <view class="weui-cell__bd" wx:if="{{hasReal_name && '' != birthData}}">
-                      <text class="picker_text" class="{{(hasReal_name && '' != birthData)? 'isdisabled picker-text-w' : 'picker-text-w'}}" wx:if="{{'' != birthData}}">{{birthData}}
+                    <view class="weui-cell__bd" wx:if="{{(hasReal_name || hasReal_name_auth) && '' != birthData}}">
+                      <text class="picker_text" class="{{((hasReal_name || hasReal_name_auth) && '' != birthData)? 'isdisabled picker-text-w' : 'picker-text-w'}}" wx:if="{{'' != birthData}}">{{birthData}}
                       </text>
                     </view>
                     <picker mode="date" value="{{date}}" start="1940-09-01" end="2019-09-01" bindchange="bindBirthDateChange" wx:else>

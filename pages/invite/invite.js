@@ -93,6 +93,7 @@ Page({
     backCardImg:'',
     card_back:'',
     is_health_cert:'',
+    hasReal_name_auth:false,
 
   },
 
@@ -1210,19 +1211,11 @@ Page({
     params.dmclient = "weixinqyxcx"
     params = JSON.stringify(params)
     console.log('传入', params)
-    if(this.data.hasReal_name){
-      wx.showToast({
-        title: '已完成实名认证，正在提交...',
-        icon: "loading",
-        duration: 10000
-      })
-    }else{
-      wx.showToast({
-        title: '请先完成实名认证...',
-        icon: "none",
-      })
-      return;
-    }
+    wx.showToast({
+      title: '已完成实名认证，正在提交...',
+      icon: "loading",
+      duration: 10000
+    })
     // return
     setTimeout(() => {
 
@@ -1359,30 +1352,32 @@ Page({
     };
     const [error, uploadData] = await OCR.uploadImg(target, ocrUploadConfig);
     console.log("uploaddata.....", uploadData);
+
+    if(uploadData.target == 'frontCardImg' ){
     let idcard_number = uploadData.newOcrData.data.idcard_number;
     let user_name = uploadData.newOcrData.data.user_name;
-    if(!this.data.user_identity || !this.data.user_name){
-      //从身份证号中截取出生年月，格式为1990年01月
-      let birth = '';
-      if(idcard_number){
-         birth = idcard_number.substring(6, 10) + '年' + idcard_number.substring(10, 12) + '月';
-      }
-      this.setData({
-        user_identity:idcard_number,
-        user_name,
-        hasReal_name:true,
-        birthData:birth
-      })
-    }
 
-    if(uploadData.target == 'frontCardImg' && idcard_number){
-      if(idcard_number != this.data.user_identity){
+      if(idcard_number != this.data.user_identity &&  !this.data.user_identity){
         wx.showToast({
           title: '身份证信息与当前登录人不一致，请重新上传',
         })
         return;
       }
+
+      if(!this.data.user_identity || !this.data.user_name){
+        //从身份证号中截取出生年月，格式为1990年01月
+        if(idcard_number){
+          let  birth = idcard_number.substring(6, 10) + '年' + idcard_number.substring(10, 12) + '月';
+           this.setData({
+              birthData:birth,
+              user_identity:idcard_number,
+              user_name,
+              hasReal_name_auth:true,
+            })
+        }
+      }
     }
+
 
     // this.getCardimg(uploadData);
     //if(uploadData.name == 'front_image')
