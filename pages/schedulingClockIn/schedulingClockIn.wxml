@@ -5,16 +5,12 @@
     <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
     <text>暂无项目，请管理员通过https://vip.doumi.com进行项目项目配置，管理员权限开通请联系微信：hhy4136</text>
   </view>
-  <view class="noMsgBg" hidden='{{!isShowNetWorkError}}'>
-    <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
-    <text>网络异常请下拉刷新页面</text>
-  </view>
   <view class="title-content" hidden='{{projectData.length == 0}}'>
-    <image src='{{projectData[index].logo}}' style="margin-left:24rpx;margin-top:4rpx;width:60rpx;height:60rpx;"></image>
+    <image src='{{projectNameArray[currentProjectId].logo}}' style="margin-left:24rpx;margin-top:4rpx;width:60rpx;height:60rpx;"></image>
     <view class="project-name sigin_line_text" bindtap="powerDrawer" data-statu="open">
-      {{projectNameArray[index]}}
+      {{projectNameArray[currentProjectId].name}}
     </view>
-    <image src='http://cdn.doumistatic.com/80,a7d6a7b5a0628d.png' bindtap="powerDrawer" data-statu="open" style="margin-top:22rpx;width:32rpx;height:24rpx;" hidden='{{projectNameArray.length < 1}}'></image>
+    <image src='http://cdn.doumistatic.com/80,a7d6a7b5a0628d.png' bindtap="powerDrawer" data-statu="open" style="margin-top:22rpx;width:32rpx;height:24rpx;" hidden='{{projectData.length < 1}}'></image>
   </view>
   <view class="noMsgBg" hidden='{{!isShowNoWork}}'>
     <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
@@ -25,7 +21,7 @@
       <view class="weui-cell__bd item-type-text-title">工作考勤</view>
       <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
         <view style="display: inline-block;vertical-align:middle; font-size: 28rpx;color: #999999;" bindtap="onClickAttendanceList">
-          查看考勤排班
+          查看更多排班
         </view>
       </view>
     </view>
@@ -50,7 +46,7 @@
             <image src='http://cdn.doumistatic.com/73,91d995418543bf.png' class='icon-change-project-hide'></image>
           </view>
         </view>
-        <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class='drawer_content_scroll'>
+        <scroll-view scroll-y="true" class='drawer_content_scroll'>
           <view id='{{project.viewid}}' style="background:{{index == idx?'#f8f8fa':'#fff'}}" class='drawer_project-item' wx:for="{{projectData}}" wx:key="item" wx:for-item="project" wx:for-index="idx">
             <view class="drawer_project_title">
               <view class='item-select-project-dot' style="background:{{index == idx?'#fa0':'#fff'}}"></view>
@@ -66,16 +62,7 @@
     </view>
   </view>
 </view>
-<view class="bottom-btn-panel" bindtap='hideTip' wx:if='{{isShowTip==1}}'>
-  <view class='view-top'></view>
-  <view class='view-center'>
-    <image src='http://cdn.doumistatic.com/75,9ad2c5e850070f.png'></image>
-  </view>
-  <view class='view-last'>
-    <image src='http://cdn.doumistatic.com/77,9ad2ae4b337999.png'></image>
-    <text>知道了</text>
-  </view>
-</view>
+
 <template name="item-attendances">
   <view class='item-attendance-new'>
     <view class='item-attendance-left-panel'>

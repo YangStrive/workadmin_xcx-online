@@ -8,7 +8,7 @@
                 {
                     "name": "新版考勤打卡",
                     "pathName": "pages/schedulingClockIn/schedulingClockIn",
-                    "query": "",
+                    "query": "projectId=18331",
                     "launchMode": "default",
                     "scene": null
                 },
