@@ -6,6 +6,13 @@
         "miniprogram": {
             "list": [
                 {
+                    "name": "新版考勤打卡",
+                    "pathName": "pages/schedulingClockIn/schedulingClockIn",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "项目邀请",
                     "pathName": "pages/invite/invite",
                     "query": "code=WjNzVXhZRGszKzlNUWVJZUcvRzV4V2FLVVBWTXBFVkErTTJDSVVzQ3VTMnlzREJOejYzZHlCSnp2MHJDaHNIb3ZmZE1kOHRSVGhlQ2JaUEs2MHlxbk9mZEhLUjJUVHN2WE9LT3owRHl1UFBCc2pxd3didnNqeU0=",

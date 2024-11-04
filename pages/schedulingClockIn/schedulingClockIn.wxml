@@ -1,0 +1,161 @@
+<!-- minework.wxml -->
+<view class='view_root'>
+  <!-- <text>是否显示过{{isShowAdCardFlagTest}}</text> -->
+  <view class="noMsgBg" wx:if='{{projectData.length == 0}}'>
+    <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+    <text>暂无项目，请管理员通过https://vip.doumi.com进行项目项目配置，管理员权限开通请联系微信：hhy4136</text>
+  </view>
+  <view class="noMsgBg" hidden='{{!isShowNetWorkError}}'>
+    <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+    <text>网络异常请下拉刷新页面</text>
+  </view>
+  <view class="title-content" hidden='{{projectData.length == 0}}'>
+    <image src='{{projectData[index].logo}}' style="margin-left:24rpx;margin-top:4rpx;width:60rpx;height:60rpx;"></image>
+    <view class="project-name sigin_line_text" bindtap="powerDrawer" data-statu="open">
+      {{projectNameArray[index]}}
+    </view>
+    <image src='http://cdn.doumistatic.com/80,a7d6a7b5a0628d.png' bindtap="powerDrawer" data-statu="open" style="margin-top:22rpx;width:32rpx;height:24rpx;" hidden='{{projectNameArray.length < 1}}'></image>
+  </view>
+  <view class="noMsgBg" hidden='{{!isShowNoWork}}'>
+    <image src="http://cdn.doumistatic.com/67,8bcd613fe7bb6a.png"></image>
+    <text>今日暂无工作</text>
+  </view>
+  <view class="item-content" hidden="{{!isShowAtten}}">
+    <view class="item-top weui-cell_access" style='height: 100rpx;'>
+      <view class="weui-cell__bd item-type-text-title">工作考勤</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+        <view style="display: inline-block;vertical-align:middle; font-size: 28rpx;color: #999999;" bindtap="onClickAttendanceList">
+          查看考勤排班
+        </view>
+      </view>
+    </view>
+    <view class="item_no_attendance" hidden="{{0 != attendances.length}}">暂无排班</view>
+    <view wx:for="{{attendances}}" wx:for-item="attendance" wx:key="*this">
+      <template is="item-attendances" data="{{attendance}}"></template>
+    </view>
+  </view>
+  <view style="background:#f2f2f2;height:30rpx;"></view>
+  <view style='z-index:3;'>
+    <!-- mask -->
+    <view class="drawer_screen" catchtouchstart='powerDrawer' bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+    <!-- content -->
+    <!-- 使用animation属性指定需要执行的动画 -->
+    <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+      <!-- drawer content -->
+      <view class='drawer_content'>
+        <view class="drawer_title line_2">
+          <view class='change-project-title' catchtouchstart='preventD'>切换项目</view>
+          <view style='flex:1'></view>
+          <view class='remove_box' bindtap="powerDrawer" data-statu="close">
+            <image src='http://cdn.doumistatic.com/73,91d995418543bf.png' class='icon-change-project-hide'></image>
+          </view>
+        </view>
+        <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class='drawer_content_scroll'>
+          <view id='{{project.viewid}}' style="background:{{index == idx?'#f8f8fa':'#fff'}}" class='drawer_project-item' wx:for="{{projectData}}" wx:key="item" wx:for-item="project" wx:for-index="idx">
+            <view class="drawer_project_title">
+              <view class='item-select-project-dot' style="background:{{index == idx?'#fa0':'#fff'}}"></view>
+              <image src='{{project.logo}}' data-index='{{idx}}' bindtap='changeProject' style="width:80rpx;height:80rpx;margin-right: 16rpx;"></image>
+              <view data-index='{{idx}}' class='sigin_line_text' bindtap='changeProject' style='flex:1;font-size:32rpx;font-weight: bolder;'>
+                {{project.name}}
+              </view>
+            </view>
+            <view class='drawer_project_line'></view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="bottom-btn-panel" bindtap='hideTip' wx:if='{{isShowTip==1}}'>
+  <view class='view-top'></view>
+  <view class='view-center'>
+    <image src='http://cdn.doumistatic.com/75,9ad2c5e850070f.png'></image>
+  </view>
+  <view class='view-last'>
+    <image src='http://cdn.doumistatic.com/77,9ad2ae4b337999.png'></image>
+    <text>知道了</text>
+  </view>
+</view>
+<template name="item-attendances">
+  <view class='item-attendance-new'>
+    <view class='item-attendance-left-panel'>
+      <view class='item-attendance-dot-top' hidden="{{0 != attendance.sStatus.length}}"></view>
+      <view class='image-state-box-top' hidden="{{0 == attendance.sStatus.length}}">
+        <view style='height:64rpx;'></view>
+        <image class="item-attendance-image-state-top" src="{{attendance.sStatusImg}}"></image>
+      </view>
+      <view class='item-attendance-dot-line'></view>
+      <view class='item-attendance-dot-bottom' hidden="{{0 != attendance.eStatus.length}}"></view>
+      <view class='image-state-box-bottom' hidden="{{0 == attendance.eStatus.length}}">
+        <image class="item-attendance-image-state-bottom" src="{{attendance.eStatusImg}}"></image>
+        <view style='height:70rpx;'></view>
+      </view>
+    </view>
+    <view class='item-attendance-detail-panel'>
+      <view class='item-attendance-detail-work' bindtap="onClickSAttendanceItem" data-statu="{{attendance.sdata}}" data-item='{{attendance.sdata.form_data}}'>
+        <view class='item-attendance-detail-worktime'>
+          <view class='item-attendance-time-text'>
+            <text>上班</text>
+            <text style='margin-left:10rpx' hidden='{{!(attendance.scross == 0 && attendance.scross_attend == 1)}}'>
+              昨日
+            </text>
+            <text style="margin-left: 10rpx">{{attendance.startTime}}</text>
+          </view>
+          <text class='text-early-clock' hidden='{{!attendance.isShowEarlyClock}}'>提前5小时可开始打卡</text>
+          <view class='item-attendance-detail-workstatu' hidden='{{attendance.isShowEarlyClock}}'>
+            <view class="{{attendance.sStatus[0].class}}" hidden="{{1 > attendance.sStatus.length}}">
+              {{attendance.sStatus[0].name}}
+            </view>
+            <view class="{{attendance.sStatus[1].class}}" hidden="{{2 > attendance.sStatus.length}}">
+              {{attendance.sStatus[1].name}}
+            </view>
+          </view>
+        </view>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowSAttendTime}}">
+          {{attendance.sAttendTime}}
+        </text>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowSAttendTime}}" style='margin-left:10rpx'>
+          打卡
+        </text>
+        <image src="../../image/ic_mine_job_right.png" class='item-attendance-detail-workimg' hidden="{{!attendance.isShowSAttendTime}}"></image>
+        <form bindsubmit="onClickSAttendanceBtn" report-submit='true' data-statu="{{attendance.sdata}}">
+          <button class="item-attendance-btn" form-type='submit' hidden="{{1 != attendance.sAttendanceBtn}}">
+            打卡
+          </button>
+        </form>
+      </view>
+      <view class='item-attendance-detail-work-line'></view>
+      <view class='item-attendance-detail-work' bindtap="onClickSAttendanceItem" data-statu="{{attendance.edata}}" data-item='{{attendance.edata.form_data}}'>
+        <view class='item-attendance-detail-worktime'>
+          <view class='.item-attendance-time-text'>
+            <text>下班</text>
+            <text style='margin-left:10rpx' hidden='{{!(attendance.ecross == 1 && attendance.ecross_attend == 0)}}'>
+              次日
+            </text>
+            <text style="margin-left: 10rpx">{{attendance.endTime}}</text>
+          </view>
+          <view class='item-attendance-detail-workstatu'>
+            <view class="{{attendance.eStatus[0].class}}" hidden="{{1 > attendance.eStatus.length}}">
+              {{attendance.eStatus[0].name}}
+            </view>
+            <view class="{{attendance.eStatus[1].class}}" hidden="{{2 > attendance.eStatus.length}}">
+              {{attendance.eStatus[1].name}}
+            </view>
+          </view>
+        </view>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowEAttendTime}}">
+          {{attendance.eAttendTime}}
+        </text>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowEAttendTime}}" style='margin-left:10rpx'>
+          打卡
+        </text>
+        <image src="../../image/ic_mine_job_right.png" class='item-attendance-detail-workimg' hidden="{{!attendance.isShowEAttendTime}}"></image>
+        <form bindsubmit='onClickSAttendanceBtn' data-statu="{{attendance.edata}}" report-submit='true'>
+          <button form-type='submit' class="item-attendance-btn" hidden="{{1 != attendance.eAttendanceBtn}}">
+            打卡
+          </button>
+        </form>
+      </view>
+    </view>
+  </view>
+</template>

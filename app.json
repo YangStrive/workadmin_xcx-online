@@ -98,7 +98,8 @@
         "pages/replacementCard/replacementCard",
         "pages/uc/diaodianApply/ddApply",
         "components/datetime-picker/datetime-picker",
-        "pages/attdance/record_new/record_new"
+        "pages/attdance/record_new/record_new",
+        "pages/schedulingClockIn/schedulingClockIn"
     ],
     "requiredPrivateInfos": [
         "getLocation",
