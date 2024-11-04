@@ -1357,9 +1357,10 @@ Page({
     let idcard_number = uploadData.newOcrData.data.idcard_number;
     let user_name = uploadData.newOcrData.data.user_name;
 
-      if(idcard_number != this.data.user_identity &&  !this.data.user_identity){
+      if(idcard_number != this.data.user_identity && this.data.user_identity){
         wx.showToast({
           title: '身份证信息与当前登录人不一致，请重新上传',
+          icon: "none"
         })
         return;
       }
