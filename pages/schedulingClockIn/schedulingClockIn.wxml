@@ -98,13 +98,9 @@
             </view>
           </view>
         </view>
-        <text class='item-attendanceed-time' hidden="{{!attendance.isShowSAttendTime}}">
-          {{attendance.sAttendTime}}
-        </text>
-        <text class='item-attendanceed-time' hidden="{{!attendance.isShowSAttendTime}}" style='margin-left:10rpx'>
-          打卡
-        </text>
-        <image src="../../image/ic_mine_job_right.png" class='item-attendance-detail-workimg' hidden="{{!attendance.isShowSAttendTime}}"></image>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowSAttendTime}}">{{attendance.sAttendTime}}</text>
+        <text class='item-attendanceed-time' hidden="{{!attendance.isShowSAttendTime}}" style='margin-left:10rpx;margin-right:24rpx'>打卡 </text>
+        <image src="../../image/ic_mine_job_right.png" class='item-attendance-detail-workimg' wx:if="{{!attendance.isShowSAttendTime}}"></image>
         <form bindsubmit="onClickSAttendanceBtn" report-submit='true' data-statu="{{attendance.sdata}}">
           <button class="item-attendance-btn" form-type='submit' hidden="{{1 != attendance.sAttendanceBtn}}">
             打卡
@@ -113,7 +109,11 @@
       </view>
       <view class='item-attendance-detail-work-line'></view>
       <view class="rest-box">
-          <text class='rest-btn' style='margin-left:10rpx'>开始休息</text>
+          <form bindsubmit="handleClickBeginRestBtn" report-submit='true' data-statu="{{attendance.sdata}}">
+            <button class="item-attendance-btn rest-btn" form-type='submit' wx:if="{{attendance.attendance_btn == 0 && attendance.rest_btn  == 0}}">
+              {{ attendance.rest_btn  ==  0 ? '开始' : '结束'}}休息
+            </button>
+          </form>
       </view>
 
       <view class='item-attendance-detail-work-line'></view>

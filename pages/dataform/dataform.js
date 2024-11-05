@@ -69,7 +69,8 @@ Page({
     name: '',
     productInfo: [],
     location_time: 0,
-    showFeedback: false
+    showFeedback: false,
+    clockInType: '',
   },
   /**
    * 生命周期函数--监听页面加载
@@ -112,7 +113,8 @@ Page({
 
 
           this.setData({
-            extraInfo: res.data
+            extraInfo: res.data,
+            clockInType: options.clockInType
           })
         },
       })
@@ -452,6 +454,10 @@ Page({
         mac_address:mac_address
       }
 
+      if(this.data.clockInType == 'rest'){
+        this.restClockIn(submitDate)
+      }
+
       var url = dmNetwork.kqadd
 
       // if (pageCount == undefined || pageCount == 1) {
@@ -508,6 +514,13 @@ Page({
       that.commitData()
     }
   },
+
+  //休息打卡
+  restClockIn: function () {
+    var that = this;
+    restClock
+  },
+
   back: function () {
     // debugger
     let pages = getCurrentPages(); //获取当前页面js里面的pages里的所有信息。

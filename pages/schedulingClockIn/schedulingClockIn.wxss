@@ -1065,12 +1065,8 @@ Page {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-right: 24rpx;
 }
 .rest-box .rest-btn{
   display: block;
-  padding: 8rpx 12rpx;
-  border-radius: 4rpx;
-  background: #fa0;
-  color: #fff;
+  width: auto;
 }

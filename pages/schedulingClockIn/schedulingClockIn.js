@@ -80,19 +80,6 @@ Page({
 
   powerDrawer: function (e) {
     var currentStatu = e.currentTarget.dataset.statu;
-
-    //做好版本兼容 调用隐藏/展示tabBar方法必须在tabBar页面
-    // if (util.compareVersion("1.9.0", wxVeison.SDKVersion) == 1) {
-    //   //高于1.9.0隐藏tabbar先
-    // } else {
-    //   if (currentStatu == "open") {
-    //     wx.hideTabBar({});
-    //   } else {
-    //     setTimeout(function () {
-    //       wx.showTabBar({});
-    //     }, 300);
-    //   }
-    // }
     this.util(currentStatu);
   },
 
@@ -198,6 +185,8 @@ Page({
             attendance.eAttendanceBtn = alist[i + 1].attendance_btn;
             attendance.isShowSAttendTime = true;
             attendance.isShowEAttendTime = true;
+            attendance.attendance_btn = alist[i].attendance_btn;
+            attendance.rest_btn = alist[i].rest_btn;
             if (
               alist[i].attend_time == "" &&
               alist[i].attendance_btn != 1 &&
@@ -339,6 +328,7 @@ Page({
   },
 
 
+ 
   onClickSAttendanceItem: async function (e) {
     var currentStatu = e.currentTarget.dataset.statu;
 
@@ -367,7 +357,7 @@ Page({
       key: "attendance_detail",
       data: item,
     });
-    
+
     let mac_address = "";
     if (that.data.macInfo.punch_type == 1) {
       const res = await that.getWifiInfo();
@@ -407,7 +397,63 @@ Page({
     });
   },
 
+  //休息打卡
+  handleClickBeginRestBtn:function(e) {
+    var that = this;
+    collector.saveFormid(e.detail.formId);
+    collector.uploadFormid();
+    var currentStatu = e.currentTarget.dataset.statu;
+    let mac_address = "";
+    wx.setStorage({
+      key: "a_extra_info",
+      data: mineJobData.attendance.extra_info,
+      success: async (stora) => {
+        
+        if (that.data.macInfo.punch_type == 1) {
+          console.log("asdfffffffffffffffffffff");
+          const res = await that.getWifiInfo();
+          console.log("maccccccccccccccccccccc", res);
+          mac_address = res.mac_address;
+        }
+        //处理跳转逻辑
 
+        wx.navigateTo({
+          url:
+            "../dataform/dataform?type=1&title=考勤信息填写&team_id=" +
+            this.data.team_id +
+            "&project_id=" +
+            this.data.project_id +
+            "&mac_address=" +
+            mac_address +
+            "&attendance_id=" +
+            currentStatu.attendance_id +
+            "&time_id=" +
+            currentStatu.time_id +
+            "&task_id=" +
+            mineJobData.attendance.extra_info.task_id +
+            "&schedule_id=" +
+            currentStatu.schedule_id +
+            "&cross=" +
+            currentStatu.cross +
+            "&form_data_id=" +
+            currentStatu.form_data_id +
+            "&cross_attend=" +
+            currentStatu.cross_attend +
+            "&task_id_yesterday=" +
+            mineJobData.attendance.extra_info.task_id_yesterday +
+            "&count=" +
+            1 + 
+            "&clockInType=" + 'rest',
+        });
+      },
+      fail: function () {
+        console.error("存储token时失败");
+      },
+    });
+
+  },
+
+   //上下班打卡
   onClickSAttendanceBtn: function (e) {
     console.log("onClickSAttendanceBtn", e);
     var that = this;
@@ -419,10 +465,6 @@ Page({
       key: "a_extra_info",
       data: mineJobData.attendance.extra_info,
       success: async (stora) => {
-        console.log(
-          "macInfo.punch_typemacInfo.punch_type",
-          that.data.macInfo.punch_type
-        );
         if (that.data.macInfo.punch_type == 1) {
           console.log("asdfffffffffffffffffffff");
           const res = await that.getWifiInfo();
