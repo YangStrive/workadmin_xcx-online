@@ -517,7 +517,6 @@ Page({
 
   //休息打卡
   restClockIn: function (submitDate) {
-    var that = this;
 
     dmNetwork.get(dmNetwork.restClock, submitDate, (res) => {
       console.log(res.data)
