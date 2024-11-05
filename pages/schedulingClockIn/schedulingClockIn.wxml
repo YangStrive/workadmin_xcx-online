@@ -47,9 +47,9 @@
           </view>
         </view>
         <scroll-view scroll-y="true" class='drawer_content_scroll'>
-          <view id='{{project.viewid}}' style="background:{{index == idx?'#f8f8fa':'#fff'}}" class='drawer_project-item' wx:for="{{projectData}}" wx:key="item" wx:for-item="project" wx:for-index="idx">
+          <view id='{{project.viewid}}' style="background:{{currentProjectId == item.project_id?'#f8f8fa':'#fff'}}" class='drawer_project-item' wx:for="{{projectData}}" wx:key="item" wx:for-item="project" wx:for-index="idx">
             <view class="drawer_project_title">
-              <view class='item-select-project-dot' style="background:{{index == idx?'#fa0':'#fff'}}"></view>
+              <view class='item-select-project-dot' style="background:{{currentProjectId == project.project_id ?'#fa0':'#fff'}}"></view>
               <image src='{{project.logo}}' data-index='{{idx}}' bindtap='changeProject' style="width:80rpx;height:80rpx;margin-right: 16rpx;"></image>
               <view data-index='{{idx}}' class='sigin_line_text' bindtap='changeProject' style='flex:1;font-size:32rpx;font-weight: bolder;'>
                 {{project.name}}
@@ -111,6 +111,11 @@
           </button>
         </form>
       </view>
+      <view class='item-attendance-detail-work-line'></view>
+      <view class="rest-box">
+          <text class='rest-btn' style='margin-left:10rpx'>开始休息</text>
+      </view>
+
       <view class='item-attendance-detail-work-line'></view>
       <view class='item-attendance-detail-work' bindtap="onClickSAttendanceItem" data-statu="{{attendance.edata}}" data-item='{{attendance.edata.form_data}}'>
         <view class='item-attendance-detail-worktime'>

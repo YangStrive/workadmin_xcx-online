@@ -533,14 +533,14 @@ Page {
 }
 
 .item-attendance-new {
-  height: 313rpx;
+  height: 450rpx;
   width: 100%;
   display: flex;
   border-bottom: 1rpx solid #e5e5e5;
 }
 
 .item-attendance-left-panel {
-  height: 313rpx;
+  height: 450rpx;
   width: 82rpx;
   display: flex;
   flex-direction: column;
@@ -548,7 +548,7 @@ Page {
 }
 
 .item-attendance-detail-panel {
-  height: 313rpx;
+  height: 450rpx;
   flex: 1;
 }
 
@@ -1058,4 +1058,19 @@ Page {
   height:64rpx;
   background: -webkit-linear-gradient(rgba(	255,255,255,0.1), rgba(	255,255,255,1));
   background: linear-gradient(rgba(	255,255,255,0.1), rgba(	255,255,255,1));
+}
+
+.rest-box{
+  padding: 24rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 24rpx;
+}
+.rest-box .rest-btn{
+  display: block;
+  padding: 8rpx 12rpx;
+  border-radius: 4rpx;
+  background: #fa0;
+  color: #fff;
 }
