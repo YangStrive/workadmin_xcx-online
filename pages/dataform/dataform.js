@@ -516,9 +516,47 @@ Page({
   },
 
   //休息打卡
-  restClockIn: function () {
+  restClockIn: function (submitDate) {
     var that = this;
-    restClock
+
+    dmNetwork.get(dmNetwork.restClock, submitDate, (res) => {
+      console.log(res.data)
+      if (res.data.errno == 0) {
+        var statu = 0;
+        if (res.data.data.attendance_id != undefined) {
+          attendance_id = res.data.data.attendance_id
+        }
+        if (res.data.data.status == "打卡成功，辛苦了！") {
+          statu = 0
+        } else if (res.data.data.status == "地点异常") {
+          statu = 1
+        } else {
+          statu = 2
+        }
+
+        setTimeout(() => {
+          //使用微信内置方法刷新上一页
+          var pages = getCurrentPages();
+          var beforePage = pages[pages.length - 2];
+          beforePage.getMyworkInfo();
+
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 2000)
+
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          mask: true,
+          icon: 'none',
+          duration: 1500
+        })
+      }
+    }, (err) => {
+      //网络异常处理
+    })
+
   },
 
   back: function () {

@@ -533,14 +533,12 @@ Page {
 }
 
 .item-attendance-new {
-  height: 450rpx;
   width: 100%;
   display: flex;
   border-bottom: 1rpx solid #e5e5e5;
 }
 
 .item-attendance-left-panel {
-  height: 450rpx;
   width: 82rpx;
   display: flex;
   flex-direction: column;
@@ -548,7 +546,6 @@ Page {
 }
 
 .item-attendance-detail-panel {
-  height: 450rpx;
   flex: 1;
 }
 

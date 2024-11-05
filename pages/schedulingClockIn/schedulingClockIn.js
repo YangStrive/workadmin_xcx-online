@@ -17,15 +17,12 @@ Page({
     projectNameArray: {},
     //当前项目id
     currentProjectId: 0,
+    currentTeamId: 0,
 
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数,
     //获取项目id
-    let currentProjectId  =  options.projectId;
-    this.setData({
-      currentProjectId,
-    });
     this.getProjectList();
   },
   onShow: function () {
@@ -42,7 +39,14 @@ Page({
 
           if (res.data.data.list.length > 0) {
             var projectNameList = {};
+            
             for (var i = 0; i < res.data.data.list.length; i++) {
+              if(this.data.currentProjectId == 0){
+                this.setData({
+                  currentProjectId: res.data.data.list[i].project_id,
+                  currentTeamId: res.data.data.list[i].team_id,
+                });
+              }
               projectNameList[res.data.data.list[i].project_id] ={
                 logo: res.data.data.list[i].logo,
                 name: res.data.data.list[i].name,
@@ -56,10 +60,7 @@ Page({
             });
 
             if (that.data.currentProjectId) {
-              that.getMyworkInfo(
-                projectNameList[that.data.currentProjectId].team_id,
-                that.data.currentProjectId
-              );
+              that.getMyworkInfo();
             }
           } else {
           }
@@ -136,11 +137,11 @@ Page({
   changeProject: function (e) {
     var that = this;
     var index = e.currentTarget.dataset.index;
-    this.getMyworkInfo(
-      that.data.projectData[index].team_id,
-      that.data.projectData[index].project_id,
-      index
-    );
+    this.setData({
+      currentProjectId: that.data.projectData[index].project_id,
+      currentTeamId: that.data.projectData[index].team_id,
+    });
+    this.getMyworkInfo();
     this.util("close");
     if (util.compareVersion("1.9.0", wxVeison.SDKVersion) != 1) {
       setTimeout(function () {
@@ -150,13 +151,15 @@ Page({
   },
 
   //获取今日工作数据
-  getMyworkInfo: function (team_id, project_id) {
+  getMyworkInfo: function () {
     var that = this;
+    var project_id = this.data.currentProjectId;
+    var team_id = this.data.currentTeamId;
     dmNetwork.getInBackground(
       dmNetwork.mywork,
       {
-        team_id: team_id,
-        project_id: project_id,
+        team_id,
+        project_id,
       },
       (res) => {
         var isShowEarlyClock = false;
