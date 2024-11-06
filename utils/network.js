@@ -274,7 +274,7 @@ const changeStoreApply = config.host + '/sea/api/1.0/client/v1/changestore/creat
 const changeStoreRecord = config.host + '/sea/api/1.0/client/v1/changestore/list'
 
 //休息打卡
-const restClock = config.host + '/sea/api/1.0/client/v1/attendance/rest_clock'
+const restClock = config.host + '/sea/api/1.0/client/v1/attendance/attendance/add_rest'
 
 // get请求
 const get = (host, params, callbacksuccess, callbackfail, disLoading) => {

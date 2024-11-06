@@ -71,6 +71,7 @@ Page({
     location_time: 0,
     showFeedback: false,
     clockInType: '',
+    sourcePage: '',
   },
   /**
    * 生命周期函数--监听页面加载
@@ -114,7 +115,8 @@ Page({
 
           this.setData({
             extraInfo: res.data,
-            clockInType: options.clockInType
+            clockInType: options.clockInType,
+            sourcePage: options.sourcePage
           })
         },
       })
@@ -526,23 +528,29 @@ Page({
           attendance_id = res.data.data.attendance_id
         }
         if (res.data.data.status == "打卡成功，辛苦了！") {
-          statu = 0
+          wx.showToast({
+            title: res.data.data.status,
+            mask: true,
+            icon: 'success',
+            duration: 1500
+          })
+
+          setTimeout(() => {
+            //使用微信内置方法刷新上一页
+            var pages = getCurrentPages();
+            var beforePage = pages[pages.length - 2];
+            beforePage.getMyworkInfo();
+  
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 2000)
+
         } else if (res.data.data.status == "地点异常") {
           statu = 1
         } else {
           statu = 2
         }
-
-        setTimeout(() => {
-          //使用微信内置方法刷新上一页
-          var pages = getCurrentPages();
-          var beforePage = pages[pages.length - 2];
-          beforePage.getMyworkInfo();
-
-          wx.navigateBack({
-            delta: 1
-          })
-        }, 2000)
 
       } else {
         wx.showToast({
@@ -645,9 +653,23 @@ Page({
             duration: 1500,
           })
 
-          setTimeout(function () {
-            that.back()
-          }, 1500)
+          if(this.data.sourcePage == '1'){
+            setTimeout(() => {
+              //使用微信内置方法刷新上一页
+              var pages = getCurrentPages();
+              var beforePage = pages[pages.length - 2];
+              beforePage.getMyworkInfo();
+    
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 2000)
+
+          }else{
+            setTimeout(function () {
+              that.back()
+            }, 1500)
+          }
         } else {
           wx.showToast({
             title: res.data.errmsg,

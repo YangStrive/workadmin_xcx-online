@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "今日工作",
+  "navigationBarTitleText": "考勤打卡",
   "enablePullDownRefresh":true,
   "backgroundTextStyle": "light",
   "backgroundColor": "#353941"

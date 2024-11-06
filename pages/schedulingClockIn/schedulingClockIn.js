@@ -18,6 +18,7 @@ Page({
     //当前项目id
     currentProjectId: 0,
     currentTeamId: 0,
+    isNewProject: false,
 
   },
   onLoad: function (options) {
@@ -52,11 +53,15 @@ Page({
                 name: res.data.data.list[i].name,
                 project_id: res.data.data.list[i].project_id,
                 team_id: res.data.data.list[i].team_id,
+                is_attend: res.data.data.list[i].is_attend,
+
               };
             }
+
             that.setData({
               projectData: res.data.data.list,
               projectNameArray: projectNameList,
+              isNewProject:projectNameList[this.data.currentProjectId].is_attend
             });
 
             if (that.data.currentProjectId) {
@@ -140,6 +145,7 @@ Page({
     this.setData({
       currentProjectId: that.data.projectData[index].project_id,
       currentTeamId: that.data.projectData[index].team_id,
+      isNewProject:that.data.projectData[index].is_attend
     });
     this.getMyworkInfo();
     this.util("close");
@@ -152,6 +158,9 @@ Page({
 
   //获取今日工作数据
   getMyworkInfo: function () {
+    wx.showLoading({
+      title: "加载中",
+    });
     var that = this;
     var project_id = this.data.currentProjectId;
     var team_id = this.data.currentTeamId;
@@ -190,6 +199,7 @@ Page({
             attendance.isShowEAttendTime = true;
             attendance.attendance_btn = alist[i].attendance_btn;
             attendance.rest_btn = alist[i].rest_btn;
+            attendance.schedule_type = alist[i].schedule_type;
             if (
               alist[i].attend_time == "" &&
               alist[i].attendance_btn != 1 &&
@@ -199,6 +209,7 @@ Page({
             }
             attendance.isShowEarlyClock = isShowEarlyClock;
             if ("" == alist[i].attend_time) {
+              debugger
               attendance.isShowSAttendTime = false;
               attendance.sItemWidth = "0rpx";
             } else {
@@ -296,6 +307,7 @@ Page({
                 project_id: project_id,
               },
               (res) => {
+                wx.hideLoading();
                 if (res.data.errno == 0) {
                   // 表示成功返回
                   that.setData({
@@ -311,11 +323,15 @@ Page({
                 }
               },
               (err) => {
+                wx.hideLoading();
                 console.log("获取考勤排名接口err:", err);
               }
             );
+          }else{
+            wx.hideLoading();
           }
         } else {
+          wx.hideLoading();
           wx.showToast({
             title: res.data.errmsg,
             mask: true,
@@ -330,8 +346,6 @@ Page({
     );
   },
 
-
- 
   onClickSAttendanceItem: async function (e) {
     var currentStatu = e.currentTarget.dataset.statu;
 
@@ -400,12 +414,15 @@ Page({
     });
   },
 
-  //休息打卡
+  //休息打卡//"attendance_btn": 0,  上班卡已打  1未打  time_id传3和4 开始休息和结束休息 schedule_type=1就是固定休息时间 2是弹性休息时间 
+  // rest_btn 字段 0 未打 1代表已打休息开始的卡
   handleClickBeginRestBtn:function(e) {
     var that = this;
     collector.saveFormid(e.detail.formId);
     collector.uploadFormid();
     var currentStatu = e.currentTarget.dataset.statu;
+
+    let time_id = e.currentTarget.dataset.timeid;
     let mac_address = "";
     wx.setStorage({
       key: "a_extra_info",
@@ -431,7 +448,7 @@ Page({
             "&attendance_id=" +
             currentStatu.attendance_id +
             "&time_id=" +
-            currentStatu.time_id +
+            time_id +
             "&task_id=" +
             mineJobData.attendance.extra_info.task_id +
             "&schedule_id=" +
@@ -501,7 +518,8 @@ Page({
             "&task_id_yesterday=" +
             mineJobData.attendance.extra_info.task_id_yesterday +
             "&count=" +
-            1,
+            1 +
+            "&sourcePage=1"
         });
       },
       fail: function () {
@@ -510,10 +528,11 @@ Page({
     });
   },
 
-  onClickAttendanceList: () => {
+  onClickAttendanceList: function(e){
+    const url = this.data.isNewProject ? "../attdance/record_new/record_new" : "../attdance/record/record";
     wx.navigateTo({
-      url: '/pages/attendanceList/attendanceList',
-    })
+      url:`${url}?team_id=${this.data.currentTeamId}&project_id=${this.data.currentProjectId}`
+    });
   },
 
 
