@@ -275,6 +275,8 @@ const changeStoreRecord = config.host + '/sea/api/1.0/client/v1/changestore/list
 
 //休息打卡
 const restClock = config.host + '/sea/api/1.0/client/v1/attendance/attendance/add_rest'
+//新签约接口
+const newESinging = config.host + '/sea/api/1.0/client/v1/protocol/sign_url/get'
 
 // get请求
 const get = (host, params, callbacksuccess, callbackfail, disLoading) => {
@@ -767,4 +769,5 @@ module.exports = {
   changeStoreApply,
   changeStoreRecord,
   restClock,
+  newESinging,
 }

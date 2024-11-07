@@ -404,6 +404,7 @@ Page({
             is_ocr: data?.is_ocr,
             is_faceliveness: data?.is_faceliveness,
             is_ocr_check: data?.is_ocr_check,
+            sign_channel: data?.sign_channel,
           });
           let time = 4;
           let timer = that.data.timer;
@@ -1601,41 +1602,34 @@ Page({
     if (this.data.showNoticeOfSigning && !this.data.canGoSign) {
       return;
     }
-    // if (this.data.isShowNewProtocolFlag && !this.data.canGoSign) {
-    //   return;
-    // }
-    // if (this.data.isShowNewProtocolFlag1 && !this.data.canGoSign) {
-    //   return;
-    // }
+
     const localProjectId = wx.getStorageSync("local_project_id");
     const localTeamId = wx.getStorageSync("team_id");
-    const params = `project_id=${localProjectId}&team_id=${localTeamId}&is_protocol_supplement_info=${this.data.is_protocol_supplement_info}&is_upload_idcard_info=${this.data.is_upload_idcard_info}&is_ocr_check=${this.data.is_ocr_check}&group_id=${this.data.group_id}&is_social=${this.data.is_social}`;
+    const params = `project_id=${localProjectId}&team_id=${localTeamId}&is_protocol_supplement_info=${this.data.is_protocol_supplement_info}&is_upload_idcard_info=${this.data.is_upload_idcard_info}&is_ocr_check=${this.data.is_ocr_check}&group_id=${this.data.group_id}&is_social=${this.data.is_social}&sign_channel=${this.data.sign_channel}`;
 
     let protocol_order_id = "";
-    this.data.protocol_order_ids
+    if(this.data.sign_channel == 1){
+
+      this.data.protocol_order_ids
+      .forEach((element) => {
+        protocol_order_id += element.protocol_order_id + ",";
+      });
+
+    }else{
+
+      this.data.protocol_order_ids
       .filter((item) => {
         return item.is_protocol_supplement_info == 1;
       })
       .forEach((element) => {
         protocol_order_id += element.protocol_order_id + ",";
       });
-    protocol_order_id = protocol_order_id.substring(
-      0,
-      protocol_order_id.length - 1
-    );
+    }
+    protocol_order_id = protocol_order_id.substring(0,protocol_order_id.length - 1);
+
     const navigateUrl = this.data.ifNeedAuthFlag
       ? `../uc/perfect_information/perfect_information?${params}&protocol_order_id=${protocol_order_id}`
       : `../uc/contract_signing_new/contract_signing_new?${params}`;
-    // this.setData({
-    //   showSignDocumentNums: false,
-    // });
-    // if (this.data.agreement_num == 1 && this.data.protocol_type == 10) {
-    //   navigateUrl = '../uc/notification_book/notification_book?project_id=' + localProjectId + '&team_id=' + localTeamId + '&protocol_order_id=' + this.data.protocol_order_id + '&agreement_num=' + this.data.agreement_num + '&protocol_type=' + this.data.protocol_type;
-    // } else if (this.data.agreement_num == 1 && this.data.protocol_type == 13) {
-    //   navigateUrl = '../uc/contract_signing_hema_dis/contract_signing_hema_dis?project_id=' + localProjectId + '&team_id=' + localTeamId + '&protocol_order_id=' + this.data.protocol_order_id + '&agreement_num=' + this.data.agreement_num + '&protocol_type=' + this.data.protocol_type;
-    // } else {
-    //   navigateUrl = '../uc/perfect_information/perfect_information?project_id=' + localProjectId + '&team_id=' + localTeamId + '&protocol_order_id=' + this.data.protocol_order_id + '&agreement_num=' + this.data.agreement_num + '&protocol_type=' + this.data.protocol_type;
-    // }
     wx.navigateTo({
       url: navigateUrl,
     });

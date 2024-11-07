@@ -60,6 +60,7 @@ Page({
     placeAddress: "",
     placeAddressText: "",
     addressText: "",
+    sign_channel: "",
   },
 
   /**
@@ -78,6 +79,7 @@ Page({
       protocol_order_id: options.protocol_order_id,
       is_ocr_check: options.is_ocr_check,
       group_id: options.group_id,
+      sign_channel: options.sign_channel,
     });
     // this.getFormFields(options);
     that
@@ -216,26 +218,9 @@ Page({
   },
   // 初始化个人基本信息表单字段
   initBaseInfoFormFields: function (data) {},
+
   next: function () {
     const that = this;
-    // if (this.data.is_protocol_supplement_info == 1) {
-    //   if (!(this.data.real_name && this.data.mobile && this.data.idnumber && this.data.detail_address && this.data.detail_unit_company && this.data.laborRelationsDate && this.data.detail_leaving_reason && this.data.detail_nocontract_reason)) {
-    //     return;
-    //   }
-    //   if (this.data.employer && this.data.index == -1) {
-    //     return
-    //   }
-    // } else {
-    //   console.log(this.data.employer);
-    //   console.log(this.data.employer);
-    //   if (this.data.employer && this.data.index == -1) {
-    //     return
-    //   }
-    //   if (!(this.data.real_name && this.data.mobile && this.data.idnumber && this.data.detail_address)) {
-    //     console.log('111111' + '有未填写的项目')
-    //     return;
-    //   }
-    // }
     if (!that.checkFormData()) {
       return;
     }
@@ -243,24 +228,55 @@ Page({
       return;
     }
 
-    // let params = {
-    //   name: that.data.real_name,
-    //   idnumber: that.data.idnumber,
-    //   detail_address: that.data.detail_address,
-    //   mobile: that.data.mobile,
-    //   project_id: that.data.project_id
-    // }
+    if(this.data.sign_channel == 1 ){
+      wx.showLoading({
+        title: "加载中",
+        mask: true,
+      });
+      const { ocrParams, otherInfoParams } = that.getOtherInfoParams();
+      const allPromise =
+        that.data.is_upload_idcard_info == 1 && that.data.is_ocr_check == 1
+          ? [that.setOcr(ocrParams), that.setOtherInfo(otherInfoParams)]
+          : [that.setOtherInfo(otherInfoParams)];
+      console.log("kaieee", allPromise);
+      // return
+      Promise.all(allPromise)
+        .then((v) => {
+          console.log("sucess", v);
+          dmNetwork.post(dmNetwork.protocol_sign, request_data, (res) => {
+            wx.hideLoading();
+            if (res.data.errno == 0) {
+              //跳转到uc/eSigningPage/eSigningPage
+              wx.navigateTo({
+                url: '/pages/uc/eSigningPage/eSingingPage?project_id=' + that.data.project_id + '&team_id=' + that.data.team_id
+              });
+            } else {
+              wx.showToast({
+                title: res.data.errmsg,
+                icon: "none",
+              });
+            }
+          });
+        })
+        .catch((err) => {
+          // that.hideLoading()
+          console.log("faile", err);
+        });
+      var request_data = {
+        protocol_order_id: this.data.protocol_order_id,
+        team_id: that.data.team_id,
+        project_id: that.data.project_id,
+        code: '',
+      };
+    }else{
+      this.otherNext();
+    }
 
-    // if (that.data.is_protocol_supplement_info == 1) {
-    //   params.original_company = that.data.detail_unit_company
-    //   params.leave_date = that.data.laborRelationsDate
-    //   params.leave_reason = that.data.detail_leaving_reason
-    //   params.no_leave_certify_reason = that.data.detail_nocontract_reason
-    //   params.protocol_order_id = that.data.protocol_order_id
-    // }
-    // if (that.data.employer) {
-    //   params.employer_id = that.data.company[that.data.index].id
-    // }
+  },
+
+  otherNext: function () {
+    const that = this;
+
     const { ocrParams, otherInfoParams } = that.getOtherInfoParams();
     console.log("kaieee", ocrParams);
     console.log("kaieee", otherInfoParams);

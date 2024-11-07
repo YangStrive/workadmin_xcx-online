@@ -99,7 +99,8 @@
         "pages/uc/diaodianApply/ddApply",
         "components/datetime-picker/datetime-picker",
         "pages/attdance/record_new/record_new",
-        "pages/schedulingClockIn/schedulingClockIn"
+        "pages/schedulingClockIn/schedulingClockIn",
+        "pages/uc/eSigningPage/eSingingPage"
     ],
     "requiredPrivateInfos": [
         "getLocation",

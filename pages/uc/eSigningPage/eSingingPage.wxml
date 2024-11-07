@@ -1,0 +1,4 @@
+<!--pages/uc/eSigningPage/eSingingPage.wxml-->
+<view>
+  <web-view src="{{sign_url}}" bindmessage="handleGetMessage" bindload="handleSignPageLoad"></web-view>
+</view>
