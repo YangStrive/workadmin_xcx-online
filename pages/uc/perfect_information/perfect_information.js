@@ -248,7 +248,7 @@ Page({
             if (res.data.errno == 0) {
               //跳转到uc/eSigningPage/eSigningPage
               wx.navigateTo({
-                url: '/pages/uc/eSigningPage/eSingingPage?project_id=' + that.data.project_id + '&team_id=' + that.data.team_id
+                url: '/pages/uc/eSigningPage/eSigningPage?project_id=' + that.data.project_id + '&team_id=' + that.data.team_id
               });
             } else {
               wx.showToast({

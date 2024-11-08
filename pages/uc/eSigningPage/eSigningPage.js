@@ -10,6 +10,7 @@ Page({
     project_id: 0,
 		timer: null,
 		sign_url:'',
+    count: 0,
   },
 
   /**
@@ -28,21 +29,34 @@ Page({
 		//每三秒调用一次getNewESinging，调用20次后停止
 		wx.showLoading({
 			title: "加载中",
-
 		})
 		let count = 0;
+    this.getNewESinging();
+
 		this.data.timer = setInterval(() => {
-			this.getNewESinging();
 			count++;
-			if(count >= 10){
+      this.setData({
+        count: count
+      })
+			if(count >= 5){
 				wx.hideLoading();
 				clearInterval(this.data.timer);
-				wx.showToast({
-					title: '获取签署文件失败',
-					icon: "none",
-				});
-			}
-		}, 5000);
+        wx.showModal({
+          title: '提示',
+          content: '获取签署文件失败,请稍后重试',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }
+          }
+        })
+			}else{
+        this.getNewESinging();
+      }
+		}, 4000);
   },
 
 	getNewESinging(){
@@ -62,13 +76,10 @@ Page({
 							sign_url:res.data.data.sign_url
 						})
 
-						wx.navigateTo({ url: "/pages/uc/siginWebview/siginWebview?url=" + res.data.data.sign_url});
-
 					}
 				}
         //
       } else {
-        wx.hideLoading();
         wx.showToast({
           title: res.data.errmsg,
           icon: "none",
@@ -87,7 +98,7 @@ Page({
 
   handleSignPageLoad: function (e) {
     wx.hideLoading();
-  }
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -102,7 +113,10 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {},
+  onHide() {
+    wx.hideLoading();
+    clearInterval(this.data.timer);
+  },
 
   /**
    * 生命周期函数--监听页面卸载

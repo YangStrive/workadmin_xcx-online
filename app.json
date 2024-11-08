@@ -100,7 +100,7 @@
         "components/datetime-picker/datetime-picker",
         "pages/attdance/record_new/record_new",
         "pages/schedulingClockIn/schedulingClockIn",
-        "pages/uc/eSigningPage/eSingingPage"
+        "pages/uc/eSigningPage/eSigningPage"
     ],
     "requiredPrivateInfos": [
         "getLocation",

@@ -6,6 +6,13 @@
         "miniprogram": {
             "list": [
                 {
+                    "name": "e签宝webview",
+                    "pathName": "pages/uc/eSigningPage/eSigningPage",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "新版考勤打卡",
                     "pathName": "pages/schedulingClockIn/schedulingClockIn",
                     "query": "projectId=18331",
