@@ -90,14 +90,40 @@ Page({
 
 	handleGetMessage:function(e){
 		if(e.detail.data[0].result=='success'){
-			wx.navigateTo({
-				 url:'/pages/minework/minework'
-			})
+
+      wx.showToast({
+        title: '签署成功',
+        icon: 'success',
+        duration: 2000
+      })
+      this.reportSignSuccess();
 		}
 	},
 
   handleSignPageLoad: function (e) {
     wx.hideLoading();
+  },
+
+  //上报签约成功
+  reportSignSuccess() {
+    let request_data = {
+      project_id: this.data.project_id,
+      team_id: this.data.team_id,
+    };
+
+    dmNetwork.post(dmNetwork.reportSignSuccess, request_data, (res) => {
+      if (res.data.errno == 0) {
+        wx.navigateTo({
+           url:'/pages/minework/minework'
+        })
+        //
+      } else {
+        wx.showToast({
+          title: res.data.errmsg,
+          icon: "none",
+        });
+      }
+    });
   },
 
   /**
