@@ -56,7 +56,7 @@ Page({
 			}else{
         this.getNewESinging();
       }
-		}, 4000);
+		}, 2000);
   },
 
 	getNewESinging(){
@@ -85,7 +85,13 @@ Page({
           icon: "none",
         });
       }
-    });
+    },() => {
+      wx.showToast({
+        title: '网络错误',
+        icon: "none",
+      });
+      wx.hideLoading();
+    },false);
   },
 
 	handleGetMessage:function(e){

@@ -1,5 +1,5 @@
 // 0:表示test环境 1:表示sim环境  2:表示online环境
-const env = 1;
+const env = 2;
 const host = {
   0: "https://saas-test.doumi.com", //测试环境
   1: "https://saas-sim.doumi.com", //sim环境
