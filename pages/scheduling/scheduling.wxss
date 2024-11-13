@@ -24,6 +24,17 @@
   height: 120rpx;
   width: 100vw;
 }
+.table-head-swiper{
+  height: 120rpx;
+  flex-grow: 1;
+
+}
+.table-head-swiper-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 .table-head-item{
   padding: 20rpx 0;
   border-right: 1rpx solid #e8e8e8;
@@ -35,6 +46,8 @@
   width: 90rpx;
   display: block;
   flex-shrink: 0;
+  padding: 20rpx 0;
+  border-right: 1rpx solid #e8e8e8;
 }
 .table-head-year{
   display: block;
@@ -79,12 +92,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1rpx solid #e8e8e8;
-  width: 100vw;
-}
-.list-item .table-body-item:first-child{
-  width: 90rpx;
-  display: block;
-  flex-shrink: 0;
+  width: 100%;
 }
 
 .list-item .table-body-item{
@@ -92,11 +100,18 @@
   padding: 20rpx 0;
   flex-shrink: 0;
   flex: 1;
+  height: 130rpx;
 }
 
 /* scroll */
 .scroll-body{
   height: calc(100vh - 354rpx);
+}
+.scroll-main{
+
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 .table-body-item .time-stage{
   display: block;
@@ -124,6 +139,23 @@
   white-space: nowrap;
   text-align: center;
   margin-top: 6rpx;
+}
+.swiper-table-body{
+  flex-grow: 1;
+  height: 100%;
+  width: calc(100vw - 90rpx);
+}
+
+.table-body-user .table-body-item{
+  padding: 20rpx 0;
+  border-right: 1rpx solid #e8e8e8;
+  height: 130rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+  width: 90rpx;
+}
+
+.table-body-list{
+  width: 100%;
 }
 
 /* footer */
