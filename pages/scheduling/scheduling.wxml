@@ -1,0 +1,175 @@
+<view class="scheduling">
+  <view class="head-nav">
+    <text class="project-name">课程表</text>
+  </view>
+  <view class="table-head">
+    <viwe class="table-head-item table-head-first">
+      <view class="table-head-year">2024</view>
+      <view class="table-head-day">
+        <text>3月</text>
+      </view>
+    </viwe>
+    <view class="table-head-item">
+      <view class="table-head-week">星期一</view>
+      <view class="table-head-day">1</view>
+    </view>
+    <view class="table-head-item">
+      <view class="table-head-week">星期二</view>
+      <view class="table-head-day">2</view>
+    </view>
+    <view class="table-head-item">
+      <view class="table-head-week">星期三</view>
+      <view class="table-head-day">3</view>
+    </view>
+    <view class="table-head-item">
+      <view class="table-head-week">星期三</view>
+      <view class="table-head-day">3<text class="taday">今</text></view>
+      
+    </view>
+    <view class="table-head-item">
+      <view class="table-head-week">星期三</view>
+      <view class="table-head-day">3</view>
+    </view>
+    <view class="table-head-item">
+      <view class="table-head-week">星期三</view>
+      <view class="table-head-day">3</view>
+    </view>
+    <view class="table-head-item">
+      <view class="table-head-week">星期三</view>
+      <view class="table-head-day">3</view>
+    </view>
+  </view>
+  <scroll-view class="scroll-body" 	scroll-y>
+    <view class="table-body">
+      <view class="table-body-list">
+        <view class="list-item">
+          <view class="table-body-item">
+            <view class="item-surname">语</view>
+            <view class="item-name">语文</view>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+        </view>
+        <view class="list-item">
+          <view class="table-body-item" >
+            <view class="item-surname">语</view>
+            <view class="item-name">语文</view>
+          </view>
+          <view class="table-body-item" bindtap="handleClickGridScheduling">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+        </view>
+        <view class="list-item">
+          <view class="table-body-item">
+            <view class="item-surname">语</view>
+            <view class="item-name">语文</view>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+          <view class="table-body-item">
+            <text class="time-stage">数学</text>
+            <text class="time-stage">数学</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="footer-box">
+    <view class="footer-contetn">
+      <view class="footer-item">添加课程</view>
+    </view>
+    <view class="footer-nav">
+      <view class="footer-nav-item">排序</view>
+      <view class="footer-nav-item">搜索</view>
+      <view class="footer-nav-item">删除</view>
+      <view class="footer-nav-item">邀请</view>
+    </view>
+  </view>
+  <page-container
+    show="{{showClickGrid}}"
+    overlay="{{false}}"
+  >
+    <view class="click-grid-main">
+      <view class="grid-head">
+        <text>课程详情</text>
+      </view>
+      <view class="grid-btn">
+        <text>选择班次</text>
+      </view>
+    </view>
+  </page-container>
+
+</view>

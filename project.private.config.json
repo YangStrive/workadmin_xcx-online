@@ -6,6 +6,13 @@
         "miniprogram": {
             "list": [
                 {
+                    "name": "排班",
+                    "pathName": "pages/scheduling/scheduling",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "e签宝webview",
                     "pathName": "pages/uc/eSigningPage/eSigningPage",
                     "query": "",
