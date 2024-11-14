@@ -9,66 +9,11 @@
         <text>3月</text>
       </view>
     </viwe>
-    <swiper class="table-head-swiper" current="{{current}}" bindchange="handleHeadSwiperChange">
-      <swiper-item class="table-head-swiper-item">
-        <view class="table-head-item">
-          <view class="table-head-week">星期一</view>
-          <view class="table-head-day">1</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期二</view>
-          <view class="table-head-day">2</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期三</view>
-          <view class="table-head-day">3</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期四</view>
-          <view class="table-head-day">4<text class="taday">今</text></view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期五</view>
-          <view class="table-head-day">5</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期六</view>
-          <view class="table-head-day">6</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期日</view>
-          <view class="table-head-day">7</view>
-        </view>
-      </swiper-item>
-
-      <swiper-item class="table-head-swiper-item">
-        <view class="table-head-item">
-          <view class="table-head-week">星期一</view>
-          <view class="table-head-day">8</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期二</view>
-          <view class="table-head-day">9</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期三</view>
-          <view class="table-head-day">10</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期四</view>
-          <view class="table-head-day">11<text class="taday">今</text></view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期五</view>
-          <view class="table-head-day">12</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期六</view>
-          <view class="table-head-day">13</view>
-        </view>
-        <view class="table-head-item">
-          <view class="table-head-week">星期日</view>
-          <view class="table-head-day">14</view>
+    <swiper class="table-head-swiper" current="{{headerCurrent}}" circular bindchange="handleHeadSwiperChange">
+      <swiper-item class="table-head-swiper-item" wx:for="{{swiperHeadList}}" wx:key="index">
+        <view class="table-head-item" wx:for="{{item}}" wx:for-item="weekItem" wx:for-index="idx" wx:key="idx" >
+          <view class="table-head-week">{{weekItem.date}}</view>
+          <view class="table-head-day">{{weekItem.day}} <text class="taday" wx:if="{{weekItem.datestr === nowDateStr}}">今</text></view>
         </view>
       </swiper-item>
     </swiper>
@@ -83,12 +28,12 @@
       </view>
       
       <view>
-        <swiper class="swiper-table-body" current="{{current}}" bindchange="handleBodySwiperChange">
-          <swiper-item class="table-body-list">
-            <view class="list-item"  wx:for="{{scheduling}}" wx:key="index">
-              <view class="table-body-item"  wx:for="{{item}}" wx:for-item="scheduItem" wx:for-index="idx" wx:key="idx">
-                <text class="time-stage">{{scheduItem.startTime}}</text>
-                <text class="time-stage">{{scheduItem.endTime}}</text>
+        <swiper class="swiper-table-body" current="{{bodyCurrent}}" circular bindchange="handleBodySwiperChange">
+          <swiper-item class="table-body-list" wx:for="{{tableBodyScheduling}}"wx:key="index">
+            <view class="list-item"  wx:for="{{item}}" wx:for-index="idx" wx:for-item="itemSchedu" wx:key="idx">
+              <view class="table-body-item"  wx:for="{{itemSchedu}}" wx:for-item="itemScheduChild" wx:for-index="idxC" wx:key="idxC" bindtap="handleClickGridScheduling">
+                <text class="time-stage">{{itemScheduChild.startTime}}</text>
+                <text class="time-stage">{{itemScheduChild.endTime}}</text>
               </view>
             </view>
           </swiper-item>
