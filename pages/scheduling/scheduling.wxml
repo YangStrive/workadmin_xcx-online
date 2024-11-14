@@ -1,17 +1,18 @@
 <view class="scheduling">
   <view class="head-nav">
-    <text class="project-name">课程表</text>
+    <text class="project-name">大润发项目排班</text>
   </view>
   <view class="table-head">
     <viwe class="table-head-first">
-      <view class="table-head-year">2024</view>
+      <view class="table-head-year">{{headSelectYear}}</view>
       <view class="table-head-day">
-        <text>3月</text>
+        <text>{{headSelectMonth}}月</text>
       </view>
     </viwe>
     <swiper class="table-head-swiper" current="{{headerCurrent}}" circular bindchange="handleHeadSwiperChange">
       <swiper-item class="table-head-swiper-item" wx:for="{{swiperHeadList}}" wx:key="index">
         <view class="table-head-item" wx:for="{{item}}" wx:for-item="weekItem" wx:for-index="idx" wx:key="idx" >
+          <view class="month-tag" wx:if="{{weekItem.day == '01'}}">{{weekItem.month}}月</view>
           <view class="table-head-week">{{weekItem.date}}</view>
           <view class="table-head-day">{{weekItem.day}} <text class="taday" wx:if="{{weekItem.datestr === nowDateStr}}">今</text></view>
         </view>
@@ -44,7 +45,7 @@
   </scroll-view>
   <view class="footer-box">
     <view class="footer-contetn">
-      <view class="footer-item">添加课程</view>
+      <view class="footer-item">点选格子进行排班</view>
     </view>
     <view class="footer-nav">
       <view class="footer-nav-item">排序</view>
@@ -59,10 +60,24 @@
   >
     <view class="click-grid-main">
       <view class="grid-head">
-        <text>课程详情</text>
+        <text>已选择1个格子为期排班</text>
+        <text>添加班次</text>
       </view>
+      <viwe class="select-scheduling-list">
+        <view class="select-scheduling-item" wx:for="{{selectSchedulingList}}" wx:key="index">
+          <view class="select-scheduling-item-content">
+            <text>{{item.startTime}}</text>
+            <text>{{item.endTime}}</text>
+          </view>
+          <view class="select-scheduling-item-btn">
+            <text>删除</text>
+          </view>
+          
+        </view>
+      </viwe>
       <view class="grid-btn">
         <text>选择班次</text>
+        <text>取消</text>
       </view>
     </view>
   </page-container>

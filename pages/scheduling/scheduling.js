@@ -18,6 +18,9 @@ Page({
 		nowDateStr: '',
 		headerCurrent: 1,
 		bodyCurrent: 1,
+		headSelectYear: '',
+		headSelectMonth: '',
+		selectSchedulingList: [],
 	},
 
 	init() {
@@ -27,7 +30,9 @@ Page({
 		const nowYear = now.getFullYear()
 		const nowDateStr = `${nowYear}-${nowMonth + 1}-${nowDate}`
 		this.setData({
-			nowDateStr
+			nowDateStr,
+			headSelectYear: nowYear,
+			headSelectMonth: nowMonth + 1
 		})
 
 		//生成20个user
@@ -67,11 +72,17 @@ Page({
 			const weekArray = [];
 			for (let i = 0; i < 7; i++) {
 				const currentDate = new Date(startDate.getTime() + i * dayMilliseconds);
+				//datestr 为日期字符串，格式为yyyy-MM-dd 日期小于10的前面补0，如2021-01-01
+
+				let currentDay = currentDate.getDate();
+				let day = currentDay < 10 ? '0' + currentDay : currentDay;
+				let currentMonth = currentDate.getMonth() + 1;
+				let month = currentMonth < 10 ? '0' + currentMonth : currentMonth;
 				weekArray.push({
 					date: weekDays[currentDate.getDay() === 0 ? 6 : currentDate.getDay() - 1],
-					day: currentDate.getDate(),
-					datestr: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`,
-					month: currentDate.getMonth() + 1
+					day,
+					datestr: `${currentDate.getFullYear()}-${month}-${day}`,
+					month: month,
 				});
 			}
 			return weekArray;
@@ -105,6 +116,8 @@ Page({
 		console.log('handleHeadSwiperChange', current)
 		//当前current第一天的日期
 		const firstDate = this.data.swiperHeadList[current][0].datestr;
+		const headSelectYear = firstDate.split('-')[0];
+		const headSelectMonth = firstDate.split('-')[1];
 		console.log(firstDate, 999)
 		//重新生成头部swiper数据
 		let swiperHeadList = this.generateWeekData(new Date(firstDate));
@@ -126,7 +139,9 @@ Page({
 		
 		this.setData({
 			swiperHeadList,
-			bodyCurrent: current
+			bodyCurrent: current,
+			headSelectMonth,
+			headSelectYear,
 		})
 	},
 
