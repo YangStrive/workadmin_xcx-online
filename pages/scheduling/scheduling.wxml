@@ -33,8 +33,9 @@
           <swiper-item class="table-body-list" wx:for="{{tableBodyScheduling}}"wx:key="index">
             <view class="list-item"  wx:for="{{item}}" wx:for-index="idx" wx:for-item="itemSchedu" wx:key="idx">
               <view class="table-body-item"  wx:for="{{itemSchedu}}" wx:for-item="itemScheduChild" wx:for-index="idxC" wx:key="idxC" bindtap="handleClickGridScheduling">
-                <text class="time-stage">{{itemScheduChild.startTime}}</text>
-                <text class="time-stage">{{itemScheduChild.endTime}}</text>
+                <text class="time-stage schedule-name">{{itemScheduChild.schedule_name}}</text>
+                <text class="time-stage">{{itemScheduChild.start_time}}</text>
+                <text class="time-stage">{{itemScheduChild.end_time}}</text>
               </view>
             </view>
           </swiper-item>
@@ -57,27 +58,35 @@
   <page-container
     show="{{showClickGrid}}"
     overlay="{{false}}"
+    custom-style="{{customStyle}}"
+    round
   >
     <view class="click-grid-main">
       <view class="grid-head">
-        <text>已选择1个格子为期排班</text>
-        <text>添加班次</text>
+        <text class="grid-head-st-num">已选择1个格子为期排班</text>
+        <text class="grid-head-add-btn">+添加班次</text>
       </view>
       <viwe class="select-scheduling-list">
         <view class="select-scheduling-item" wx:for="{{selectSchedulingList}}" wx:key="index">
           <view class="select-scheduling-item-content">
-            <text>{{item.startTime}}</text>
-            <text>{{item.endTime}}</text>
+            <view class="select-scheduling-item-content-left">
+              <text class="schedule-name">{{item.schedule_name}}</text>
+              <text class="schedule-time">{{item.start_time}}-{{item.end_time}}</text>
+            </view>
+            <view class="select-scheduling-item-content-right">
+              <text class="work-hours">{{item.work_hours}}小时</text>
+            </view>
           </view>
           <view class="select-scheduling-item-btn">
-            <text>删除</text>
+            <text class="delete">删除</text>
           </view>
           
         </view>
       </viwe>
       <view class="grid-btn">
-        <text>选择班次</text>
-        <text>取消</text>
+        <text class="select-schedu-btn" >选择班次</text>
+        <text class="select-schedu-btn" wx:if="{{false}}">确认排班</text>
+        <text class="cancel-btn">取消</text>
       </view>
     </view>
   </page-container>

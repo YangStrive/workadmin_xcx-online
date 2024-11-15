@@ -5,6 +5,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
+		customStyle: 'background: #ffffff;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);',
 		showClickGrid: false,
 		current: 0,
 		user:[{
@@ -20,7 +21,17 @@ Page({
 		bodyCurrent: 1,
 		headSelectYear: '',
 		headSelectMonth: '',
-		selectSchedulingList: [],
+		selectSchedulingList: [
+			{
+				schedule_name:'早班',
+				schedulingColor: '#FF0000',
+				start_time: '08:00',
+				end_time: '09:00',
+				work_hours: 10,
+				rest_start_time: '09:00',
+				rest_end_time: '09:30',
+			}
+		],
 	},
 
 	init() {
@@ -167,15 +178,17 @@ Page({
 				//给随机生成的排班数据添加默认值
 				const day = Math.floor(Math.random() * 30) + 1;
 				const date = `${this.data.swiperHeadList[this.data.bodyCurrent][j].month}-${day}`;
-				const startTime = startTimeList[Math.floor(Math.random() * 10)];
-				const endTime = endTimeList[Math.floor(Math.random() * 10)];
+				const start_time = startTimeList[Math.floor(Math.random() * 10)];
+				const end_time = endTimeList[Math.floor(Math.random() * 10)];
 				const rest = false;
 				item.push({
 					day,
 					date,
-					startTime,
-					endTime,
+					start_time,
+					end_time,
 					rest,
+					schedule_name: '早班',
+					work_hours: 10,
 				})
 			}
 			scheduling.push(item)
@@ -188,9 +201,11 @@ Page({
 				item.push({
 					day: '',
 					date: '',
-					startTime: '',
-					endTime: '',
+					start_time: '',
+					end_time: '',
 					rest: false,
+					schedule_name: '',
+					work_hours: '',
 				})
 			}
 			schedulingEmpty.push(item)

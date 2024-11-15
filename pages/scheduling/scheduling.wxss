@@ -192,3 +192,97 @@
 .footer-nav-item{
   padding: 0 20rpx;
 }
+
+/* 点选格子 */
+.click-grid-main{
+  padding: 48rpx;
+  
+
+}
+.click-grid-main .grid-head{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.grid-head-st-num{
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #404040;
+}
+.grid-head-add-btn{
+  font-size: 32rpx;
+  color: #4528ff;
+}
+
+.select-scheduling-list{
+
+}
+.select-scheduling-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+}
+.select-scheduling-item-content{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  border: 1rpx solid #e8e8e8;
+  padding: 12rpx 24rpx;
+  border-radius: 10rpx;
+}
+.schedule-name{
+  font-size: 28rpx;
+  color: #404040;
+  margin-right: 20rpx;
+}
+.schedule-time{
+  font-size: 32rpx;
+  color: #706b6b;
+}
+.select-scheduling-item-content-right{
+  display: flex;
+  align-items: center;
+  border-left: 1rpx solid #e8e8e8;
+  margin-left: 12rpx;
+  padding-left: 12rpx;
+}
+.work-hours{
+  font-size: 28rpx;
+  color: #706b6b;
+}
+.select-scheduling-item-btn{
+  flex-shrink: 0;
+  margin-left: 20rpx;
+}
+.delete{
+  font-size: 32rpx;
+  color: #FFA928;
+
+
+}
+.grid-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40rpx;
+}
+.select-schedu-btn{
+  display: block;
+  width: 180rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  background-color: #FFA928;
+  border-radius: 40rpx;
+}
+.cancel-btn{
+  display: block;
+  margin-left: 42rpx;
+  font-size: 28rpx;
+  color: #FFA928;
+}
