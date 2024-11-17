@@ -1,0 +1,13 @@
+//是否 选中了当前班次
+ var isSelectCheck = function (selectedList,id) {
+    for (var i = 0; i < selectedList.length; i++) {
+      if (selectedList[i] === id) {
+        return true;
+      }
+    }
+    return false;
+};
+
+module.exports = {
+  isSelectCheck:isSelectCheck,
+};

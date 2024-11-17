@@ -2,6 +2,8 @@
   <view class="head-nav">
     <text class="project-name">大润发项目排班</text>
   </view>
+
+  <!-- 表头区域 -->
   <view class="table-head">
     <viwe class="table-head-first">
       <view class="table-head-year">{{headSelectYear}}</view>
@@ -19,31 +21,42 @@
       </swiper-item>
     </swiper>
   </view>
+
+  <!-- 表格区域 -->
   <scroll-view class="scroll-body" 	scroll-y>
     <view class="scroll-main">
+
+      <!-- 表格左侧人员部分 -->
       <view class="table-body-user">
-        <view class="table-body-item" wx:for="{{user}}" wx:key="index">
-          <view class="item-surname">{{item.firstName}}</view>
-          <view class="item-name">{{item.name}}</view>
+        <view class="table-body-item" wx:for="{{userList}}" wx:key="index">
+          <view class="item-surname">{{item.first_name}}</view>
+          <view class="item-name">{{item.user_name}}</view>
         </view>
       </view>
-      
+
+      <!-- 表格右侧排班部分 -->
       <view>
         <swiper class="swiper-table-body" current="{{bodyCurrent}}" circular bindchange="handleBodySwiperChange">
           <swiper-item class="table-body-list" wx:for="{{tableBodyScheduling}}"wx:key="index">
             <view class="list-item"  wx:for="{{item}}" wx:for-index="idx" wx:for-item="itemSchedu" wx:key="idx">
               <view class="table-body-item"  wx:for="{{itemSchedu}}" wx:for-item="itemScheduChild" wx:for-index="idxC" wx:key="idxC" bindtap="handleClickGridScheduling">
-                <text class="time-stage schedule-name">{{itemScheduChild.schedule_name}}</text>
-                <text class="time-stage">{{itemScheduChild.start_time}}</text>
-                <text class="time-stage">{{itemScheduChild.end_time}}</text>
+                <view wx:if="{{itemScheduChild.length > 1}}">
+                  <text class="more-schedule">{{itemScheduChild.length}}</text>
+                </view>
+                <view wx:if="{{itemScheduChild.length == 1}}">
+                  <text class="time-stage schedule-name">{{itemScheduChild[0].schedule_name}}</text>
+                  <text class="time-stage">{{itemScheduChild[0].start_time}}</text>
+                  <text class="time-stage">{{itemScheduChild[0].end_time}}</text>
+                </view>
               </view>
             </view>
           </swiper-item>
         </swiper>
       </view>
-
     </view>
   </scroll-view>
+
+  <!-- 底部操作区域 -->
   <view class="footer-box">
     <view class="footer-contetn">
       <view class="footer-item">点选格子进行排班</view>
@@ -55,16 +68,19 @@
       <view class="footer-nav-item">邀请</view>
     </view>
   </view>
+
+  <!-- 选择空格子后，选择班次弹窗 -->
   <page-container
+
     show="{{showClickGrid}}"
     overlay="{{false}}"
     custom-style="{{customStyle}}"
     round
   >
-    <view class="click-grid-main">
+    <view class="click-grid-main" wx:if="{{showAddClickGridMain}}">
       <view class="grid-head">
         <text class="grid-head-st-num">已选择1个格子为期排班</text>
-        <text class="grid-head-add-btn">+添加班次</text>
+        <text class="grid-head-add-btn" bindtap="handleClickAddScheduleBtn" wx:if="{{selectSchedulingList.length > 0}}">+添加班次</text>
       </view>
       <viwe class="select-scheduling-list">
         <view class="select-scheduling-item" wx:for="{{selectSchedulingList}}" wx:key="index">
@@ -78,17 +94,25 @@
             </view>
           </view>
           <view class="select-scheduling-item-btn">
-            <text class="delete">删除</text>
+            <text class="delete" data-scheduleidx="{{index}}" bindtap="handleClickDeleteSeletedScheduleBtn">删除</text>
           </view>
-          
         </view>
       </viwe>
       <view class="grid-btn">
-        <text class="select-schedu-btn" >选择班次</text>
-        <text class="select-schedu-btn" wx:if="{{false}}">确认排班</text>
-        <text class="cancel-btn">取消</text>
+        <text class="select-schedu-btn"  wx:if="{{selectSchedulingList.length == 0}}" bindtap="handleClickSelectScheduleBtn">选择班次</text>
+        <text class="select-schedu-btn" wx:if="{{selectSchedulingList.length > 0}}">确认排班</text>
+        <text class="cancel-btn" bindtap="handleCancelScheduleBtn">取消</text>
       </view>
     </view>
+
+    <shiftList 
+      wx:if="{{showAddScheedulingMain}}" 
+      shiftType="1" 
+      selectedShiftIdList="{{selectSchedulingIdList}}" 
+      bind:cancel="handleClickShiftListCancelBtn"
+      bind:confirm="handleClickShiftListConfirmBtn"
+      />
   </page-container>
+
 
 </view>

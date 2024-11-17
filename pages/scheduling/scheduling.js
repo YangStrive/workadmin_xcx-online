@@ -1,4 +1,9 @@
 // pages/scheduling/scheduling.js
+import {schedule, shift} from './sched.js'
+import {
+	generateWeekData,
+	analysisuserList,
+} from './util.js'
 Page({
 
 	/**
@@ -8,11 +13,7 @@ Page({
 		customStyle: 'background: #ffffff;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);',
 		showClickGrid: false,
 		current: 0,
-		user:[{
-			name: '张三',
-			firstName: '张',
-		}],
-		week: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+		userList:[],
 		tableBodyScheduling: [],
 		swiperHeadList: [],
 		//今天的日期字符串
@@ -21,20 +22,21 @@ Page({
 		bodyCurrent: 1,
 		headSelectYear: '',
 		headSelectMonth: '',
-		selectSchedulingList: [
-			{
-				schedule_name:'早班',
-				schedulingColor: '#FF0000',
-				start_time: '08:00',
-				end_time: '09:00',
-				work_hours: 10,
-				rest_start_time: '09:00',
-				rest_end_time: '09:30',
-			}
+
+		selectSchedulingList: [],//已选择的排班
+		selectSchedulingIdList:[],//已选择的排班id
+		//固定排班
+		fixedSchedulingList:  [
 		],
+		//临时排班
+		temporarySchedulingList:  [
+		],
+		showAddClickGridMain: true,
+		showAddScheedulingMain: false,
+		userLength:0,
 	},
 
-	init() {
+	async init() {
 		const now = new Date()
 		const nowDate = now.getDate()
 		const nowMonth = now.getMonth()
@@ -46,72 +48,47 @@ Page({
 			headSelectMonth: nowMonth + 1
 		})
 
-		//生成20个user
-		const user = []
-		for (let i = 0; i < 20; i++) {
-			user.push({
-				name: '张三' + i,
-				firstName: '张',
-			})
-		}
+		let data = await this.getSchedulingData();
+		let userList = this.setUserList(data);
+		let swiperHeadList = this.initSwiperHeadList();
+		let tableBodyScheduling = await this.getSchedulingDetail(1)
+		
 		this.setData({
-			user
+			userList,
+			userLength:userList.length,
+			swiperHeadList,
+			tableBodyScheduling,
+			fixedSchedulingList:shift,
 		})
 
-		this.initSwiperHeadList()
-		this.getSchedulingDetail(1)
+	},
 
+
+	//获取排班数据，使用schedule中的数据，使用promise模拟远程调用api
+	async getSchedulingData(){
+		return await this.fetchScheduleData()
+	},
+
+	fetchScheduleData() {
+		return new Promise((resolve, reject) => {
+			// 模拟延迟
+			setTimeout(() => {
+				const scheduleData = schedule;
+				resolve(scheduleData);
+			}, 1000); // 模拟 1 秒的网络延迟
+		});
 	},
 
 	//生成头部swiper数据
 	initSwiperHeadList() {
-		const swiperHeadList = this.generateWeekData(new Date())
-		this.setData({
-			swiperHeadList
-		})
+		const swiperHeadList = generateWeekData(new Date())
+		return swiperHeadList;
 	},
 
-	//生成当前日期的当前周，上一周，下一周的数据
-	generateWeekData(date) {
-		console.log(date, 666)
-		const weekData = [];
-		const dayMilliseconds = 24 * 60 * 60 * 1000;
-		const weekMilliseconds = 7 * dayMilliseconds;
-		const weekDays = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
-	
-		const getWeekArray = (startDate) => {
-			const weekArray = [];
-			for (let i = 0; i < 7; i++) {
-				const currentDate = new Date(startDate.getTime() + i * dayMilliseconds);
-				//datestr 为日期字符串，格式为yyyy-MM-dd 日期小于10的前面补0，如2021-01-01
+	//生成表格中用户姓名信息
+	setUserList(data){
+		return analysisuserList(data);
 
-				let currentDay = currentDate.getDate();
-				let day = currentDay < 10 ? '0' + currentDay : currentDay;
-				let currentMonth = currentDate.getMonth() + 1;
-				let month = currentMonth < 10 ? '0' + currentMonth : currentMonth;
-				weekArray.push({
-					date: weekDays[currentDate.getDay() === 0 ? 6 : currentDate.getDay() - 1],
-					day,
-					datestr: `${currentDate.getFullYear()}-${month}-${day}`,
-					month: month,
-				});
-			}
-			return weekArray;
-		};
-	
-		const inputDate = new Date(date);
-		const currentDay = inputDate.getDay();
-		const startOfWeek = new Date(inputDate.getTime() - ((currentDay === 0 ? 7 : currentDay) - 1) * dayMilliseconds);
-	
-		// 上一周
-		weekData.push(getWeekArray(new Date(startOfWeek.getTime() - weekMilliseconds)));
-		// 当前周
-		weekData.push(getWeekArray(startOfWeek));
-		// 下一周
-		weekData.push(getWeekArray(new Date(startOfWeek.getTime() + weekMilliseconds)));
-		console.log(weekData,888)
-	
-		return weekData;
 	},
 
 	//点击排班格子
@@ -131,7 +108,7 @@ Page({
 		const headSelectMonth = firstDate.split('-')[1];
 		console.log(firstDate, 999)
 		//重新生成头部swiper数据
-		let swiperHeadList = this.generateWeekData(new Date(firstDate));
+		let swiperHeadList = generateWeekData(new Date(firstDate));
 
 		//如果current 为0,需要对swiperHeadList重新排序，把当前周放在第一个，下一周放在第二个，上一周放在第三个
 		if(current === 0) {
@@ -167,60 +144,126 @@ Page({
 	},
 
 	//获取详细排班数据
-	getSchedulingDetail(current) {
-		//随机生成二十个排班数据，数据中对象的字段带上默认值
-		const scheduling = [];
-		let startTimeList = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00','15:00','16:00','17:00'];
-		let endTimeList = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00','16:00','17:00','18:00'];
-		for (let i = 0; i < 20; i++) {
-			const item = []
-			for (let j = 0; j < 7; j++) {
-				//给随机生成的排班数据添加默认值
-				const day = Math.floor(Math.random() * 30) + 1;
-				const date = `${this.data.swiperHeadList[this.data.bodyCurrent][j].month}-${day}`;
-				const start_time = startTimeList[Math.floor(Math.random() * 10)];
-				const end_time = endTimeList[Math.floor(Math.random() * 10)];
-				const rest = false;
-				item.push({
-					day,
-					date,
-					start_time,
-					end_time,
-					rest,
-					schedule_name: '早班',
-					work_hours: 10,
-				})
-			}
-			scheduling.push(item)
+	async getSchedulingDetail(current,data) {
+		//随机生成userLength个空排班数据，数据中对象的字段带上默认值
+		let scheduleData = []
+		if(data){
+			scheduleData = data;
+		}else{
+			scheduleData = await this.getSchedulingData();
 		}
-		//生成20个空scheduling
-		const schedulingEmpty = []
-		for (let i = 0; i < 20; i++) {
+
+		let schedulingEmpty = [];
+		const userLength = this.data.userLength;
+		for (let i = 0; i < userLength; i++) {
 			const item = []
 			for (let j = 0; j < 7; j++) {
-				item.push({
-					day: '',
-					date: '',
-					start_time: '',
-					end_time: '',
-					rest: false,
-					schedule_name: '',
-					work_hours: '',
-				})
+				item.push([
+					{
+						"task_id": "",
+						"schedule_id": "",
+						"position_id": "0",
+						"schedule_name": "",
+						"start_time": "",
+						"end_time": "",
+						"rest_start_time": "",
+						"rest_end_time": "",
+						"rest_work_hours": "",
+						"rest_work_minute": ":",
+						"work_hours": "",
+						"position_name": "",
+						"type": "",
+						"rest": ""
+					}
+				])
 			}
 			schedulingEmpty.push(item)
 		}
+		
+
+		let scheduling = [];
+		scheduleData.map( (item,index) =>{
+			scheduling.push([])
+			item.date_schedule.map((itemS) => {
+				scheduling[index].push(itemS.schedule)
+			})
+		})
 
 		let tableBodyScheduling = [schedulingEmpty, schedulingEmpty, schedulingEmpty]
 		tableBodyScheduling[current] = scheduling;
-		setTimeout(() => {
-			this.setData({
-				tableBodyScheduling
-			})
-		}, 500)
+
+		return tableBodyScheduling;
 	},
 
-	/**
+	//点击取消排班
+	handleCancelScheduleBtn() {
+		this.setData({
+			showClickGrid: false
+		})
+	},
+
+
+
+	//点击添加排班
+	handleClickAddScheduleBtn() {
+		console.log('handleClickAddScheduleBtn')
+		this.setData({
+			showAddClickGridMain: false,
+			showAddScheedulingMain: true,
+		})
+	},
+
+
+
+	//删除已选择的排班
+	handleClickDeleteSeletedScheduleBtn(e) {
+		const index = e.currentTarget.dataset.scheduleidx;
+		const selectSchedulingList = this.data.selectSchedulingList;
+		const selectSchedulingIdList = this.data.selectSchedulingIdList;
+		selectSchedulingList.splice(index, 1)
+		selectSchedulingIdList.splice(index, 1)
+		this.setData({
+			selectSchedulingList,
+			selectSchedulingIdList
+		})
+	},
+
+	//选择班次按钮点击
+	handleClickSelectScheduleBtn(){
+		this.setData({
+			showAddClickGridMain:false,
+			showAddScheedulingMain:true,
+		})
+	},
+
+	//点击取消添加排班
+	handleClickShiftListCancelBtn() {
+		this.setData({
+			showAddClickGridMain: true,
+			showAddScheedulingMain: false,
+		})
+	},
+
+	//点击确定排班
+	handleClickShiftListConfirmBtn(e){
+		const selectedList = e.detail.selectedList;
+		const selectedIdList = e.detail.selectedIdList;
+		const shiftType = e.detail.shiftType;
+
+		if(shiftType == '1'){
+			this.setData({
+				showAddClickGridMain: true,
+				showAddScheedulingMain: false,
+				selectSchedulingList:selectedList,
+				selectSchedulingIdList:selectedIdList,
+			})
+		};
+
+	},
+
+
+
+	/** 
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(options) {
