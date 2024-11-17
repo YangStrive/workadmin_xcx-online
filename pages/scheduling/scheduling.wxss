@@ -107,11 +107,38 @@
 
 .list-item .table-body-item{
   border-right: 1rpx solid #e8e8e8;
-  padding: 20rpx 0;
   flex-shrink: 0;
   flex: 1;
-  height: 130rpx;
+  height: 170rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.list-item .body-item-child{
+  width: 90%;
+  height: 95%;
+  
+}
+.grid-selected{
+  position: relative;
+  border: 1px solid #FFA928;
+  border-radius: 10rpx;
+}
+/**写一个伪类元素，做成直角三角形在右下角，标识为选中*/
+.grid-selected::after{
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-top: 6px solid transparent;
+  border-right: 6px solid #FFA928;
+  border-bottom: 6px solid #FFA928;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 
 /* scroll */
 .scroll-body{
@@ -233,6 +260,14 @@
   border: 1rpx solid #e8e8e8;
   padding: 12rpx 24rpx;
   border-radius: 10rpx;
+}
+.table-schedule-name{
+  font-size: 28rpx;
+  color: #404040;
+}
+.table-schedule-time{
+  font-size: 32rpx;
+  color: #706b6b;
 }
 .schedule-name{
   font-size: 28rpx;

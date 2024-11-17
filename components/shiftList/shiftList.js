@@ -155,8 +155,10 @@ Component({
 			}
 
 			//如果是临时排班需要
-			if(this.data.addSchedulingTab === 2){
+			if(this.data.addSchedulingTab == 2){
 				//this.triggerEvent('addTemporaryScheduling', this.data.temporarySchedulingList)
+				if(this.checkTemporarySchedulingData()){
+				}
 			}
 		},
 
@@ -170,11 +172,11 @@ Component({
 
       for(let i = 0; i < workTimetListLength; i++){
         for(let j = i + 1; j < workTimetListLength; j++){
-					let start_time = workTimetList[i].start_time;
-					let end_time = workTimetList[i].end_time;
-					let start_time_j = workTimetList[j].start_time;
-					let end_time_j = workTimetList[j].end_time;
-          if(workTimetList[i].start_time < workTimetList[j].end_time && workTimetList[i].end_time > workTimetList[j].start_time){
+					let start_time = '2022-01-01 ' + workTimetList[i].start_time;
+					let end_time ='2022-01-01 ' +  workTimetList[i].end_time;
+					let start_time_j = '2022-01-01 ' + workTimetList[j].start_time;
+					let end_time_j = '2022-01-01 ' + workTimetList[j].end_time;
+          if(new Date(start_time) < new Date(end_time_j) && new Date(end_time) > new Date(start_time_j)){
             isCross = true;
             break;
           }
@@ -182,42 +184,55 @@ Component({
       }
 
       if(isCross){
-        this.$message({
-          message: '工作时间不能交叉',
-          type: 'warning'
-        });
+				wx.showToast({
+					title: '工作时间不能重叠',
+					icon: 'none',
+					duration: 2000
+				})
         return false;
       }
 
       for(let i = 0; i < workTimetListLength; i++){
         for(let j = i + 1; j < workTimetListLength; j++){
-          if(workTimetList[i].start_time == workTimetList[j].start_time && workTimetList[i].end_time == workTimetList[j].end_time){
-            isRepeat = true;
-            break;
-          }
+					let start_time = '2022-01-01 ' + workTimetList[i].start_time;
+					let end_time ='2022-01-01 ' +  workTimetList[i].end_time;
+					let start_time_j = '2022-01-01 ' + workTimetList[j].start_time;
+					let end_time_j = '2022-01-01 ' + workTimetList[j].end_time;
+
+					if(new Date(start_time) === new Date(start_time_j) && new Date(end_time) === new Date(end_time_j)){
+						isRepeat = true;
+						break;
+					}
         }
       }
 
+
       if(isRepeat){
-        this.$message({
-          message: '工作时间不能重复',
-          type: 'warning'
-        });
+				wx.showToast({
+					title: '工作时间不能重复',
+					icon: 'none',
+					duration: 2000
+				})
         return false;
       }
 
       for(let i = 0; i < workTimetListLength; i++){
-        if(workTimetList[i].start_time > workTimetList[i].end_time){
-          isEndBeforeStart = true;
-          break;
-        }
+				let start_time = '2022-01-01 ' + workTimetList[i].start_time;
+				let end_time ='2022-01-01 ' +  workTimetList[i].end_time;
+
+				if(new Date(start_time) > new Date(end_time)){
+					isEndBeforeStart = true;
+					break;
+				}
       }
 
       if(isEndBeforeStart){
-        this.$message({
-          message: '结束时间不能早于开始时间',
-          type: 'warning'
-        });
+				wx.showToast({
+					title: '结束时间不能早于开始时间',
+					icon: 'none',
+					duration: 2000
+				})
+
         return false;
       }
 

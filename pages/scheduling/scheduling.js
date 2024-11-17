@@ -12,7 +12,6 @@ Page({
 	data: {
 		customStyle: 'background: #ffffff;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);',
 		showClickGrid: false,
-		current: 0,
 		userList:[],
 		tableBodyScheduling: [],
 		swiperHeadList: [],
@@ -34,6 +33,8 @@ Page({
 		showAddClickGridMain: true,
 		showAddScheedulingMain: false,
 		userLength:0,
+		selectedGridNum:0,
+		showDeleteClickGridMain: false,
 	},
 
 	async init() {
@@ -51,7 +52,7 @@ Page({
 		let data = await this.getSchedulingData();
 		let userList = this.setUserList(data);
 		let swiperHeadList = this.initSwiperHeadList();
-		let tableBodyScheduling = await this.getSchedulingDetail(1)
+		let tableBodyScheduling = await this.getSchedulingDetail(1,data)
 		
 		this.setData({
 			userList,
@@ -92,9 +93,45 @@ Page({
 	},
 
 	//点击排班格子
-	handleClickGridScheduling() {
+	handleClickGridScheduling(e) {
+		const userId = e.currentTarget.dataset.userid;
+		const date = e.currentTarget.dataset.date;
+		const dateIndex = e.currentTarget.dataset.dateindex;
+		const userIndex = e.currentTarget.dataset.userindex;
+		const tableBodyScheduling = this.data.tableBodyScheduling;
+		const schedulenum = e.currentTarget.dataset.schedulenum;
+		let selectedGridNum = this.data.selectedGridNum;
+
+		//如果showAddClickGridMain为true,并且schedulenum大于0,则不允许点击
+		if(this.data.showAddClickGridMain && schedulenum > 0){
+			return;
+		}
+
+		//schedulenum大于0则需要显示当前排班信息
+		if(schedulenum > 0 && !this.data.showAddClickGridMain){
+			const selectSchedulingList = tableBodyScheduling[this.data.bodyCurrent][userIndex].date_schedule[dateIndex].schedule;
+			this.setData({
+				selectSchedulingList,
+				showAddClickGridMain:false,
+				showAddScheedulingMain:true,
+			})
+			return;
+		}
+
+		//如果selected为true,则取消选中，否则选中
+		if (tableBodyScheduling[this.data.bodyCurrent][userIndex].date_schedule[dateIndex].selected) {
+			tableBodyScheduling[this.data.bodyCurrent][userIndex].date_schedule[dateIndex].selected = false;
+			selectedGridNum--;
+		}else {
+			tableBodyScheduling[this.data.bodyCurrent][userIndex].date_schedule[dateIndex].selected = true;
+			selectedGridNum++;
+		}
+
+
 		this.setData({
 			showClickGrid: true,
+			tableBodyScheduling,
+			selectedGridNum
 		})
 	},
 
@@ -154,51 +191,71 @@ Page({
 		}
 
 		let schedulingEmpty = [];
-		const userLength = this.data.userLength;
+		const userLength = scheduleData.length;
 		for (let i = 0; i < userLength; i++) {
-			const item = []
+			let item = {
+				user_id: scheduleData[i].user_id,
+				user_name: scheduleData[i].user_name,
+				date_schedule:[],
+			}
 			for (let j = 0; j < 7; j++) {
-				item.push([
-					{
-						"task_id": "",
-						"schedule_id": "",
-						"position_id": "0",
-						"schedule_name": "",
-						"start_time": "",
-						"end_time": "",
-						"rest_start_time": "",
-						"rest_end_time": "",
-						"rest_work_hours": "",
-						"rest_work_minute": ":",
-						"work_hours": "",
-						"position_name": "",
-						"type": "",
-						"rest": ""
-					}
-				])
+				item.date_schedule.push({
+					date: '',
+					selected:false,
+					schedule:[
+						{
+							"task_id": "",
+							"schedule_id": "",
+							"position_id": "0",
+							"schedule_name": "",
+							"start_time": "",
+							"end_time": "",
+							"rest_start_time": "",
+							"rest_end_time": "",
+							"rest_work_hours": "",
+							"rest_work_minute": ":",
+							"work_hours": "",
+							"position_name": "",
+							"type": "",
+							"rest": "",
+						}
+					]
+				})
 			}
 			schedulingEmpty.push(item)
 		}
-		
 
-		let scheduling = [];
-		scheduleData.map( (item,index) =>{
-			scheduling.push([])
-			item.date_schedule.map((itemS) => {
-				scheduling[index].push(itemS.schedule)
+		//将scheduleData中date_schedule字段增加一个selected字段，用于标记是否被选中
+		scheduleData.forEach((item, index) => {
+			item.date_schedule.forEach((dateItem, dateIndex) => {
+				dateItem.selected = false;
 			})
 		})
+		
+		
 
 		let tableBodyScheduling = [schedulingEmpty, schedulingEmpty, schedulingEmpty]
-		tableBodyScheduling[current] = scheduling;
+		tableBodyScheduling[current] = scheduleData;
+		console.log('getSchedulingDetail', tableBodyScheduling)
 
 		return tableBodyScheduling;
 	},
 
 	//点击取消排班
 	handleCancelScheduleBtn() {
+		const tableBodyScheduling = this.data.tableBodyScheduling;
+
+		//取消所有选中的排班
+		tableBodyScheduling[this.data.bodyCurrent].forEach((item, index) => {
+			item.date_schedule.forEach((dateItem, dateIndex) => {
+				dateItem.selected = false;
+			})
+		})
+
 		this.setData({
-			showClickGrid: false
+			showClickGrid: false,
+			selectedGridNum:0,
+			tableBodyScheduling,
 		})
 	},
 
@@ -261,6 +318,27 @@ Page({
 
 	},
 
+
+	//点击批量删除排班
+	handleClickAllDeleteBtn(){
+		this.setData({
+			showDeleteClickGridMain:true,
+			showClickGrid:true,
+			showAddClickGridMain:false,
+		})
+
+	},
+
+	handleDeleteCancelScheduleBtn(){
+		this.setData({
+			showDeleteClickGridMain:false,
+			selectedGridNum:0,
+		})
+	},
+
+	handleDeleteCanfirmBtn(){
+
+	},
 
 
 	/** 
