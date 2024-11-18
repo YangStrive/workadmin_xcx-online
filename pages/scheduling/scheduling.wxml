@@ -74,13 +74,13 @@
   <!-- 底部操作区域 -->
   <view class="footer-box">
     <view class="footer-contetn">
-      <view class="footer-item">点选格子进行排班</view>
+      <view class="footer-item" wx:if="{{false}}">点选格子进行排班</view>
     </view>
     <view class="footer-nav">
       <view class="footer-nav-item">排序</view>
-      <view class="footer-nav-item">搜索</view>
+      <view class="footer-nav-item" bindtap="handleBatchScheduleBtn">批量排班</view>
       <view class="footer-nav-item" bindtap="handleClickAllDeleteBtn"> 批量删除</view>
-      <view class="footer-nav-item">邀请</view>
+      <view class="footer-nav-item">搜索</view>
     </view>
   </view>
 
@@ -93,6 +93,8 @@
     round
   >
     <view class="click-grid-main" wx:if="{{showAddClickGridMain}}">
+
+      <view class="footer-item">点选格子进行排班</view>
       <view class="grid-head">
         <text class="grid-head-st-num">已选择{{selectedGridNum}}个格子为其排班</text>
         <text class="grid-head-add-btn" bindtap="handleClickAddScheduleBtn" wx:if="{{selectSchedulingList.length > 0}}">+添加班次</text>
