@@ -204,7 +204,7 @@
 }
 
 .footer-contetn{
-  height: 60rpx;
+  height: 0rpx;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -214,12 +214,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70rpx;
+  margin-top: 24rpx;
 }
 .footer-nav-item{
   padding: 0 20rpx;
+  flex: 1;
+  text-align: center;
 }
-
+.footer-nav-item image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.footer-nav-item text{
+  font-size: 26rpx;
+  color: #FFA928;
+}
 /* 点选格子 */
 .click-grid-main{
   padding: 48rpx;
@@ -336,4 +345,139 @@
   color: #fff;
   margin: auto;
   margin-top: 30rpx;
+}
+
+/** 个人排班 **/
+.user-schedule-detail{
+  padding: 24rpx 0;
+}
+.user-detail-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+.user-detail-head-left{
+  display: flex;
+  align-items: center;
+}
+.user-detail-head-surname{
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #e5d312;
+  color: #fff;
+  margin-right: 12rpx;
+}
+.user-detail-head-name{
+  display: block;
+  font-size: 32rpx;
+  color: #404040;
+}
+.user-detail-head-right{
+  display: flex;
+  align-items: center;
+}
+.user-detail-head-right-status{
+  display: block;
+  font-size: 26rpx;
+  color: #FFA928;
+  margin-right: 12rpx;
+}
+
+.user-schedule-box{
+  padding: 24rpx;
+}
+.user-schedule-box-title{
+  font-size: 36rpx;
+  color: #404040;
+  font-weight: bold;
+  margin-bottom: 24rpx;
+}
+.user-schedule-box-content{
+  margin-top: 24rpx;
+}
+.user-schedule-box-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding: 24rpx;
+  background-color: #efece9;
+  border-radius: 10rpx;
+}
+.user-schedule-left-head{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.user-schedule-box-item-name{
+  font-size: 28rpx;
+  color: #404040;
+}
+.user-schedule-box-item-time{
+  font-size: 36rpx;
+  color: #706b6b;
+  margin: 0 24rpx;
+  fonwb-weight: bold;
+}
+.user-schedule-box-item-worktime{
+  font-size: 26rpx;
+  color: #706b6b;
+
+}
+.user-schedule-box-item-type{
+  font-size: 24rpx;
+  color: #FFA928;
+  padding: 2rpx 10rpx;
+  background-color: #706b6b;
+  border-radius: 5rpx;
+
+}
+.user-schedule-box-item-btn-delete{
+  font-size: 26rpx;
+  color: #FFA928;
+}
+.user-schedule-box-item-btn-add{
+  margin-top: 24rpx;
+}
+.user-schedule-box-item-btn-add{
+  font-size: 26rpx;
+  color: #FFA928;
+  
+}
+
+.user-schedule-dk-item{
+  padding: 24rpx;
+  background-color: #efece9;
+  border-radius: 10rpx;
+  margin-top: 24rpx;
+}
+.user-schedule-item-dk{
+  margin-bottom: 24rpx;
+}
+.daka-time-item{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.dk-time{
+  font-size: 28rpx;
+  color: #404040;
+  margin-right: 12rpx;
+}
+.zg-time{
+  font-size: 28rpx;
+  color: #404040;
+  margin-right: 24rpx;
+}
+
+.dk-addr{
+  font-size: 28rpx;
+  color: #404040;
+  margin-right: 24rpx;
 }

@@ -41,6 +41,7 @@ Page({
 		selectedGridIndexList:{},//选中的排班索引
 		currentSchedleFirstDate:'',
 		schedulingEmpty:[],//空排班数据
+		showUserScheduleDetail:false,
 	},
 
 	async init() {
@@ -54,12 +55,19 @@ Page({
 			nowDateStr,
 			headSelectYear: nowYear,
 			headSelectMonth: nowMonth + 1
+		});
+
+
+
+		let swiperHeadList = this.initSwiperHeadList(nowDateStr);
+		
+		this.setData({
+			swiperHeadList,
 		})
 
 		let data = await this.getSchedulingData();
 		let userList = this.setUserList(data);
 		this.setEmptySchedulingData(data);
-		let swiperHeadList = this.initSwiperHeadList(data);
 		this.getSchedulingDetail(1,data)
 		
 		this.setData({
@@ -85,7 +93,7 @@ Page({
 				'team_id': 10,
 				'project_id': 18331,
 				'task_id': 1724371,
-				'start_date': '2024-11-18',
+				'start_date': this.data.swiperHeadList[this.data.headerCurrent][0].datestr,
 				'group_ids':'',
 			 }
 			dmNetwork.get(dmNetwork.getScheduleDetail, data, (res) => {
@@ -94,13 +102,13 @@ Page({
 				//网络异常处理
 				reject(err)
 			})
+			//resolve(schedule)
 		});
 	},
 
 	//生成头部swiper数据
-	initSwiperHeadList(data) {
-		let firstDate = data[0].date_schedule[0].date;
-		const swiperHeadList = generateWeekData(new Date(firstDate*1000));
+	initSwiperHeadList(date) {
+		const swiperHeadList = generateWeekData(new Date(date));
 		return swiperHeadList;
 	},
 
@@ -120,7 +128,6 @@ Page({
 	//批量排班
 	handleBatchSchedulePro(e){
 		const schedulenum = e.currentTarget.dataset.schedulenum;
-		let selectedGridNum = this.data.selectedGridNum;
 
 		//如果schedulenum大于0则不做任何操作
 		if(schedulenum > 0 ){
@@ -133,8 +140,6 @@ Page({
 
 	//公共方法处理选择和反选格子
 	handleSelectGridScheduling(e){
-		const userId = e.currentTarget.dataset.userid;
-		const date = e.currentTarget.dataset.date;
 		const dateIndex = e.currentTarget.dataset.dateindex;
 		const userIndex = e.currentTarget.dataset.userindex;
 		let tableBodyScheduling = this.data.tableBodyScheduling;
@@ -177,6 +182,10 @@ Page({
 
 		//schedulenum大于0则需要显示当前排班信息
 		if(schedulenum > 0 ){
+			this.setData({
+				showUserScheduleDetail:true,
+				showClickGrid:true,
+			})
 		}
 	},
 
@@ -441,13 +450,21 @@ Page({
 			showDeleteClickGridMain:false,
 			selectedGridNum:0,
 			tableBodyScheduling,
-			selectedGridIndexList,
+			selectedGridIndexList:{},
 		})
 	},
 
 	//点击确定批量删除排班
 	handleDeleteCanfirmBtn(){
 
+	},
+
+	//点击关闭用户排班详情
+	handleColoseUserScheduleBtn(){
+		this.setData({
+			showUserScheduleDetail:false,
+			showClickGrid:false,
+		})
 	},
 
 

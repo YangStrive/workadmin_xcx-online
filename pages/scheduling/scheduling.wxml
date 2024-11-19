@@ -77,10 +77,20 @@
       <view class="footer-item" wx:if="{{false}}">点选格子进行排班</view>
     </view>
     <view class="footer-nav">
-      <view class="footer-nav-item">排序</view>
-      <view class="footer-nav-item" bindtap="handleBatchScheduleBtn">批量排班</view>
-      <view class="footer-nav-item" bindtap="handleClickAllDeleteBtn"> 批量删除</view>
-      <view class="footer-nav-item">搜索</view>
+      <view class="footer-nav-item" wx:if="{{false}}">排序</view>
+      <view class="footer-nav-item" bindtap="handleBatchScheduleBtn">
+        <view class="footer-nav-item-icon">
+          <image src="../../image/schedule_manage.png" />
+        </view>
+        <text>批量排班</text>
+      </view>
+      <view class="footer-nav-item" bindtap="handleClickAllDeleteBtn"> 
+        <view class="footer-nav-item-icon">
+          <image src="../../image/schedule_delete.png" />
+        </view>
+        <text>批量删除</text>
+      </view>
+      <view class="footer-nav-item"  wx:if="{{false}}">搜索</view>
     </view>
   </view>
 
@@ -135,6 +145,7 @@
       </view>
     </view>
 
+    <!--选择班次-->
     <shiftList 
       wx:if="{{showAddScheedulingMain}}" 
       shiftType="1" 
@@ -142,6 +153,74 @@
       bind:cancel="handleClickShiftListCancelBtn"
       bind:confirm="handleClickShiftListConfirmBtn"
       />
+
+    <!--用户排班详情-->
+    <view class="user-schedule-detail" wx:if="{{showUserScheduleDetail}}">
+      <view class="user-detail-head">
+        <view class="user-detail-head-left">
+          <text class="user-detail-head-surname">{{'刘'}}</text>
+          <text class="user-detail-head-name">{{'刘德华'}}</text>
+        </view>
+        <view class="user-detail-head-right">
+          <text class="user-detail-head-right-status" bindtap="handleClickCloseUserDetailBtn">考勤状态</text>
+        </view>
+      </view>
+      <!--排班-->
+      <view class="user-schedule-box">
+        <text class="user-schedule-box-title">排班</text>
+        <view class="user-schedule-box-content">
+          <view class="user-schedule-box-item">
+            <view class="user-schedule-item-left">
+
+              <view  class="user-schedule-left-head">
+                <text class="user-schedule-box-item-name">{{'A班'}}</text> 
+                <text class="user-schedule-box-item-time">{{'9:00'}}-{{'19:00'}}</text>
+                <text class="user-schedule-box-item-type">{{'临时'}}</text> 
+              </view>
+              <view class="user-schedule-box-item-botton">
+                <text class="user-schedule-box-item-worktime">工作时长 {{4}}小时</text>
+              </view>
+            </view>
+            <view class="user-schedule-box-item-btn">
+              <text class="user-schedule-box-item-btn-delete" data-scheduleidx="{{1}}" bindtap="handleClickDeleteUserScheduleBtn">删除</text>
+            </view>
+          </view>
+          <view class="user-schedule-box-item-btn-add">
+            <text class="user-schedule-box-item-btn-add" bindtap="handleClickAddUserScheduleBtn">+添加班次</text>
+          </view> 
+      </view>
+    </view>
+    <!--打卡记录-->
+    <view class="user-schedule-box">
+      <text class="user-schedule-box-title">打卡记录</text>
+      <view class="user-schedule-box-content">
+        <view class="user-schedule-dk-item" >
+          <view class="user-schedule-item-dk">
+            <view  class="daka-time-item">
+              <text class="zg-time">上班时间 {{'9:00'}}</text>
+              <text class="dk-time">打卡时间 {{'8：38'}}</text>
+            </view>
+            <text class="dk-addr">打卡地点 {{'黄河京都'}}</text>
+          </view>
+          <view class="user-schedule-item-dk">
+            <view class="daka-time-item">
+
+              <text class="zg-time">下班时间 {{'9:00'}}</text>
+              <text class="dk-time">打卡时间 {{'8：38'}}</text>
+            </view>
+            <text class="dk-addr">打卡地点 {{'黄河京都'}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="user-schedule-box-item-btn-add">
+        <text class="user-schedule-box-item-btn-add" bindtap="handleClickAddUserScheduleBtn">+帮他补卡</text>
+      </view> 
+    </view>
+    <view class="grid-btn">
+      <text class="select-schedu-btn" bindtap="handleColoseUserScheduleBtn">关闭</text>
+    </view>
+  </view>
+
   </page-container>
 
 
