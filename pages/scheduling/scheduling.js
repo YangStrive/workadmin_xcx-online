@@ -1,5 +1,7 @@
 // pages/scheduling/scheduling.js
 import {schedule, shift} from './sched.js'
+var dmNetwork = require('../../utils/network.js')
+
 import {
 	generateWeekData,
 	analysisuserList,
@@ -76,12 +78,22 @@ Page({
 	},
 
 	fetchScheduleData() {
-		return new Promise((resolve, reject) => {
-			// 模拟延迟
-			setTimeout(() => {
-				const scheduleData = schedule;
-				resolve(scheduleData);
-			}, 1000); // 模拟 1 秒的网络延迟
+		return new Promise((resolve, reject) => {    
+			let data = {
+				'dmclient': 'pcweb',
+				'X-Doumi-Agent': 'weixinqy',
+				'team_id': 10,
+				'project_id': 18331,
+				'task_id': 1724371,
+				'start_date': '2024-11-18',
+				'group_ids':'',
+			 }
+			dmNetwork.get(dmNetwork.getScheduleDetail, data, (res) => {
+				resolve(res.data.data);
+			}, (err) => {
+				//网络异常处理
+				reject(err)
+			})
 		});
 	},
 
@@ -331,6 +343,7 @@ Page({
 			selectedGridNum:0,
 			tableBodyScheduling,
 			selectedGridIndexList,
+			showAddClickGridMain:false,
 		})
 	},
 

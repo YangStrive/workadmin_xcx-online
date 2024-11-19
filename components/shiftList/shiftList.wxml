@@ -51,6 +51,47 @@
         <view class="add-temporaryscheduling-btn">
           <text class="add-temporaryscheduling-btn-item" bindtap="handleAddTemporarySchedulingBtn">+添加临时班次</text>
         </view>
+        <view class="temporaryscheduling-rest-time" wx:if="{{temporarySchedulingList.length == 1}}">
+          <text class="temporaryscheduling-rest-time-title">休息时间</text>
+          <view class="rest-radio-group">
+            <radio-group bindchange="handleRestTypeRadioChange">
+              <label class="weui-cell weui-check__label" wx:for="{{restTypeList}}" wx:key="{{item.value}}">
+                <view class="weui-cell__hd">
+                  <radio value="{{item.value}}" checked="{{item.value == temporaryRestType}}" color="#FFA928"/>
+                </view>
+                <view class="weui-cell__bd">{{item.label}}</view>
+              </label>
+            </radio-group>
+          </view>
+
+          <view wx:if="{{temporaryRestType == 1}}">
+          <view class="rest-time-box-st" >
+            <view class="temporaryscheduling-rest-time-title">休息开始时间</view>
+            <picker mode="time" value="{{temporaryRestStartTime}}" bindchange="handleTemporaryRestStartTimeChange">
+              <view class="temporaryscheduling-rest-time-value">{{temporaryRestStartTime}} ></view>
+            </picker>
+          </view>
+
+          <view class="rest-time-box-st" >
+            <view class="temporaryscheduling-rest-time-title">休息结束时间</view>
+            <picker mode="time" value="{{temporaryRestEndTime}}" bindchange="handleTemporaryRestEndTimeChange">
+              <view class="temporaryscheduling-rest-time-value">{{temporaryRestEndTime}} ></view>
+            </picker>
+          </view>
+          </view>
+          <view class="rest-time-box-sth " wx:if="{{temporaryRestType == 3}}">
+            <!--休息时间 多少小时 多少分钟 -->
+            <view class="temporarys-h">
+              <input  class="temporarys-input" type="number" value="{{temporaryRestTimeHourIndex}}"/>
+              <text>小时</text>
+            </view>
+            <view class="temporarys-h">
+              <input  class="temporarys-input"  type="number"  value="{{temporaryRestTimeMinuteIndex}}"/>
+              <text>分钟</text>
+            </view>
+
+          </view>
+        </view>
       </view>
     </scroll-view>
 

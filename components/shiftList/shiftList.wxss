@@ -158,3 +158,61 @@
     background-color: #fff;
     color: #FFA928;
   }
+
+  .rest-radio-group radio-group{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 24rpx;
+  }
+  
+  .rest-radio-group .weui-check__label{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+  .rest-radio-group .weui-cell__bd{
+    margin-right: 24rpx;
+  }
+
+  .temporaryscheduling-rest-time{
+    margin-top: 24rpx;
+  }
+  .temporaryscheduling-rest-time-title{
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #404040;
+    text-align: left;
+    margin-bottom: 12rpx;
+  }
+.rest-time-box-st{
+  margin-top: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.temporarys-h{
+  display: flex;
+  align-items: center ;
+  justify-content: flex-start;
+  margin-right: 24rpx;
+}
+.temporarys-input{
+  width: 80rpx;
+  height: 50rpx;
+  border: 1rpx solid #e8e8e8;
+  border-radius: 10rpx;
+  padding: 8rpx 24rpx;
+  margin-right: 12rpx;
+}
+
+.rest-time-box-sth{
+  margin-top: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+}

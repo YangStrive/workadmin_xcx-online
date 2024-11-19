@@ -280,6 +280,9 @@ const newESinging = config.host + '/sea/api/1.0/client/v1/protocol/sign_url/get'
 //上报签约成功接口
 const reportSignSuccess = config.host + '/sea/api/1.0/client/v1/protocol/sign_url/notify'
 
+//获取排班详情
+const getScheduleDetail = config.host + '/sea/api/1.0/client/v1/attendance/user_schedule2'
+
 // get请求
 const get = (host, params, callbacksuccess, callbackfail, disLoading) => {
   if (!disLoading)
@@ -772,5 +775,6 @@ module.exports = {
   changeStoreRecord,
   restClock,
   newESinging,
-  reportSignSuccess
+  reportSignSuccess,
+  getScheduleDetail
 }

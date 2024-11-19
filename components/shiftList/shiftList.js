@@ -20,6 +20,30 @@ Component({
 		currentSelectEdShiftIdList:[],//已选择的排班id
 		fixedSchedulingList:[],
 		temporarySchedulingList: [],
+		restTypeList: [
+			{
+				value: 1,
+				label: '固定时间',
+			},
+			{
+				value: 2,
+				label: '不启用',
+			},
+			{
+				value: 3,
+				label: '动态时间',
+			},
+		],
+
+		temporaryRestStartTime: '请选择',
+		temporaryRestEndTime: '请选择',
+		temporaryRestTimeHourIndex:'',
+		temporaryRestTimeMinuteIndex:'',
+		restTimeHourList: [1,2,3,4],
+		restTimeMinuteList:[0,5,10,15,20,25,30,35,40,45,50,55],
+		temporaryRestType: 1,
+
+
 
 	},
 	attached() {
@@ -238,5 +262,26 @@ Component({
 
       return true;
     },
+
+		handleTemporaryRestStartTimeChange(e){
+			const value = e.detail.value;
+			this.setData({
+				temporaryRestStartTime:value
+			})
+		},
+
+		handleTemporaryRestEndTimeChange(e){
+			const value = e.detail.value;
+			this.setData({
+				temporaryRestEndTime:value
+			})
+		},
+
+		handleRestTypeRadioChange(e){
+			const value = e.detail.value;
+			this.setData({
+				temporaryRestType:value
+			})
+		}
 	}
 });
