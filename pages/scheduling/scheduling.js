@@ -154,6 +154,8 @@ Page({
 	handleSelectGridScheduling(e){
 		const dateIndex = e.currentTarget.dataset.dateindex;
 		const userIndex = e.currentTarget.dataset.userindex;
+		const user_id = e.currentTarget.dataset.userid;
+		const date = e.currentTarget.dataset.date;
 		let tableBodyScheduling = this.data.tableBodyScheduling;
 		let selectedGridIndexList = this.data.selectedGridIndexList;
 		let selectedGridNum = this.data.selectedGridNum;
@@ -164,12 +166,16 @@ Page({
 			selectedGridNum--;
 			//将取消选中的排班索引从selectedGridIndexList中删除
 			selectedGridIndexList[this.data.currentSchedleFirstDate] = selectedGridIndexList[this.data.currentSchedleFirstDate].filter(item => {
-				return item != `${userIndex}-${dateIndex}`
+				return item.idx != `${userIndex}-${dateIndex}`
 			})
 		}else {
 			tableBodyScheduling[this.data.bodyCurrent][userIndex].date_schedule[dateIndex].selected = true;
 			selectedGridNum++;
-			selectedGridIndexList[this.data.currentSchedleFirstDate].push(`${userIndex}-${dateIndex}`)
+			selectedGridIndexList[this.data.currentSchedleFirstDate].push({
+				idx:`${userIndex}-${dateIndex}`,
+				user_id:user_id,
+				date:date,
+			})
 		}
 		this.setData({
 			tableBodyScheduling,
@@ -269,6 +275,7 @@ Page({
 			tableBodyScheduling: [schedulingEmpty,schedulingEmpty,schedulingEmpty],
 		});
 		this.getSchedulingDetail(e.detail.current)
+
 		
 	},
 
@@ -342,8 +349,8 @@ Page({
 		//如果之前已经选择了排班，需要将已选择的排班选中
 		if(selectedGridIndexList[currentSchedleFirstDate].length > 0){
 			selectedGridIndexList[currentSchedleFirstDate].map(item => {
-				let userIndex = item.split('-')[0];
-				let dateIndex = item.split('-')[1];
+				let userIndex = item.idx.split('-')[0];
+				let dateIndex = item.idx.split('-')[1];
 				//选中已选择的排班
 				scheduleData[userIndex].date_schedule[dateIndex].selected = true
 			})
@@ -368,6 +375,7 @@ Page({
 	handleCancelScheduleBtn() {
 		const tableBodyScheduling = this.data.tableBodyScheduling;
 		let selectedGridIndexList = this.data.selectedGridIndexList;
+		selectedGridIndexList = {};
 		selectedGridIndexList[this.data.currentSchedleFirstDate] = [];
 
 		//取消所有选中的排班
@@ -493,6 +501,7 @@ Page({
 	handleDeleteCancelScheduleBtn(){
 		const tableBodyScheduling = this.data.tableBodyScheduling;
 		let selectedGridIndexList = this.data.selectedGridIndexList;
+		selectedGridIndexList = {};
 		selectedGridIndexList[this.data.currentSchedleFirstDate] = [];
 		//取消所有选中的排班
 		tableBodyScheduling[this.data.bodyCurrent].forEach((item, index) => {
@@ -505,14 +514,70 @@ Page({
 			showDeleteClickGridMain:false,
 			selectedGridNum:0,
 			tableBodyScheduling,
-			selectedGridIndexList:{},
+			selectedGridIndexList,
 		})
 	},
 
 	//点击确定批量删除排班
 	handleDeleteCanfirmBtn(){
-
+		//二次确认是否删除
+		wx.showModal({
+			title: '提示',
+			content: '是否删除选中排班',
+			success: (res) => {
+				if(res.confirm){
+					this.submitDeleteSchedule();
+				}else if(res.cancel){
+				}
+			}
+		})
 	},
+
+	//提交删除排班
+	submitDeleteSchedule(){
+		//删除选中的排班index 遍历出user_id和date 然后将user_id和date作为一个对象放入数组中
+		let selectedGridIndexList = this.data.selectedGridIndexList;
+		let deleteList = [];
+		for (let key in selectedGridIndexList) {
+			selectedGridIndexList[key].map(item => {
+				deleteList.push({
+					user_id:item.user_id,
+					choose_date:item.date,
+				})
+			})
+		}
+		
+		let data = {
+			'dmclient': 'pcweb',
+			'X-Doumi-Agent': 'weixinqy',
+			'team_id': 10,
+			'project_id': 18331,
+			'task_id': 1724371,
+			date_schedule:JSON.stringify(deleteList),
+		 }
+		dmNetwork.post(dmNetwork.delShift, data, (res) => {
+			let resData = res.data;
+			if(resData.errno == 0){
+				wx.showToast({
+					title: '删除成功',
+					icon: 'success',
+					duration: 2000
+				})
+				this.getSchedulingDetail(this.data.bodyCurrent)
+				this.setData({
+					showDeleteClickGridMain:false,
+					showClickGrid:false,
+					selectedGridIndexList:{
+						[this.data.currentSchedleFirstDate]:[]
+					},
+				})
+			}
+		}, (err) => {
+			//网络异常处理
+		})
+	},
+
+		
 
 	//点击关闭用户排班详情
 	handleColoseUserScheduleBtn(){

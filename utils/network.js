@@ -287,6 +287,8 @@ const getScheduleDetail = config.host + '/sea/api/1.0/client/v1/attendance/user_
 const getShiftList = config.host + '/sea/api/1.0/client/v1/attendance/task_schedule2'
 //保存临时班次
 const saveTempShift = config.host + '/sea/api/1.0/client/v1/attendance/task_schedule/add'
+//删除排班
+const delShift = config.host + '/sea/api/1.0/client/v1/attendance/del_schedule_user'
 
 // get请求
 const get = (host, params, callbacksuccess, callbackfail, disLoading) => {
@@ -784,4 +786,5 @@ module.exports = {
   getScheduleDetail,
   getShiftList,
   saveTempShift,
+  delShift,
 }
