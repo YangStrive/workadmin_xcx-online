@@ -42,6 +42,18 @@ Page({
 		currentSchedleFirstDate:'',
 		schedulingEmpty:[],//空排班数据
 		showUserScheduleDetail:false,
+		userScheduleList:[],
+
+		showUserAddScheedulingMain:false,
+		userInfo:{
+			user_id: 1,
+			date:'',
+			user_name:'',
+			userIndex:0,
+			dateIndex:0,
+			userFirstName:'',
+		},
+		shiftList:[],
 	},
 
 	async init() {
@@ -78,7 +90,7 @@ Page({
 		})
 
 	},
-
+	
 
 	//获取排班数据，使用schedule中的数据，使用promise模拟远程调用api
 	async getSchedulingData(){
@@ -182,9 +194,27 @@ Page({
 
 		//schedulenum大于0则需要显示当前排班信息
 		if(schedulenum > 0 ){
+			let userindex = e.currentTarget.dataset.userindex;
+			let dateindex = e.currentTarget.dataset.dateindex;
+			let userid =  e.currentTarget.dataset.userid;
+			let date = e.currentTarget.dataset.date;
+			let userScheduleList = this.data.tableBodyScheduling[this.data.bodyCurrent][userindex].date_schedule[dateindex].schedule;
+			let user_name = this.data.tableBodyScheduling[this.data.bodyCurrent][userindex].user_name;
+			let userFirstName = user_name.substr(0,1);
+			let userInfo = {
+				user_id: userid,
+				date,
+				user_name,
+				userIndex:userindex,
+				dateIndex:dateindex,
+				userFirstName,
+			}
+
 			this.setData({
 				showUserScheduleDetail:true,
 				showClickGrid:true,
+				userScheduleList,
+				userInfo,
 			})
 		}
 	},
@@ -411,6 +441,31 @@ Page({
 
 	},
 
+	//给用户添加排班页面点击取消
+	handleClickShiftListUserCancelBtn(){
+		this.setData({
+			showUserAddScheedulingMain:false,
+			showClickGrid:false,
+		})
+	},
+
+	//给用户添加排班页面点击确定
+	handleClickShiftListUserConfirmBtn(e){
+		const selectedList = e.detail.selectedList;
+		const selectedIdList = e.detail.selectedIdList;
+		const userScheduleList = this.data.userScheduleList;
+		const shiftType = e.detail.shiftType;
+
+		if(shiftType == '1'){
+			this.setData({
+				showUserAddScheedulingMain: false,
+				showUserScheduleDetail:true,
+				userScheduleList:selectedList,
+				selectSchedulingIdList:selectedIdList,
+			})
+		};
+	},
+
 	/**
 	 * 删除已存在的排班逻辑
 	 */
@@ -464,7 +519,45 @@ Page({
 		this.setData({
 			showUserScheduleDetail:false,
 			showClickGrid:false,
+			userScheduleList:[],
 		})
+	},
+
+	//删除当前日期当前用户的排班
+	handleClickDeleteUserScheduleBtn(e){
+		//二次确认是否删除
+		wx.showModal({
+			title: '提示',
+			content: '是否删除当前排班',
+			success: (res) => {
+				if (res.confirm) {
+					let scheduleidx = e.currentTarget.dataset.scheduleidx;
+					let userScheduleList = this.data.userScheduleList;
+					userScheduleList.splice(scheduleidx, 1);
+
+					this.setData({
+						userScheduleList,
+					})
+				} else if (res.cancel) {
+				}
+			}
+		})
+	},
+
+	//给当前用户添加排班
+	handleClickAddUserScheduleBtn(){
+		let userScheduleList = this.data.userScheduleList;
+		let selectSchedulingIdList = [];
+		userScheduleList.forEach(item => {
+			selectSchedulingIdList.push(item.schedule_id)
+		});
+
+		this.setData({
+			showUserAddScheedulingMain:true,
+			selectSchedulingIdList,
+			showUserScheduleDetail:false,
+		})
+
 	},
 
 

@@ -283,6 +283,11 @@ const reportSignSuccess = config.host + '/sea/api/1.0/client/v1/protocol/sign_ur
 //获取排班详情
 const getScheduleDetail = config.host + '/sea/api/1.0/client/v1/attendance/user_schedule2'
 
+//获取排班
+const getShiftList = config.host + '/sea/api/1.0/client/v1/attendance/task_schedule2'
+//保存临时班次
+const saveTempShift = config.host + '/sea/api/1.0/client/v1/attendance/task_schedule/add'
+
 // get请求
 const get = (host, params, callbacksuccess, callbackfail, disLoading) => {
   if (!disLoading)
@@ -776,5 +781,7 @@ module.exports = {
   restClock,
   newESinging,
   reportSignSuccess,
-  getScheduleDetail
+  getScheduleDetail,
+  getShiftList,
+  saveTempShift,
 }

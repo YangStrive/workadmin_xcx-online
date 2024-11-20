@@ -311,7 +311,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40rpx;
+  margin-top: 24rpx;
 }
 .select-schedu-btn{
   display: block;
@@ -355,7 +355,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20rpx 24rpx;
+  padding: 8rpx 24rpx;
   border-bottom: 1rpx solid #e8e8e8;
 }
 .user-detail-head-left{
@@ -455,10 +455,10 @@
   padding: 24rpx;
   background-color: #efece9;
   border-radius: 10rpx;
-  margin-top: 24rpx;
+  margin-top: 12rpx;
 }
 .user-schedule-item-dk{
-  margin-bottom: 24rpx;
+  margin-bottom: 12rpx;
 }
 .daka-time-item{
   display: flex;
@@ -480,4 +480,11 @@
   font-size: 28rpx;
   color: #404040;
   margin-right: 24rpx;
+}
+
+.user-sched-scroll-body{
+  max-height: 300rpx;
+}
+.user-dk-scroll-body{
+  max-height: 300rpx;
 }

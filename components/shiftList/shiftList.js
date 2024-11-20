@@ -1,4 +1,5 @@
 import {shift} from './sched.js'
+var dmNetwork = require('../../utils/network.js')
 
 Component({
 	properties: {
@@ -14,9 +15,9 @@ Component({
 
 	},
 	data: {
+		shiftList:[],
 		// 组件内部数据
 		addSchedulingTab: 1,
-		shiftList: [],
 		currentSelectEdShiftIdList:[],//已选择的排班id
 		fixedSchedulingList:[],
 		temporarySchedulingList: [],
@@ -39,11 +40,7 @@ Component({
 		temporaryRestEndTime: '请选择',
 		temporaryRestTimeHourIndex:'',
 		temporaryRestTimeMinuteIndex:'',
-		restTimeHourList: [1,2,3,4],
-		restTimeMinuteList:[0,5,10,15,20,25,30,35,40,45,50,55],
 		temporaryRestType: 1,
-
-
 
 	},
 	attached() {
@@ -53,18 +50,49 @@ Component({
 	methods: {
 
 		// 组件方法
-		init(){
+		async init(){
 			console.log('组件实例刚刚被创建',shift);
+			let shiftList = await this.getShiftList();
+			let temporarySchedulingList = shiftList.temporarySchedules;
+			if(temporarySchedulingList.length === 0){
+				temporarySchedulingList = [{
+					schedule_name: '',
+					schedulingColor: '',
+					start_time: '08:00',
+					end_time: '16:00',
+					work_hours: '',
+					rest_start_time: '',
+					rest_end_time: '',
+				}]
+			}
+
 			this.setData({
-				fixedSchedulingList:shift,
-				addSchedulingTab:this.data.shiftType,
+				fixedSchedulingList:shiftList.fixedSchedules,
 				currentSelectEdShiftIdList:this.data.selectedShiftIdList,
+				temporarySchedulingList,
 			})
 
-
-			console.log('组件实例刚刚被创建',this.data.currentSelectEdShiftIdList);
-
 		},
+
+	//获取排班数据
+	getShiftList() {
+		return new Promise((resolve, reject) => {    
+			let data = {
+				'dmclient': 'pcweb',
+				'X-Doumi-Agent': 'weixinqy',
+				'team_id': 10,
+				'project_id': 18331,
+				'task_id': 1724371,
+			 }
+			dmNetwork.get(dmNetwork.getShiftList, data, (res) => {
+				resolve(res.data.data);
+			}, (err) => {
+				//网络异常处理
+				reject(err)
+			})
+			//resolve(schedule)
+		});
+	},
 
 		handleAddSchedulingTab(e) {
 			const tabid = e.currentTarget.dataset.tabid;
@@ -182,9 +210,65 @@ Component({
 			if(this.data.addSchedulingTab == 2){
 				//this.triggerEvent('addTemporaryScheduling', this.data.temporarySchedulingList)
 				if(this.checkTemporarySchedulingData()){
+					this.saveTemporarySchedule();
 				}
 			}
 		},
+
+		//临时排班
+		async saveTemporarySchedule(){
+			let schedule_list = [];
+			let temporarySchedulingList = this.data.temporarySchedulingList;
+			if(temporarySchedulingList.length == 1){
+				schedule_list.push({
+					start_time:  temporarySchedulingList[0].start_time,
+					end_time: temporarySchedulingList[0].end_time,
+					rest_start_time: this.data.temporaryRestStartTime,
+					rest_end_time: this.data.temporaryRestEndTime,
+					type:0,
+					id:temporarySchedulingList[0].id ? temporarySchedulingList[0].id : '0',
+					name:temporarySchedulingList[0].name ? temporarySchedulingList[0].name : '',
+					cross:0,
+				})
+			}else{
+				temporarySchedulingList.forEach(item => {
+					schedule_list.push({
+						start_time: item.start_time,
+						end_time: item.end_time,
+						rest_start_time: '',
+						rest_end_time: '',
+						type:0,
+						id:item.id ? item.id : '0',
+						name:item.name ? item.name : '',  
+						cross:0,
+					})
+				})
+			}
+			let res = await this.sumbitTempSchedule(temporarySchedulingList);
+		},
+
+		sumbitTempSchedule(data){
+			//saveTempShift
+			let schedule_list = JSON.stringify(JSON.stringify(data));
+			return new Promise((resolve, reject) => {    
+				let data = {
+					'dmclient': 'pcweb',
+					'X-Doumi-Agent': 'weixinqy',
+					'team_id': 10,
+					'project_id': 18331,
+					'task_id': 1724371,
+					schedule_list
+				}
+				dmNetwork.post(dmNetwork.saveTempShift, data, (res) => {
+					resolve(res.data.data);
+				}, (err) => {
+					//网络异常处理
+					reject(err)
+				})
+				//resolve(schedule)
+			});
+		},
+
 
 		//校验临时排班数据
 		checkTemporarySchedulingData(){
@@ -259,6 +343,18 @@ Component({
 
         return false;
       }
+
+			if(workTimetListLength == 1 && this.data.temporaryRestType == 1){
+				//请填写休息时间
+				if(this.data.temporaryRestStartTime == '请选择' || !this.data.temporaryRestEndTime  == '请选择'){
+					wx.showToast({
+						title: '请填写休息时间',
+						icon: 'none',
+						duration: 2000
+					})
+					return false;
+				}
+			}
 
       return true;
     },

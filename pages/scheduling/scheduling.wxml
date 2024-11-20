@@ -152,14 +152,25 @@
       selectedShiftIdList="{{selectSchedulingIdList}}" 
       bind:cancel="handleClickShiftListCancelBtn"
       bind:confirm="handleClickShiftListConfirmBtn"
+      shiftList="{{shiftList}}"
+      />
+
+     <!--选择班次-->
+    <shiftList 
+      wx:if="{{showUserAddScheedulingMain}}" 
+      shiftType="1" 
+      selectedShiftIdList="{{selectSchedulingIdList}}" 
+      bind:cancel="handleClickShiftListUserCancelBtn"
+      bind:confirm="handleClickShiftListUserConfirmBtn"
+      shiftList="{{shiftList}}"
       />
 
     <!--用户排班详情-->
     <view class="user-schedule-detail" wx:if="{{showUserScheduleDetail}}">
       <view class="user-detail-head">
         <view class="user-detail-head-left">
-          <text class="user-detail-head-surname">{{'刘'}}</text>
-          <text class="user-detail-head-name">{{'刘德华'}}</text>
+          <text class="user-detail-head-surname">{{userInfo.userFirstName}}</text>
+          <text class="user-detail-head-name">{{userInfo.user_name}}</text>
         </view>
         <view class="user-detail-head-right">
           <text class="user-detail-head-right-status" bindtap="handleClickCloseUserDetailBtn">考勤状态</text>
@@ -169,22 +180,24 @@
       <view class="user-schedule-box">
         <text class="user-schedule-box-title">排班</text>
         <view class="user-schedule-box-content">
-          <view class="user-schedule-box-item">
+          <scroll-view  class="user-sched-scroll-body" 	scroll-y>
+          <view class="user-schedule-box-item" wx:for="{{userScheduleList}}" wx:key="index">
             <view class="user-schedule-item-left">
 
               <view  class="user-schedule-left-head">
-                <text class="user-schedule-box-item-name">{{'A班'}}</text> 
-                <text class="user-schedule-box-item-time">{{'9:00'}}-{{'19:00'}}</text>
-                <text class="user-schedule-box-item-type">{{'临时'}}</text> 
+                <text class="user-schedule-box-item-name">{{item.schedule_name}}</text> 
+                <text class="user-schedule-box-item-time">{{item.start_time}}-{{item.end_time}}</text>
+                <text class="user-schedule-box-item-type">{{item.type == 0 ? '固定' : '临时'}}</text> 
               </view>
               <view class="user-schedule-box-item-botton">
-                <text class="user-schedule-box-item-worktime">工作时长 {{4}}小时</text>
+                <text class="user-schedule-box-item-worktime">工作时长 {{item.work_hours}}</text>
               </view>
             </view>
             <view class="user-schedule-box-item-btn">
-              <text class="user-schedule-box-item-btn-delete" data-scheduleidx="{{1}}" bindtap="handleClickDeleteUserScheduleBtn">删除</text>
+              <text class="user-schedule-box-item-btn-delete" data-scheduleidx="{{index}}" bindtap="handleClickDeleteUserScheduleBtn">删除</text>
             </view>
           </view>
+          </scroll-view>
           <view class="user-schedule-box-item-btn-add">
             <text class="user-schedule-box-item-btn-add" bindtap="handleClickAddUserScheduleBtn">+添加班次</text>
           </view> 
@@ -194,6 +207,7 @@
     <view class="user-schedule-box">
       <text class="user-schedule-box-title">打卡记录</text>
       <view class="user-schedule-box-content">
+        <scroll-view  class="user-dk-scroll-body" 	scroll-y>
         <view class="user-schedule-dk-item" >
           <view class="user-schedule-item-dk">
             <view  class="daka-time-item">
@@ -211,6 +225,7 @@
             <text class="dk-addr">打卡地点 {{'黄河京都'}}</text>
           </view>
         </view>
+        </scroll-view>
       </view>
       <view class="user-schedule-box-item-btn-add">
         <text class="user-schedule-box-item-btn-add" bindtap="handleClickAddUserScheduleBtn">+帮他补卡</text>
