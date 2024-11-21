@@ -59,8 +59,10 @@
                   <text class="time-stage table-schedule-name">{{itemScheduChild['schedule'][0].schedule_name}}</text>
                   <text class="time-stage">{{itemScheduChild['schedule'][0].start_time}}</text>
                   <text class="time-stage">{{itemScheduChild['schedule'][0].end_time}}</text>
+                  <image src="../../image/dui_icon.png" class="dui-icon" wx:if="{{itemScheduChild.selected}}" />
                 </view>
                 <view  wx:if="{{itemScheduChild.schedule.length == 0}}" class="body-item-child {{ itemScheduChild.selected ? 'grid-selected' : ''}}">
+                  <image src="../../image/dui_icon.png" class="dui-icon" wx:if="{{itemScheduChild.selected}}" />
 
                 </view>
               </view>
@@ -127,7 +129,7 @@
       </viwe>
       <view class="grid-btn">
         <text class="select-schedu-btn"  wx:if="{{selectSchedulingList.length == 0}}" bindtap="handleClickSelectScheduleBtn">选择班次</text>
-        <text class="select-schedu-btn" wx:if="{{selectSchedulingList.length > 0}}">确认排班</text>
+        <text class="select-schedu-btn" wx:if="{{selectSchedulingList.length > 0}}" bindtap="handleClickConfirmScheduleBtn">确认排班</text>
         <text class="cancel-btn" bindtap="handleCancelScheduleBtn">取消</text>
       </view>
     </view>
@@ -153,7 +155,7 @@
       bind:cancel="handleClickShiftListCancelBtn"
       bind:confirm="handleClickShiftListConfirmBtn"
       shiftList="{{shiftList}}"
-      />
+    />
 
      <!--选择班次-->
     <shiftList 

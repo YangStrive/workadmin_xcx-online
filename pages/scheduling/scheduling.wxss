@@ -138,6 +138,19 @@
   right: 0;
   bottom: 0;
 }
+/**写一个伪类元素before，做成小对号，放到after里面，标识为选中*/
+.grid-selected image{
+  position: absolute;
+  width: 15rpx;
+  height: 15rpx;
+  bottom: 1rpx;
+  right: 1rpx;
+  display: block;
+  z-index: 99;
+  /** 旋转45度 */
+  transform: rotate(-10deg);
+}
+
 
 
 /* scroll */
@@ -487,4 +500,10 @@
 }
 .user-dk-scroll-body{
   max-height: 300rpx;
+}
+
+.footer-item{
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #f08d7a;
 }

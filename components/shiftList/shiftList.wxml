@@ -20,7 +20,7 @@
               <text class="schedule-time">{{item.start_time}}-{{item.end_time}}</text>
             </view>
             <view class="add-scheduling-list-item-content-right">
-              <text class="work-hours">{{item.work_hours}}小时</text>
+              <text class="work-hours">{{item.work_hours}}</text>
             </view>
           </view>
         </view>

@@ -432,22 +432,79 @@ Page({
 		})
 	},
 
-	//点击确定排班
-	handleClickShiftListConfirmBtn(e){
+	//点击确定排班回调
+	async handleClickShiftListConfirmBtn(e){
 		const selectedList = e.detail.selectedList;
 		const selectedIdList = e.detail.selectedIdList;
 		const shiftType = e.detail.shiftType;
 
-		if(shiftType == '1'){
-			this.setData({
-				showAddClickGridMain: true,
-				showAddScheedulingMain: false,
-				selectSchedulingList:selectedList,
-				selectSchedulingIdList:selectedIdList,
+		this.setData({
+			showAddClickGridMain: true,
+			showAddScheedulingMain: false,
+			selectSchedulingList:selectedList,
+			selectSchedulingIdList:selectedIdList,
+		})
+	},
+
+	//最终点击确认排班
+	async handleClickConfirmScheduleBtn(){
+		const selectedGridIndexList = this.data.selectedGridIndexList;
+		const selectSchedulingIdList = this.data.selectSchedulingIdList;
+		let date_schedule = [];
+		if(selectSchedulingIdList.length == 0){
+			wx.showToast({
+				title: '请选择排班',
+				icon: 'none',
+				duration: 2000
+			})
+			return;
+		};
+
+		for (let key in selectedGridIndexList) {
+			selectedGridIndexList[key].map(item => {
+				date_schedule.push({
+					user_id: item.user_id,
+					date: item.date,
+					schedule_ids: selectSchedulingIdList,
+					position_id: 0,
+				})
 			})
 		};
 
+		if(date_schedule.length == 0){
+			wx.showToast({
+				title: '请选择格子'	,
+				icon: 'none',
+				duration: 2000
+			})
+			return;
+		}
+
+		let res = await this.submitAddUserSchedule(date_schedule);
+
+		if(res.errno == 0){
+			wx.showToast({
+				title: '添加成功',
+				icon: 'success',
+				duration: 2000
+			});
+		let resData = await this.getSchedulingDetail(this.data.bodyCurrent);
+			this.setData({
+				showAddClickGridMain: false,
+				showClickGrid: false,
+				selectSchedulingList:[],
+				selectSchedulingIdList:[],
+				selectedGridIndexList:{},
+			})
+		}else{
+			wx.showToast({
+				title: res.errmsg,
+				icon: 'none',
+				duration: 2000
+			});
+		}
 	},
+
 
 	//给用户添加排班页面点击取消
 	handleClickShiftListUserCancelBtn(){
@@ -458,21 +515,67 @@ Page({
 	},
 
 	//给用户添加排班页面点击确定
-	handleClickShiftListUserConfirmBtn(e){
+	async handleClickShiftListUserConfirmBtn(e){
 		const selectedList = e.detail.selectedList;
 		const selectedIdList = e.detail.selectedIdList;
 		const userScheduleList = this.data.userScheduleList;
 		const shiftType = e.detail.shiftType;
+		let date_schedule = [
+			{
+				user_id: this.data.userInfo.user_id,
+				date: this.data.userInfo.date,
+				schedule_ids: selectedIdList,
+				position_id: 0,
+			}
+		];
 
-		if(shiftType == '1'){
+		let res = await this.submitAddUserSchedule(date_schedule);
+		
+		if(res.errno == 0){
+			wx.showToast({
+				title: '添加成功',
+				icon: 'success',
+				duration: 2000
+			});
+
 			this.setData({
 				showUserAddScheedulingMain: false,
 				showUserScheduleDetail:true,
 				userScheduleList:selectedList,
 				selectSchedulingIdList:selectedIdList,
 			})
-		};
+
+			this.getSchedulingDetail(this.data.bodyCurrent);
+		}else{
+			wx.showToast({
+				title: res.errmsg,
+				icon: 'none',
+				duration: 2000
+			});
+		}
 	},
+
+	//提交给用户添加排班
+	submitAddUserSchedule(date_schedule){
+		return new Promise((resolve, reject) => {
+			let data = {
+				'dmclient': 'pcweb',
+				'X-Doumi-Agent': 'weixinqy',
+				'team_id': 10,
+				'project_id': 18331,
+				'task_id': 1724371,
+				date_schedule:JSON.stringify(date_schedule),
+			 }
+			dmNetwork.post(dmNetwork.giveShift, data, (res) => {
+				resolve(res.data);
+			}, (err) => {
+				//网络异常处理
+				reject(err)
+			})
+		});
+	},
+	
+		
 
 	/**
 	 * 删除已存在的排班逻辑
@@ -500,8 +603,7 @@ Page({
 	//点击取消批量删除排班
 	handleDeleteCancelScheduleBtn(){
 		const tableBodyScheduling = this.data.tableBodyScheduling;
-		let selectedGridIndexList = this.data.selectedGridIndexList;
-		selectedGridIndexList = {};
+		let selectedGridIndexList = {};
 		selectedGridIndexList[this.data.currentSchedleFirstDate] = [];
 		//取消所有选中的排班
 		tableBodyScheduling[this.data.bodyCurrent].forEach((item, index) => {
@@ -567,9 +669,13 @@ Page({
 				this.setData({
 					showDeleteClickGridMain:false,
 					showClickGrid:false,
-					selectedGridIndexList:{
-						[this.data.currentSchedleFirstDate]:[]
-					},
+					selectedGridIndexList:{},
+				})
+			}else{
+				wx.showToast({
+					title: resData.errmsg,
+					icon: 'none',
+					duration: 2000
 				})
 			}
 		}, (err) => {
