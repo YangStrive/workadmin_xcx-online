@@ -1,6 +1,7 @@
 {
     "navigationBarTitleText": "排班",
     "usingComponents": {
-      "shiftList": "/components/shiftList/shiftList"
+      "shiftList": "/components/shiftList/shiftList",
+      "replacementCard": "/components/replacementCard/replacementCard"
     }
 }

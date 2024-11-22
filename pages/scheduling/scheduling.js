@@ -1,5 +1,4 @@
-// pages/scheduling/scheduling.js
-import {schedule, shift} from './sched.js'
+
 var dmNetwork = require('../../utils/network.js')
 
 import {
@@ -27,12 +26,6 @@ Page({
 
 		selectSchedulingList: [],//已选择的排班
 		selectSchedulingIdList:[],//已选择的排班id
-		//固定排班
-		fixedSchedulingList:  [
-		],
-		//临时排班
-		temporarySchedulingList:  [
-		],
 		showAddClickGridMain: false,//是否显示添加排班，true显示，false不显示，默认显示
 		showAddScheedulingMain: false,
 		userLength:0,
@@ -54,6 +47,7 @@ Page({
 			userFirstName:'',
 		},
 		shiftList:[],
+		showReplacementCard: false,
 	},
 
 	async init() {
@@ -86,7 +80,6 @@ Page({
 			userList,
 			userLength:userList.length,
 			swiperHeadList,
-			fixedSchedulingList:shift,
 		})
 
 	},
@@ -559,12 +552,10 @@ Page({
 	submitAddUserSchedule(date_schedule){
 		return new Promise((resolve, reject) => {
 			let data = {
-				'dmclient': 'pcweb',
-				'X-Doumi-Agent': 'weixinqy',
 				'team_id': 10,
 				'project_id': 18331,
 				'task_id': 1724371,
-				date_schedule:JSON.stringify(date_schedule),
+				date_schedule:date_schedule,
 			 }
 			dmNetwork.post(dmNetwork.giveShift, data, (res) => {
 				resolve(res.data);
@@ -650,8 +641,6 @@ Page({
 		}
 		
 		let data = {
-			'dmclient': 'pcweb',
-			'X-Doumi-Agent': 'weixinqy',
 			'team_id': 10,
 			'project_id': 18331,
 			'task_id': 1724371,
@@ -727,6 +716,28 @@ Page({
 			showUserAddScheedulingMain:true,
 			selectSchedulingIdList,
 			showUserScheduleDetail:false,
+		})
+
+	},
+
+	//帮他补卡
+	handleClickHelpClockIn(){
+		this.setData({
+			showReplacementCard:true,
+			showUserScheduleDetail:false,
+		})
+	},
+
+	handleClickReplacementCardCancelBtn(){
+		this.setData({
+			showReplacementCard:false,
+			showUserScheduleDetail:true,
+		})
+	},
+
+	handleClickReplacementCardConfirmBtn(){
+		this.setData({
+			showReplacementCard:false,
 		})
 
 	},

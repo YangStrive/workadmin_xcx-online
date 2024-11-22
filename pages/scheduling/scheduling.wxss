@@ -157,6 +157,10 @@
 .scroll-body{
   height: calc(100vh - 354rpx);
 }
+.select-scorll-body{
+  height: calc(100vh - 535rpx);
+
+}
 .scroll-main{
 
   display: flex;

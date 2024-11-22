@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "formtextarea": "../../components/formtextarea/formtextarea",
+        "formtime": "../../components/formtime/formtime"
+    },
+    "component": true
+}
