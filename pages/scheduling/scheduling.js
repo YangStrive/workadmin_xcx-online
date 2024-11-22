@@ -46,7 +46,6 @@ Page({
 			dateIndex:0,
 			userFirstName:'',
 		},
-		shiftList:[],
 		showReplacementCard: false,
 	},
 
@@ -215,6 +214,21 @@ Page({
 				userScheduleList,
 				userInfo,
 			})
+
+			dmNetwork.get(dmNetwork.getUserScheduleDetail, {user_id:userid,date:date}, (res) => {
+				if(res.data.errno == 0){
+					this.setData({
+						userScheduleList:res.data.data
+					})
+				}else{
+					wx.showToast({
+						title: res.data.errmsg,
+						icon: 'none',
+						duration: 2000
+					})
+				}
+			})
+
 		}
 	},
 
@@ -364,7 +378,7 @@ Page({
 		})
 	},
 
-	//点击取消排班
+	//点击取消批量排班
 	handleCancelScheduleBtn() {
 		const tableBodyScheduling = this.data.tableBodyScheduling;
 		let selectedGridIndexList = this.data.selectedGridIndexList;
@@ -384,6 +398,7 @@ Page({
 			tableBodyScheduling,
 			selectedGridIndexList,
 			showAddClickGridMain:false,
+			selectSchedulingIdList:[],
 		})
 	},
 
@@ -396,7 +411,7 @@ Page({
 		})
 	},
 
-	//删除已选择的排班
+	//删除批量排班中已选择的排班
 	handleClickDeleteSeletedScheduleBtn(e) {
 		const index = e.currentTarget.dataset.scheduleidx;
 		const selectSchedulingList = this.data.selectSchedulingList;
@@ -458,7 +473,7 @@ Page({
 				date_schedule.push({
 					user_id: item.user_id,
 					date: item.date,
-					schedule_ids: selectSchedulingIdList,
+					schedule_ids: selectSchedulingIdList.join(','),
 					position_id: 0,
 				})
 			})
@@ -488,6 +503,7 @@ Page({
 				selectSchedulingList:[],
 				selectSchedulingIdList:[],
 				selectedGridIndexList:{},
+				selectedGridNum:0,
 			})
 		}else{
 			wx.showToast({
@@ -503,7 +519,7 @@ Page({
 	handleClickShiftListUserCancelBtn(){
 		this.setData({
 			showUserAddScheedulingMain:false,
-			showClickGrid:false,
+			showUserScheduleDetail:true,
 		})
 	},
 
@@ -511,13 +527,11 @@ Page({
 	async handleClickShiftListUserConfirmBtn(e){
 		const selectedList = e.detail.selectedList;
 		const selectedIdList = e.detail.selectedIdList;
-		const userScheduleList = this.data.userScheduleList;
-		const shiftType = e.detail.shiftType;
 		let date_schedule = [
 			{
 				user_id: this.data.userInfo.user_id,
 				date: this.data.userInfo.date,
-				schedule_ids: selectedIdList,
+				schedule_ids: selectedIdList.join(','),
 				position_id: 0,
 			}
 		];
@@ -555,7 +569,7 @@ Page({
 				'team_id': 10,
 				'project_id': 18331,
 				'task_id': 1724371,
-				date_schedule:date_schedule,
+				date_schedule:JSON.stringify(date_schedule),
 			 }
 			dmNetwork.post(dmNetwork.giveShift, data, (res) => {
 				resolve(res.data);
@@ -627,7 +641,7 @@ Page({
 	},
 
 	//提交删除排班
-	submitDeleteSchedule(){
+	async submitDeleteSchedule(){
 		//删除选中的排班index 遍历出user_id和date 然后将user_id和date作为一个对象放入数组中
 		let selectedGridIndexList = this.data.selectedGridIndexList;
 		let deleteList = [];
@@ -639,39 +653,46 @@ Page({
 				})
 			})
 		}
-		
-		let data = {
-			'team_id': 10,
-			'project_id': 18331,
-			'task_id': 1724371,
-			date_schedule:JSON.stringify(deleteList),
+		let resData = await this.submitDeleteScheduleData(deleteList);
+
+		 if(resData.errno == 0){
+			 wx.showToast({
+				 title: '删除成功',
+				 icon: 'success',
+				 duration: 2000
+			 })
+			 this.getSchedulingDetail(this.data.bodyCurrent)
+			 this.setData({
+				 showDeleteClickGridMain:false,
+				 showClickGrid:false,
+				 selectedGridIndexList:{},
+				 selectedGridNum:0,
+			 })
+		 }else{
+			 wx.showToast({
+				 title: resData.errmsg,
+				 icon: 'none',
+				 duration: 2000
+			 })
 		 }
-		dmNetwork.post(dmNetwork.delShift, data, (res) => {
-			let resData = res.data;
-			if(resData.errno == 0){
-				wx.showToast({
-					title: '删除成功',
-					icon: 'success',
-					duration: 2000
-				})
-				this.getSchedulingDetail(this.data.bodyCurrent)
-				this.setData({
-					showDeleteClickGridMain:false,
-					showClickGrid:false,
-					selectedGridIndexList:{},
-				})
-			}else{
-				wx.showToast({
-					title: resData.errmsg,
-					icon: 'none',
-					duration: 2000
-				})
-			}
-		}, (err) => {
-			//网络异常处理
-		})
 	},
 
+	submitDeleteScheduleData(deleteList){
+		return new Promise((resolve, reject) => {
+			let data = {
+				'team_id': 10,
+				'project_id': 18331,
+				'task_id': 1724371,
+				date_schedule:JSON.stringify(deleteList),
+			 }
+			dmNetwork.post(dmNetwork.delShift, data, (res) => {
+				resolve(res.data);
+			}, (err) => {
+				//网络异常处理
+				reject(err)
+			})
+		})
+	},	
 		
 
 	//点击关闭用户排班详情
@@ -680,6 +701,7 @@ Page({
 			showUserScheduleDetail:false,
 			showClickGrid:false,
 			userScheduleList:[],
+			selectSchedulingIdList:[],
 		})
 	},
 
@@ -698,11 +720,41 @@ Page({
 					this.setData({
 						userScheduleList,
 					})
+					this.submitDeleteUserSchedule(userScheduleList);
+					
 				} else if (res.cancel) {
 				}
 			}
 		})
 	},
+
+	//提交删除当前用户排班
+	async submitDeleteUserSchedule(userScheduleList){
+		let data = {
+			'team_id': 10,
+			'project_id': 18331,
+			user_id: this.data.userInfo.user_id,
+			date: this.data.userInfo.date,
+			schedule_id: userScheduleList.map(item => item.schedule_id).join(','),
+		 }
+		dmNetwork.post(dmNetwork.delShiftUser,data, (res) => {
+			if(res.errno == 0){
+				wx.showToast({
+					title: '删除成功',
+					icon: 'success',
+					duration: 2000
+				})
+				this.getSchedulingDetail(this.data.bodyCurrent)
+			}else{
+				wx.showToast({
+					title: res.errmsg,
+					icon: 'none',
+					duration: 2000
+				})
+			}
+		})
+	},
+
 
 	//给当前用户添加排班
 	handleClickAddUserScheduleBtn(){

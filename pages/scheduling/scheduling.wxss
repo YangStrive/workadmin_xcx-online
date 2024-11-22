@@ -161,6 +161,9 @@
   height: calc(100vh - 535rpx);
 
 }
+.selected-det-body{
+  height: calc(100vh - 490rpx);
+}
 .scroll-main{
 
   display: flex;
@@ -407,7 +410,7 @@
 }
 
 .user-schedule-box{
-  padding: 24rpx;
+  padding:0 24rpx;
 }
 .user-schedule-box-title{
   font-size: 36rpx;
@@ -416,7 +419,7 @@
   margin-bottom: 24rpx;
 }
 .user-schedule-box-content{
-  margin-top: 24rpx;
+  margin-top: 12rpx;
 }
 .user-schedule-box-item{
   display: flex;
@@ -460,11 +463,13 @@
   color: #FFA928;
 }
 .user-schedule-box-item-btn-add{
-  margin-top: 24rpx;
+  margin-top: 0rpx;
+  margin-bottom: 12rpx;
 }
 .user-schedule-box-item-btn-add{
   font-size: 26rpx;
   color: #FFA928;
+  margin-top: 12rpx;
   
 }
 

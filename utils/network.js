@@ -291,6 +291,11 @@ const saveTempShift = config.host + '/sea/api/1.0/client/v1/attendance/task_sche
 const delShift = config.host + '/sea/api/1.0/client/v1/attendance/del_schedule_user'
 //给人排班
 const giveShift = config.host + '/sea/api/1.0/client/v1/attendance/user_schedule/set'
+//删除某个人某个的排班
+const delShiftUser = config.host + '/sea/api/1.0/client/v1/attendance/del_ss_user'
+///sea/api/1.0/client/v1/attendance/confirm_list
+//待确认工时列表
+const clockInList = config.host + '/sea/api/1.0/client/v1/attendance/confirm_list'
 
 
 // get请求
@@ -791,4 +796,6 @@ module.exports = {
   saveTempShift,
   delShift,
   giveShift,
+  delShiftUser,
+  clockInList,
 }

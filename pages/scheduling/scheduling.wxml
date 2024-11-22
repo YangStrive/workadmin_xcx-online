@@ -23,7 +23,7 @@
   </view>
 
   <!-- 表格区域 -->
-  <scroll-view class="scroll-body {{(showAddClickGridMain || showDeleteClickGridMain) ? 'select-scorll-body' : ''}}" 	scroll-y>
+  <scroll-view class="scroll-body {{showAddClickGridMain  ? 'select-scorll-body' : ''}} {{showDeleteClickGridMain ? 'selected-det-body' : ''}}" 	scroll-y>
     <view class="scroll-main">
       <!-- 表格左侧人员部分 -->
       <view class="table-body-user">
@@ -153,17 +153,15 @@
       selectedShiftIdList="{{selectSchedulingIdList}}" 
       bind:cancel="handleClickShiftListCancelBtn"
       bind:confirm="handleClickShiftListConfirmBtn"
-      shiftList="{{shiftList}}"
     />
 
-     <!--选择班次-->
+     <!--给某人选择班次-->
     <shiftList 
       wx:if="{{showUserAddScheedulingMain}}" 
       shiftType="1" 
       selectedShiftIdList="{{selectSchedulingIdList}}" 
       bind:cancel="handleClickShiftListUserCancelBtn"
       bind:confirm="handleClickShiftListUserConfirmBtn"
-      shiftList="{{shiftList}}"
       />
 
     <!--用户排班详情-->
@@ -199,7 +197,7 @@
             </view>
           </view>
           </scroll-view>
-          <view class="user-schedule-box-item-btn-add">
+          <view class="user-schedule-box-item-btn-add-1">
             <text class="user-schedule-box-item-btn-add" bindtap="handleClickAddUserScheduleBtn">+添加班次</text>
           </view> 
         </view>
@@ -209,7 +207,7 @@
         <text class="user-schedule-box-title">打卡记录</text>
         <view class="user-schedule-box-content">
           <scroll-view  class="user-dk-scroll-body" 	scroll-y>
-          <view class="user-schedule-dk-item" >
+          <view class="user-schedule-dk-item">
             <view class="user-schedule-item-dk">
               <view  class="daka-time-item">
                 <text class="zg-time">上班时间 {{'9:00'}}</text>
@@ -228,7 +226,7 @@
           </view>
           </scroll-view>
         </view>
-        <view class="user-schedule-box-item-btn-add">
+        <view class="user-schedule-box-item-btn-add-1">
           <text class="user-schedule-box-item-btn-add" bindtap="handleClickHelpClockIn">+帮他补卡</text>
         </view> 
       </view>
