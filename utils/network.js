@@ -295,7 +295,9 @@ const giveShift = config.host + '/sea/api/1.0/client/v1/attendance/user_schedule
 const delShiftUser = config.host + '/sea/api/1.0/client/v1/attendance/del_ss_user'
 ///sea/api/1.0/client/v1/attendance/confirm_list
 //待确认工时列表
-const clockInList = config.host + '/sea/api/1.0/client/v1/attendance/confirm_list'
+const clockInList = config.host + '/sea/api/1.0/client/v1/attendance/detail'
+//重新补卡
+const reClockIn = config.host + '/sea/api/1.0/client/v1/attendance/add_punch'
 
 
 // get请求
@@ -798,4 +800,5 @@ module.exports = {
   giveShift,
   delShiftUser,
   clockInList,
+  reClockIn,
 }

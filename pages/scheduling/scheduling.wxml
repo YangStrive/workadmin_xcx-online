@@ -153,6 +153,9 @@
       selectedShiftIdList="{{selectSchedulingIdList}}" 
       bind:cancel="handleClickShiftListCancelBtn"
       bind:confirm="handleClickShiftListConfirmBtn"
+      team_id="{{team_id}}"
+      project_id="{{project_id}}"
+      task_id="{{task_id}}"
     />
 
      <!--给某人选择班次-->
@@ -162,6 +165,9 @@
       selectedShiftIdList="{{selectSchedulingIdList}}" 
       bind:cancel="handleClickShiftListUserCancelBtn"
       bind:confirm="handleClickShiftListUserConfirmBtn"
+      team_id="{{team_id}}"
+      project_id="{{project_id}}"
+      task_id="{{task_id}}"
       />
 
     <!--用户排班详情-->
@@ -206,28 +212,37 @@
       <view class="user-schedule-box">
         <text class="user-schedule-box-title">打卡记录</text>
         <view class="user-schedule-box-content">
-          <scroll-view  class="user-dk-scroll-body" 	scroll-y>
-          <view class="user-schedule-dk-item">
-            <view class="user-schedule-item-dk">
-              <view  class="daka-time-item">
-                <text class="zg-time">上班时间 {{'9:00'}}</text>
-                <text class="dk-time">打卡时间 {{'8：38'}}</text>
+          <scroll-view  class="user-ssd-scroll-body" 	scroll-x>
+            <view class="user-schedule-box2-item">
+              <view class="user-schedule-box-mmp {{item.schedule_id == userDetailScheduleId ? 'user-schedule-box2-item-active' : ''}}" wx:for="{{userScheduleList}}" wx:key="index" data-scheduleid="{{item.schedule_id}}" bindtap="handleClickScheduleTab"> 
+                <text>{{item.start_time}}-{{item.end_time}}</text>
               </view>
-              <text class="dk-addr">打卡地点 {{'黄河京都'}}</text>
-            </view>
-            <view class="user-schedule-item-dk">
-              <view class="daka-time-item">
 
-                <text class="zg-time">下班时间 {{'9:00'}}</text>
-                <text class="dk-time">打卡时间 {{'8：38'}}</text>
+            </view> 
+          </scroll-view>
+          <scroll-view  class="user-dk-scroll-body" 	scroll-y>
+          <view class="user-schedule-dk-item" wx:for="{{clockInList}}" wx:key="index">
+            <view class="user-schedule-item-dk" wx:if="{{item.type == 1 && item.schedule_id == userDetailScheduleId}}">
+              <view  class="daka-time-item">
+                <text class="zg-time">上班时间 {{item.require_time || '无'}}</text>
+                <text class="dk-time">打卡时间 {{item.attend_time|| '无'}}</text>
               </view>
-              <text class="dk-addr">打卡地点 {{'黄河京都'}}</text>
+              <text class="dk-addr" wx:if="{{false}}">打卡地点 {{'黄河京都'}}</text>
+              <text class="dk-time">打卡状态 {{item.status[0].name || '无'}}</text>
+            </view>
+            <view class="user-schedule-item-dk"  wx:if="{{item.type == 2  && item.schedule_id == userDetailScheduleId}}}}">
+              <view class="daka-time-item">
+                <text class="zg-time">下班时间 {{item.require_time || '无'}}</text>
+                <text class="dk-time">打卡时间 {{item.attend_time || '无'}}</text>
+              </view>
+              <text class="dk-addr" wx:if="{{false}}">打卡地点 {{'黄河京都'}}</text>
+              <text class="dk-time">打卡状态  {{item.status[0].name || '无'}}</text>
             </view>
           </view>
           </scroll-view>
         </view>
         <view class="user-schedule-box-item-btn-add-1">
-          <text class="user-schedule-box-item-btn-add" bindtap="handleClickHelpClockIn">+帮他补卡</text>
+          <text  class="user-schedule-box-item-btn-add" bindtap="handleClickHelpClockIn">+帮他补卡</text>
         </view> 
       </view>
       <view class="grid-btn">
@@ -238,6 +253,12 @@
       wx:if="{{showReplacementCard}}" 
       bind:cancel="handleClickReplacementCardCancelBtn"
       bind:confirm="handleClickReplacementCardConfirmBtn"
+      team_id="{{team_id}}"
+      project_id="{{project_id}}"
+      task_id="{{task_id}}"
+      date="{{userInfo.date}}"
+      user_id="{{userInfo.user_id}}"
+      schedule_id="{{userDetailScheduleId}}"
     />
 
   </page-container>

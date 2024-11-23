@@ -377,6 +377,7 @@
   align-items: center;
   padding: 8rpx 24rpx;
   border-bottom: 1rpx solid #e8e8e8;
+  margin-bottom: 12rpx;
 }
 .user-detail-head-left{
   display: flex;
@@ -427,7 +428,7 @@
   align-items: center;
   margin-bottom: 24rpx;
   padding: 24rpx;
-  background-color: #efece9;
+  background-color: #ffecd9;
   border-radius: 10rpx;
 }
 .user-schedule-left-head{
@@ -475,7 +476,7 @@
 
 .user-schedule-dk-item{
   padding: 24rpx;
-  background-color: #efece9;
+  background-color: #ffecd9;
   border-radius: 10rpx;
   margin-top: 12rpx;
 }
@@ -515,4 +516,28 @@
   font-size: 28rpx;
   font-weight: 400;
   color: #f08d7a;
+}
+.user-ssd-scroll-body{
+}
+.user-schedule-box2-item{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 60rpx;
+  width: 100%;
+
+}
+.user-schedule-box-mmp{
+  color: #f08d7a;
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 6rpx 12rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+.user-schedule-box2-item-active{
+  background-color: #f08d7a;
+  color: #fff;
 }

@@ -47,6 +47,12 @@ Page({
 			userFirstName:'',
 		},
 		showReplacementCard: false,
+		clockInList: [],
+		team_id: 10,
+		project_id: 18331,
+		task_id: 1724371,
+		attendance_id: 0,
+		userDetailScheduleId:'',
 	},
 
 	async init() {
@@ -94,9 +100,9 @@ Page({
 			let data = {
 				'dmclient': 'pcweb',
 				'X-Doumi-Agent': 'weixinqy',
-				'team_id': 10,
-				'project_id': 18331,
-				'task_id': 1724371,
+				'team_id': this.data.team_id,
+				'project_id': this.data.project_id,
+				'task_id': this.data.task_id,
 				'start_date': this.data.swiperHeadList[this.data.headerCurrent][0].datestr,
 				'group_ids':'',
 			 }
@@ -206,6 +212,7 @@ Page({
 				userIndex:userindex,
 				dateIndex:dateindex,
 				userFirstName,
+
 			}
 
 			this.setData({
@@ -213,12 +220,22 @@ Page({
 				showClickGrid:true,
 				userScheduleList,
 				userInfo,
+				userDetailScheduleId:userScheduleList[0].schedule_id,
 			})
 
-			dmNetwork.get(dmNetwork.getUserScheduleDetail, {user_id:userid,date:date}, (res) => {
+			let requestDate = {
+				team_id: this.data.team_id,
+				project_id: this.data.project_id,
+				user_id: userid,
+				date: '2024-11-18',
+				task_id: this.data.task_id,
+
+			}
+			dmNetwork.post(dmNetwork.clockInList,requestDate, (res) => {
 				if(res.data.errno == 0){
+					
 					this.setData({
-						userScheduleList:res.data.data
+						clockInList:res.data.data.attendance_list
 					})
 				}else{
 					wx.showToast({
@@ -441,15 +458,35 @@ Page({
 	},
 
 	//点击确定排班回调
-	async handleClickShiftListConfirmBtn(e){
-		const selectedList = e.detail.selectedList;
-		const selectedIdList = e.detail.selectedIdList;
-		const shiftType = e.detail.shiftType;
+	async handleClickShiftListConfirmBtn(e){		
+		let selectedList = e.detail.selectedList;
+		let selectedIdList = e.detail.selectedIdList;
+		let selectSchedulingList = this.data.selectSchedulingList;
+		let selectSchedulingIdList = this.data.selectSchedulingIdList;
+
+		selectedIdList = selectedIdList.concat(selectSchedulingIdList);
+		selectedList = selectedList.concat(selectSchedulingList);
+		//将selectedIdList 和 selectedList 去重
+		selectedIdList = Array.from(new Set(selectedIdList));
+
+		//去重selectedList
+		let queSelectedList = [];
+		selectedList.forEach(item => {
+			let flag = true;
+			queSelectedList.forEach(queItem => {
+				if(queItem.schedule_id == item.schedule_id){
+					flag = false;
+				}
+			})
+			if(flag){
+				queSelectedList.push(item);
+			}
+		})
 
 		this.setData({
 			showAddClickGridMain: true,
 			showAddScheedulingMain: false,
-			selectSchedulingList:selectedList,
+			selectSchedulingList:queSelectedList,
 			selectSchedulingIdList:selectedIdList,
 		})
 	},
@@ -525,8 +562,31 @@ Page({
 
 	//给用户添加排班页面点击确定
 	async handleClickShiftListUserConfirmBtn(e){
-		const selectedList = e.detail.selectedList;
-		const selectedIdList = e.detail.selectedIdList;
+		let selectedList = e.detail.selectedList;
+		let selectedIdList = e.detail.selectedIdList;
+		let userScheduleList = this.data.userScheduleList;
+		let selectSchedulingIdList = this.data.selectSchedulingIdList;
+
+		selectedIdList = selectedIdList.concat(selectSchedulingIdList);
+		selectedList = selectedList.concat(userScheduleList);
+		//将selectedIdList 和 selectedList 去重
+		selectedIdList = Array.from(new Set(selectedIdList));
+
+		//去重selectedList
+		let queSelectedList = [];
+		selectedList.forEach(item => {
+			let flag = true;
+			queSelectedList.forEach(queItem => {
+				if(queItem.schedule_id == item.schedule_id){
+					flag = false;
+				}
+			})
+			if(flag){
+				queSelectedList.push(item);
+			}
+		})
+
+			
 		let date_schedule = [
 			{
 				user_id: this.data.userInfo.user_id,
@@ -548,7 +608,7 @@ Page({
 			this.setData({
 				showUserAddScheedulingMain: false,
 				showUserScheduleDetail:true,
-				userScheduleList:selectedList,
+				userScheduleList:queSelectedList,
 				selectSchedulingIdList:selectedIdList,
 			})
 
@@ -566,9 +626,9 @@ Page({
 	submitAddUserSchedule(date_schedule){
 		return new Promise((resolve, reject) => {
 			let data = {
-				'team_id': 10,
-				'project_id': 18331,
-				'task_id': 1724371,
+				'team_id': this.data.team_id,
+				'project_id': this.data.project_id,
+				'task_id': this.data.task_id,
 				date_schedule:JSON.stringify(date_schedule),
 			 }
 			dmNetwork.post(dmNetwork.giveShift, data, (res) => {
@@ -680,9 +740,9 @@ Page({
 	submitDeleteScheduleData(deleteList){
 		return new Promise((resolve, reject) => {
 			let data = {
-				'team_id': 10,
-				'project_id': 18331,
-				'task_id': 1724371,
+				'team_id': this.data.team_id,
+				'project_id': this.data.project_id,
+				'task_id': this.data.task_id,
 				date_schedule:JSON.stringify(deleteList),
 			 }
 			dmNetwork.post(dmNetwork.delShift, data, (res) => {
@@ -713,14 +773,7 @@ Page({
 			content: '是否删除当前排班',
 			success: (res) => {
 				if (res.confirm) {
-					let scheduleidx = e.currentTarget.dataset.scheduleidx;
-					let userScheduleList = this.data.userScheduleList;
-					userScheduleList.splice(scheduleidx, 1);
-
-					this.setData({
-						userScheduleList,
-					})
-					this.submitDeleteUserSchedule(userScheduleList);
+					this.submitDeleteUserSchedule(e);
 					
 				} else if (res.cancel) {
 				}
@@ -729,25 +782,34 @@ Page({
 	},
 
 	//提交删除当前用户排班
-	async submitDeleteUserSchedule(userScheduleList){
+	async submitDeleteUserSchedule(e){
+
+		let scheduleidx = e.currentTarget.dataset.scheduleidx;
+		let userScheduleList = this.data.userScheduleList;
+
 		let data = {
-			'team_id': 10,
-			'project_id': 18331,
+			'team_id': this.data.team_id,
+			'project_id': this.data.project_id,
 			user_id: this.data.userInfo.user_id,
 			date: this.data.userInfo.date,
 			schedule_id: userScheduleList.map(item => item.schedule_id).join(','),
 		 }
 		dmNetwork.post(dmNetwork.delShiftUser,data, (res) => {
-			if(res.errno == 0){
+			if(res.data.errno == 0){
 				wx.showToast({
 					title: '删除成功',
 					icon: 'success',
 					duration: 2000
 				})
+				userScheduleList.splice(scheduleidx, 1);
+
+				this.setData({
+					userScheduleList,
+				})
 				this.getSchedulingDetail(this.data.bodyCurrent)
 			}else{
 				wx.showToast({
-					title: res.errmsg,
+					title: res.data.errmsg,
 					icon: 'none',
 					duration: 2000
 				})
@@ -792,6 +854,13 @@ Page({
 			showReplacementCard:false,
 		})
 
+	},
+
+	handleClickScheduleTab(e){
+		let schedule_id = e.currentTarget.dataset.scheduleid;
+		this.setData({
+			userDetailScheduleId:schedule_id,
+		})
 	},
 
 

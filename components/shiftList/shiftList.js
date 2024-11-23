@@ -11,6 +11,18 @@ Component({
 			type: Array,
 			value: [],
 		},
+		team_id: {
+			type: String,
+			value: '',
+		},
+		project_id: {
+			type: String,
+			value: '',
+		},
+		task_id: {
+			type: String,
+			value: '',
+		},
 
 
 	},
@@ -53,7 +65,7 @@ Component({
 		async init(){
 			console.log('组件实例刚刚被创建',shift);
 			let shiftList = await this.getShiftList();
-			let temporarySchedulingList = shiftList.temporarySchedules;
+			let temporarySchedulingList = [];
 			if(temporarySchedulingList.length === 0){
 				temporarySchedulingList = [{
 					schedule_name: '',
@@ -78,11 +90,9 @@ Component({
 	getShiftList() {
 		return new Promise((resolve, reject) => {    
 			let data = {
-				'dmclient': 'pcweb',
-				'X-Doumi-Agent': 'weixinqy',
-				'team_id': 10,
-				'project_id': 18331,
-				'task_id': 1724371,
+				'team_id': this.data.team_id,
+				'project_id': this.data.project_id,
+				'task_id': this.data.task_id,
 			 }
 			dmNetwork.get(dmNetwork.getShiftList, data, (res) => {
 				resolve(res.data.data);
@@ -220,16 +230,47 @@ Component({
 			let schedule_list = [];
 			let temporarySchedulingList = this.data.temporarySchedulingList;
 			if(temporarySchedulingList.length == 1){
-				schedule_list.push({
-					start_time:  temporarySchedulingList[0].start_time,
-					end_time: temporarySchedulingList[0].end_time,
-					rest_start_time: this.data.temporaryRestStartTime,
-					rest_end_time: this.data.temporaryRestEndTime,
-					type:0,
-					id:temporarySchedulingList[0].id ? temporarySchedulingList[0].id : '0',
-					name:temporarySchedulingList[0].name ? temporarySchedulingList[0].name : '',
-					cross:0,
-				})
+				if(this.data.temporaryRestType == 1){
+					schedule_list.push({
+						start_time:  temporarySchedulingList[0].start_time,
+						end_time: temporarySchedulingList[0].end_time,
+						rest_start_time: this.data.temporaryRestStartTime,
+						rest_end_time: this.data.temporaryRestEndTime,
+						type:'0',
+						id:temporarySchedulingList[0].id ? temporarySchedulingList[0].id : '0',
+						name:temporarySchedulingList[0].name ? temporarySchedulingList[0].name : '',
+						cross:'0',
+					})
+
+				}
+				if(this.data.temporaryRestType == 2){
+					schedule_list.push({
+						start_time:  temporarySchedulingList[0].start_time,
+						end_time: temporarySchedulingList[0].end_time,
+						rest_start_time: '',
+						rest_end_time: '',
+						type:'0',
+						id:temporarySchedulingList[0].id ? temporarySchedulingList[0].id : '0',
+						name:temporarySchedulingList[0].name ? temporarySchedulingList[0].name : '',
+						cross:'0',
+					})
+
+				}
+				if(this.data.temporaryRestType == 3){
+					let rest_start_time = this.data.temporaryRestTimeHourIndex + ':' + this.data.temporaryRestTimeMinuteIndex;
+
+					schedule_list.push({
+						start_time:  temporarySchedulingList[0].start_time,
+						end_time: temporarySchedulingList[0].end_time,
+						rest_start_time: '',
+						rest_end_time: rest_start_time,
+						type:'0',
+						id:temporarySchedulingList[0].id ? temporarySchedulingList[0].id : '0',
+						name:temporarySchedulingList[0].name ? temporarySchedulingList[0].name : '',
+						cross:'0',
+					})
+					
+				}
 			}else{
 				temporarySchedulingList.forEach(item => {
 					schedule_list.push({
@@ -237,19 +278,27 @@ Component({
 						end_time: item.end_time,
 						rest_start_time: '',
 						rest_end_time: '',
-						type:0,
+						type:'0',
 						id:item.id ? item.id : '0',
 						name:item.name ? item.name : '',  
-						cross:0,
+						cross:'0',
 					})
 				})
 			}
-			let res = await this.sumbitTempSchedule(temporarySchedulingList);
+			let res = await this.sumbitTempSchedule(schedule_list);
+
+			if(res.data.errno == 0){
+				this.triggerEvent('confirm', {
+					selectedIdList:[res.data.data.schedule_list[0].id],
+					shiftType:2,
+					selectedList:res.data.data.schedule_list,
+				})
+			}
 		},
 
 		sumbitTempSchedule(data){
 			//saveTempShift
-			let schedule_list = JSON.stringify(JSON.stringify(data));
+			let schedule_list = JSON.stringify(data);
 			return new Promise((resolve, reject) => {    
 				let data = {
 					'dmclient': 'pcweb',
@@ -260,7 +309,7 @@ Component({
 					schedule_list
 				}
 				dmNetwork.post(dmNetwork.saveTempShift, data, (res) => {
-					resolve(res.data.data);
+					resolve(res);
 				}, (err) => {
 					//网络异常处理
 					reject(err)

@@ -13,6 +13,22 @@ Component({
             type: String,
             value: '',
         },
+        task_id: {
+            type: String,
+            value: '',
+        },
+				user_id: {
+						type: String,
+						value: '',
+				},
+				date: {
+						type: String,
+						value: '',
+				},
+				schedule_id: {
+						type: String,
+						value: '',
+				},
         
     },
 
@@ -31,8 +47,6 @@ Component({
         startDisabled: false,
         endDisabled: false,
     },
-    team_id: '',
-    project_id: '',
     start_time: '',
     end_time: '',
     apply_reason: '',
@@ -46,21 +60,34 @@ Component({
         onStartDateChange: function (ev) {
             console.log('onStartDateChange', ev)
             const { value } = ev.detail;
-            this.start_time = value;
+            let start_time = value;
+						this.setData({
+							start_time
+						})
         },
         onEndDateChange: function (ev) {
             console.log('onEndDateChange', ev)
             const { value } = ev.detail;
-            this.end_time = value;
+						let end_time = value;
+						this.setData({
+							end_time
+						})
         },
         onTextareaChange: function (ev) {
             console.log('vvvvvvvvvvvvvvvvvvvvvv', ev)
             const { value } = ev.detail;
-            this.apply_reason = value;
+						let apply_reason = value;
+						this.setData({
+							apply_reason
+						})
         },
         textErrorReason: function (e) {
             console.log('vvvvvvvvvvvvvvvvvvvvvv', e)
-            this.errorReason = e.detail.value
+						const { value } = e.detail;
+						let errorReason = value;
+						this.setData({
+							errorReason
+						})
         },
         setReplacementCard: function () {
             // this.back();
@@ -71,20 +98,29 @@ Component({
         },
         submit: function () {
             const that = this;
-            const { start_time, end_time, apply_reason, team_id, project_id } = this;
-            const { replacementCardInfo: { attendance_id, attendance_after_id, task_id, date: day } } = this.data;
+            const { 
+							start_time, 
+							end_time, 
+							apply_reason, 
+							team_id, 
+							project_id, 
+							task_id,
+							date ,
+							schedule_id,
+							user_id
+							} = this.data;
             const params = {
                 team_id,
                 project_id,
                 task_id,
-                attendance_id,
-                attendance_after_id,
                 start_time,
                 end_time,
                 apply_reason,
-                day,
+								user_id,
+								schedule_id,
+                day:date
             }
-            dmNetwork.post(dmNetwork.punch_apply_create, params, (res) => {
+            dmNetwork.post(dmNetwork.reClockIn, params, (res) => {
                 console.log('ressssssss', res)
 
                 const data = res.data;
@@ -97,12 +133,6 @@ Component({
                     setTimeout(() => {
                         that.back();
                     }, 1500)
-                    // const { punch_id, status, status_code } = data.data;
-                    // this.setData({
-                    //     isShowDialog: true,
-                    //     result_statu: 0,
-                    //     resultText: '补卡成功'
-                    // })
                 } else {
                     wx.showToast({
                         title: data.errmsg,
@@ -124,38 +154,6 @@ Component({
                 })
             })
         },
-        confirmAtten: function () {
-            const that = this
-            if (that.data.result_statu == 0) {
-                that.back()
-            } else {
-                const { attendance_id, team_id, project_id, errorReason } = that;
-                dmNetwork.get(dmNetwork.abnormal_reason, {
-                    team_id: team_id,
-                    project_id: project_id,
-                    reason: errorReason,
-                    attendance_id: attendance_id
-                }, (res) => {
-                    if (res.data.errno == 0) {
-                        wx.showToast({
-                            title: '已发送',
-                            icon: 'success',
-                            duration: 1500,
-                        })
-
-                    that.triggerEvent('confirm')
-                    } else {
-                        wx.showToast({
-                            title: res.data.errmsg,
-                            icon: "none",
-                            duration: 1500
-                        })
-                    }
-                }, (error) => {
-
-                })
-            }
-        },
 
         cancelAtten:function(){
             this.triggerEvent('cancel')
@@ -172,7 +170,7 @@ Component({
         validate: function () {
             const that = this;
             return new Promise((resolve, reject) => {
-                if (!that.data.replacementCardInfo.task_id) {
+                if (!that.data.task_id) {
                     wx.showToast({
                         title: '未识别到task_id，请退出重试！',
                         mask: true,
@@ -181,17 +179,8 @@ Component({
                     })
                     return
                 }
-                console.log('afsjkejfke', this.data.replacementCardInfo)
-                if (!that.data.replacementCardInfo.attendance_id) {
-                    wx.showToast({
-                        title: '未识别到attendance_id，请退出重试！',
-                        mask: true,
-                        icon: 'none',
-                        duration: 1500
-                    })
-                    return
-                }
-                if (!that.start_time) {
+
+                if (!that.data.start_time) {
                     wx.showToast({
                         title: '请选择开始时间！',
                         mask: true,
@@ -200,7 +189,8 @@ Component({
                     })
                     return
                 }
-                if (!that.end_time) {
+
+                if (!that.data.end_time) {
                     wx.showToast({
                         title: '请选择结束时间！',
                         mask: true,
@@ -209,7 +199,8 @@ Component({
                     })
                     return
                 }
-                if (!that.apply_reason) {
+
+                if (!that.data.apply_reason) {
                     wx.showToast({
                         title: '请输入缺卡原因！',
                         mask: true,
