@@ -114,10 +114,7 @@
   align-items: center;
   justify-content: center;
 }
-/**第二的倍数 个.table-body-item**/
-.list-item .table-body-item:nth-child(2n){
-  background-color: #f8f8f8;
-}
+
 .list-item .body-item-child{
   width: 90%;
   height: 95%;
