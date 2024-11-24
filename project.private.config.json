@@ -13,6 +13,13 @@
                     "scene": null
                 },
                 {
+                    "name": "查看考勤",
+                    "pathName": "pages/checkAttendance/checkAttendance",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "e签宝webview",
                     "pathName": "pages/uc/eSigningPage/eSigningPage",
                     "query": "",

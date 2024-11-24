@@ -55,12 +55,18 @@ const analysisuserList = (data) => {
   let userList = [];
 
   if (data && Array.isArray(data)) {
-    data.map((item) => {
+    let bgIndex = 0;
+    data.map((item,index) => {
+      if (bgIndex > 4) {
+        bgIndex = 0;
+      }
       userList.push({
         user_id: item.user_id,
         user_name: item.user_name,
         first_name: item.user_name[0],
+        bgcolor:bgIndex
       });
+      bgIndex++;
     });
   }
 

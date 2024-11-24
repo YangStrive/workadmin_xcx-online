@@ -101,7 +101,8 @@
         "pages/attdance/record_new/record_new",
         "pages/schedulingClockIn/schedulingClockIn",
         "pages/uc/eSigningPage/eSigningPage",
-        "pages/scheduling/scheduling"
+        "pages/scheduling/scheduling",
+        "pages/checkAttendance/checkAttendance"
     ],
     "requiredPrivateInfos": [
         "getLocation",

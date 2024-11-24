@@ -384,7 +384,13 @@ Page({
     wx.navigateTo({
       url: "/pages/uc/returnvisit/returnvisit"
     });
-  }
+  },
+
+  newPb: function () {
+    wx.navigateTo({
+      url: "/pages/scheduling/scheduling"
+    });
+  },
   /**
    * 用户点击右上角分享
    */

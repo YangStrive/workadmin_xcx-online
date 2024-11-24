@@ -1,0 +1,99 @@
+<!--pages/checkAttendance/checkAttendance.wxml-->
+<view class="checkAttendance">
+	<view class="checkAttendance__header">
+		<view class="search">
+			<image class="search__icon" src="/image/search.png"></image>
+			<input class="search__input" placeholder="搜索"></input>
+		</view>
+	</view>
+	<view class="attendance-list-header">
+		<view class="list-header-item header-item-first">
+			<picker class="picker" mode="date" value="{{prckerSelected}}" start="2022-09-01" end="2030-09-01" bindchange="bindDateChange">
+				<text class="list-header-item-year-text">{{selectedYear}}</text>
+				<view class="month-box">
+					<text class="month-box__text">{{selectedMonth}}月</text>
+					<image class="month-box__icon" src="/image/down_1.png"></image>
+				</view>
+			</picker>
+			</view>
+		<scroll-view class="scroll-list-header" scroll-x="true" 	scroll-left="{{scroolLeft}}">
+			<view class="scroll-header-box">
+				<view 
+					class="list-header-item {{item.day == selectedDay ? 'list-header-item-active' : ''}}"
+					 wx:for="{{days}}" 
+					 wx:key="index"
+					 data-index="{{index}}"
+					 bindtap="selectDay"
+					 >
+					<text class="list-header-item__text day">{{item.day}}</text>
+					<text class="list-header-item__text week">{{item.week}} {{item.dateStr == currentDay ? '今' : ''}}</text>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+
+	<scroll-view class="list-body" scroll-y="true">
+		<view class="attendance-list-body" wx:if="{{attendances.length > 0}}">
+			<view class="list-body-item" wx:for="{{attendances}}" wx:key="index">
+				<view class="list-body-item__header">
+					<text class="attendances-status">{{item.status}}</text>
+				</view>
+				<view class="body-item-userinfo">
+					<view class="userinfo-left">
+						<text class="userinfo-firstname">{{item.firstname}}</text>
+						<text class="userinfo-name">{{item.name}}</text>
+						<view class="userinfo-phone">
+							<image class="userinfo-phone__icon" src="/image/phone_icon.png"></image>
+						</view>
+					</view>
+					<view class="userinfo-right">
+						<view class="userinfo-worktime">
+							<text class="userinfo-worktime__text">{{item.worktime}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="list-body-item__footer">
+					<view class="footer-item">
+						<text class="footer-item__text">工作时间</text>
+						<text class="footer-item__text">{{item.worktime}}</text>
+					</view>
+					<view class="footer-item-t">
+						<view class="footer-item-dk">
+							<text class="footer-item__text">打卡时间</text>
+							<view class="footer-dk__time">
+								<text class="footer-item__text">{{item.checkin}}</text>
+								<text class="footer-item__text">{{item.checkinStatus}}</text>
+							</view>	
+							<view class="footer-dk__time">
+
+								<text class="footer-item__text">{{item.checkout}}</text>
+								<text class="footer-item__text">{{item.checkoutStatus}}</text>
+							</view>
+						</view>	
+						<view class="delete-item">
+							<text class="delete-btn">删除</text>
+						</view>
+					</view>
+				</view>	
+
+			</view>
+		</view>	
+		<view class="empty" wx:else>
+			<text class="empty__text">暂无考勤记录</text>
+		</view>
+	</scroll-view>
+
+	<view class="checkAttendance__footer">
+		<view class="footer-item-nav footer-item1">
+			<image class="footer-item__icon" src="/image/confrim_1.png"></image>
+			<text class="footer-nav-text">确认工时</text>
+		</view>
+		<view class="footer-item-nav footer-item1">
+			<image class="footer-item__icon" src="/image/comment_1.png"></image>
+			<text class="footer-nav-text">人员评价</text>
+		</view>
+		<view class="footer-item-nav footer-item3">
+			<text class="footer-nav-text-pb">去排版</text>
+		</view>	
+	</view>
+</view>

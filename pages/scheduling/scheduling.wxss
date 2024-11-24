@@ -109,19 +109,23 @@
   border-right: 1rpx solid #e8e8e8;
   flex-shrink: 0;
   flex: 1;
-  height: 170rpx;
+  height: 150rpx;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/**第二的倍数 个.table-body-item**/
+.list-item .table-body-item:nth-child(2n){
+  background-color: #f8f8f8;
+}
 .list-item .body-item-child{
   width: 90%;
   height: 95%;
-  
+  border-radius: 6rpx;
 }
 .grid-selected{
   position: relative;
-  border: 1px solid #FFA928;
+  border: 2px solid #FFA928;
   border-radius: 10rpx;
 }
 /**写一个伪类元素，做成直角三角形在右下角，标识为选中*/
@@ -172,15 +176,16 @@
 }
 .table-body-item .time-stage{
   display: block;
-  font-size: 20rpx;
+  font-size: 24rpx;
   text-align: center;
+  color: #3a3a3a;
 }
 .item-surname{
   display: block;
   font-size: 32rpx;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
   text-align: center;
   border-radius: 50%;
   background-color: #e5d312;
@@ -189,8 +194,8 @@
 }
 .item-name{
   display: block;
-  font-size: 26rpx;
-  color: #333;
+  font-size: 24rpx;
+  color: #c1c1c1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -206,7 +211,7 @@
 .table-body-user .table-body-item{
   padding: 20rpx 0;
   border-right: 1rpx solid #e8e8e8;
-  height: 130rpx;
+  height: 110rpx;
   border-bottom: 1rpx solid #e8e8e8;
   width: 90rpx;
 }
@@ -247,7 +252,6 @@
 }
 .footer-nav-item text{
   font-size: 26rpx;
-  color: #FFA928;
 }
 /* 点选格子 */
 .click-grid-main{
@@ -292,6 +296,7 @@
 }
 .table-schedule-name{
   font-size: 28rpx;
+  margin-top: 12rpx;
   color: #404040;
 }
 .table-schedule-time{
@@ -356,28 +361,33 @@
 
 .more-schedule{
   display: block;
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 30rpx;
-  line-height: 60rpx;
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  line-height: 56rpx;
   text-align: center;
-  background-color: #FFA928;
+  background-color: #b8b8b8;
   color: #fff;
   margin: auto;
-  margin-top: 30rpx;
+  margin-top: 35rpx;
 }
 
 /** 个人排班 **/
 .user-schedule-detail{
   padding: 24rpx 0;
+  background-color: #f8f8f8;
 }
 .user-detail-head{
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8rpx 24rpx;
-  border-bottom: 1rpx solid #e8e8e8;
   margin-bottom: 12rpx;
+  background-color: #fff;
+  margin: 0 24rpx;
+  border-radius: 8rpx;
+  margin-bottom: 24rpx;
+  margin-top: 24rpx;
 }
 .user-detail-head-left{
   display: flex;
@@ -421,13 +431,15 @@
 }
 .user-schedule-box-content{
   margin-top: 12rpx;
+  padding: 24rpx 12rpx ;
+  background-color: #fff;
 }
 .user-schedule-box-item{
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24rpx;
-  padding: 24rpx;
+  padding:12rpx 24rpx;
   background-color: #ffecd9;
   border-radius: 10rpx;
 }
@@ -441,7 +453,7 @@
   color: #404040;
 }
 .user-schedule-box-item-time{
-  font-size: 36rpx;
+  font-size: 32rpx;
   color: #706b6b;
   margin: 0 24rpx;
   fonwb-weight: bold;
@@ -510,6 +522,7 @@
 }
 .user-dk-scroll-body{
   max-height: 300rpx;
+  margin-top: 12rpx;
 }
 
 .footer-item{
@@ -528,7 +541,7 @@
 
 }
 .user-schedule-box-mmp{
-  color: #f08d7a;
+  color: #FFA928;
   font-size: 28rpx;
   font-weight: bold;
   padding: 6rpx 12rpx;
@@ -538,6 +551,99 @@
   flex-shrink: 0;
 }
 .user-schedule-box2-item-active{
-  background-color: #f08d7a;
+  background-color: #FFA928;
   color: #fff;
+}
+
+
+.surname1{
+  background-color: #fa8e9e;
+}
+.surname2{
+  background-color: #7bebf9;
+}
+.surname3{
+  background-color: #80c780;
+}
+.surname0{
+  background-color: #6a76fe;
+}
+
+.colorblock_item_A{
+  background-color: #83aef2;
+}
+ .colorblock_item_B{
+  background-color: #fea560;
+}
+ .colorblock_item_C{
+  background-color: #8bd574;
+}
+ .colorblock_item_D{
+  background-color: #fa876d;
+}
+ .colorblock_item_E{
+  background-color: #cd88df;
+}
+ .colorblock_item_F{
+  background-color: #fcbd41;
+}
+ .colorblock_item_G{
+  background-color: #4ad6d1;
+}
+ .colorblock_item_H{
+  background-color: #b7de30;
+}
+ .colorblock_item_I{
+  background-color: #a590f3;
+}
+ .colorblock_item_J{
+  background-color: #a09bb4;
+}
+ .colorblock_item_K{
+  background-color: #83aef2;
+}
+ .colorblock_item_L{
+  background-color: #fea560;
+}
+ .colorblock_item_M{
+  background-color: #33FF57;
+}
+ .colorblock_item_N{
+  background-color: #FF5733;
+}
+ .colorblock_item_O{
+  background-color: #3357FF;
+}
+ .colorblock_item_P{
+  background-color: #FF33A1;
+}
+ .colorblock_item_Q{
+  background-color: #A133FF;
+}
+ .colorblock_item_R{
+  background-color: #33FFA1;
+}
+ .colorblock_item_S{
+  background-color: #57FF33;
+}
+ .colorblock_item_T{
+  background-color: #5733FF;
+}
+ .colorblock_item_U{
+  background-color: #FF33FF;
+}
+ .colorblock_item_V{
+  background-color: #33FF33;
+}
+ .colorblock_item_W{
+  background-color: #FF3333;
+}
+ .colorblock_item_X{
+  background-color: #3333FF;
+}
+ .colorblock_item_Y{
+  background-color: #33FFFF;
+}
+ .colorblock_item_Z{
+  background-color: #eaea92;
 }

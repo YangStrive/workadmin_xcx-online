@@ -191,13 +191,12 @@ Page({
 			return;
 		}
 
-		if(this.data.showAddClickGridMain){
-			this.handleBatchSchedulePro(e);
-			return;
-		}
+		// if(this.data.showAddClickGridMain){
+		// 	return;
+		// }
 
 		//schedulenum大于0则需要显示当前排班信息
-		if(schedulenum > 0 ){
+		if(schedulenum > 0 && !this.data.showAddClickGridMain ){
 			let userindex = e.currentTarget.dataset.userindex;
 			let dateindex = e.currentTarget.dataset.dateindex;
 			let userid =  e.currentTarget.dataset.userid;
@@ -246,7 +245,18 @@ Page({
 				}
 			})
 
+			return;
+
 		}
+
+
+		this.setData({
+			showAddClickGridMain: true,
+			showClickGrid: true,
+		})
+		this.handleBatchSchedulePro(e);
+
+
 	},
 
 	//头部swiper切换
@@ -786,13 +796,15 @@ Page({
 
 		let scheduleidx = e.currentTarget.dataset.scheduleidx;
 		let userScheduleList = this.data.userScheduleList;
+		let schedule_id = userScheduleList[scheduleidx].schedule_id;
 
 		let data = {
 			'team_id': this.data.team_id,
 			'project_id': this.data.project_id,
+			task_id: this.data.task_id,
 			user_id: this.data.userInfo.user_id,
 			date: this.data.userInfo.date,
-			schedule_id: userScheduleList.map(item => item.schedule_id).join(','),
+			schedule_id,
 		 }
 		dmNetwork.post(dmNetwork.delShiftUser,data, (res) => {
 			if(res.data.errno == 0){
