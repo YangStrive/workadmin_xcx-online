@@ -473,7 +473,7 @@
 }
 .user-schedule-box-item-btn-delete{
   font-size: 26rpx;
-  color: #FFA928;
+  color: #fff;
 }
 .user-schedule-box-item-btn-add{
   margin-top: 0rpx;
@@ -487,13 +487,12 @@
 }
 
 .user-schedule-dk-item{
-  padding: 24rpx;
+  padding: 12rpx 24rpx;
   background-color: #ffecd9;
   border-radius: 10rpx;
   margin-top: 12rpx;
 }
 .user-schedule-item-dk{
-  margin-bottom: 12rpx;
 }
 .daka-time-item{
   display: flex;
@@ -523,6 +522,7 @@
 .user-dk-scroll-body{
   max-height: 300rpx;
   margin-top: 12rpx;
+  background-color: #f8f8f8;
 }
 
 .footer-item{
