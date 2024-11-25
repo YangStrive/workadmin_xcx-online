@@ -28,6 +28,7 @@
       <!-- 表格左侧人员部分 -->
       <view class="table-body-user">
         <view class="table-body-item" wx:for="{{userList}}" wx:key="index">
+          <text class="kb-text"> </text>
           <view class="item-surname {{'surname' + item.bgcolor}}">{{item.first_name}}</view>
           <view class="item-name">{{item.user_name}}</view>
           <view class="user-group_name">{{item.group_name}}</view>
@@ -202,7 +203,7 @@
                   <text class="user-schedule-box-item-name">{{item.schedule_name}}</text> 
                   <text class="user-schedule-box-item-time">{{item.start_time}}-{{item.end_time}}</text>
                   <text wx:if="{{false}}" class="user-schedule-box-item-type">{{item.type == 0 ? '固定' : '临时'}}</text> 
-                  <text class="user-schedule-box-item-status">{{item.status}}</text> 
+                  <text class="user-schedule-box-item-status" wx:if="{{item.status}}">{{item.status}}</text> 
                 </view>
                 <view class="user-schedule-box-item-botton">
                   <text class="user-schedule-box-item-worktime">工作时长 {{item.work_hours}}</text>

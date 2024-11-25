@@ -206,9 +206,8 @@
 }
 
 .table-body-user .table-body-item{
-  padding: 6rpx 0;
   border-right: 1rpx solid #e8e8e8;
-  height: 112rpx;
+  height: 124rpx;
   border-bottom: 1rpx solid #e8e8e8;
   width: 90rpx;
 }
@@ -690,11 +689,11 @@
   padding: 2rpx 6rpx;
   background-color: #ff0000d9;
   position: relative;
-  bottom: 13rpx;
+  bottom: 9rpx;
   left: 0px;
   z-index: 99;
   color: #fff;
-  border-radius: 2rpx;
+  border-radius: 6rpx;
   max-width: 78rpx;
   display: block;
   overflow: hidden;
@@ -723,4 +722,8 @@
   background-color: #ff0000d9;
   position: relative;
   border-radius: 4rpx;
+}
+.kb-text{
+  padding-bottom: 6rpx;
+  display: block;
 }
