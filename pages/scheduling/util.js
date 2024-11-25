@@ -4,7 +4,7 @@ const generateWeekData = (date) => {
   const weekData = [];
   const dayMilliseconds = 24 * 60 * 60 * 1000;
   const weekMilliseconds = 7 * dayMilliseconds;
-  const weekDays = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+  const weekDays = ["一", "二", "三", "四", "五", "六", "日"];
 
   const getWeekArray = (startDate) => {
     const weekArray = [];
@@ -64,7 +64,8 @@ const analysisuserList = (data) => {
         user_id: item.user_id,
         user_name: item.user_name,
         first_name: item.user_name[0],
-        bgcolor:bgIndex
+        bgcolor:bgIndex,
+        group_name:item.group_name
       });
       bgIndex++;
     });

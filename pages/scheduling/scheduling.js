@@ -45,6 +45,8 @@ Page({
 			userIndex:0,
 			dateIndex:0,
 			userFirstName:'',
+			dateStr:'',
+			week:'',
 		},
 		showReplacementCard: false,
 		clockInList: [],
@@ -53,6 +55,8 @@ Page({
 		task_id: 1724371,
 		attendance_id: 0,
 		userDetailScheduleId:'',
+		soruceClockInList:[],//原始打卡记录
+		overlay: false,
 	},
 
 	async init() {
@@ -211,7 +215,8 @@ Page({
 				userIndex:userindex,
 				dateIndex:dateindex,
 				userFirstName,
-
+				dateStr:`${this.data.swiperHeadList[this.data.headerCurrent][dateindex].datestr}`,
+				week:this.data.swiperHeadList[this.data.headerCurrent][dateindex].date,
 			}
 
 			this.setData({
@@ -220,6 +225,7 @@ Page({
 				userScheduleList,
 				userInfo,
 				userDetailScheduleId:userScheduleList[0].schedule_id,
+				overlay:true,
 			})
 
 			let requestDate = {
@@ -232,9 +238,13 @@ Page({
 			}
 			dmNetwork.post(dmNetwork.clockInList,requestDate, (res) => {
 				if(res.data.errno == 0){
-					
+					//过滤出当前排班id的打卡记录
+					let clockInList = res.data.data.attendance_list.filter(item => {
+						return item.schedule_id == userScheduleList[0].schedule_id
+					})
 					this.setData({
-						clockInList:res.data.data.attendance_list
+						clockInList,
+						soruceClockInList:res.data.data.attendance_list,
 					})
 				}else{
 					wx.showToast({
@@ -772,6 +782,7 @@ Page({
 			showClickGrid:false,
 			userScheduleList:[],
 			selectSchedulingIdList:[],
+			overlay:false,
 		})
 	},
 
@@ -870,8 +881,15 @@ Page({
 
 	handleClickScheduleTab(e){
 		let schedule_id = e.currentTarget.dataset.scheduleid;
+		let soruceClockInList = this.data.soruceClockInList;
+		//根据schedule_id获取打卡记录
+		let clockInList = soruceClockInList.filter(item => {
+			return item.schedule_id == schedule_id
+		})
+
 		this.setData({
 			userDetailScheduleId:schedule_id,
+			clockInList,
 		})
 	},
 

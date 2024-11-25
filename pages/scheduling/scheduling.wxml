@@ -1,5 +1,5 @@
 <view class="scheduling">
-  <view class="head-nav">
+  <view class="head-nav" wx:if="{{false}}">
     <text class="project-name">大润发项目排班</text>
   </view>
 
@@ -16,7 +16,7 @@
         <view class="table-head-item" wx:for="{{item}}" wx:for-item="weekItem" wx:for-index="idx" wx:key="idx" >
           <view class="month-tag" wx:if="{{weekItem.day == '01'}}">{{weekItem.month}}月</view>
           <view class="table-head-week">{{weekItem.date}}</view>
-          <view class="table-head-day">{{weekItem.day}} <text class="taday" wx:if="{{weekItem.datestr === nowDateStr}}">今</text></view>
+          <view class="table-head-day {{weekItem.datestr === nowDateStr ? 'taday' : ''}}" >{{weekItem.datestr === nowDateStr ? '今' : weekItem.day}}</view>
         </view>
       </swiper-item>
     </swiper>
@@ -30,6 +30,7 @@
         <view class="table-body-item" wx:for="{{userList}}" wx:key="index">
           <view class="item-surname {{'surname' + item.bgcolor}}">{{item.first_name}}</view>
           <view class="item-name">{{item.user_name}}</view>
+          <view class="user-group_name">{{item.group_name}}</view>
         </view>
       </view>
 
@@ -59,6 +60,7 @@
                   <text class="time-stage">{{itemScheduChild['schedule'][0].start_time}}</text>
                   <text class="time-stage">{{itemScheduChild['schedule'][0].end_time}}</text>
                   <image src="../../image/dui_icon.png" class="dui-icon" wx:if="{{itemScheduChild.selected}}" />
+                  <text class="schedule-status" wx:if="{{itemScheduChild['schedule'][0].status}}">{{itemScheduChild['schedule'][0].status}}</text>
                 </view>
                 <view  wx:if="{{itemScheduChild.schedule.length == 0}}" class="body-item-child {{ itemScheduChild.selected ? 'grid-selected' : ''}}">
                   <image src="../../image/dui_icon.png" class="dui-icon" wx:if="{{itemScheduChild.selected}}" />
@@ -97,9 +99,8 @@
 
   <!-- 选择空格子后，选择班次弹窗 -->
   <page-container
-
+    overlay="{{overlay}}"
     show="{{showClickGrid}}"
-    overlay="{{false}}"
     custom-style="{{customStyle}}"
     round
   >
@@ -172,82 +173,84 @@
 
     <!--用户排班详情-->
     <view class="user-schedule-detail" wx:if="{{showUserScheduleDetail}}">
-      <view class="user-detail-head">
-        <view class="user-detail-head-left">
-          <text class="user-detail-head-surname">{{userInfo.userFirstName}}</text>
-          <text class="user-detail-head-name">{{userInfo.user_name}}</text>
-        </view>
-        <view class="user-detail-head-right">
-          <text class="user-detail-head-right-status" bindtap="handleClickCloseUserDetailBtn">考勤状态</text>
+      <view class="user-detail-title">
+        <view class="title-day">{{userInfo.dateStr }}  周{{userInfo.week}}</view>
+        <view class="title-close">
+          <image src="../../image/close_123.png" bindtap="handleColoseUserScheduleBtn" />
         </view>
       </view>
-      <!--排班-->
-      <view class="user-schedule-box">
-        <text class="user-schedule-box-title">排班</text>
-        <view class="user-schedule-box-content">
-          <scroll-view  class="user-sched-scroll-body" 	scroll-y>
-          <view class="user-schedule-box-item {{ 'colorblock_item_'+ item.schedule_name}}" wx:for="{{userScheduleList}}" wx:key="index">
-            <view class="user-schedule-item-left">
-
-              <view  class="user-schedule-left-head">
-                <text class="user-schedule-box-item-name">{{item.schedule_name}}</text> 
-                <text class="user-schedule-box-item-time">{{item.start_time}}-{{item.end_time}}</text>
-                <text wx:if="{{false}}" class="user-schedule-box-item-type">{{item.type == 0 ? '固定' : '临时'}}</text> 
-              </view>
-              <view class="user-schedule-box-item-botton">
-                <text class="user-schedule-box-item-worktime">工作时长 {{item.work_hours}}</text>
-              </view>
-            </view>
-            <view class="user-schedule-box-item-btn">
-              <text class="user-schedule-box-item-btn-delete" data-scheduleidx="{{index}}" bindtap="handleClickDeleteUserScheduleBtn">删除</text>
-            </view>
+      <scroll-view scroll-y class="userdetail-scorll">
+        <view class="user-detail-head">
+          <view class="user-detail-head-left">
+            <text class="user-detail-head-surname">{{userInfo.userFirstName}}</text>
+            <text class="user-detail-head-name">{{userInfo.user_name}}</text>
           </view>
-          </scroll-view>
+          <view class="user-detail-head-right">
+            <text class="user-detail-head-right-status" bindtap="handleClickCloseUserDetailBtn">考勤状态</text>
+          </view>
+        </view>
+        <!--排班-->
+        <view class="user-schedule-box">
+          <text class="user-schedule-box-title">排班</text>
           <view class="user-schedule-box-item-btn-add-1">
             <text class="user-schedule-box-item-btn-add" bindtap="handleClickAddUserScheduleBtn">+添加班次</text>
           </view> 
-        </view>
-      </view>
-    <!--打卡记录-->
-      <view class="user-schedule-box">
-        <text class="user-schedule-box-title">打卡记录</text>
-        <view class="user-schedule-box-content">
-          <scroll-view  class="user-ssd-scroll-body" 	scroll-x>
-            <view class="user-schedule-box2-item">
-              <view class="user-schedule-box-mmp {{item.schedule_id == userDetailScheduleId ? 'user-schedule-box2-item-active' : ''}}" wx:for="{{userScheduleList}}" wx:key="index" data-scheduleid="{{item.schedule_id}}" bindtap="handleClickScheduleTab"> 
-                <text>{{item.start_time}}-{{item.end_time}}</text>
+          <view class="user-schedule-box-content">
+            <view class="user-schedule-box-item " wx:for="{{userScheduleList}}" wx:key="index">
+              <view class="user-schedule-item-left">
+                <view  class="user-schedule-left-head">
+                  <text class="user-schedule-box-item-name">{{item.schedule_name}}</text> 
+                  <text class="user-schedule-box-item-time">{{item.start_time}}-{{item.end_time}}</text>
+                  <text wx:if="{{false}}" class="user-schedule-box-item-type">{{item.type == 0 ? '固定' : '临时'}}</text> 
+                </view>
+                <view class="user-schedule-box-item-botton">
+                  <text class="user-schedule-box-item-worktime">工作时长 {{item.work_hours}}</text>
+                </view>
               </view>
-
-            </view> 
-          </scroll-view>
-          <scroll-view  class="user-dk-scroll-body" 	scroll-y>
-          <view class="user-schedule-dk-item" wx:for="{{clockInList}}" wx:key="index">
-            <view class="user-schedule-item-dk" wx:if="{{item.type == 1 && item.schedule_id == userDetailScheduleId}}">
-              <view  class="daka-time-item">
-                <text class="zg-time">上班时间 {{item.require_time || '无'}}</text>
-                <text class="dk-time">打卡时间 {{item.attend_time|| '无'}}</text>
+              <view class="user-schedule-box-item-btn">
+                <text class="user-schedule-box-item-btn-delete" data-scheduleidx="{{index}}" bindtap="handleClickDeleteUserScheduleBtn">删除</text>
               </view>
-              <text class="dk-addr" wx:if="{{false}}">打卡地点 {{'黄河京都'}}</text>
-              <text class="dk-time">打卡状态 {{item.status[0].name || '无'}}</text>
-            </view>
-            <view class="user-schedule-item-dk"  wx:if="{{item.type == 2  && item.schedule_id == userDetailScheduleId}}}}">
-              <view class="daka-time-item">
-                <text class="zg-time">下班时间 {{item.require_time || '无'}}</text>
-                <text class="dk-time">打卡时间 {{item.attend_time || '无'}}</text>
-              </view>
-              <text class="dk-addr" wx:if="{{false}}">打卡地点 {{'黄河京都'}}</text>
-              <text class="dk-time">打卡状态  {{item.status[0].name || '无'}}</text>
             </view>
           </view>
-          </scroll-view>
         </view>
-        <view class="user-schedule-box-item-btn-add-1">
-          <text  class="user-schedule-box-item-btn-add" bindtap="handleClickHelpClockIn">+帮他补卡</text>
-        </view> 
-      </view>
-      <view class="grid-btn">
-        <text class="select-schedu-btn" bindtap="handleColoseUserScheduleBtn">关闭</text>
-      </view>
+      <!--打卡记录-->
+        <view class="user-schedule-box">
+          <text class="user-schedule-box-title">打卡记录</text>
+          <view class="user-schedule-box-item-btn-add-1">
+            <text  class="user-schedule-box-item-btn-add" bindtap="handleClickHelpClockIn">+帮他补卡</text>
+          </view> 
+          <view class="user-schedule-box-content">
+            <scroll-view  class="user-ssd-scroll-body" 	scroll-x wx:if="{{userScheduleList.length > 1}}">
+              <view class="user-schedule-box2-item">
+                <view class="user-schedule-box-mmp {{item.schedule_id == userDetailScheduleId ? 'user-schedule-box2-item-active' : ''}}" wx:for="{{userScheduleList}}" wx:key="index" data-scheduleid="{{item.schedule_id}}" bindtap="handleClickScheduleTab"> 
+                  <text>{{item.start_time}}-{{item.end_time}}</text>
+                </view>
+              </view> 
+            </scroll-view>
+            <view wx:if="{{clockInList.length > 0}}" class="user-schedule-dk-item" wx:for="{{clockInList}}" wx:key="index">
+              <view class="user-schedule-item-dk" wx:if="{{item.type == 1 && item.schedule_id == userDetailScheduleId}}">
+                <view  class="daka-time-item">
+                  <text class="zg-time">上班时间 {{item.require_time || '无'}}</text>
+                  <text class="dk-time">打卡时间 {{item.attend_time|| '无'}}</text>
+                </view>
+                <text class="dk-addr" wx:if="{{false}}">打卡地点 {{'黄河京都'}}</text>
+                <text class="dk-time">打卡状态 {{item.status[0].name || '无'}}</text>
+              </view>
+              <view class="user-schedule-item-dk"  wx:if="{{item.type == 2  && item.schedule_id == userDetailScheduleId}}}}">
+                <view class="daka-time-item">
+                  <text class="zg-time">下班时间 {{item.require_time || '无'}}</text>
+                  <text class="dk-time">打卡时间 {{item.attend_time || '无'}}</text>
+                </view>
+                <text class="dk-addr" wx:if="{{false}}">打卡地点 {{'黄河京都'}}</text>
+                <text class="dk-time">打卡状态  {{item.status[0].name || '无'}}</text>
+              </view>
+            </view>
+            <view wx:if="{{clockInList.length == 0}}" class="user-schedule-dk-item">
+              <text class="no-dk">暂无打卡记录</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
     </view>
     <replacementCard 
       wx:if="{{showReplacementCard}}" 
