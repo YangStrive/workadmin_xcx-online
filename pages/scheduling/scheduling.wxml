@@ -123,7 +123,7 @@
             </view>
           </view>
           <view class="select-scheduling-item-btn">
-            <text class="delete" data-scheduleidx="{{index}}" bindtap="handleClickDeleteSeletedScheduleBtn">删除</text>
+            <image class="select-scheduling-delete" data-scheduleidx="{{index}}" bindtap="handleClickDeleteSeletedScheduleBtn"  src="../../image/delete_icon.png">删除</image>
           </view>
         </view>
       </viwe>
@@ -186,7 +186,7 @@
             <text class="user-detail-head-name">{{userInfo.user_name}}</text>
           </view>
           <view class="user-detail-head-right">
-            <text class="user-detail-head-right-status" bindtap="handleClickCloseUserDetailBtn">考勤状态</text>
+            <text class="user-detail-head-right-status" bindtap="handleClickCloseUserDetailBtn" wx:if="{{false}}">考勤状态</text>
           </view>
         </view>
         <!--排班-->
@@ -202,13 +202,14 @@
                   <text class="user-schedule-box-item-name">{{item.schedule_name}}</text> 
                   <text class="user-schedule-box-item-time">{{item.start_time}}-{{item.end_time}}</text>
                   <text wx:if="{{false}}" class="user-schedule-box-item-type">{{item.type == 0 ? '固定' : '临时'}}</text> 
+                  <text class="user-schedule-box-item-status">{{item.status}}</text> 
                 </view>
                 <view class="user-schedule-box-item-botton">
                   <text class="user-schedule-box-item-worktime">工作时长 {{item.work_hours}}</text>
                 </view>
               </view>
               <view class="user-schedule-box-item-btn">
-                <text class="user-schedule-box-item-btn-delete" data-scheduleidx="{{index}}" bindtap="handleClickDeleteUserScheduleBtn">删除</text>
+                <image class="user-schedule-box-item-btn-delete" data-scheduleidx="{{index}}" bindtap="handleClickDeleteUserScheduleBtn" src="../../image/delete_icon.png"></image>
               </view>
             </view>
           </view>

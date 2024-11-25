@@ -144,7 +144,7 @@
   bottom: 1rpx;
   right: 1rpx;
   display: block;
-  z-index: 99;
+  z-index: 999;
   /** 旋转45度 */
   transform: rotate(-10deg);
 }
@@ -323,9 +323,10 @@
   flex-shrink: 0;
   margin-left: 20rpx;
 }
-.delete{
-  font-size: 26rpx;
-  color: #FFA928;
+.select-scheduling-delete{
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .grid-btn{
@@ -472,8 +473,9 @@
 
 }
 .user-schedule-box-item-btn-delete{
-  font-size: 26rpx;
-  color: #FFA928;
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
 }
 .user-schedule-box-item-btn-add{
   margin-top: 0rpx;
@@ -686,13 +688,17 @@
 .schedule-status{
   font-size: 18rpx;
   padding: 2rpx 6rpx;
-  background-color: #f75f19;
+  background-color: #ff0000d9;
   position: relative;
-  bottom: 23rpx;
+  bottom: 13rpx;
   left: 0px;
   z-index: 99;
   color: #fff;
   border-radius: 2rpx;
+  max-width: 78rpx;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .user-group_name{
   font-size: 18rpx;
@@ -709,4 +715,12 @@
   text-align: center;
   font-size: 24rpx;
   color: #bebebe;
+}
+.user-schedule-box-item-status{
+  font-size: 24rpx;
+  color: #fff;
+  padding: 2rpx 6rpx;
+  background-color: #ff0000d9;
+  position: relative;
+  border-radius: 4rpx;
 }
