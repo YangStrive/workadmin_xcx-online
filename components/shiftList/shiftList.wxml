@@ -30,19 +30,20 @@
       <view class="add-temporaryscheduling-list"  wx:if="{{addSchedulingTab == 2}}">
         <view class="temporary-scheduling-item" wx:for="{{temporarySchedulingList}}" wx:key="index">
           <view class="temporary-scheduling-head">
-            <text class="temporary-scheduling-head-title">临时班次{{index + 1}}</text>
-            <text wx:if="{{index > 0}}" class="temporary-scheduling-item-btn-delete " data-scheduleidx="{{index}}" bindtap="handleClickDeleteTempScheduleBtn">删除</text>
+            <text class="temporary-scheduling-head-title" wx:if="{{temporarySchedulingList.length > 1}}">第{{index + 1}}段工作时间</text>
+            <text class="temporary-scheduling-head-title" wx:if="{{temporarySchedulingList.length == 1}}">工作时间</text>
+            <image wx:if="{{temporarySchedulingList.length > 1}}" class="temporary-scheduling-item-btn-delete " data-scheduleidx="{{index}}" bindtap="handleClickDeleteTempScheduleBtn" src="../../image/delete_icon.png"></image>
           </view>
           <view class="temporary-scheduling-item-content">
             <view class="temporary-scheduling-time">
               <text class="temporary-scheduling-item-content-title">开始时间</text>
-              <picker mode="time" value="{{item.start_time}}" bindchange="handleTemporaryScheduleTimeChange" data-scheduleidx="{{index}}" data-timetype="start_time">
+              <picker mode="multiSelector" range="{{timeRange}}" value="{{item.timeStartIndex}}" bindchange="handleTemporaryScheduleTimeChange" data-scheduleidx="{{index}}" data-timetype="start_time">
                 <view class="temporary-scheduling-item-content-value">{{item.start_time}} ></view>
               </picker>
             </view> 
             <view class="temporary-scheduling-time">
               <text class="temporary-scheduling-item-content-title">结束时间</text>
-              <picker mode="time" value="{{item.end_time}}" bindchange="handleTemporaryScheduleTimeChange" data-scheduleidx="{{index}}" data-timetype="end_time">
+              <picker mode="multiSelector" range="{{timeRange}}" value="{{item.timeEndIndex}}" bindchange="handleTemporaryScheduleTimeChange" data-scheduleidx="{{index}}" data-timetype="end_time">
                 <view class="temporary-scheduling-item-content-value">{{item.end_time}} ></view>
               </picker>
             </view>
@@ -66,15 +67,15 @@
 
           <view wx:if="{{temporaryRestType == 1}}">
           <view class="rest-time-box-st" >
-            <view class="temporaryscheduling-rest-time-title">休息开始时间</view>
-            <picker mode="time" value="{{temporaryRestStartTime}}" bindchange="handleTemporaryRestStartTimeChange">
+            <view class="rest-time-lebel-title">休息开始时间</view>
+            <picker mode="multiSelector" range="{{timeRange}}" value="{{temporaryRestStartTimeIndex}}" bindchange="handleTemporaryRestStartTimeChange">
               <view class="temporaryscheduling-rest-time-value">{{temporaryRestStartTime}} ></view>
             </picker>
           </view>
 
           <view class="rest-time-box-st" >
-            <view class="temporaryscheduling-rest-time-title">休息结束时间</view>
-            <picker mode="time" value="{{temporaryRestEndTime}}" bindchange="handleTemporaryRestEndTimeChange">
+            <view class="rest-time-lebel-title">休息结束时间</view>
+            <picker mode="multiSelector" range="{{timeRange}}" value="{{temporaryRestEndTimeIndex}}" bindchange="handleTemporaryRestEndTimeChange">
               <view class="temporaryscheduling-rest-time-value">{{temporaryRestEndTime}} ></view>
             </picker>
           </view>

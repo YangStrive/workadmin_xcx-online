@@ -47,6 +47,7 @@ Page({
 			userFirstName:'',
 			dateStr:'',
 			week:'',
+			userLogo:'',
 		},
 		showReplacementCard: false,
 		clockInList: [],
@@ -217,6 +218,7 @@ Page({
 				userFirstName,
 				dateStr:`${this.data.swiperHeadList[this.data.headerCurrent][dateindex].datestr}`,
 				week:this.data.swiperHeadList[this.data.headerCurrent][dateindex].date,
+				userLogo:this.data.userList[userindex].userLogo,
 			}
 
 			this.setData({

@@ -65,7 +65,8 @@ const analysisuserList = (data) => {
         user_name: item.user_name,
         first_name: item.user_name[0],
         bgcolor:bgIndex,
-        group_name:item.group_name
+        group_name:item.group_name,
+        userLogo:item.logo.thumb_url.thumb_url,
       });
       bgIndex++;
     });

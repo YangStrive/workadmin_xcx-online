@@ -48,11 +48,14 @@ Component({
 			},
 		],
 
-		temporaryRestStartTime: '请选择',
-		temporaryRestEndTime: '请选择',
-		temporaryRestTimeHourIndex:'',
-		temporaryRestTimeMinuteIndex:'',
+		temporaryRestStartTime: '12:00',
+		temporaryRestEndTime: '13:00',
+		temporaryRestStartTimeIndex: [12, 0],
+		temporaryRestEndTimeIndex: [13, 0],
+		temporaryRestTimeHourIndex:'1',
+		temporaryRestTimeMinuteIndex:'30',
 		temporaryRestType: 1,
+		timeRange: [[], []], // 用于存储小时和分钟的数组
 
 	},
 	attached() {
@@ -75,6 +78,10 @@ Component({
 					work_hours: '',
 					rest_start_time: '',
 					rest_end_time: '',
+					timeStartIndex:[8,0],
+					timeEndIndex:[16,0],
+					timeRestStartIndex:[12,0],//12:00 
+					timeRestEndIndex:[13,0],//13:00
 				}]
 			}
 
@@ -83,8 +90,28 @@ Component({
 				currentSelectEdShiftIdList:this.data.selectedShiftIdList,
 				temporarySchedulingList,
 			})
+			this.setTimeRange()
 
 		},
+
+	//setTimeRange
+	setTimeRange(){
+    const hours = [];
+    const minutes = [];
+    
+    for (let i = 0; i < 24; i++) {
+      hours.push(i < 10 ? '0' + i : '' + i);
+    }
+    
+    for (let i = 0; i < 60; i += 15) {
+      minutes.push(i < 10 ? '0' + i : '' + i);
+    }
+    
+    this.setData({
+      timeRange: [hours, minutes]
+    });
+	},
+
 
 	//获取排班数据
 	getShiftList() {
@@ -175,8 +202,16 @@ Component({
 			const index = e.currentTarget.dataset.scheduleidx;
 			const value = e.detail.value;
 			const type = e.currentTarget.dataset.timetype;
+			const timeRange = this.data.timeRange;
+			let timeStr = timeRange[0][value[0]] + ':' + timeRange[1][value[1]];
 	
-			temporarySchedulingList[index][type] = value;
+			temporarySchedulingList[index][type] = timeStr;
+			if(type == 'start_time'){
+				temporarySchedulingList[index].timeStartIndex = value;
+			}
+			if(type == 'end_time'){
+				temporarySchedulingList[index].timeEndIndex = value;
+			}
 			this.setData({
 				temporarySchedulingList
 			})
@@ -410,15 +445,19 @@ Component({
 
 		handleTemporaryRestStartTimeChange(e){
 			const value = e.detail.value;
+			let temporaryRestStartTime = this.data.timeRange[0][value[0]] + ':' + this.data.timeRange[1][value[1]];
 			this.setData({
-				temporaryRestStartTime:value
+				temporaryRestStartTime:temporaryRestStartTime,
+				temporaryRestStartTimeIndex:value
 			})
 		},
 
 		handleTemporaryRestEndTimeChange(e){
 			const value = e.detail.value;
+			let temporaryRestEndTime = this.data.timeRange[0][value[0]] + ':' + this.data.timeRange[1][value[1]];
 			this.setData({
-				temporaryRestEndTime:value
+				temporaryRestEndTime:temporaryRestEndTime,
+				temporaryRestEndTimeIndex:value
 			})
 		},
 

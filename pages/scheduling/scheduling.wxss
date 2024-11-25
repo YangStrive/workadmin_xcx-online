@@ -179,8 +179,8 @@
 .item-surname{
   display: block;
   font-size: 30rpx;
-  width: 25px;
-  height: 25px;
+  width: 50rpx;
+  height: 50rpx;
   font-weight: bold;
   text-align: center;
   border-radius: 50%;
@@ -377,13 +377,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8rpx 24rpx;
+  padding: 12rpx 24rpx;
   margin-bottom: 12rpx;
   background-color: #fff;
   margin: 0 24rpx;
   border-radius: 8rpx;
   margin-bottom: 24rpx;
-  margin-top: 24rpx;
+  margin-top: 12rpx;
 }
 .user-detail-head-left{
   display: flex;
@@ -391,9 +391,9 @@
 }
 .user-detail-head-surname{
   display: block;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   text-align: center;
   border-radius: 50%;
   background-color: #e5d312;
@@ -726,4 +726,18 @@
 .kb-text{
   padding-bottom: 6rpx;
   display: block;
+}
+.userinfo-avatar{
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  margin: auto;
+  border-radius: 50%;
+}
+.user-detail-head-avatar{
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
 }

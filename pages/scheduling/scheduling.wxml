@@ -29,7 +29,8 @@
       <view class="table-body-user">
         <view class="table-body-item" wx:for="{{userList}}" wx:key="index">
           <text class="kb-text"> </text>
-          <view class="item-surname {{'surname' + item.bgcolor}}">{{item.first_name}}</view>
+          <view class="item-surname {{'surname' + item.bgcolor}}"  wx:if="{{!item.userLogo}}">{{item.first_name}}</view>
+          <image class="userinfo-avatar" wx:if="{{item.userLogo}}" src="{{item.userLogo}}"></image>
           <view class="item-name">{{item.user_name}}</view>
           <view class="user-group_name">{{item.group_name}}</view>
         </view>
@@ -183,7 +184,8 @@
       <scroll-view scroll-y class="userdetail-scorll">
         <view class="user-detail-head">
           <view class="user-detail-head-left">
-            <text class="user-detail-head-surname">{{userInfo.userFirstName}}</text>
+            <image wx:if="{{userInfo.userLogo}}" class="user-detail-head-avatar" src="{{userInfo.userLogo}}"></image>
+            <text wx:if="{{!userInfo.userLogo}}" class="user-detail-head-surname">{{userInfo.userFirstName}}</text>
             <text class="user-detail-head-name">{{userInfo.user_name}}</text>
           </view>
           <view class="user-detail-head-right">
