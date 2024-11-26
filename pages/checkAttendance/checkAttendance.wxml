@@ -71,7 +71,7 @@
 							</view>
 						</view>	
 						<view class="delete-item">
-							<text class="delete-btn">删除</text>
+							<image class="delete-btn" src="../../image/delete_icon.png">删除</image>
 						</view>
 					</view>
 				</view>	
@@ -81,6 +81,9 @@
 		<view class="empty" wx:else>
 			<text class="empty__text">暂无考勤记录</text>
 		</view>
+		<view class="no-more" wx:if="{{noMore}}">
+			<text class="no-more__text">没有更多了</text>
+		</view>
 	</scroll-view>
 
 	<view class="checkAttendance__footer">
@@ -88,12 +91,12 @@
 			<image class="footer-item__icon" src="/image/confrim_1.png"></image>
 			<text class="footer-nav-text">确认工时</text>
 		</view>
-		<view class="footer-item-nav footer-item1">
+		<view class="footer-item-nav footer-item1" wx:if="{{false}}">
 			<image class="footer-item__icon" src="/image/comment_1.png"></image>
 			<text class="footer-nav-text">人员评价</text>
 		</view>
-		<view class="footer-item-nav footer-item3">
-			<text class="footer-nav-text-pb">去排版</text>
+		<view class="footer-item-nav footer-item3" bindtap="handleTapGoSchedule">
+			<text class="footer-nav-text-pb">去排班</text>
 		</view>	
 	</view>
 </view>

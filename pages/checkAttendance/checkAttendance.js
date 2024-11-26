@@ -67,6 +67,7 @@ Page({
 			prckerSelected:'',
 			selectedYear: '',
 			selectedMonth: '',
+			noMore:true,
 		},
 
     /**
@@ -179,6 +180,11 @@ Page({
 			})
 		},
 
+		handleTapGoSchedule(){
+			wx.navigateTo({
+				url: '/pages/scheduling/scheduling',
+			})
+		},
 
 
 

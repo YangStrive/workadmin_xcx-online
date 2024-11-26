@@ -6,6 +6,13 @@
         "miniprogram": {
             "list": [
                 {
+                    "name": "工时确认",
+                    "pathName": "pages/confirmationWorkTime/ConfirmationWorkTime",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "排班",
                     "pathName": "pages/scheduling/scheduling",
                     "query": "",
