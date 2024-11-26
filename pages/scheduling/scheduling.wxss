@@ -689,13 +689,12 @@
   padding: 2rpx 6rpx;
   background-color: #ff0000d9;
   position: relative;
-  bottom: 9rpx;
+  bottom: 18rpx;
   left: 0px;
   z-index: 99;
   color: #fff;
   border-radius: 6rpx;
   max-width: 78rpx;
-  display: block;
   overflow: hidden;
   white-space: nowrap;
 }

@@ -94,6 +94,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1rpx dashed #e8e8e8;
     margin-bottom: 12rpx;
   }
   .temporary-scheduling-head-title {
@@ -117,10 +118,10 @@
   
   }
   .temporary-scheduling-item{
-    background-color: #fffbe7;
     padding: 24rpx;
     border-radius: 10rpx;
     margin-bottom: 24rpx;
+    border: 1rpx solid #e8e8e8;
   }
   
   
@@ -184,9 +185,9 @@
 
   .temporaryscheduling-rest-time{
     margin-top: 24rpx;
-    background-color: #fdf9e3;
     padding: 24rpx;
     border-radius: 10rpx;
+    border: 1rpx solid #e8e8e8;
   }
   .temporaryscheduling-rest-time-title{
     font-size: 28rpx;
@@ -195,7 +196,7 @@
     text-align: left;
     display: block;
     padding-bottom: 6rpx;
-    border-bottom: 2rpx solid #fff;
+    border-bottom: 2rpx dashed #e8e8e8;
     margin-bottom: 6rpx;
   }
   .rest-time-lebel-title{
