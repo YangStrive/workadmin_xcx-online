@@ -1,1 +1,216 @@
 /* pages/confirmationWorkTime/ConfirmationWorkTime.wxss */
+
+.comfirm-header{
+    padding: 24rpx;
+    border-bottom: 1rpx solid #f8f8fa;
+}
+.comfirm-search{
+    display: flex;
+    justify-content: space-between;
+    padding: 12rpx;
+    background-color: #f8f8fa;
+
+    border-radius: 8rpx;
+}
+
+.comfirm-search-icon{
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 12rpx;
+}
+.comfirm-search-input{
+    flex: 1;
+    height: 46rpx;
+    line-height: 46rpx;
+    border: none;
+    font-size: 28rpx;
+}
+
+/************ comfirm-scroll ************/
+.comfirm-scroll{
+    height: calc(100vh - 320rpx);
+}
+.comfirm-list{
+    background-color: #f8f8fa;
+}
+.comfirm-list-item{
+    background-color: #f8f8fa;
+}
+.comfirm-item-header{
+    font-size: 28rpx;
+    color: #26282b;
+    padding: 24rpx;
+    border-bottom: 1rpx solid #f8f8fa;
+    background-color: #fff;
+    font-weight: 400;
+}
+.item-list{
+    background-color: #f8f8fa;
+}
+.item-list-item{
+    padding: 24rpx;
+    background-color: #fff;
+    margin-bottom: 12rpx;
+}
+.item-list-item-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item-l-i-checkbox{
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 36rpx;
+    border-radius: 50%;
+    border: 2rpx solid #FFA928;
+    flex-shrink: 0;
+}
+.item-l-i-user{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.item-l-i-user-img{
+    display: block;
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 24rpx;
+    border-radius: 50%;
+    border: 1rpx solid #f8f8fa;
+}
+.item-l-i-user-name{
+    font-size: 28rpx;
+    font-weight: bold;
+    color:#202128
+}
+.item-l-i-right{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.item-l-i-time{
+    display: block;
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #202128;
+}
+.item-l-i-time-money{
+    display: block;
+    font-size: 24rpx;
+    color: #a0a1a9;
+    text-align: right;
+}
+.item-l-i-right-icon{
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 12rpx;
+}
+.item-list-item-content{
+    margin-left: 70rpx;
+    margin-top: 12rpx;
+}
+.item-l-i-c-item-text{
+    font-size: 24rpx;
+    color: #a0a1a9;
+    margin-bottom: 4rpx;
+    font-weight: 400;
+}
+.item-l-i-c-item-text-dk{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+.item-l-i-c-item-text{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+.checkbox-selected{
+    background-color: #FFA928;
+    border: 2rpx solid #FFA928;
+}
+.checkbox-selected::after{
+    content: '';
+    display: block;
+    width: 15rpx;
+    height: 15rpx;
+    background-color: #fff;
+    position: relative;
+    top:8rpx;
+    left: 8rpx;
+    border-radius: 50%;
+}
+
+
+/************ footer ************/
+.comfirm-footer{
+    margin: 24rpx;
+    border-top: 1rpx solid #f8f8fa;
+}
+.comfirm-footer-top{
+    display: flex;
+    justify-content: space-between;
+    padding: 12rpx 0;
+    border-radius: 8rpx;
+}
+.comfirm-footer-left{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.comfirm-footer-right{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.comfirm-footer-left-icon{
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 12rpx;
+    border-radius: 50%;
+    border: 2rpx solid #FFA928;
+}
+.all-selected{
+    background-color: #FFA928;
+    border: 2rpx solid #FFA928;
+}
+.all-selected::after{
+    content: '';
+    display: block;
+    width: 15rpx;
+    height: 15rpx;
+    background-color: #fff;
+    position: relative;
+    top:8rpx;
+    left: 8rpx;
+    border-radius: 50%;
+}
+.comfirm-footer-left-text{
+    font-size: 28rpx;
+    color: #26282a;
+}
+.comfirm-footer-right-text{
+    font-size: 28rpx;
+    color: #93949b;
+}
+.comfirm-footer-right-selected{
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #212327;
+}
+.comfirm-footer-bottom{
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    background-color: #FFA928;
+    border-radius: 10rpx;
+}
+.comfirm-footer-right-text{
+    font-size: 32rpx;
+    color: #fff;
+    font-weight: bold;
+}

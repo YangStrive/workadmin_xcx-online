@@ -1,2 +1,171 @@
-<!--pages/confirmationWorkTime/ConfirmationWorkTime.wxml-->
-<text>pages/confirmationWorkTime/ConfirmationWorkTime.wxml</text>
+<view class="comfirm-work">
+	<view class="comfirm-header">
+		<view class="comfirm-search">
+			<image class="comfirm-search-icon" src="../../image/search.png"></image>
+			<input class="comfirm-search-input" placeholder="搜索员工姓名" />
+		</view>
+	</view>
+	<!--滚动区域-->
+	<scroll-view class="comfirm-scroll" scroll-y="true">
+		<view class="comfirm-list">
+			<view class="comfirm-list-item">
+				<view class="comfirm-item-header">
+					<text class="header-text">2022-1-10</text>
+				</view>
+				<view class="item-list">
+					<view class="item-list-item">
+						<view class="item-list-item-header">
+							<view class="item-l-i-checkbox"></view>
+							<view class="item-l-i-user">
+								<image class="item-l-i-user-img" src="../../image/bg_insurance.png"></image>
+								<text class="item-l-i-user-name">张三</text>
+							</view>
+							<view class="item-l-i-right">
+								<view class="item-l-i-time">
+									<text class="item-l-i-time-text">7小时</text>
+									<text class="item-l-i-time-money">1元</text>
+								</view>
+								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>
+							</view>
+						</view>
+						<view class="item-list-item-content">
+							<view class="item-l-i-c-item">
+								<text class="item-l-i-c-item-text">工作时间：2022-1-1</text>
+								<!--打卡时间-->
+								<view  class="item-l-i-c-item-text item-l-i-c-item-text-dk">
+									<text>打卡时间：</text>
+									<text>未打卡</text>
+									<text>缺卡</text>
+									<text>未打卡</text>
+									<text>缺卡</text>
+								</view>
+								<!--出勤部门-->
+								<text class="item-l-i-c-item-text">出勤部门：技术部</text>
+							</view>
+						</view>
+					</view>	
+
+					<view class="item-list-item">
+						<view class="item-list-item-header">
+							<view class="item-l-i-checkbox"></view>
+							<view class="item-l-i-user">
+								<image class="item-l-i-user-img" src="../../image/bg_insurance.png"></image>
+								<text class="item-l-i-user-name">张三</text>
+							</view>
+							<view class="item-l-i-right">
+								<view class="item-l-i-time">
+									<text class="item-l-i-time-text">7小时</text>
+									<text class="item-l-i-time-money">1元</text>
+								</view>
+								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>
+							</view>
+						</view>
+						<view class="item-list-item-content">
+							<view class="item-l-i-c-item">
+								<text class="item-l-i-c-item-text">工作时间：2022-1-1</text>
+								<!--打卡时间-->
+								<view  class="item-l-i-c-item-text item-l-i-c-item-text-dk">
+									<text>打卡时间：</text>
+									<text>未打卡</text>
+									<text>缺卡</text>
+									<text>未打卡</text>
+									<text>缺卡</text>
+								</view>
+								<!--出勤部门-->
+								<text class="item-l-i-c-item-text">出勤部门：技术部</text>
+							</view>
+						</view>
+					</view>	
+				</view>
+			</view>
+			<view class="comfirm-list-item">
+				<view class="comfirm-item-header">
+					<text class="header-text">2022-1-10</text>
+				</view>
+				<view class="item-list">
+					<view class="item-list-item">
+						<view class="item-list-item-header">
+							<view class="item-l-i-checkbox checkbox-selected"></view>
+							<view class="item-l-i-user">
+								<image class="item-l-i-user-img" src="../../image/bg_insurance.png"></image>
+								<text class="item-l-i-user-name">张三</text>
+							</view>
+							<view class="item-l-i-right">
+								<view class="item-l-i-time">
+									<text class="item-l-i-time-text">7小时</text>
+									<text class="item-l-i-time-money">1元</text>
+								</view>
+								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>
+							</view>
+						</view>
+						<view class="item-list-item-content">
+							<view class="item-l-i-c-item">
+								<text class="item-l-i-c-item-text">工作时间：2022-1-1</text>
+								<!--打卡时间-->
+								<view  class="item-l-i-c-item-text item-l-i-c-item-text-dk">
+									<text>打卡时间：</text>
+									<text>未打卡</text>
+									<text>缺卡</text>
+									<text>未打卡</text>
+									<text>缺卡</text>
+								</view>
+								<!--出勤部门-->
+								<text class="item-l-i-c-item-text">出勤部门：技术部</text>
+							</view>
+						</view>
+					</view>	
+
+					<view class="item-list-item">
+						<view class="item-list-item-header">
+							<view class="item-l-i-checkbox"></view>
+							<view class="item-l-i-user">
+								<image class="item-l-i-user-img" src="../../image/bg_insurance.png"></image>
+								<text class="item-l-i-user-name">张三</text>
+							</view>
+							<view class="item-l-i-right">
+								<view class="item-l-i-time">
+									<text class="item-l-i-time-text">7小时</text>
+									<text class="item-l-i-time-money">1元</text>
+								</view>
+								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>
+							</view>
+						</view>
+						<view class="item-list-item-content">
+							<view class="item-l-i-c-item">
+								<text class="item-l-i-c-item-text">工作时间：2022-1-1</text>
+								<!--打卡时间-->
+								<view  class="item-l-i-c-item-text item-l-i-c-item-text-dk">
+									<text>打卡时间：</text>
+									<text>未打卡</text>
+									<text>缺卡</text>
+									<text>未打卡</text>
+									<text>缺卡</text>
+								</view>
+								<!--出勤部门-->
+								<text class="item-l-i-c-item-text">出勤部门：技术部</text>
+							</view>
+						</view>
+					</view>	
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+
+	<view class="comfirm-footer">
+		<view class="comfirm-footer-top">
+			<view class="comfirm-footer-left">
+				<view class="comfirm-footer-left-icon all-selected"></view>
+				<text class="comfirm-footer-left-text ">全选</text>
+			</view>
+			<view class="comfirm-footer-right">
+				<!--已选-->
+				<text class="comfirm-footer-right-text">已选：</text>
+				<text class="comfirm-footer-right-selected">7个排班 18小时 888元</text>
+			</view>
+
+		</view>
+		<view class="comfirm-footer-bottom">
+			<text class="comfirm-footer-right-text">确认工时</text>
+		</view>
+	</view>	
+</view>
