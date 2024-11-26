@@ -232,7 +232,7 @@
               </view> 
             </scroll-view>
             <view wx:if="{{clockInList.length > 0}}" class="user-schedule-dk-item" wx:for="{{clockInList}}" wx:key="index">
-              <view class="user-schedule-item-dk" wx:if="{{item.type == 1 && item.schedule_id == userDetailScheduleId}}">
+              <view class="user-schedule-item-dk" wx:if="{{item.type == 1}}">
                 <view  class="daka-time-item">
                   <text class="zg-time">上班时间 {{item.require_time || '无'}}</text>
                   <text class="dk-time">打卡时间 {{item.attend_time|| '无'}}</text>
@@ -240,7 +240,7 @@
                 <text class="dk-addr" wx:if="{{false}}">打卡地点 {{'黄河京都'}}</text>
                 <text class="dk-time">打卡状态 {{item.status[0].name || '无'}}</text>
               </view>
-              <view class="user-schedule-item-dk"  wx:if="{{item.type == 2  && item.schedule_id == userDetailScheduleId}}}}">
+              <view class="user-schedule-item-dk"  wx:if="{{item.type == 2 }}}}">
                 <view class="daka-time-item">
                   <text class="zg-time">下班时间 {{item.require_time || '无'}}</text>
                   <text class="dk-time">打卡时间 {{item.attend_time || '无'}}</text>

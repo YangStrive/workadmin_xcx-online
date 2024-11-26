@@ -234,13 +234,16 @@ Page({
 				team_id: this.data.team_id,
 				project_id: this.data.project_id,
 				user_id: userid,
-				date: '2024-11-18',
+				date: date,
 				task_id: this.data.task_id,
 
 			}
 			dmNetwork.post(dmNetwork.clockInList,requestDate, (res) => {
 				if(res.data.errno == 0){
 					//过滤出当前排班id的打卡记录
+					if(!res.data?.data){
+						return;
+					}
 					let clockInList = res.data.data.attendance_list.filter(item => {
 						return item.schedule_id == userScheduleList[0].schedule_id
 					})
