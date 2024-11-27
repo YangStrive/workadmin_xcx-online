@@ -614,28 +614,28 @@
   background-color: #fea560;
 }
  .colorblock_item_M{
-  background-color: #33FF57;
+  background-color: #2e7d43;
 }
  .colorblock_item_N{
-  background-color: #FF5733;
+  background-color: #d05830;
 }
  .colorblock_item_O{
-  background-color: #3357FF;
+  background-color: #67adc8;
 }
  .colorblock_item_P{
-  background-color: #FF33A1;
+  background-color: #b15888;
 }
  .colorblock_item_Q{
   background-color: #A133FF;
 }
  .colorblock_item_R{
-  background-color: #33FFA1;
+  background-color: #75edb5;
 }
  .colorblock_item_S{
-  background-color: #57FF33;
+  background-color: #92e87e;
 }
  .colorblock_item_T{
-  background-color: #5733FF;
+  background-color: #553dc3;
 }
  .colorblock_item_U{
   background-color: #FF33FF;
@@ -644,10 +644,10 @@
   background-color: #33FF33;
 }
  .colorblock_item_W{
-  background-color: #FF3333;
+  background-color: #ee8c8c;
 }
  .colorblock_item_X{
-  background-color: #3333FF;
+  background-color: #7a7aeb;
 }
  .colorblock_item_Y{
   background-color: #33FFFF;

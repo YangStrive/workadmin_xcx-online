@@ -28,7 +28,7 @@
 
 /************ comfirm-scroll ************/
 .comfirm-scroll{
-    height: calc(100vh - 320rpx);
+    height: calc(100vh - 305rpx);
 }
 .comfirm-list{
     background-color: #f8f8fa;
@@ -147,14 +147,14 @@
 
 /************ footer ************/
 .comfirm-footer{
-    margin: 24rpx;
+    padding: 24rpx;
     border-top: 1rpx solid #f8f8fa;
 }
 .comfirm-footer-top{
     display: flex;
     justify-content: space-between;
-    padding: 12rpx 0;
     border-radius: 8rpx;
+    margin-bottom: 12rpx;
 }
 .comfirm-footer-left{
     display: flex;
