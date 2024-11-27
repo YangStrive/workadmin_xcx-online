@@ -6,165 +6,75 @@
 		</view>
 	</view>
 	<!--滚动区域-->
-	<scroll-view class="comfirm-scroll" scroll-y="true">
+	<scroll-view class="comfirm-scroll" scroll-y="true" bindscrolltolower="handleScrollToLower">
 		<view class="comfirm-list">
-			<view class="comfirm-list-item">
+			<view class="comfirm-list-item" wx:if="{{confirmWorkTimeList.length > 0}}" wx:for="{{confirmWorkTimeList}}" wx:key="index">
 				<view class="comfirm-item-header">
-					<text class="header-text">2022-1-10</text>
+					<text class="header-text">{{item.date}}</text>
 				</view>
 				<view class="item-list">
-					<view class="item-list-item">
+					<view class="item-list-item" wx:for="{{item.list}}" wx:for-item="lItem" wx:for-index="lIndex" wx:key="lIndex">
 						<view class="item-list-item-header">
-							<view class="item-l-i-checkbox" bindtap="handleTapCheckbox"></view>
+							<view 
+								class="item-l-i-checkbox {{lItem.checked && 'checkbox-selected'}}" 
+								bindtap="handleTapCheckbox" 
+								data-index="{{index}}" 
+								data-lindex="{{lIndex}}">
+							</view>
 							<view class="item-l-i-user">
-								<image class="item-l-i-user-img" src="../../image/bg_insurance.png"></image>
-								<text class="item-l-i-user-name">张三</text>
+								<image class="item-l-i-user-img" src="../../image/bg_insurance.png" wx:if="{{false}}"></image>
+								<text class="item-l-i-user-first-name {{'bgCl' + lItem.nameIndex}}">{{lItem.firstName}}</text>
+								<text class="item-l-i-user-name">{{lItem.name}}</text>
 							</view>
 							<view class="item-l-i-right">
 								<view class="item-l-i-time">
-									<text class="item-l-i-time-text">7小时</text>
-									<text class="item-l-i-time-money">1元</text>
+									<text class="item-l-i-time-text">{{lItem.hours_wage}}小时</text>
+									<text class="item-l-i-time-money">{{lItem.amount}}元</text>
 								</view>
 								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>
 							</view>
 						</view>
 						<view class="item-list-item-content">
 							<view class="item-l-i-c-item">
-								<text class="item-l-i-c-item-text">工作时间：2022-1-1</text>
+								<text class="item-l-i-c-item-text">工作时间：{{lItem.arrangedTimeDesc}}</text>
 								<!--打卡时间-->
 								<view  class="item-l-i-c-item-text item-l-i-c-item-text-dk">
 									<text>打卡时间：</text>
-									<text>未打卡</text>
-									<text>缺卡</text>
-									<text>未打卡</text>
-									<text>缺卡</text>
+									<text>{{lItem.attend_first_time}}</text>
+									<text>{{lItem.attend_first_status}}</text>
+									<text>{{lItem.attend_last_time}}</text>
+									<text>{{lItem.attend_last_status}}</text>
 								</view>
 								<!--出勤部门-->
-								<text class="item-l-i-c-item-text">出勤部门：技术部</text>
-							</view>
-						</view>
-					</view>	
-
-					<view class="item-list-item">
-						<view class="item-list-item-header">
-							<view class="item-l-i-checkbox"></view>
-							<view class="item-l-i-user">
-								<image class="item-l-i-user-img" src="../../image/bg_insurance.png"></image>
-								<text class="item-l-i-user-name">张三</text>
-							</view>
-							<view class="item-l-i-right">
-								<view class="item-l-i-time">
-									<text class="item-l-i-time-text">7小时</text>
-									<text class="item-l-i-time-money">1元</text>
-								</view>
-								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>
-							</view>
-						</view>
-						<view class="item-list-item-content">
-							<view class="item-l-i-c-item">
-								<text class="item-l-i-c-item-text">工作时间：2022-1-1</text>
-								<!--打卡时间-->
-								<view  class="item-l-i-c-item-text item-l-i-c-item-text-dk">
-									<text>打卡时间：</text>
-									<text>未打卡</text>
-									<text>缺卡</text>
-									<text>未打卡</text>
-									<text>缺卡</text>
-								</view>
-								<!--出勤部门-->
-								<text class="item-l-i-c-item-text">出勤部门：技术部</text>
+								<text class="item-l-i-c-item-text">出勤部门：{{lItem.group_name}}</text>
 							</view>
 						</view>
 					</view>	
 				</view>
 			</view>
-			<view class="comfirm-list-item">
-				<view class="comfirm-item-header">
-					<text class="header-text">2022-1-10</text>
-				</view>
-				<view class="item-list">
-					<view class="item-list-item">
-						<view class="item-list-item-header">
-							<view class="item-l-i-checkbox checkbox-selected"></view>
-							<view class="item-l-i-user">
-								<image class="item-l-i-user-img" src="../../image/bg_insurance.png"></image>
-								<text class="item-l-i-user-name">张三</text>
-							</view>
-							<view class="item-l-i-right">
-								<view class="item-l-i-time">
-									<text class="item-l-i-time-text">7小时</text>
-									<text class="item-l-i-time-money">1元</text>
-								</view>
-								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>
-							</view>
-						</view>
-						<view class="item-list-item-content">
-							<view class="item-l-i-c-item">
-								<text class="item-l-i-c-item-text">工作时间：2022-1-1</text>
-								<!--打卡时间-->
-								<view  class="item-l-i-c-item-text item-l-i-c-item-text-dk">
-									<text>打卡时间：</text>
-									<text>未打卡</text>
-									<text>缺卡</text>
-									<text>未打卡</text>
-									<text>缺卡</text>
-								</view>
-								<!--出勤部门-->
-								<text class="item-l-i-c-item-text">出勤部门：技术部</text>
-							</view>
-						</view>
-					</view>	
-
-					<view class="item-list-item">
-						<view class="item-list-item-header">
-							<view class="item-l-i-checkbox"></view>
-							<view class="item-l-i-user">
-								<image class="item-l-i-user-img" src="../../image/bg_insurance.png"></image>
-								<text class="item-l-i-user-name">张三</text>
-							</view>
-							<view class="item-l-i-right">
-								<view class="item-l-i-time">
-									<text class="item-l-i-time-text">7小时</text>
-									<text class="item-l-i-time-money">1元</text>
-								</view>
-								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>
-							</view>
-						</view>
-						<view class="item-list-item-content">
-							<view class="item-l-i-c-item">
-								<text class="item-l-i-c-item-text">工作时间：2022-1-1</text>
-								<!--打卡时间-->
-								<view  class="item-l-i-c-item-text item-l-i-c-item-text-dk">
-									<text>打卡时间：</text>
-									<text>未打卡</text>
-									<text>缺卡</text>
-									<text>未打卡</text>
-									<text>缺卡</text>
-								</view>
-								<!--出勤部门-->
-								<text class="item-l-i-c-item-text">出勤部门：技术部</text>
-							</view>
-						</view>
-					</view>	
-				</view>
-			</view>
+		</view>
+		<view class="empty" wx:if="{{confirmWorkTimeList.length == 0}}">
+			<text class="empty__text">暂无考勤记录</text>
+		</view>
+		<view class="no-more" wx:if="{{noMore}}">
+			<text class="no-more__text">没有更多了</text>
 		</view>
 	</scroll-view>
 
 	<view class="comfirm-footer">
 		<view class="comfirm-footer-top">
-			<view class="comfirm-footer-left">
-				<view class="comfirm-footer-left-icon all-selected"></view>
+			<view class="comfirm-footer-left" bindtap="handleTapAllChecked">
+				<view class="comfirm-footer-left-icon {{allChecked && 'all-selected'}}"></view>
 				<text class="comfirm-footer-left-text ">全选</text>
 			</view>
 			<view class="comfirm-footer-right">
 				<!--已选-->
 				<text class="comfirm-footer-right-text">已选：</text>
-				<text class="comfirm-footer-right-selected">7个排班 18小时 888元</text>
+				<text class="comfirm-footer-right-selected">{{checkedCount}} 个排班 {{totalWorkTime}} 小时 {{totalMoney}}元</text>
 			</view>
 
 		</view>
-		<view class="comfirm-footer-bottom">
+		<view class="comfirm-footer-bottom" bindtap="handleTapConfirmWorkTime">
 			<text class="comfirm-footer-right-text">确认工时</text>
 		</view>
 	</view>	

@@ -299,6 +299,13 @@ const clockInList = config.host + '/sea/api/1.0/client/v1/attendance/detail'
 //重新补卡
 const reClockIn = config.host + '/sea/api/1.0/client/v1/attendance/add_punch'
 
+//查看考勤
+const checkClockIn = config.host + '/sea/api/1.0/client/v1/attendance/view_list'
+//确认工时列表/sea/api/1.0/client/v1/attendance/confirm_list
+const confirmClockInList = config.host + '/sea/api/1.0/client/v1/attendance/confirm_list'
+//确认工时/sea/api/1.0/client/v1/attendance/confirm
+const confirmClockIn = config.host + '/sea/api/1.0/client/v1/attendance/confirm'
+
 
 // get请求
 const get = (host, params, callbacksuccess, callbackfail, disLoading) => {
@@ -801,4 +808,7 @@ module.exports = {
   delShiftUser,
   clockInList,
   reClockIn,
+  checkClockIn,
+  confirmClockInList,
+  confirmClockIn,
 }

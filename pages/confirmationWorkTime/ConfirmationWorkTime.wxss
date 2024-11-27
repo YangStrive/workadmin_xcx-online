@@ -214,3 +214,44 @@
     color: #fff;
     font-weight: bold;
 }
+
+.empty{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 28rpx;
+    color: #999;
+}
+.no-more__text{
+    font-size: 24rpx;
+    color: #999;
+    text-align: center;
+    padding: 12rpx 0;
+    display: block;
+}
+.item-l-i-user-first-name{
+    display: block;
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #e5d312;
+    color: #fff;
+    font-size: 38rpx;
+    margin-right: 24rpx;
+}
+
+.bgCl0{
+    background-color: #6a76fe;
+}
+.bgCl1{
+    background-color: #fa8e9e;
+}
+.bgCl2{
+    background-color: #7bebf9;
+}
+.bgCl3{
+    background-color: #80c780;
+}

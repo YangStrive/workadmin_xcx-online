@@ -1,22 +1,187 @@
 // pages/confirmationWorkTime/ConfirmationWorkTime.js
+var dmNetwork = require('../../utils/network.js')
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+      confirmWorkTimeList:[],
+			team_id: 10,
+			project_id: 18331,
+			page_size:10,
+			page_no:1,
+      group_id: 0,
+      noMore:false,
+      allChecked:false,
+      //已选择排班数量
+      checkedCount:0,
+      //总工时
+      totalWorkTime:0,
+      //总金额
+      totalMoney:0,
 
-    },
-
-    handleTapCheckbox(){
-      console.log('点击了')
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+      this.init()
+    },
 
+    init(){
+      this.getConfirmWorkTimeList()
+    },
+
+    //获取确认工时列表
+    getConfirmWorkTimeList(){
+      let data = {
+        team_id: this.data.team_id,
+        project_id: this.data.project_id,
+        page_size: this.data.page_size,
+        page_no: this.data.page_no,
+        group_id: this.data.group_id,
+        user_id: 0,
+        status:'',
+      }
+      dmNetwork.post(dmNetwork.confirmClockInList,data, res => {
+        if(res.data.errno == 0){
+          let data = res.data
+          let results = data.data.results;
+          let index = 0;
+
+          results.forEach(item => {
+            item.list.forEach(item => {
+              item.checked = false;
+              item.firstName = item.name.substring(0,1);
+              item.nameIndex = index;
+              index++;
+
+              if(index > 4){
+                index = 0;
+              }
+            })
+          })
+          this.setData({
+            confirmWorkTimeList:this.data.confirmWorkTimeList.concat(results),
+            noMore:data.isEnd,
+          })
+        }
+      })
+    },
+
+    //选择人员
+    handleTapCheckbox(e){
+      let index = e.currentTarget.dataset.index;
+      let lindex = e.currentTarget.dataset.lindex;
+      let confirmWorkTimeList = this.data.confirmWorkTimeList;
+      let item = confirmWorkTimeList[index].list[lindex];
+      item.checked = !item.checked;
+      confirmWorkTimeList[index].list[lindex] = item;
+      //判断是否全选
+      let allChecked = true;
+      confirmWorkTimeList.forEach(item => {
+        item.list.forEach(item => {
+          if(!item.checked){
+            allChecked = false;
+          }
+        })
+      })
+
+      this.setData({
+        confirmWorkTimeList,
+        allChecked,
+      });
+
+      this.calculateTotal()
+    },
+
+    //全选
+    handleTapAllChecked(){
+      let confirmWorkTimeList = this.data.confirmWorkTimeList;
+      let allChecked = !this.data.allChecked;
+      confirmWorkTimeList.forEach(item => {
+        item.list.forEach(item => {
+          item.checked = allChecked;
+        })
+      })
+
+      this.setData({
+        confirmWorkTimeList,
+        allChecked,
+      });
+
+      this.calculateTotal()
+    },
+
+    handleScrollToLower(){
+      if(this.data.noMore){
+        return
+      }
+      this.setData({
+        page_no:this.data.page_no + 1,
+        allChecked:false,
+      })
+      this.getConfirmWorkTimeList()
+    },
+
+    //计算总工时和总金额等
+    calculateTotal(){
+      let confirmWorkTimeList = this.data.confirmWorkTimeList;
+      let totalWorkTime = 0;
+      let totalMoney = 0;
+      let checkedCount = 0;
+      confirmWorkTimeList.forEach(item => {
+        item.list.forEach(item => {
+          if(item.checked){
+            totalWorkTime += +item.hours_wage;
+            totalMoney += +item.amount;
+            checkedCount++;
+          }
+        })
+      })
+
+      this.setData({
+        totalWorkTime:totalWorkTime.toFixed(2),
+        totalMoney:totalMoney.toFixed(2),
+        checkedCount: checkedCount,
+      })
+    },
+
+    //确认工时
+    handleTapConfirmWorkTime(){
+      let confirmWorkTimeList = this.data.confirmWorkTimeList;
+      let date_attendances = [];
+      confirmWorkTimeList.forEach(item => {
+        item.list.forEach(item => {
+          if(item.checked){
+            date_attendances.push({
+              user_id:item.user_id,
+              date:item.date,
+              task_id:item.task_id,
+              schedule_id:item.schedule_id,
+            })
+          }
+        })
+      })
+
+      let data = {
+        team_id: this.data.team_id,
+        project_id: this.data.project_id,
+        date_attendances:JSON.stringify(date_attendances),
+      }
+
+      dmNetwork.post(dmNetwork.confirmClockIn,data, res => {
+        if(res.data.errno == 0){
+          wx.showToast({
+            title: '确认成功',
+            icon: 'success',
+            duration: 2000,
+          })
+        }
+      })
     },
 
     /**

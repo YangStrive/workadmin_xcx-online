@@ -38,7 +38,7 @@
     border-right: 1px solid #f1f1f1;
 }
 .scroll-list-header{
-    width: calc(100vw -124rpx);
+    width: calc(100vw - 124rpx);
     overflow: hidden;
 
 }
@@ -49,9 +49,10 @@
 }
 .list-header-item{
     flex-shrink: 0;
-    padding: 24rpx 12rpx;
+    padding: 24rpx 6rpx;
     text-align: center;
     border-radius: 8rpx;
+    margin-right: 6rpx;
 }
 .list-header-item-active{
     background-color: #FFA928;
@@ -81,9 +82,8 @@
 }
 
 .checkAttendance__footer{
-    padding:12rpx 24rpx;
+    padding:24rpx;
     background-color: #fff;
-    margin-top: 24rpx;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -180,6 +180,18 @@
     color: #fff;
     font-size: 38rpx;
     margin-right: 12rpx;
+}
+.bgCl0{
+    background-color: #6a76fe;
+}
+.bgCl1{
+    background-color: #fa8e9e;
+}
+.bgCl2{
+    background-color: #7bebf9;
+}
+.bgCl3{
+    background-color: #80c780;
 }
 
 
