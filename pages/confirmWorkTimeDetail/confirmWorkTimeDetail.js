@@ -1,4 +1,4 @@
-// pages/confirmationWorkTime/ConfirmationWorkTime.js
+// pages/confirmWorkTimeDetail/confirmWorkTimeDetail.js
 Page({
 
     /**
@@ -6,10 +6,6 @@ Page({
      */
     data: {
 
-    },
-
-    handleTapCheckbox(){
-      console.log('点击了')
     },
 
     /**

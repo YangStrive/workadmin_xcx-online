@@ -15,7 +15,7 @@
 				<view class="item-list">
 					<view class="item-list-item">
 						<view class="item-list-item-header">
-							<view class="item-l-i-checkbox"></view>
+							<view class="item-l-i-checkbox" bindtap="handleTapCheckbox"></view>
 							<view class="item-l-i-user">
 								<image class="item-l-i-user-img" src="../../image/bg_insurance.png"></image>
 								<text class="item-l-i-user-name">张三</text>

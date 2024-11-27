@@ -103,7 +103,8 @@
         "pages/uc/eSigningPage/eSigningPage",
         "pages/scheduling/scheduling",
         "pages/checkAttendance/checkAttendance",
-        "pages/confirmationWorkTime/ConfirmationWorkTime"
+        "pages/confirmationWorkTime/ConfirmationWorkTime",
+        "pages/confirmWorkTimeDetail/confirmWorkTimeDetail"
     ],
     "requiredPrivateInfos": [
         "getLocation",

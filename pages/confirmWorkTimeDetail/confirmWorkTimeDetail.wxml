@@ -1,0 +1,109 @@
+<view class="confirm-detail">
+  <view class="confirm-detail-header">
+    <text class="confirm-detail-header-text">2022-1-10</text>
+  </view>
+  <scroll-view class="confirm-detail-scroll" scroll-y="true">
+    <view class="scroll-header-status">
+      <text class="scroll-header-status-text">已确认</text>
+      <text class="scroll-header-status-more">已确认</text>
+    </view>
+    <view class="schedule-content">
+
+      <view class="scroll-header">
+        <view class="scroll-header-left">
+          <image class="scroll-header-left-img" src="../../image/bg_insurance.png"></image>
+          <text class="scroll-header-left-text">张三</text>
+          <image class="scroll-header-renzheng" src="../../image/bg_insurance.png"></image>
+          <image class="scroll-header-phone" src="../../image/phone_icon.png"></image>
+        </view>
+        <view class="scroll-header-right">
+          <view class="more-info">
+            <text class="more-info-text">查看更多</text>
+          </view>
+        </view>
+      </view>
+      <view class="schedule-list">
+        <view class="schedule-list-item">
+          <view class="schedule-list-item-header">
+            <text class="schedule-group">上班</text>
+            <text class="schedule-info">考勤规则</text>
+          </view>
+          <view class="schedule-list-item-content">
+            <text class="schedule-name">A班次</text>
+            <text class="schedule-time">04:00</text>
+          </view>
+          <view class="line"></view>
+          <view class="schedule-list-item-footer">
+            <view class="schedule-footer-item">
+              <image class="schedule-footer-item-img" src="../../image/xiugai.png"></image>
+              <text class="schedule-footer-item-text">修改</text>
+            </view>
+            <view class="schedule-footer-item">
+              <image class="schedule-footer-item-img" src="../../image/btbk.png"></image>
+              <text class="schedule-footer-item-text">帮TA补卡</text>
+            </view>
+            <view class="schedule-footer-item">
+              <image class="schedule-footer-item-img" src="../../image/shanchule.png"></image>
+              <text class="schedule-footer-item-text">删除</text>
+            </view>
+            <view class="schedule-footer-item">
+              <image class="schedule-footer-item-img" src="../../image/qrgs.png"></image>
+              <text class="schedule-footer-item-text">确认工时</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!--总工时 分为左右两部分 左边是总工时和一个向右的箭头 右边是两个文案 修改 和计算规则-->
+      <view class="total-time">
+        <view class="total-time-left">
+          <text class="total-time-left-text">总工时</text>
+          <view class="total-time-left-right">
+            <text class="total-time-left-right-text">7小时</text>
+            <image class="total-time-left-right-img" src="../../image/right_icon.png"></image>
+          </view>
+        </view>
+        <view class="total-time-right">
+          <text class="total-time-right-text total-time-right-text-modify">修改</text>
+          <text class="total-time-right-text">计算规则</text>
+        </view>
+      </view>
+
+      <!-- 打卡记录  -->
+      <view class="punch-record">
+        <view class="punch-record-header">
+          <text class="punch-record-header-text">打卡记录</text>
+        </view>
+        <view class="punch-record-content">
+          <view class="punch-record-item">
+            <view class="punch-record-item-left">
+              <view class="punch-record-item-left-top"></view>
+              <view class="punch-record-item-left-bottom"></view>
+            </view>
+            <view class="punch-record-item-right">
+              <text class="punch-record-start-time">上班 9：00</text>
+              <text class="punch-record-time">8:00</text>
+              <view class="punch-record-item-location">
+                <image class="punch-record-item-location-img" src="../../image/ic_mine_job_commit_location.png"></image>
+                <text class="punch-record-item-location-text">A栋1楼</text>
+              </view>
+            </view>
+          </view>
+          <view class="punch-record-item">
+            <view class="punch-record-item-left">
+              <view class="punch-record-item-left-top"></view>
+            </view>
+            <view class="punch-record-item-right">
+              <text class="punch-record-start-time">下班 9：00</text>
+              <text class="punch-record-time">8:00</text>
+              <view class="punch-record-item-location">
+                <image class="punch-record-item-location-img" src="../../image/ic_mine_job_commit_location.png"></image>
+                <text class="punch-record-item-location-text">A栋1楼</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
