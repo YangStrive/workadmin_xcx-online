@@ -32,6 +32,16 @@ Page({
     },
 
     init(){
+      this.setData({
+        confirmWorkTimeList:[],
+        page_no:1,
+        noMore:false,
+        allChecked:false,
+        checkedCount:0,
+        totalWorkTime:0,
+        totalMoney:0,
+      })
+
       this.getConfirmWorkTimeList()
     },
 
@@ -53,10 +63,11 @@ Page({
           let index = 0;
 
           results.forEach(item => {
-            item.list.forEach(item => {
-              item.checked = false;
-              item.firstName = item.name.substring(0,1);
-              item.nameIndex = index;
+            item.list.forEach(item2 => {
+              item2.checked = false;
+              item2.firstName = item2.name.substring(0,1);
+              item2.nameIndex = index;
+              item2.date = item.date
               index++;
 
               if(index > 4){
@@ -67,6 +78,12 @@ Page({
           this.setData({
             confirmWorkTimeList:this.data.confirmWorkTimeList.concat(results),
             noMore:data.isEnd,
+          })
+        }else{
+          wx.showToast({
+            title: res.data.errmsg,
+            icon: 'none',
+            duration: 2000,
           })
         }
       })
@@ -178,6 +195,15 @@ Page({
           wx.showToast({
             title: '确认成功',
             icon: 'success',
+            duration: 2000,
+          })
+          setTimeout(() => {
+            this.init()
+          }, 3000)
+        }else{
+          wx.showToast({
+            title: res.data.errmsg,
+            icon: 'none',
             duration: 2000,
           })
         }

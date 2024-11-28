@@ -61,7 +61,7 @@
 		</view>
 	</scroll-view>
 
-	<view class="comfirm-footer">
+	<view class="comfirm-footer" wx:if="{{confirmWorkTimeList.length != 0}}">
 		<view class="comfirm-footer-top">
 			<view class="comfirm-footer-left" bindtap="handleTapAllChecked">
 				<view class="comfirm-footer-left-icon {{allChecked && 'all-selected'}}"></view>
