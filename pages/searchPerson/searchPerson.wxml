@@ -1,0 +1,33 @@
+<!--pages/checkAttendance/checkAttendance.wxml-->
+<view class="search-person">
+	<view class="search-header">
+		<view class="search">
+			<image class="search__icon" src="/image/search.png"></image>
+			<input class="search__input" placeholder="搜索" bindinput="handleInputSearch" focus="{{focus}}"></input>
+		</view>
+	</view>
+    <scroll-view class="search-scroll" scroll-y="true">
+        <view class="serach-list">
+            <view class="item-list-item" wx:for="{{personList}}" wx:key="index" bindtap="handleTapCheckbox"  data-userid="{{item.user_id}}" data-index="{{index}}">
+                <view class="item-list-item-header">
+                    <view  class="item-l-i-checkbox {{item.checked && 'checkbox-selected'}}"> </view>
+                    <view class="item-l-i-user">
+                        <image class="item-l-i-user-img" src="{{item.logo.thumb_url}}" wx:if="{{item.logo.thumb_url}}"></image>
+                        <text class="item-l-i-user-first-name {{'bgCl' + item.nameIndex}}" wx:if="{{!item.logo.thumb_url}}">{{item.firstName}}</text>
+                        <text class="item-l-i-user-name">{{item.user_name}}</text>
+                    </view>
+                </view>
+                <view class="item-list-item-content">
+                    <view class="item-l-i-c-item">
+                        <text class="item-l-i-c-item-text">部门：{{item.group_name}}</text>
+                        <!--出勤部门-->
+                        <text class="item-l-i-c-item-text">手机号：{{item.mobile}}</text>
+                    </view>
+                </view>
+            </view>	
+            <view class="empty" wx:if="{{personList.length == 0}}">
+                <text class="empty__text">暂无考勤记录</text>
+            </view>
+        </view>
+    </scroll-view>
+</view>

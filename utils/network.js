@@ -306,7 +306,8 @@ const confirmClockInList = config.host + '/sea/api/1.0/client/v1/attendance/conf
 //确认工时/sea/api/1.0/client/v1/attendance/confirm
 const confirmClockIn = config.host + '/sea/api/1.0/client/v1/attendance/confirm'
 
-
+//搜索用户
+const searchUser = config.host + '/sea/api/1.0/client/v1/group/member_search'
 // get请求
 const get = (host, params, callbacksuccess, callbackfail, disLoading) => {
   if (!disLoading)
@@ -811,4 +812,5 @@ module.exports = {
   checkClockIn,
   confirmClockInList,
   confirmClockIn,
+  searchUser,
 }

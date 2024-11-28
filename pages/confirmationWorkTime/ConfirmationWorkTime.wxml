@@ -2,7 +2,8 @@
 	<view class="comfirm-header">
 		<view class="comfirm-search">
 			<image class="comfirm-search-icon" src="../../image/search.png"></image>
-			<input class="comfirm-search-input" placeholder="搜索员工姓名" />
+			<input class="comfirm-search-input" placeholder="搜索员工姓名"  disabled value="{{userName}}" bindtap="handleInputFocus"/>
+			<image class="comfirm-search-delete" src="../../image/close_123.png" bindtap="handleTapClearSearchInput"></image>
 		</view>
 	</view>
 	<!--滚动区域-->
@@ -28,7 +29,7 @@
 							</view>
 							<view class="item-l-i-right">
 								<view class="item-l-i-time">
-									<text class="item-l-i-time-text">{{lItem.hours_wage}}小时</text>
+									<text class="item-l-i-time-text">{{lItem.point_time}}小时</text>
 									<text class="item-l-i-time-money">{{lItem.amount}}元</text>
 								</view>
 								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>

@@ -104,7 +104,8 @@
         "pages/scheduling/scheduling",
         "pages/checkAttendance/checkAttendance",
         "pages/confirmationWorkTime/ConfirmationWorkTime",
-        "pages/confirmWorkTimeDetail/confirmWorkTimeDetail"
+        "pages/confirmWorkTimeDetail/confirmWorkTimeDetail",
+        "pages/searchPerson/searchPerson"
     ],
     "requiredPrivateInfos": [
         "getLocation",

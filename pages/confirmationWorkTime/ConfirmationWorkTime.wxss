@@ -255,3 +255,9 @@
 .bgCl3{
     background-color: #80c780;
 }
+.comfirm-search-delete{
+    display: block;
+    width: 36rpx;
+    height: 36rpx;
+    margin-left: 12rpx;
+}

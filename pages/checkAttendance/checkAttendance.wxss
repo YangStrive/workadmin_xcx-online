@@ -292,3 +292,9 @@
     padding: 12rpx 0;
     display: block;
 }
+.search-delete{
+    display: block;
+    width: 36rpx;
+    height: 36rpx;
+    margin-left: 12rpx;
+}

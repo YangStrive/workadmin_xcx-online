@@ -7,25 +7,27 @@ Page({
      * 页面的初始数据
      */
     data: {
-			days:[
-				{
-					day: 1,
-					week: '周一',
-				}
-			],
-			selectedDay: '',
-			currentDay: '',
-			attendances: [],
-			scroolLeft: 0,
-			prckerSelected:'',
-			selectedYear: '',
-			selectedMonth: '',
-			noMore:true,
-			team_id: 10,
-			project_id: 18331,
-			page_size:10,
-			page_no:1,
-		},
+		days:[
+			{
+				day: 1,
+				week: '周一',
+			}
+		],
+		selectedDay: '',
+		currentDay: '',
+		attendances: [],
+		scroolLeft: 0,
+		prckerSelected:'',
+		selectedYear: '',
+		selectedMonth: '',
+		noMore:true,
+		team_id: 10,
+		project_id: 18331,
+		page_size:10,
+		page_no:1,
+		userName:'',
+		user_id:'',
+	},
 
     /**
      * 生命周期函数--监听页面加载
@@ -74,6 +76,7 @@ Page({
 					day: month + '-' + date,
 					week: week,
 					dateStr: day.getFullYear() + '-' + month + '-' + date,
+					month: month,
 				});
 			}
 			return days;
@@ -94,17 +97,28 @@ Page({
 
 		bindDateChange(e){
 			let date = e.detail.value;
-			const today = new Date();
-			let days = this.getMonthDays(today);
+			let month = date.split('-')[1];
+			let selectedMonth = this.data.selectedMonth;
 			let selectedDay = date.split('-')[1] + '-' + date.split('-')[2];
+			let days = this.data.days;
+
+			if(month != selectedMonth){
+				const today = new Date(date);
+				let days = this.getMonthDays(today);
+				this.setData({
+					days:days,
+				})
+			}
 
 
 			this.setData({
-				days:days,
 				prckerSelected:date,
 				selectedYear:date.split('-')[0],
 				selectedMonth:date.split('-')[1],
 				selectedDay,
+				page_no:1,
+				attendances:[],
+				noMore:false
 			})
 			this.calculateLeft(days, selectedDay)
 
@@ -119,7 +133,7 @@ Page({
 				page_size: this.data.page_size,
 				page_no: this.data.page_no,
 				date: this.data.prckerSelected,
-				user_id:''
+				user_id: this.data.user_id,
 			}
 			dmNetwork.post(dmNetwork.checkClockIn,data,(res) => {
 				console.log(res)
@@ -205,6 +219,90 @@ Page({
 		handleTapGoConfirmWorkTime(){
 			wx.navigateTo({
 				url: '/pages/confirmationWorkTime/ConfirmationWorkTime',
+			})
+		},
+
+		handleTapDeleteSchedule(e){
+			//二次确认
+			wx.showModal({
+				title: '提示',
+				content: '是否删除该人的排班',
+				success:(res) => {
+					if(res.confirm){
+						this.deleteSchedule(e)
+					}
+				}
+			})
+
+		},
+
+		deleteSchedule(e){
+
+			let schedule_id = e.currentTarget.dataset.scheduleid;
+			let user_id = e.currentTarget.dataset.userid;
+			let task_id = e.currentTarget.dataset.taskid;
+			let data = {
+				schedule_id,
+				user_id,
+				task_id,
+				date: this.data.prckerSelected,
+				team_id: this.data.team_id,
+				project_id: this.data.project_id,
+			}
+
+			dmNetwork.post(dmNetwork.delShiftUser,data,(res) => {
+				let data = res.data;
+				if(data.errno == 0){
+					wx.showToast({
+						title: '删除成功',
+						icon: 'success',
+					})
+
+					setTimeout(() => {
+						this.setData({
+							attendances:[],
+							page_no:1,
+							noMore:false
+						})
+	
+						this.getAttendanceList()
+					},2000)
+
+				}
+			})
+
+		},
+
+		handleTapClearSearchInput(){
+			this.setData({
+				userName:'',
+				user_id:'',
+				attendances:[],
+				page_no:1,
+				noMore:false,
+			})
+			this.getAttendanceList()
+		},
+
+		//搜索人员页面回调 设置人员
+		setPerson(person){
+			let user_id = person.user_id;
+			let userName = person.user_name;
+			console.log(person)
+			this.setData({
+				userName,
+				user_id,
+				attendances:[],
+				page_no:1,
+				noMore:false,
+			})
+
+			this.getAttendanceList()
+		},
+
+		handleInputFocus(){
+			wx.navigateTo({
+				url: '/pages/searchPerson/searchPerson?team_id=' + this.data.team_id + '&project_id=' + this.data.project_id,
 			})
 		},
 

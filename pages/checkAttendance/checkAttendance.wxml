@@ -2,8 +2,9 @@
 <view class="checkAttendance">
 	<view class="checkAttendance__header">
 		<view class="search">
-			<image class="search__icon" src="/image/search.png"></image>
-			<input class="search__input" placeholder="搜索"></input>
+			<image class="search__icon" src="/image/search.png"  ></image>
+			<input class="search__input" placeholder="搜索" value="{{userName}}" disabled bindtap="handleInputFocus"></input>
+			<image wx-if="{{userName}}" class="search-delete" src="../../image/close_123.png" bindtap="handleTapClearSearchInput"></image>
 		</view>
 	</view>
 	<view class="attendance-list-header">
@@ -48,7 +49,7 @@
 					</view>
 					<view class="userinfo-right">
 						<view class="userinfo-worktime">
-							<text class="userinfo-worktime__text">{{item.hours_wage}}小时</text>
+							<text class="userinfo-worktime__text">{{item.point_time}}小时</text>
 						</view>
 					</view>
 				</view>
@@ -70,8 +71,13 @@
 								<text class="footer-item__text">{{item.attend_last_status}}</text>
 							</view>
 						</view>	
-						<view class="delete-item">
-							<image class="delete-btn" src="../../image/delete_icon.png">删除</image>
+						<view 
+							class="delete-item" 
+							bindtap="handleTapDeleteSchedule" 
+							data-scheduleid="{{item.schedule_id}}" 
+							data-userid="{{item.user_id}}" 
+							data-taskid="{{item.task_id}}">
+							<image class="delete-btn" src="../../image/delete_icon.png"></image>
 						</view>
 					</view>
 				</view>	

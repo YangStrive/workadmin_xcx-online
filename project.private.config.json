@@ -6,6 +6,13 @@
         "miniprogram": {
             "list": [
                 {
+                    "name": "搜索人员",
+                    "pathName": "pages/searchPerson/searchPerson",
+                    "query": "team_id=10&project_id=18331",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "工时确认详情",
                     "pathName": "pages/confirmWorkTimeDetail/confirmWorkTimeDetail",
                     "query": "",

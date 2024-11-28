@@ -21,6 +21,8 @@ Page({
       totalWorkTime:0,
       //总金额
       totalMoney:0,
+      userName:'',
+      user_id:'',
 
     },
 
@@ -53,7 +55,7 @@ Page({
         page_size: this.data.page_size,
         page_no: this.data.page_no,
         group_id: this.data.group_id,
-        user_id: 0,
+        user_id: this.data.user_id,
         status:'',
       }
       dmNetwork.post(dmNetwork.confirmClockInList,data, res => {
@@ -153,7 +155,7 @@ Page({
       confirmWorkTimeList.forEach(item => {
         item.list.forEach(item => {
           if(item.checked){
-            totalWorkTime += +item.hours_wage;
+            totalWorkTime += +item.point_time;
             totalMoney += +item.amount;
             checkedCount++;
           }
@@ -210,6 +212,38 @@ Page({
       })
     },
 
+		handleTapClearSearchInput(){
+			this.setData({
+				userName:'',
+				user_id:'',
+				confirmWorkTimeList:[],
+				page_no:1,
+				noMore:false,
+			})
+			this.getConfirmWorkTimeList()
+		},
+
+		//搜索人员页面回调 设置人员
+		setPerson(person){
+			let user_id = person.user_id;
+			let userName = person.user_name;
+			console.log(person)
+			this.setData({
+				userName,
+				user_id,
+				confirmWorkTimeList:[],
+				page_no:1,
+				noMore:false,
+			})
+
+			this.getConfirmWorkTimeList()
+		},
+
+		handleInputFocus(){
+			wx.navigateTo({
+				url: '/pages/searchPerson/searchPerson?team_id=' + this.data.team_id + '&project_id=' + this.data.project_id,
+			})
+		},
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
