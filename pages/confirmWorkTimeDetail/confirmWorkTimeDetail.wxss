@@ -283,3 +283,15 @@
   height: 30rpx;
   display: block;
 }
+.userinfo-firstname{
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #e5d312;
+  color: #fff;
+  font-size: 38rpx;
+  margin-right: 12rpx;
+}

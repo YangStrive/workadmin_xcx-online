@@ -41,19 +41,20 @@
 				</view>
 				<view class="body-item-userinfo">
 					<view class="userinfo-left">
-						<text class="userinfo-firstname {{'bgCl' + item.nameIndex}}">{{item.firstname}}</text>
-						<text class="userinfo-name">{{item.name}}</text>
+						<text class="userinfo-firstname {{'bgCl' + item.nameIndex}}" bindtap="handleTapDetail" data-index="{{index}}">{{item.firstname}}</text>
+						<text class="userinfo-name" bindtap="handleTapDetail" data-index="{{index}}">{{item.name}}</text>
 						<view class="userinfo-phone" bindtap="handleTapPhone" data-phone="{{item.mobile}}">
 							<image class="userinfo-phone__icon" src="/image/phone_icon.png"></image>
 						</view>
 					</view>
-					<view class="userinfo-right">
+					<view class="userinfo-right" bindtap="handleTapDetail" data-index="{{index}}">
 						<view class="userinfo-worktime">
 							<text class="userinfo-worktime__text">{{item.point_time}}小时</text>
 						</view>
+						<image class="userinfo-right__icon" src="../../image/right_icon.png" ></image>
 					</view>
 				</view>
-				<view class="list-body-item__footer">
+				<view class="list-body-item__footer" bindtap="handleTapDetail" data-index="{{index}}">
 					<view class="footer-item">
 						<text class="footer-item__text">工作时间</text>
 						<text class="footer-item__text">{{item.arrangedTimeDesc}}</text>
@@ -66,7 +67,6 @@
 								<text class="footer-item__text">{{item.attend_first_status}}</text>
 							</view>	
 							<view class="footer-dk__time">
-
 								<text class="footer-item__text">{{item.attend_last_time}}</text>
 								<text class="footer-item__text">{{item.attend_last_status}}</text>
 							</view>
@@ -77,7 +77,7 @@
 							data-scheduleid="{{item.schedule_id}}" 
 							data-userid="{{item.user_id}}" 
 							data-taskid="{{item.task_id}}">
-							<image class="delete-btn" src="../../image/delete_icon.png"></image>
+							<image class="delete-btn" src="../../image/delete_icon.png" wx:if="{{item.confirm_status != 1}}"></image>
 						</view>
 					</view>
 				</view>	

@@ -308,6 +308,9 @@ const confirmClockIn = config.host + '/sea/api/1.0/client/v1/attendance/confirm'
 
 //搜索用户
 const searchUser = config.host + '/sea/api/1.0/client/v1/group/member_search'
+
+//查看考勤详情
+const checkClockInDetail = config.host + '/sea/api/1.0/client/v1/attendance/detail'
 // get请求
 const get = (host, params, callbacksuccess, callbackfail, disLoading) => {
   if (!disLoading)
@@ -813,4 +816,5 @@ module.exports = {
   confirmClockInList,
   confirmClockIn,
   searchUser,
+  checkClockInDetail
 }

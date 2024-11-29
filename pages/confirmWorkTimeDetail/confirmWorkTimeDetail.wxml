@@ -1,6 +1,6 @@
 <view class="confirm-detail">
   <view class="confirm-detail-header">
-    <text class="confirm-detail-header-text">2022-1-10</text>
+    <text class="confirm-detail-header-text">{{date}}</text>
   </view>
   <scroll-view class="confirm-detail-scroll" scroll-y="true">
     <view class="scroll-header-status">
@@ -11,9 +11,10 @@
 
       <view class="scroll-header">
         <view class="scroll-header-left">
-          <image class="scroll-header-left-img" src="../../image/bg_insurance.png"></image>
-          <text class="scroll-header-left-text">张三</text>
-          <image class="scroll-header-renzheng" src="../../image/bg_insurance.png"></image>
+          <image class="scroll-header-left-img" wx:if="{{extra_info.user_avatar.thumb_url}}" src="{{extra_info.user_avatar.thumb_url}}"></image>
+					<text class="userinfo-firstname" wx:if="{{!extra_info.user_avatar.thumb_url}}">{{extra_info.firstname}}</text>
+          <text class="scroll-header-left-text">{{extra_info.user_name}}</text>
+          <image class="scroll-header-renzheng" wx:if="{{extra_info.is_verified}}" src="../../image/bg_insurance.png"></image>
           <image class="scroll-header-phone" src="../../image/phone_icon.png"></image>
         </view>
         <view class="scroll-header-right">
@@ -22,15 +23,15 @@
           </view>
         </view>
       </view>
-      <view class="schedule-list">
+      <view class="schedule-list" wx:if="{{work_time_range.length > 0}}">
         <view class="schedule-list-item">
           <view class="schedule-list-item-header">
-            <text class="schedule-group">上班</text>
+            <text class="schedule-group">{{extra_info.task_name}}</text>
             <text class="schedule-info">考勤规则</text>
           </view>
           <view class="schedule-list-item-content">
             <text class="schedule-name">A班次</text>
-            <text class="schedule-time">04:00</text>
+            <text class="schedule-time">{{work_time_range[0].start.time}} - {{work_time_range[0].end.time}}</text>
           </view>
           <view class="line"></view>
           <view class="schedule-list-item-footer">
@@ -42,13 +43,17 @@
               <image class="schedule-footer-item-img" src="../../image/btbk.png"></image>
               <text class="schedule-footer-item-text">帮TA补卡</text>
             </view>
-            <view class="schedule-footer-item">
+            <view class="schedule-footer-item" bindtap="handleTapDeleteSchedule">
               <image class="schedule-footer-item-img" src="../../image/shanchule.png"></image>
               <text class="schedule-footer-item-text">删除</text>
             </view>
-            <view class="schedule-footer-item">
+            <view class="schedule-footer-item" bindtap="handleTapConfirmWorkTime">
               <image class="schedule-footer-item-img" src="../../image/qrgs.png"></image>
               <text class="schedule-footer-item-text">确认工时</text>
+            </view>
+            <view class="schedule-footer-item" bindtap="handleTapConfirmWorkTime">
+              <image class="schedule-footer-item-img" src="../../image/chehuiqrgs.png"></image>
+              <text class="schedule-footer-item-text">撤回确认</text>
             </view>
           </view>
         </view>
@@ -59,7 +64,7 @@
         <view class="total-time-left">
           <text class="total-time-left-text">总工时</text>
           <view class="total-time-left-right">
-            <text class="total-time-left-right-text">7小时</text>
+            <text class="total-time-left-right-text">{{extra_info.point_time}}小时</text>
             <image class="total-time-left-right-img" src="../../image/right_icon.png"></image>
           </view>
         </view>
@@ -75,27 +80,14 @@
           <text class="punch-record-header-text">打卡记录</text>
         </view>
         <view class="punch-record-content">
-          <view class="punch-record-item">
+          <view class="punch-record-item" wx:for="{{attendance_list}}" wx:key="index">
             <view class="punch-record-item-left">
               <view class="punch-record-item-left-top"></view>
-              <view class="punch-record-item-left-bottom"></view>
+              <view class="punch-record-item-left-bottom" wx:if="{{attendance_list.length != index +1}}"></view>
             </view>
             <view class="punch-record-item-right">
-              <text class="punch-record-start-time">上班 9：00</text>
-              <text class="punch-record-time">8:00</text>
-              <view class="punch-record-item-location">
-                <image class="punch-record-item-location-img" src="../../image/ic_mine_job_commit_location.png"></image>
-                <text class="punch-record-item-location-text">A栋1楼</text>
-              </view>
-            </view>
-          </view>
-          <view class="punch-record-item">
-            <view class="punch-record-item-left">
-              <view class="punch-record-item-left-top"></view>
-            </view>
-            <view class="punch-record-item-right">
-              <text class="punch-record-start-time">下班 9：00</text>
-              <text class="punch-record-time">8:00</text>
+              <text class="punch-record-start-time">{{item.type == 1 ? '上班' : '下班'}} {{item.require_time}}</text>
+              <text class="punch-record-time">{{item.attend_time || '未打卡'}}</text>
               <view class="punch-record-item-location">
                 <image class="punch-record-item-location-img" src="../../image/ic_mine_job_commit_location.png"></image>
                 <text class="punch-record-item-location-text">A栋1楼</text>
