@@ -60,8 +60,8 @@ Page({
       }
       dmNetwork.post(dmNetwork.confirmClockInList,data, res => {
         if(res.data.errno == 0){
-          let data = res.data
-          let results = data.data.results;
+          let data = res.data.data
+          let results = data.results;
           let index = 0;
 
           results.forEach(item => {
@@ -185,6 +185,15 @@ Page({
           }
         })
       })
+
+      if(date_attendances.length == 0){
+        wx.showToast({
+          title: '请选择需要确认的人员',
+          icon: 'none',
+          duration: 2000,
+        })
+        return
+      }
 
       let data = {
         team_id: this.data.team_id,
