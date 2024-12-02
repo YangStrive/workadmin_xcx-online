@@ -124,15 +124,13 @@ Component({
                 console.log('ressssssss', res)
 
                 const data = res.data;
-                if (data.errno == '0') {
+                if (data.errno == '43009') {
                     wx.showToast({
                         title: '补卡成功',
                         icon: 'success',
                         duration: 1500,
                     })
-                    setTimeout(() => {
-                        that.back();
-                    }, 1500)
+                    that.triggerEvent('confirm')
                 } else {
                     wx.showToast({
                         title: data.errmsg,

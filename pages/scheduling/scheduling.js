@@ -884,6 +884,37 @@ Page({
 	handleClickReplacementCardConfirmBtn(){
 		this.setData({
 			showReplacementCard:false,
+			showUserScheduleDetail:true,
+		});
+		let userScheduleList = this.data.userScheduleList;			
+		let requestDate = {
+			team_id: this.data.team_id,
+			project_id: this.data.project_id,
+			user_id: this.data.userInfo.userid,
+			date:this.data.userInfo.date,
+			task_id: this.data.task_id,
+
+		}
+		dmNetwork.post(dmNetwork.clockInList,requestDate, (res) => {
+			if(res.data.errno == 0){
+				//过滤出当前排班id的打卡记录
+				if(!res.data?.data){
+					return;
+				}
+				let clockInList = res.data.data.attendance_list.filter(item => {
+					return item.schedule_id == userDetailScheduleId
+				})
+				this.setData({
+					clockInList,
+					soruceClockInList:res.data.data.attendance_list,
+				})
+			}else{
+				wx.showToast({
+					title: res.data.errmsg,
+					icon: 'none',
+					duration: 2000
+				})
+			}
 		})
 
 	},
