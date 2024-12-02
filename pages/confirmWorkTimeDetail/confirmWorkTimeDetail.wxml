@@ -34,12 +34,12 @@
             <text class="schedule-time">{{work_time_range[0].start.time}} - {{work_time_range[0].end.time}}</text>
           </view>
           <view class="line"></view>
-          <view class="schedule-list-item-footer">
+          <view class="schedule-list-item-footer" bindtap="handleTapEditSchedule">
             <view class="schedule-footer-item">
-              <image class="schedule-footer-item-img" src="../../image/xiugai.png"></image>
+              <image class="schedule-footer-item-img" src="../../image/xiugai.png" ></image>
               <text class="schedule-footer-item-text">修改</text>
             </view>
-            <view class="schedule-footer-item">
+            <view class="schedule-footer-item" bindtap="handleTapReplacementCard">
               <image class="schedule-footer-item-img" src="../../image/btbk.png"></image>
               <text class="schedule-footer-item-text">帮TA补卡</text>
             </view>
@@ -51,7 +51,7 @@
               <image class="schedule-footer-item-img" src="../../image/qrgs.png"></image>
               <text class="schedule-footer-item-text">确认工时</text>
             </view>
-            <view class="schedule-footer-item" bindtap="handleTapConfirmWorkTime">
+            <view class="schedule-footer-item" bindtap="handleTapRetrunWorkTime" >
               <image class="schedule-footer-item-img" src="../../image/chehuiqrgs.png"></image>
               <text class="schedule-footer-item-text">撤回确认</text>
             </view>
@@ -98,4 +98,32 @@
       </view>
     </view>
   </scroll-view>
+  <page-container
+    overlay="{{overlay}}"
+    show="{{showClickGrid}}"
+    custom-style="{{customStyle}}"
+    round
+  >
+    <!--修改班次-->
+  <shiftListEdit 
+    wx:if="{{showUserEditScheedulingMain}}" 
+    selectedShift="{{selectedShiftEdit}}" 
+    bind:cancel="handleClickEditShiftCancelBtn"
+    bind:confirm="handleClickEditShiftConfirmBtn"
+    team_id="{{team_id}}"
+    project_id="{{project_id}}"
+    task_id="{{task_id}}"
+    />
+    <replacementCard 
+      wx:if="{{showReplacementCard}}" 
+      bind:cancel="handleClickReplacementCardCancelBtn"
+      bind:confirm="handleClickReplacementCardConfirmBtn"
+      team_id="{{team_id}}"
+      project_id="{{project_id}}"
+      task_id="{{task_id}}"
+      date="{{date}}"
+      user_id="{{user_id}}"
+      schedule_id="{{schedule_id}}"
+    />
+  </page-container>
 </view>

@@ -12,11 +12,15 @@ Page({
         task_id: '',
         schedule_id: '',
         user_id: '',
-        schedule_id:'',
         date:'',
         extra_info:{},
         work_time_range:[],
-        attendance_list:[]
+        attendance_list:[],
+		customStyle: 'background: #ffffff;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);',
+        showClickGrid: false,
+        overlay: true,
+        showUserEditScheedulingMain: false,
+        showReplacementCard: false,
     },
 
     /**
@@ -168,6 +172,87 @@ Page({
               })
             }
           })
+    },
+
+    //修改排班
+    handleTapEditSchedule(){
+        let schedule_id = this.data.schedule_id
+        let user_id = this.data.user_id
+        let date = this.data.date
+        let team_id = this.data.team_id
+        let project_id = this.data.project_id
+        let task_id = this.data.task_id
+    },
+
+    handleTapReplacementCard(){
+        this.setData({
+            showReplacementCard:true,
+            showClickGrid:true,
+        })
+    },
+
+    //撤回工时确认
+    handleTapRetrunWorkTime(){
+        wx.showModal({
+            title: '提示',
+            content: '是否撤回工时确认',
+            success:(res) => {
+                if(res.confirm){
+                    this.retrunWorkTime()
+                }
+            }
+        })
+    },
+
+    retrunWorkTime(){
+        let date_attendances = [{
+            user_id:this.data.user_id,
+            date:this.data.date,
+            task_id:this.data.task_id,
+            schedule_id:this.data.schedule_id,
+        }]
+        let data = {
+        team_id: this.data.team_id,
+        project_id: this.data.project_id,
+        date_attendances:JSON.stringify(date_attendances),
+        }
+    
+        dmNetwork.post(dmNetwork.retrunClockIn,data, res => {
+            if(res.data.errno == 0){
+                wx.showToast({
+                title: '撤回成功',
+                icon: 'success',
+                duration: 2000,
+                })
+                setTimeout(() => {
+                this.getDetail()
+                }, 2000)
+            }else{
+                wx.showToast({
+                title: res.data.errmsg,
+                icon: 'none',
+                duration: 2000,
+                })
+            }
+        })
+    },
+
+    //取消补卡
+    handleClickReplacementCardCancelBtn(){
+        this.setData({
+            showReplacementCard:false,
+            showClickGrid:false,
+        })
+    },
+
+    //补卡成功
+    handleClickReplacementCardSuccessBtn(){
+        this.setData({
+            showReplacementCard:false,
+            showClickGrid:false,
+        })
+
+        this.getDetail()
     },
 
     /**

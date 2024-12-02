@@ -1,3 +1,7 @@
 {
-    "usingComponents": {}
+    "navigationBarTitleText": "考勤详情",
+    "usingComponents": {
+      "shiftListEdit": "/components/shiftListEdit/shiftList",
+      "replacementCard": "/components/replacementCard/replacementCard"
+    }
 }

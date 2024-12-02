@@ -890,7 +890,7 @@ Page({
 		let requestDate = {
 			team_id: this.data.team_id,
 			project_id: this.data.project_id,
-			user_id: this.data.userInfo.userid,
+			user_id: this.data.userInfo.user_id,
 			date:this.data.userInfo.date,
 			task_id: this.data.task_id,
 
