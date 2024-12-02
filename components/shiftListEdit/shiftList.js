@@ -6,9 +6,9 @@ Component({
 			type: Number,
 			value: 1,
 		},
-		selectedShiftIdList: {
-			type: Array,
-			value: [],
+		selectedShift: {
+			type: Object,
+			value: {},
 		},
 		team_id: {
 			type: String,
@@ -66,11 +66,67 @@ Component({
 		// 组件方法
 		async init(){
 			let shiftList = await this.getShiftList();
+			let addSchedulingTab = this.data.selectedShift.type == 1 ? 1 : 2;
+			this.setTimeRange()
 			let temporarySchedulingList = [];
-			if(temporarySchedulingList.length === 0){
+			let currentSelectEdShiftIdList = [];
+			let temporaryRestType = 1;
+			if(addSchedulingTab == 1){
+				currentSelectEdShiftIdList = [this.data.selectedShift.schedule_id];
+			}
+			if(addSchedulingTab == 2 && this.data.selectedShift.schedule_name){
+				let selectedShift = this.data.selectedShift;
+				let schedule_name = selectedShift.schedule_name;
+				let start_time = selectedShift.start_time;
+				let end_time = selectedShift.end_time;
+				let work_hours = selectedShift.work_hours;
+				let timeStartIndex = this.handleSelectTimeIndex(selectedShift.start_time);
+				let timeEndIndex = this.handleSelectTimeIndex(selectedShift.end_time);
+				let timeRestStartIndex = [12,0];
+				let timeRestEndIndex = [13,0];
+				let temporaryRestTimeHourIndex = '';
+				let temporaryRestTimeMinuteIndex = '';
+				let rest_start_time = selectedShift.rest_start_time;
+				let rest_end_time = selectedShift.rest_end_time;
+				let temporaryRestStartTime = rest_start_time;
+				let temporaryRestEndTime = rest_end_time;
+
+				if(rest_start_time && rest_end_time){
+					timeRestStartIndex = this.handleSelectTimeIndex(rest_start_time);
+					timeRestEndIndex = this.handleSelectTimeIndex(rest_end_time);
+					temporaryRestType = 1;
+				}
+
+				if(!rest_start_time && rest_end_time){
+					temporaryRestTimeHourIndex = rest_end_time.split(':')[0];
+					temporaryRestTimeMinuteIndex = rest_end_time.split(':')[1];
+					temporaryRestType = 3;
+				}
+
+				if(!rest_start_time && !rest_end_time){
+					temporaryRestType = 2;
+					temporaryRestEndTime = '';
+					temporaryRestStartTime = '';
+				}
+
+				temporarySchedulingList.push({
+					schedule_name,
+					start_time,
+					end_time,
+					work_hours,
+					timeStartIndex,
+					timeEndIndex,
+					timeRestStartIndex,
+					timeRestEndIndex,
+					temporaryRestTimeHourIndex,
+					temporaryRestTimeMinuteIndex,
+					temporaryRestType,
+					
+				})
+			}
+			if(addSchedulingTab == 2 &&temporarySchedulingList.length === 0){
 				temporarySchedulingList = [{
 					schedule_name: '',
-					schedulingColor: '',
 					start_time: '08:00',
 					end_time: '16:00',
 					work_hours: '',
@@ -85,11 +141,25 @@ Component({
 
 			this.setData({
 				fixedSchedulingList:shiftList.fixedSchedules,
-				currentSelectEdShiftIdList:this.data.selectedShiftIdList,
+				currentSelectEdShiftIdList,
 				temporarySchedulingList,
+				addSchedulingTab,
+				temporaryRestType,
 			})
-			this.setTimeRange()
 
+		},
+
+		//根据选择的时间的小时和分钟结合timeRange 计算出选择的[index,index]
+		handleSelectTimeIndex(time){
+			//需要判断如果在timeRange中没有找到，则返回[0,0]
+			let timeRange = this.data.timeRange;
+			let timeArr = time.split(':');
+			let hourIndex = timeRange[0].indexOf(timeArr[0]);
+			let minuteIndex = timeRange[1].indexOf(timeArr[1]);
+			if(hourIndex == -1 || minuteIndex == -1){
+				return [0,0];
+			}
+			return [hourIndex,minuteIndex];
 		},
 
 		//setTimeRange
@@ -109,8 +179,7 @@ Component({
 				timeRange: [hours, minutes]
 			});
 		},
-
-
+		
 		//获取排班数据
 		getShiftList() {
 			return new Promise((resolve, reject) => {    
@@ -140,7 +209,7 @@ Component({
 		handleClickSelectScheduleItme(e) {
 			let index = e.currentTarget.dataset.scheduleidx;
 			const fixedSchedulingList = this.data.fixedSchedulingList;
-			const currentSelectEdShiftIdList = this.data.currentSelectEdShiftIdList;
+			let currentSelectEdShiftIdList = this.data.currentSelectEdShiftIdList;
 			const schedule = fixedSchedulingList[index];
 			const scheduleId = schedule.id;
 			let isExist = false;
@@ -150,14 +219,7 @@ Component({
 			}
 
 			if(!isExist){
-				currentSelectEdShiftIdList.push(scheduleId)
-				this.setData({
-					currentSelectEdShiftIdList
-				})
-			}else{
-				//提示已经选择过了，从currentSelectEdShiftIdList中删除
-				const idx = currentSelectEdShiftIdList.indexOf(scheduleId);
-				currentSelectEdShiftIdList.splice(idx,1);
+				currentSelectEdShiftIdList = [scheduleId]
 				this.setData({
 					currentSelectEdShiftIdList
 				})
@@ -170,7 +232,6 @@ Component({
 			const temporarySchedulingList = this.data.temporarySchedulingList
 			temporarySchedulingList.push({
 				schedule_name: '',
-				schedulingColor: '',
 				start_time: '08:00',
 				end_time: '16:00',
 				work_hours: '',

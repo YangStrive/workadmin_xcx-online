@@ -311,6 +311,8 @@ const searchUser = config.host + '/sea/api/1.0/client/v1/group/member_search'
 
 //查看考勤详情
 const checkClockInDetail = config.host + '/sea/api/1.0/client/v1/attendance/detail'
+//修改某人某天班次
+const editShift = config.host + '/sea/api/1.0/client/v1/attendance/update_ss_user'
 // get请求
 const get = (host, params, callbacksuccess, callbackfail, disLoading) => {
   if (!disLoading)
@@ -816,5 +818,6 @@ module.exports = {
   confirmClockInList,
   confirmClockIn,
   searchUser,
-  checkClockInDetail
+  checkClockInDetail,
+  editShift
 }

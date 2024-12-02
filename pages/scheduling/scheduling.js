@@ -58,15 +58,19 @@ Page({
 		userDetailScheduleId:'',
 		soruceClockInList:[],//原始打卡记录
 		overlay: false,
+		showUserEditScheedulingMain:false,//是否显示修改班次
+		selectedShiftEdit:{},//选中的班次
+
 	},
 
 	async init() {
 		this.getSchedulingDetail = debounce(this.getSchedulingDetailDeb, 1000)
 		const now = new Date()
-		const nowDate = now.getDate()
-		const nowMonth = now.getMonth()
+		const nowDate = now.getDate() < 10 ? '0' + now.getDate() : now.getDate()
+		const nowMonth = now.getMonth() < 9 ? '0' + (now.getMonth() + 1) : now.getMonth() + 1
 		const nowYear = now.getFullYear()
-		const nowDateStr = `${nowYear}-${nowMonth + 1}-${nowDate}`
+		const nowDateStr = `${nowYear}-${nowMonth}-${nowDate}`
+
 		this.setData({
 			nowDateStr,
 			headSelectYear: nowYear,
@@ -895,6 +899,112 @@ Page({
 		this.setData({
 			userDetailScheduleId:schedule_id,
 			clockInList,
+		})
+	},
+
+	//修改班次
+	handleClickEditUserScheduleBtn(e){
+		let userScheduleList = this.data.userScheduleList;
+		let scheduleidx = e.currentTarget.dataset.scheduleidx;
+		console.log('scheduleidx',userScheduleList);
+		console.log('scheduleidx',userScheduleList[scheduleidx]);
+		this.setData({
+			showUserEditScheedulingMain:true,
+			showUserScheduleDetail:false,
+			selectedShiftEdit:userScheduleList[scheduleidx],
+		})
+	},
+
+	//修改班次取消
+	handleClickEditShiftCancelBtn(){
+		this.setData({
+			showUserEditScheedulingMain:false,
+			showUserScheduleDetail:true,
+			selectedShiftEdit:{},
+		})
+	},
+
+	//修改班次确定
+	async handleClickEditShiftConfirmBtn(e){
+		let selectedList = e.detail.selectedList;
+		let selectedIdList = e.detail.selectedIdList;
+		let userScheduleList = this.data.userScheduleList;
+		let selectSchedulingIdList = this.data.selectSchedulingIdList;
+		let record_id = this.data.selectedShiftEdit.record_id;
+		let willDeleteScheduleId = this.data.selectedShiftEdit.schedule_id;
+		//删除userScheduleList 和 selectSchedulingIdList 中willDeleteScheduleId
+		userScheduleList = userScheduleList.filter(item => {
+			return item.schedule_id != willDeleteScheduleId
+		})
+		selectSchedulingIdList = selectSchedulingIdList.filter(item => {
+			return item != willDeleteScheduleId
+		})
+
+		selectedIdList = selectedIdList.concat(selectSchedulingIdList);
+		selectedList = selectedList.concat(userScheduleList);
+		//将selectedIdList 和 selectedList 去重
+		selectedIdList = Array.from(new Set(selectedIdList));
+
+		//去重selectedList
+		let queSelectedList = [];
+		selectedList.forEach(item => {
+			let flag = true;
+			queSelectedList.forEach(queItem => {
+				if(queItem.schedule_id == item.schedule_id){
+					flag = false;
+				}
+			})
+			if(flag){
+				queSelectedList.push(item);
+			}
+		})
+
+			
+
+		let data = {
+			team_id: this.data.team_id,
+			project_id: this.data.project_id,
+			task_id: this.data.task_id,
+			user_id: this.data.userInfo.user_id,
+			record_id,
+			schedule_id:selectedIdList[0],
+		}
+
+		let res = await this.submitEditUserSchedule(data);
+		
+		if(res.errno == 0){
+			wx.showToast({
+				title: '修改成功',
+				icon: 'success',
+				duration: 2000
+			});
+
+			this.setData({
+				showUserEditScheedulingMain:false,
+				showUserScheduleDetail:true,
+				selectedShiftEdit:{},
+				userScheduleList:queSelectedList,
+				selectSchedulingIdList:selectedIdList,
+			})
+
+			this.getSchedulingDetail(this.data.bodyCurrent);
+		}else{
+			wx.showToast({
+				title: res.errmsg,
+				icon: 'none',
+				duration: 2000
+			});
+		}
+	},
+
+	//提交修改某人某天班次
+	async submitEditUserSchedule(data){
+		return new Promise((resolve, reject) => {
+			dmNetwork.post(dmNetwork.editShift,data, (res) => {
+				resolve(res.data);
+			}, (err) => {
+				reject(err)
+			})
 		})
 	},
 

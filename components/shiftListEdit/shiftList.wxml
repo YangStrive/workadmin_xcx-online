@@ -1,0 +1,103 @@
+<view class="add-scheduling-main">
+    <wxs src="./tools.wxs" module="tools" />
+    <view class="add-scheduling-head">
+      <text class="add-scheduling-head-title">选择班次</text>
+    </view>
+    <!-- 班次列表 有固定班次和临时班次两个tab，班次是一个list，每一个item有班次名称开始时间、结束时间、休息时间，临时班次需要临时添加选择开始时间和结束时间 -->
+    <view class="add-scheduling-tab">
+      <text class="add-scheduling-tab-item {{ addSchedulingTab == 1 ? 'add-scheduling-tab-item-active' : ''}}" bindtap="handleAddSchedulingTab" data-tabid="1">固定班次</text>
+      <text class="add-scheduling-tab-item {{addSchedulingTab == 2 ? 'add-scheduling-tab-item-active' : ''}}" bindtap="handleAddSchedulingTab" data-tabid="2">临时班次</text>
+    </view>
+    <scroll-view class="add-scheduling-scroll" scroll-y>
+      <view class="add-scheduling-list"  wx:if="{{addSchedulingTab == 1}}">
+        <view class="add-scheduling-list-item" wx:for="{{fixedSchedulingList}}" wx:key="index" data-scheduleidx="{{index}}" bindtap="handleClickSelectScheduleItme">
+          <view class="add-scheduling-list-item-content">
+            <view class="add-scheduling-list-item-select {{tools.isSelectCheck(currentSelectEdShiftIdList,item.id )? 'schedule-selected' : ''}}" >
+              
+            </view>
+            <view class="add-scheduling-list-item-content-left">
+              <text class="schedule-name">{{item.schedule_name}}</text>
+              <text class="schedule-time">{{item.start_time}}-{{item.end_time}}</text>
+            </view>
+            <view class="add-scheduling-list-item-content-right">
+              <text class="work-hours">{{item.work_hours}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    <!-- 临时班次添加 临时班次也可以添加多个-->
+      <view class="add-temporaryscheduling-list"  wx:if="{{addSchedulingTab == 2}}">
+        <view class="temporary-scheduling-item" wx:for="{{temporarySchedulingList}}" wx:key="index">
+          <view class="temporary-scheduling-head">
+            <text class="temporary-scheduling-head-title" wx:if="{{temporarySchedulingList.length > 1}}">第{{index + 1}}段工作时间</text>
+            <text class="temporary-scheduling-head-title" wx:if="{{temporarySchedulingList.length == 1}}">工作时间</text>
+            <image wx:if="{{temporarySchedulingList.length > 1}}" class="temporary-scheduling-item-btn-delete " data-scheduleidx="{{index}}" bindtap="handleClickDeleteTempScheduleBtn" src="../../image/delete_icon.png"></image>
+          </view>
+          <view class="temporary-scheduling-item-content">
+            <view class="temporary-scheduling-time">
+              <text class="temporary-scheduling-item-content-title">开始时间</text>
+              <picker mode="multiSelector" range="{{timeRange}}" value="{{item.timeStartIndex}}" bindchange="handleTemporaryScheduleTimeChange" data-scheduleidx="{{index}}" data-timetype="start_time">
+                <view class="temporary-scheduling-item-content-value">{{item.start_time}} ></view>
+              </picker>
+            </view> 
+            <view class="temporary-scheduling-time">
+              <text class="temporary-scheduling-item-content-title">结束时间</text>
+              <picker mode="multiSelector" range="{{timeRange}}" value="{{item.timeEndIndex}}" bindchange="handleTemporaryScheduleTimeChange" data-scheduleidx="{{index}}" data-timetype="end_time">
+                <view class="temporary-scheduling-item-content-value">{{item.end_time}} ></view>
+              </picker>
+            </view>
+          </view>
+        </view> 
+        <view class="add-temporaryscheduling-btn">
+          <text class="add-temporaryscheduling-btn-item" bindtap="handleAddTemporarySchedulingBtn">+添加临时班次</text>
+        </view>
+        <view class="temporaryscheduling-rest-time" wx:if="{{temporarySchedulingList.length == 1}}">
+          <text class="temporaryscheduling-rest-time-title">休息时间</text>
+          <view class="rest-radio-group">
+            <radio-group bindchange="handleRestTypeRadioChange">
+              <label class="weui-cell weui-check__label" wx:for="{{restTypeList}}" wx:key="{{index}}">
+                <view class="weui-cell__hd">
+                  <radio value="{{item.value}}" checked="{{item.value == temporaryRestType}}" color="#FFA928"/>
+                </view>
+                <view class="weui-cell__bd">{{item.label}}</view>
+              </label>
+            </radio-group>
+          </view>
+
+          <view wx:if="{{temporaryRestType == 1}}">
+          <view class="rest-time-box-st" >
+            <view class="rest-time-lebel-title">休息开始时间</view>
+            <picker mode="multiSelector" range="{{timeRange}}" value="{{temporaryRestStartTimeIndex}}" bindchange="handleTemporaryRestStartTimeChange">
+              <view class="temporaryscheduling-rest-time-value">{{temporaryRestStartTime}} ></view>
+            </picker>
+          </view>
+
+          <view class="rest-time-box-st" >
+            <view class="rest-time-lebel-title">休息结束时间</view>
+            <picker mode="multiSelector" range="{{timeRange}}" value="{{temporaryRestEndTimeIndex}}" bindchange="handleTemporaryRestEndTimeChange">
+              <view class="temporaryscheduling-rest-time-value">{{temporaryRestEndTime}} ></view>
+            </picker>
+          </view>
+          </view>
+          <view class="rest-time-box-sth " wx:if="{{temporaryRestType == 3}}">
+            <!--休息时间 多少小时 多少分钟 -->
+            <view class="temporarys-h">
+              <input  class="temporarys-input" type="number" value="{{temporaryRestTimeHourIndex}}"/>
+              <text>小时</text>
+            </view>
+            <view class="temporarys-h">
+              <input  class="temporarys-input"  type="number"  value="{{temporaryRestTimeMinuteIndex}}"/>
+              <text>分钟</text>
+            </view>
+
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="add-scheduling-btn">
+      <text class="add-scheduling-btn-item add-cancel-btn " bindtap="handleAddSchedulingBtn">取消</text>
+      <text class="add-scheduling-btn-item" bindtap="handleCloseAddScheduling">确定</text>
+    </view>
+  </view>

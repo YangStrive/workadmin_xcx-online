@@ -471,10 +471,16 @@
   border-radius: 5rpx;
 
 }
+.user-schedule-box-item-btn{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 .user-schedule-box-item-btn-delete{
-  width: 40rpx;
-  height: 40rpx;
+  width: 34rpx;
+  height: 34rpx;
   display: block;
+  margin-left: 24rpx;
 }
 .user-schedule-box-item-btn-add{
   margin-top: 0rpx;
