@@ -27,6 +27,8 @@ Page({
 		page_no:1,
 		userName:'',
 		user_id:'',
+		attend_status_list:['考勤正常','全天旷工','考勤中','考勤异常','考勤未开始'],
+		
 	},
 
     /**
@@ -126,6 +128,7 @@ Page({
 		},
 
 		getAttendanceList(){
+			let attend_status_list = this.data.attend_status_list;
 			// 获取考勤列表
 			let data = {
 				team_id: this.data.team_id,
@@ -146,6 +149,7 @@ Page({
 					attendances.forEach((item) => {
 						item.firstname = item.name.substr(0,1);
 						item.nameIndex = index;
+						item.status_index = attend_status_list.indexOf(item.attend_status);
 						index++;
 
 						if(index > 4){

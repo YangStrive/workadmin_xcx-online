@@ -4,8 +4,8 @@
   </view>
   <scroll-view class="confirm-detail-scroll" scroll-y="true">
     <view class="scroll-header-status">
-      <text class="scroll-header-status-text">已确认</text>
-      <text class="scroll-header-status-more">已确认</text>
+      <text class="scroll-header-status-text">{{extra_info.confirm_status == 1 ? '已确认' : '未确认'}}</text>
+      <text class="scroll-header-status-more {{statusTag}}">{{extra_info.attend_status}}</text>
     </view>
     <view class="schedule-content">
 
@@ -15,7 +15,7 @@
 					<text class="userinfo-firstname" wx:if="{{!extra_info.user_avatar.thumb_url}}">{{extra_info.firstname}}</text>
           <text class="scroll-header-left-text">{{extra_info.user_name}}</text>
           <image class="scroll-header-renzheng" wx:if="{{extra_info.is_verified}}" src="../../image/bg_insurance.png"></image>
-          <image class="scroll-header-phone" src="../../image/phone_icon.png"></image>
+          <image class="scroll-header-phone" src="../../image/phone_icon.png" bindtap="handleTapCall"></image>
         </view>
         <view class="scroll-header-right">
           <view class="more-info">
@@ -43,15 +43,15 @@
               <image class="schedule-footer-item-img" src="../../image/btbk.png"></image>
               <text class="schedule-footer-item-text">帮TA补卡</text>
             </view>
-            <view class="schedule-footer-item" bindtap="handleTapDeleteSchedule">
+            <view class="schedule-footer-item" bindtap="handleTapDeleteSchedule" wx:if="{{extra_info.confirm_status != 1}}">
               <image class="schedule-footer-item-img" src="../../image/shanchule.png"></image>
               <text class="schedule-footer-item-text">删除</text>
             </view>
-            <view class="schedule-footer-item" bindtap="handleTapConfirmWorkTime">
+            <view class="schedule-footer-item" bindtap="handleTapConfirmWorkTime" wx:if="{{extra_info.confirm_status != 1}}">
               <image class="schedule-footer-item-img" src="../../image/qrgs.png"></image>
               <text class="schedule-footer-item-text">确认工时</text>
             </view>
-            <view class="schedule-footer-item" bindtap="handleTapRetrunWorkTime" >
+            <view class="schedule-footer-item" bindtap="handleTapRetrunWorkTime" wx:if="{{extra_info.confirm_status == 1}}">
               <image class="schedule-footer-item-img" src="../../image/chehuiqrgs.png"></image>
               <text class="schedule-footer-item-text">撤回确认</text>
             </view>

@@ -23,9 +23,12 @@
   color: #202128;
 }
 .scroll-header-status-more{
+  padding: 6rpx 12rpx;
+  border-radius: 8rpx;
+  color: #fff;
+  background-color: #ec8a8a;
+  opacity: 0.6;
   font-size: 24rpx;
-  font-weight: 400;
-  color: #868686;
 }
 
 .scroll-header-status{
@@ -373,4 +376,23 @@
 }
  .colorblock_item_Z{
   border-left: 6rpx solid #eaea92;
+}
+.status_0 {
+  background-color: #4caf50; /* 绿色 */
+}
+
+.status_1{
+  background-color: #f44336; /* 红色 */
+}
+
+.status_2{
+  background-color: #2196f3; /* 蓝色 */
+}
+
+.status_3 {
+  background-color: #ff9800; /* 橙色 */
+}
+
+.status_4 {
+  background-color: #9e9e9e; /* 灰色 */
 }

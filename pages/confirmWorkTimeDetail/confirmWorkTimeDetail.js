@@ -23,6 +23,8 @@ Page({
         showReplacementCard: false,
         selectedShiftEdit:{},
         schedule_info:[],
+        statusTag:'',
+		attend_status_list:['考勤正常','全天旷工','考勤中','考勤异常','考勤未开始'],
     },
 
     /**
@@ -80,6 +82,7 @@ Page({
                     schedule_info:data.schedule_info,
                     attendance_list:data.attendance_list,
                     selectedShiftEdit:data.schedule_info[0],
+                    statusTag:'status_' + this.data.attend_status_list.indexOf(data.extra_info.attend_status)
                 })
             }else{
                 wx.showToast({
@@ -319,6 +322,12 @@ Page({
         })
 
         this.getDetail()
+    },
+
+    handleTapCall(){
+        wx.makePhoneCall({
+            phoneNumber: this.data.extra_info.mobile,
+        })
     },
 
     /**

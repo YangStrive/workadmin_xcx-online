@@ -243,6 +243,10 @@ Page({
 				confirmWorkTimeList:[],
 				page_no:1,
 				noMore:false,
+        checkedCount:0,
+        totalWorkTime:0,
+        totalMoney:0,
+        allChecked:false,
 			})
 
 			this.getConfirmWorkTimeList()

@@ -37,7 +37,7 @@
 		<view class="attendance-list-body" wx:if="{{attendances.length > 0}}">
 			<view class="list-body-item" wx:for="{{attendances}}" wx:key="index">
 				<view class="list-body-item__header">
-					<text class="attendances-status">{{item.status}}</text>
+					<text class="attendances-status {{'status_'+item.status_index}}">{{item.attend_status}}</text>
 				</view>
 				<view class="body-item-userinfo">
 					<view class="userinfo-left">

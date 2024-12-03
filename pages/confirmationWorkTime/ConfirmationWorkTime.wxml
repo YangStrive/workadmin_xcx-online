@@ -3,7 +3,7 @@
 		<view class="comfirm-search">
 			<image class="comfirm-search-icon" src="../../image/search.png"></image>
 			<input class="comfirm-search-input" placeholder="搜索员工姓名"  disabled value="{{userName}}" bindtap="handleInputFocus"/>
-			<image class="comfirm-search-delete" src="../../image/close_123.png" bindtap="handleTapClearSearchInput"></image>
+			<image class="comfirm-search-delete" src="../../image/close_123.png" bindtap="handleTapClearSearchInput" wx:if="{{userName}}"></image>
 		</view>
 	</view>
 	<!--滚动区域-->
