@@ -200,8 +200,22 @@ Component({
 
 		handleAddSchedulingTab(e) {
 			const tabid = e.currentTarget.dataset.tabid;
+
+			let temporarySchedulingList = [{
+				schedule_name: '',
+				start_time: '08:00',
+				end_time: '16:00',
+				work_hours: '',
+				rest_start_time: '',
+				rest_end_time: '',
+				timeStartIndex:[8,0],
+				timeEndIndex:[16,0],
+				timeRestStartIndex:[12,0],//12:00 
+				timeRestEndIndex:[13,0],//13:00
+			}]
 			this.setData({
 				addSchedulingTab:tabid,
+				temporarySchedulingList,
 			})
 		},
 

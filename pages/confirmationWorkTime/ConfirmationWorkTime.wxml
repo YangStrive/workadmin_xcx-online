@@ -22,12 +22,12 @@
 								data-index="{{index}}" 
 								data-lindex="{{lIndex}}">
 							</view>
-							<view class="item-l-i-user">
+							<view class="item-l-i-user"  data-lindex="{{lIndex}}" data-index="{{index}}" bindtap="handleTapDetail" >
 								<image class="item-l-i-user-img" src="../../image/bg_insurance.png" wx:if="{{false}}"></image>
 								<text class="item-l-i-user-first-name {{'bgCl' + lItem.nameIndex}}">{{lItem.firstName}}</text>
 								<text class="item-l-i-user-name">{{lItem.name}}</text>
 							</view>
-							<view class="item-l-i-right">
+							<view class="item-l-i-right"  data-lindex="{{lIndex}}" data-index="{{index}}" bindtap="handleTapDetail">
 								<view class="item-l-i-time">
 									<text class="item-l-i-time-text">{{lItem.point_time}}小时</text>
 									<text class="item-l-i-time-money">{{lItem.amount}}元</text>
@@ -35,7 +35,7 @@
 								<image class="item-l-i-right-icon" src="../../image/right_icon.png"></image>
 							</view>
 						</view>
-						<view class="item-list-item-content">
+						<view class="item-list-item-content"  data-lindex="{{lIndex}}" data-index="{{index}}" bindtap="handleTapDetail">
 							<view class="item-l-i-c-item">
 								<text class="item-l-i-c-item-text">工作时间：{{lItem.arrangedTimeDesc}}</text>
 								<!--打卡时间-->

@@ -102,8 +102,9 @@
 .schedule-list-item-content{
   margin:0 24rpx;
   padding-left: 24rpx;
-  border-left:6rpx solid #da1b1b;
+  border-left:6rpx solid #FFA928;
   margin-bottom: 24rpx;
+  border-radius: 6rpx;
 }
 .schedule-name{
   font-size: 28rpx;
@@ -294,4 +295,82 @@
   color: #fff;
   font-size: 38rpx;
   margin-right: 12rpx;
+}
+.colorblock_item_A{
+  border-left: 6rpx solid #83aef2;
+}
+ .colorblock_item_B{
+  border-left: 6rpx solid #fea560;
+}
+ .colorblock_item_C{
+  border-left: 6rpx solid #8bd574;
+}
+ .colorblock_item_D{
+  border-left: 6rpx solid #fa876d;
+}
+ .colorblock_item_E{
+  border-left: 6rpx solid #cd88df;
+}
+ .colorblock_item_F{
+  border-left: 6rpx solid #fcbd41;
+}
+ .colorblock_item_G{
+  border-left: 6rpx solid #4ad6d1;
+}
+ .colorblock_item_H{
+  border-left: 6rpx solid #b7de30;
+}
+ .colorblock_item_I{
+  border-left: 6rpx solid #a590f3;
+}
+ .colorblock_item_J{
+  border-left: 6rpx solid #a09bb4;
+}
+ .colorblock_item_K{
+  border-left: 6rpx solid #83aef2;
+}
+ .colorblock_item_L{
+  border-left: 6rpx solid #fea560;
+}
+ .colorblock_item_M{
+  border-left: 6rpx solid #2e7d43;
+}
+ .colorblock_item_N{
+  border-left: 6rpx solid #d05830;
+}
+ .colorblock_item_O{
+  border-left: 6rpx solid #67adc8;
+}
+ .colorblock_item_P{
+  border-left: 6rpx solid #b15888;
+}
+ .colorblock_item_Q{
+  border-left: 6rpx solid #A133FF;
+}
+ .colorblock_item_R{
+  border-left: 6rpx solid #75edb5;
+}
+ .colorblock_item_S{
+  border-left: 6rpx solid #92e87e;
+}
+ .colorblock_item_T{
+  border-left: 6rpx solid #553dc3;
+}
+ .colorblock_item_U{
+  border-left: 6rpx solid #FF33FF;
+}
+ .colorblock_item_V{
+  border-left: 6rpx solid #33FF33;
+}
+ .colorblock_item_W{
+  border-left: 6rpx solid #ee8c8c;
+}
+ .colorblock_item_X{
+  border-left: 6rpx solid #7a7aeb;
+}
+ .colorblock_item_Y{
+  border-left: 6rpx solid #33FFFF;
+}
+ .colorblock_item_Z{
+  border-left: 6rpx solid #eaea92;
 }

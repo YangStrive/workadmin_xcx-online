@@ -1,6 +1,6 @@
 <view class="confirm-detail">
   <view class="confirm-detail-header">
-    <text class="confirm-detail-header-text">{{date}}</text>
+    <text class="confirm-detail-header-text">{{date}} （{{week}}）</text>
   </view>
   <scroll-view class="confirm-detail-scroll" scroll-y="true">
     <view class="scroll-header-status">
@@ -23,19 +23,19 @@
           </view>
         </view>
       </view>
-      <view class="schedule-list" wx:if="{{work_time_range.length > 0}}">
+      <view class="schedule-list" wx:if="{{schedule_info.length > 0}}">
         <view class="schedule-list-item">
           <view class="schedule-list-item-header">
             <text class="schedule-group">{{extra_info.task_name}}</text>
             <text class="schedule-info">考勤规则</text>
           </view>
-          <view class="schedule-list-item-content">
-            <text class="schedule-name">A班次</text>
-            <text class="schedule-time">{{work_time_range[0].start.time}} - {{work_time_range[0].end.time}}</text>
+          <view class="schedule-list-item-content colorblock_item_{{schedule_info[0].schedule_name}}">
+            <text class="schedule-name">{{schedule_info[0].schedule_name}}</text>
+            <text class="schedule-time">{{schedule_info[0].start_time}} - {{schedule_info[0].end_time}}</text>
           </view>
           <view class="line"></view>
-          <view class="schedule-list-item-footer" bindtap="handleTapEditSchedule">
-            <view class="schedule-footer-item">
+          <view class="schedule-list-item-footer" >
+            <view class="schedule-footer-item" bindtap="handleTapEditSchedule">
               <image class="schedule-footer-item-img" src="../../image/xiugai.png" ></image>
               <text class="schedule-footer-item-text">修改</text>
             </view>
@@ -90,7 +90,7 @@
               <text class="punch-record-time">{{item.attend_time || '未打卡'}}</text>
               <view class="punch-record-item-location">
                 <image class="punch-record-item-location-img" src="../../image/ic_mine_job_commit_location.png"></image>
-                <text class="punch-record-item-location-text">A栋1楼</text>
+                <text class="punch-record-item-location-text">{{item.form_data[0]? item.form_data[0].value.addr_name : '无位置'}}</text>
               </view>
             </view>
           </view>

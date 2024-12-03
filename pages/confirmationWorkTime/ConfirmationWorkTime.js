@@ -253,6 +253,22 @@ Page({
 				url: '/pages/searchPerson/searchPerson?team_id=' + this.data.team_id + '&project_id=' + this.data.project_id,
 			})
 		},
+
+    //查看详情
+		handleTapDetail(e){
+			let index = e.currentTarget.dataset.index;
+			let lindex = e.currentTarget.dataset.lindex;
+			let userData = this.data.confirmWorkTimeList[index].list[lindex];
+			let schedule_id = userData.schedule_id;
+			let team_id = this.data.team_id;
+			let task_id = userData.task_id;
+			let user_id = userData.user_id;
+			let date = userData.date;
+			let project_id = this.data.project_id;
+			wx.navigateTo({
+				url:'/pages/confirmWorkTimeDetail/confirmWorkTimeDetail?schedule_id=' + schedule_id + '&user_id=' + user_id + '&date=' + date + '&team_id=' + team_id + '&project_id=' + project_id + '&task_id=' + task_id,
+			})
+		},
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

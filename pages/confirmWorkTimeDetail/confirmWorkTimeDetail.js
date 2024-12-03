@@ -21,6 +21,8 @@ Page({
         overlay: true,
         showUserEditScheedulingMain: false,
         showReplacementCard: false,
+        selectedShiftEdit:{},
+        schedule_info:[],
     },
 
     /**
@@ -33,20 +35,29 @@ Page({
         let team_id = options.team_id
         let project_id = options.project_id
         let task_id = options.task_id
+        //根据date 获取 星期几
+        let week = this.getWeek(date)
         this.setData({
             schedule_id,
             user_id,
             date,
             team_id,
             project_id,
-            task_id
+            task_id,
+            week
         })
         this.getDetail()
+    },  
+
+    //根据date 获取 星期几
+    getWeek(date){
+        let week = ['周日','周一','周二','周三','周四','周五','周六']
+        return week[new Date(date).getDay()]
     },
 
     // 获取详情
-    getDetail(){
-        let schedule_id = this.data.schedule_id
+    getDetail(id){
+        let schedule_id = id || this.data.schedule_id
         let user_id = this.data.user_id
         let date = this.data.date
         let team_id = this.data.team_id
@@ -66,8 +77,9 @@ Page({
                 data.extra_info.firstname = data.extra_info.user_name.substr(0,1);
                 this.setData({
                     extra_info:data.extra_info,
-                    work_time_range:data.work_time_range,
-                    attendance_list:data.attendance_list
+                    schedule_info:data.schedule_info,
+                    attendance_list:data.attendance_list,
+                    selectedShiftEdit:data.schedule_info[0],
                 })
             }else{
                 wx.showToast({
@@ -176,14 +188,68 @@ Page({
 
     //修改排班
     handleTapEditSchedule(){
-        let schedule_id = this.data.schedule_id
-        let user_id = this.data.user_id
-        let date = this.data.date
-        let team_id = this.data.team_id
-        let project_id = this.data.project_id
-        let task_id = this.data.task_id
+		this.setData({
+			showUserEditScheedulingMain:true,
+            showClickGrid:true,
+		})
     },
 
+    //修改排班取消
+    handleClickEditShiftCancelBtn(){
+        this.setData({
+            showUserEditScheedulingMain:false,
+            showClickGrid:false,
+        })
+    },
+
+    //修改排班确认
+    async handleClickEditShiftConfirmBtn(e){
+		let selectedList = e.detail.selectedList;
+		let selectedIdList = e.detail.selectedIdList;
+			
+		let data = {
+			team_id: this.data.team_id,
+			project_id: this.data.project_id,
+			task_id: this.data.task_id,
+			user_id: this.data.user_id,
+			record_id:this.data.selectedShiftEdit.record_id,
+			schedule_id:selectedIdList[0],
+		}
+
+		let res = await this.submitEditUserSchedule(data);
+		
+		if(res.errno == 0){
+			wx.showToast({
+				title: '修改成功',
+				icon: 'success',
+				duration: 2000
+			});
+            this.setData({
+                showUserEditScheedulingMain:false,
+                showClickGrid:false,
+            })
+            this.getDetail(selectedIdList[0])
+		}else{
+			wx.showToast({
+				title: res.errmsg,
+				icon: 'none',
+				duration: 2000
+			});
+		}
+    },
+
+    	//提交修改某人某天班次
+	async submitEditUserSchedule(data){
+		return new Promise((resolve, reject) => {
+			dmNetwork.post(dmNetwork.editShift,data, (res) => {
+				resolve(res.data);
+			}, (err) => {
+				reject(err)
+			})
+		})
+	},
+
+    //切换tab
     handleTapReplacementCard(){
         this.setData({
             showReplacementCard:true,
@@ -246,7 +312,7 @@ Page({
     },
 
     //补卡成功
-    handleClickReplacementCardSuccessBtn(){
+    handleClickReplacementCardConfirmBtn(){
         this.setData({
             showReplacementCard:false,
             showClickGrid:false,
